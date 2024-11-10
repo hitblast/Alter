@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  desktop_window: ^0.4.2
 
 dev_dependencies:
   flutter_test:
