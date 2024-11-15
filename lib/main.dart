@@ -4,6 +4,7 @@ import 'package:desktop_window/desktop_window.dart';
 
 // Import pages.
 import 'package:alter/pages/home_page.dart';
+import 'package:macos_ui/macos_ui.dart';
 
 void main() {
   runApp(const MainApp());
@@ -31,9 +32,10 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const CupertinoApp(
+    return const MacosApp(
+      title: 'Alter',
       debugShowCheckedModeBanner: false,
-      home: EmptyHomePage(),
+      home: HomePage(),
     );
   }
 }

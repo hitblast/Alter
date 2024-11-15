@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   desktop_window: ^0.4.2
+  macos_ui: ^2.0.9
 
 dev_dependencies:
   flutter_test:
