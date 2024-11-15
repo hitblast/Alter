@@ -1,5 +1,9 @@
+// Import third-party packages.
 import 'package:flutter/cupertino.dart';
 import 'package:desktop_window/desktop_window.dart';
+
+// Import pages.
+import 'package:alter/pages/home_page.dart';
 
 void main() {
   runApp(const MainApp());
@@ -29,9 +33,7 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return const CupertinoApp(
       debugShowCheckedModeBanner: false,
-      home: CupertinoPageScaffold(
-        child: Center(child: Text('Drag app to change icon!')),
-      ),
+      home: HomePage(),
     );
   }
 }
