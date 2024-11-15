@@ -33,7 +33,7 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return const CupertinoApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: EmptyHomePage(),
     );
   }
 }
