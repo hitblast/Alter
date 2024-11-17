@@ -6,7 +6,14 @@ import 'package:desktop_window/desktop_window.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:macos_ui/macos_ui.dart';
 
-void main() {
+Future<void> _configureMacosWindowUtils() async {
+  const config = MacosWindowUtilsConfig();
+  await config.apply();
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await _configureMacosWindowUtils();
   runApp(const MainApp());
 }
 
