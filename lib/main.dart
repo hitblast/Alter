@@ -1,4 +1,5 @@
 // Import third-party packages.
+import 'package:alter/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:desktop_window/desktop_window.dart';
 
@@ -39,10 +40,15 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const MacosApp(
-      title: 'Alter',
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
+    final appTheme = context.watch<AppTheme>();
+
+    return ChangeNotifierProvider(
+      child: MacosApp(
+        title: 'Alter',
+        debugShowCheckedModeBanner: false,
+        home: const HomePage(),
+        themeMode: appTheme.mode,
+      ),
     );
   }
 }
