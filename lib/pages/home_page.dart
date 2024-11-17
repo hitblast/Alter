@@ -4,9 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:macos_ui/macos_ui.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return PlatformMenuBar(
@@ -27,6 +32,24 @@ class HomePage extends StatelessWidget {
                     if (kDebugMode) {
                       print('File path: ${file.path}');
                     }
+                  } else {
+                    showMacosAlertDialog(
+                      // ignore: use_build_context_synchronously
+                      context: context,
+                      builder: (_) => MacosAlertDialog(
+                          appIcon: const Image(
+                              image: AssetImage(
+                                  'assets/alter_empty_page_front.png')),
+                          title: const Text('Not an application!'),
+                          message: const Text(
+                              'Please select an application with the .app extension.'),
+                          primaryButton: PushButton(
+                              controlSize: ControlSize.large,
+                              child: const Text('OK'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              })),
+                    );
                   }
                 },
                 child: Center(
