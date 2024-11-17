@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
     return PlatformMenuBar(
       menus: menuBarItems(),
       child: MacosScaffold(
+        toolBar: const ToolBar(),
         children: [
           ContentArea(
             builder: (context, scrollController) {

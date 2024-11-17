@@ -39,9 +39,8 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   Future<void> setWindowSize() async {
-    await DesktopWindow.setMinWindowSize(const Size(600, 400));
-    await DesktopWindow.setWindowSize(const Size(600, 400));
-    await DesktopWindow.setMaxWindowSize(const Size(600, 400));
+    await DesktopWindow.setMinWindowSize(const Size(580, 380));
+    await DesktopWindow.setWindowSize(const Size(580, 380));
   }
 
   @override
