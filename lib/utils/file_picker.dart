@@ -1,8 +1,22 @@
+// Third-party imports.
 import 'package:file_selector/file_selector.dart';
 import 'dart:io';
 
+/*
+
+File-picker functions for Alter.
+
+*/
+
 Future<XFile?> pickApplication() async {
   final XFile? file = await openFile(initialDirectory: '/Applications');
+  return file;
+}
+
+Future<XFile?> pickIcon() async {
+  final XFile? file = await openFile(acceptedTypeGroups: [
+    const XTypeGroup(label: 'Icons', extensions: ['icns'])
+  ]);
   return file;
 }
 
