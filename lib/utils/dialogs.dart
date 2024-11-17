@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
+// This function shows macOS-native alert dialogs as needed by the application.
 void showAlertDialog(BuildContext context, String title, String message) {
   showMacosAlertDialog(
     context: context,
