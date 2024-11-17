@@ -6,10 +6,23 @@ import 'package:desktop_window/desktop_window.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:macos_ui/macos_ui.dart';
 
+/*
+
+Auxiliary functions for configuring the macOS window.
+
+*/
+
+// Apply macOS design changes.
 Future<void> _configureMacosWindowUtils() async {
   const config = MacosWindowUtilsConfig();
   await config.apply();
 }
+
+/*
+
+The main application class of Alter.
+
+*/
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
