@@ -22,3 +22,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/alter_empty_page_front.png
+    - assets/alter_warning.png

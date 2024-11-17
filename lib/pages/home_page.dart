@@ -1,10 +1,14 @@
-import 'package:alter/platform_menus.dart';
-import 'package:alter/utils/dialogs.dart';
-import 'package:alter/utils/file_picker.dart';
+// Third-party imports.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:macos_ui/macos_ui.dart';
 
+// Local imports.
+import 'package:alter/platform_menus.dart';
+import 'package:alter/utils/dialogs.dart';
+import 'package:alter/utils/file_picker.dart';
+
+// The home page of the application.
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -12,6 +16,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// The state of the home page.
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
