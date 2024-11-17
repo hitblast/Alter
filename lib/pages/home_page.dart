@@ -1,4 +1,5 @@
 import 'package:alter/platform_menus.dart';
+import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -28,28 +29,25 @@ class _HomePageState extends State<HomePage> {
                   }
                   var file = await pickApplication();
 
-                  if (file != null) {
+                  if (file == null) {
+                    return;
+                  } else if (file.path.endsWith('.app')) {
                     if (kDebugMode) {
                       print('File path: ${file.path}');
                     }
+
+                    final bool? isSystemApp =
+                        await ifAppIsSystemApplication(file.path);
+
+                    if (isSystemApp == true) {
+                      if (!context.mounted) return;
+                      showAlertDialog(context, 'System application!',
+                          'Alter cannot alter system applications at this moment.');
+                    }
                   } else {
-                    showMacosAlertDialog(
-                      // ignore: use_build_context_synchronously
-                      context: context,
-                      builder: (_) => MacosAlertDialog(
-                          appIcon: const Image(
-                              image: AssetImage(
-                                  'assets/alter_empty_page_front.png')),
-                          title: const Text('Not an application!'),
-                          message: const Text(
-                              'Please select an application with the .app extension.'),
-                          primaryButton: PushButton(
-                              controlSize: ControlSize.large,
-                              child: const Text('OK'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              })),
-                    );
+                    if (!context.mounted) return;
+                    showAlertDialog(context, 'Invalid file type!',
+                        'Please select a proper application file.');
                   }
                 },
                 child: Center(
