@@ -20,7 +20,7 @@ Future<XFile?> pickIcon() async {
   return file;
 }
 
-Future<bool?> ifAppIsSystemApplication(String path) async {
+Future<bool> ifAppIsSystemApplication(String path) async {
   // first strip the path to get the application name, usually at the end of the path
   // then, check if the application also exists in /System/Applications
 
