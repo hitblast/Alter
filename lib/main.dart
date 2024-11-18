@@ -1,6 +1,7 @@
 // Import third-party packages.
 import 'package:flutter/cupertino.dart';
 import 'package:desktop_window/desktop_window.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Import pages.
 import 'package:alter/pages/home_page.dart';
@@ -27,7 +28,7 @@ The main application class of Alter.
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
-  runApp(const MainApp());
+  runApp(ProviderScope(child: const MainApp()));
 }
 
 class MainApp extends StatefulWidget {
