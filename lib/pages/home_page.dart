@@ -38,17 +38,45 @@ class _HomePageState extends State<HomePage> {
                   if (file == null) {
                     return;
                   } else if (file.path.endsWith('.app')) {
-                    if (kDebugMode) {
-                      print('File path: ${file.path}');
-                    }
-
-                    final bool? isSystemApp =
+                    final bool isSystemApp =
                         await ifAppIsSystemApplication(file.path);
-
                     if (isSystemApp == true) {
                       if (!context.mounted) return;
                       showAlertDialog(context, 'System application!',
                           'Alter cannot alter system applications at this moment.');
+                    } else {
+                      if (!context.mounted) return;
+                      showMacosSheet(
+                          context: context,
+                          builder: (_) {
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: MacosSheet(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(20),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Set icon for ${file.name.replaceAll('.app', '')}:',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: CupertinoColors.systemGrey,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 20),
+                                      PushButton(
+                                        controlSize: ControlSize.regular,
+                                        child: Text('Apply Changes'),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          });
                     }
                   } else {
                     if (!context.mounted) return;
