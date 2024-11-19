@@ -28,7 +28,7 @@ class _IconChooserSheetPageState extends State<IconChooserSheetPage> {
 
     return MacosSheet(
       child: Padding(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -36,6 +36,7 @@ class _IconChooserSheetPageState extends State<IconChooserSheetPage> {
               'Choose icon for $appName',
               style: TextStyle(
                 fontSize: 20,
+                color: CupertinoColors.systemGrey,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -45,7 +46,7 @@ class _IconChooserSheetPageState extends State<IconChooserSheetPage> {
                 border: Border.all(
                   color: currentPickedIcon != null
                       ? CupertinoColors.activeGreen
-                      : CupertinoColors.inactiveGray,
+                      : CupertinoColors.systemGrey,
                   width: 3,
                 ),
                 borderRadius: BorderRadius.circular(40),
