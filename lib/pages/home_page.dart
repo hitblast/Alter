@@ -1,5 +1,5 @@
 // Third-party imports.
-import 'package:file_selector/file_selector.dart';
+import 'package:alter/pages/iconchoosersheet_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -19,8 +19,6 @@ class HomePage extends StatefulWidget {
 
 // The state of the home page.
 class _HomePageState extends State<HomePage> {
-  XFile? selectedIconFile;
-
   @override
   Widget build(BuildContext context) {
     return PlatformMenuBar(
@@ -58,7 +56,12 @@ class _HomePageState extends State<HomePage> {
                     else {
                       if (!context.mounted) return;
 
-                      // TODO: rewrite the sheet because you failed once lol
+                      Navigator.of(context).push(
+                        CupertinoPageRoute(
+                          builder: (context) =>
+                              IconChooserSheetPage(appFile: file),
+                        ),
+                      );
                     }
                   } else {
                     // If the app type is invalid, show this warning:
