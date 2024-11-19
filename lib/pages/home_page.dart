@@ -1,7 +1,9 @@
 // Third-party imports.
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Local imports.
 import 'package:alter/platform_menus.dart';
@@ -9,24 +11,25 @@ import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/file_picker.dart';
 
 // The home page of the application.
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
 // The state of the home page.
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
+  XFile? selectedIconFile;
+
   @override
   Widget build(BuildContext context) {
     return PlatformMenuBar(
       menus: menuBarItems(),
       child: MacosScaffold(
-        toolBar: const ToolBar(),
         children: [
           ContentArea(
-            builder: (context, scrollController) {
+            builder: (BuildContext context, scrollController) {
               // TODO: this is for empty pages, update later for filled-up pages with icons
               return GestureDetector(
                 onTap: () async {
@@ -37,49 +40,29 @@ class _HomePageState extends State<HomePage> {
 
                   if (file == null) {
                     return;
-                  } else if (file.path.endsWith('.app')) {
+                  }
+
+                  // If the file is an application, continue with the process.
+                  else if (file.path.endsWith('.app')) {
+                    // Currently dismissing system apps because it requires the implementation of
+                    // symlinks inside the app. This is a security feature of macOS.
                     final bool isSystemApp =
                         await ifAppIsSystemApplication(file.path);
+
                     if (isSystemApp == true) {
                       if (!context.mounted) return;
                       showAlertDialog(context, 'System application!',
                           'Alter cannot alter system applications at this moment.');
-                    } else {
+                    }
+
+                    // If not a system app, continue with the process.
+                    else {
                       if (!context.mounted) return;
-                      showMacosSheet(
-                        context: context,
-                        builder: (_) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: MacosSheet(
-                              child: Padding(
-                                padding: const EdgeInsets.all(20),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'Set icon for ${file.name.replaceAll('.app', '')}:',
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        color: CupertinoColors.systemGrey,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 20),
-                                    PushButton(
-                                      controlSize: ControlSize.regular,
-                                      child: Text('Apply Changes'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
+
+                      // TODO: rewrite the sheet because you failed once lol
                     }
                   } else {
+                    // If the app type is invalid, show this warning:
                     if (!context.mounted) return;
                     showAlertDialog(context, 'Invalid file type!',
                         'Please select a proper application file.');
