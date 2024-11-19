@@ -1,11 +1,12 @@
 // Third-party imports.
 import 'dart:io';
 
-import 'package:alter/utils/file_picker.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:macos_ui/macos_ui.dart';
+
+// Local imports.
+import 'package:alter/utils/file_picker.dart';
 
 // The macOS sheet view for choosing the icon when the user prompts.
 class IconChooserSheetPage extends StatefulWidget {
