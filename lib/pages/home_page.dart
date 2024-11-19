@@ -47,36 +47,37 @@ class _HomePageState extends State<HomePage> {
                     } else {
                       if (!context.mounted) return;
                       showMacosSheet(
-                          context: context,
-                          builder: (_) {
-                            return GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: MacosSheet(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(20),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Set icon for ${file.name.replaceAll('.app', '')}:',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          color: CupertinoColors.systemGrey,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                        context: context,
+                        builder: (_) {
+                          return GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: MacosSheet(
+                              child: Padding(
+                                padding: const EdgeInsets.all(20),
+                                child: Column(
+                                  children: [
+                                    Text(
+                                      'Set icon for ${file.name.replaceAll('.app', '')}:',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: CupertinoColors.systemGrey,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      SizedBox(height: 20),
-                                      PushButton(
-                                        controlSize: ControlSize.regular,
-                                        child: Text('Apply Changes'),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    SizedBox(height: 20),
+                                    PushButton(
+                                      controlSize: ControlSize.regular,
+                                      child: Text('Apply Changes'),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            );
-                          });
+                            ),
+                          );
+                        },
+                      );
                     }
                   } else {
                     if (!context.mounted) return;
