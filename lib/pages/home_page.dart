@@ -3,7 +3,6 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:macos_ui/macos_ui.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // Local imports.
 import 'package:alter/platform_menus.dart';
@@ -11,15 +10,15 @@ import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/file_picker.dart';
 
 // The home page of the application.
-class HomePage extends ConsumerStatefulWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  ConsumerState<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 // The state of the home page.
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends State<HomePage> {
   XFile? selectedIconFile;
 
   @override
