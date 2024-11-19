@@ -25,77 +25,86 @@ class _IconChooserSheetPageState extends State<IconChooserSheetPage> {
   Widget build(BuildContext context) {
     final String appName = widget.appFile.name.replaceAll('.app', '');
 
-    return GestureDetector(
-      onTap: () {
-        if (kDebugMode) {
-          // only for debugging purposes if the user clicks on the sheet
-          Navigator.of(context).pop();
-        }
-      },
-      child: MacosSheet(
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Choose icon for $appName',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+    return MacosSheet(
+      child: Padding(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Choose icon for $appName',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              SizedBox(height: 20),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: currentPickedIcon != null
-                        ? CupertinoColors.activeGreen
-                        : CupertinoColors.inactiveGray,
-                    width: 3,
-                  ),
-                  borderRadius: BorderRadius.circular(40),
+            ),
+            SizedBox(height: 20),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: currentPickedIcon != null
+                      ? CupertinoColors.activeGreen
+                      : CupertinoColors.inactiveGray,
+                  width: 3,
                 ),
-                child: GestureDetector(
-                  onTap: () async {
-                    final XFile? file = await pickIcon();
+                borderRadius: BorderRadius.circular(40),
+              ),
+              child: GestureDetector(
+                onTap: () async {
+                  final XFile? file = await pickIcon();
 
-                    if (file != null) {
-                      setState(() {
-                        currentPickedIcon = file;
-                      });
-                    }
-                  },
-                  child: currentPickedIcon != null
-                      ? Image.file(
-                          File(currentPickedIcon!.path),
-                          width: 145,
-                          height: 145,
-                        )
-                      : Image(
-                          image: AssetImage('assets/alter_empty.png'),
-                          width: 145,
-                          height: 145,
-                        ),
-                ),
+                  if (file != null) {
+                    setState(() {
+                      currentPickedIcon = file;
+                    });
+                  }
+                },
+                child: currentPickedIcon != null
+                    ? Image.file(
+                        File(currentPickedIcon!.path),
+                        width: 145,
+                        height: 145,
+                      )
+                    : Image(
+                        image: AssetImage('assets/alter_empty.png'),
+                        width: 145,
+                        height: 145,
+                      ),
               ),
-              SizedBox(height: 20),
-              Text(
-                currentPickedIcon != null
-                    ? 'You can modify by left-clicking again!'
-                    : 'Left-click above to choose a new icon.',
-              ),
-              SizedBox(height: 20),
-              if (currentPickedIcon != null)
+            ),
+            SizedBox(height: 20),
+            Text(
+              currentPickedIcon != null
+                  ? 'You can modify by left-clicking again!'
+                  : 'Left-click above to choose a new icon.',
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
                 PushButton(
+                  controlSize: ControlSize.large,
+                  secondary: true,
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  controlSize: ControlSize.large,
-                  child: Text('Apply Changes'),
+                  child: Text('Cancel'),
                 ),
-            ],
-          ),
+                SizedBox(width: 10),
+                PushButton(
+                  controlSize: ControlSize.large,
+                  secondary: currentPickedIcon != null ? false : true,
+                  onPressed: () {
+                    if (currentPickedIcon == null) {
+                      return;
+                    }
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Apply Changes'),
+                )
+              ],
+            ),
+          ],
         ),
       ),
     );
