@@ -10,18 +10,6 @@ class AppDatabase {
 
   /*
 
-  QOL functions.
-
-  */
-
-  // TODO: To be later added in a seperate riverpod provider.
-  // Future<bool> isAppInDatabase(String path) async {
-  //   final app = await isar.apps.where().filter().pathEqualTo(path).findFirst();
-  //   return app != null;
-  // }
-
-  /*
-
   Basic CRUD operations for the database.
 
   */
