@@ -1,17 +1,23 @@
-// Import third-party packages.
+// Third-party imports.
 import 'package:flutter/cupertino.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-// Import pages.
-import 'package:alter/pages/home_page.dart';
+import 'package:isar/isar.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:path_provider/path_provider.dart';
+
+// Local imports.
+import 'package:alter/models/app.dart';
+import 'package:alter/pages/home_page.dart';
 
 /*
 
-Auxiliary functions for configuring the macOS window.
+Important parts.
 
 */
+
+// Define the Isar database.
+late Isar isar;
 
 // Apply macOS design changes.
 Future<void> _configureMacosWindowUtils() async {
@@ -24,12 +30,6 @@ Future<void> _configureMacosWindowUtils() async {
 The main application class of Alter.
 
 */
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await _configureMacosWindowUtils();
-  runApp(ProviderScope(child: const MainApp()));
-}
 
 class MainApp extends StatefulWidget {
   const MainApp({super.key});
@@ -58,4 +58,26 @@ class _MainAppState extends State<MainApp> {
       home: HomePage(),
     );
   }
+}
+
+/*
+
+The main function of the application.
+
+*/
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await _configureMacosWindowUtils();
+
+  final dir = await getApplicationDocumentsDirectory();
+  if (Isar.instanceNames.isEmpty) {
+    isar = await Isar.open(
+      [AppSchema],
+      directory: dir.path,
+      name: 'alterInstance',
+    );
+  }
+
+  runApp(ProviderScope(child: const MainApp()));
 }

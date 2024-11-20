@@ -1,20 +1,11 @@
-import 'package:alter/models/app.dart';
+// Third-party imports.
 import 'package:isar/isar.dart';
-import 'package:path_provider/path_provider.dart';
+
+// Local imports.
+import 'package:alter/main.dart';
+import 'package:alter/models/app.dart';
 
 class AppDatabase {
-  static late Isar isar;
-
-  // Initialize the Isar database.
-  static Future<void> initialize() async {
-    final dir = await getApplicationDocumentsDirectory();
-    isar = await Isar.open(
-      [AppSchema],
-      directory: dir.path,
-    );
-  }
-
-  // Get current list of apps available to Alter for modification.
   final List<App> currentApps = [];
 
   /*
@@ -23,10 +14,11 @@ class AppDatabase {
 
   */
 
-  Future<bool> isAppInDatabase(String path) async {
-    final app = await isar.apps.where().filter().pathEqualTo(path).findFirst();
-    return app != null;
-  }
+  // TODO: To be later added in a seperate riverpod provider.
+  // Future<bool> isAppInDatabase(String path) async {
+  //   final app = await isar.apps.where().filter().pathEqualTo(path).findFirst();
+  //   return app != null;
+  // }
 
   /*
 
