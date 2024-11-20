@@ -1,25 +1,28 @@
 // Third-party imports.
 import 'dart:io';
 
+import 'package:alter/providers/app_database_provider.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/utils/file_picker.dart';
 
 // The macOS sheet view for choosing the icon when the user prompts.
-class IconChooserSheetPage extends StatefulWidget {
+class IconChooserSheetPage extends ConsumerStatefulWidget {
   const IconChooserSheetPage({super.key, required this.appFile});
 
   final XFile appFile;
 
   @override
-  State<IconChooserSheetPage> createState() => _IconChooserSheetPageState();
+  ConsumerState<IconChooserSheetPage> createState() =>
+      _IconChooserSheetPageState();
 }
 
 // The state for the IconChooserSheetPage.
-class _IconChooserSheetPageState extends State<IconChooserSheetPage> {
+class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
   XFile? currentPickedIcon;
 
   @override
@@ -100,6 +103,9 @@ class _IconChooserSheetPageState extends State<IconChooserSheetPage> {
                     if (currentPickedIcon == null) {
                       return;
                     }
+                    ref
+                        .read(appDatabaseNotifierProvider.notifier)
+                        .addApp(widget.appFile.path, currentPickedIcon!.path);
                     Navigator.of(context).pop();
                   },
                   child: Text('Apply Changes'),

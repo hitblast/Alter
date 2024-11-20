@@ -6,13 +6,20 @@ import 'package:alter/main.dart';
 import 'package:alter/models/app.dart';
 
 class AppDatabase {
-  final List<App> currentApps = [];
+  List<App> currentApps = [];
 
   /*
 
   Basic CRUD operations for the database.
 
   */
+
+  // Fetch the apps from the database.
+  Future<void> fetchApps() async {
+    List<App> fetchedApps = await isar.apps.where().findAll();
+    currentApps.clear();
+    currentApps = fetchedApps;
+  }
 
   // Add an app to the database.
   Future<void> addApp(
@@ -23,13 +30,6 @@ class AppDatabase {
 
     await isar.writeTxn(() => isar.apps.put(newApp));
     await fetchApps();
-  }
-
-  // Fetch the apps from the database.
-  Future<void> fetchApps() async {
-    List<App> fetchedApps = await isar.apps.where().findAll();
-    currentApps.clear();
-    currentApps.addAll(fetchedApps);
   }
 
   // Update the app in the database.
@@ -47,5 +47,18 @@ class AppDatabase {
   Future<void> deleteApp(int id) async {
     await isar.writeTxn(() => isar.apps.delete(id));
     await fetchApps();
+  }
+
+  // Get all apps.
+  Future<List<App>> getAllApps() async {
+    return await isar.apps.where().findAll();
+  }
+
+  // Delete all apps.
+  Future<void> deleteAllApps() async {
+    for (final app in await getAllApps()) {
+      await isar.writeTxn(() => isar.apps.delete(app.id));
+      await fetchApps();
+    }
   }
 }

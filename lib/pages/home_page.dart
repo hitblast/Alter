@@ -1,33 +1,53 @@
 // Third-party imports.
-import 'package:alter/pages/iconchoosersheet_page.dart';
+import 'package:alter/providers/app_database_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
+import 'package:alter/pages/iconchoosersheet_page.dart';
 import 'package:alter/platform_menus.dart';
 import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/file_picker.dart';
 
 // The home page of the application.
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
 // The state of the home page.
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
+    var apps = ref.watch(appDatabaseNotifierProvider);
+
+    if (apps.value!.isNotEmpty) {
+      return GestureDetector(
+        onTap: () {
+          ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();
+        },
+        child: Center(
+          child: Text(
+            'Multiple applications found! Tap to delete all. (testbed)',
+            style: TextStyle(
+              color: CupertinoColors.systemGrey,
+              fontSize: 20,
+            ),
+          ),
+        ),
+      );
+    }
+
     return PlatformMenuBar(
       menus: menuBarItems(),
       child: MacosScaffold(
         children: [
           ContentArea(
             builder: (BuildContext context, scrollController) {
-              // TODO: this is for empty pages, update later for filled-up pages with icons
               return GestureDetector(
                 onTap: () async {
                   if (kDebugMode) {

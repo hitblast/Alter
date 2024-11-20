@@ -6,22 +6,22 @@ part of 'app_database_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$appDatabaseProviderHash() =>
-    r'4c014fb182068cc68ec66f92b7fe1120f6dc1039';
+String _$appDatabaseNotifierHash() =>
+    r'c9ca1ac95b09559e6253dc51d23baf16f4aae05a';
 
-/// See also [AppDatabaseProvider].
-@ProviderFor(AppDatabaseProvider)
-final appDatabaseProviderProvider =
-    AsyncNotifierProvider<AppDatabaseProvider, List<App>>.internal(
-  AppDatabaseProvider.new,
-  name: r'appDatabaseProviderProvider',
+/// See also [AppDatabaseNotifier].
+@ProviderFor(AppDatabaseNotifier)
+final appDatabaseNotifierProvider =
+    AsyncNotifierProvider<AppDatabaseNotifier, List<App>>.internal(
+  AppDatabaseNotifier.new,
+  name: r'appDatabaseNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$appDatabaseProviderHash,
+      : _$appDatabaseNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$AppDatabaseProvider = AsyncNotifier<List<App>>;
+typedef _$AppDatabaseNotifier = AsyncNotifier<List<App>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

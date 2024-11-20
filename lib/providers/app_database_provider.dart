@@ -10,13 +10,13 @@ part 'app_database_provider.g.dart';
 
 // Define the provider for the primary database.
 @Riverpod(keepAlive: true)
-class AppDatabaseProvider extends _$AppDatabaseProvider {
-  final AppDatabase database = AppDatabase();
+class AppDatabaseNotifier extends _$AppDatabaseNotifier {
+  final AppDatabase _database = AppDatabase();
 
   @override
   Future<List<App>> build() async {
-    await database.fetchApps();
-    return database.currentApps;
+    await _database.fetchApps();
+    return _database.currentApps;
   }
 
   bool exists(String path) {
@@ -24,26 +24,34 @@ class AppDatabaseProvider extends _$AppDatabaseProvider {
   }
 
   Future<void> addApp(String path, String customIconPath) async {
-    state = AsyncValue.loading();
-    state = AsyncValue.guard(() async {
-      await database.addApp(path, customIconPath);
-      return database.currentApps;
-    }) as AsyncValue<List<App>>;
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await _database.addApp(path, customIconPath);
+      return _database.currentApps;
+    });
   }
 
   Future<void> updateAppIcon(int id, String newCustomIconPath) async {
-    state = AsyncValue.loading();
-    state = AsyncValue.guard(() async {
-      await database.updateAppIcon(id, newCustomIconPath);
-      return database.currentApps;
-    }) as AsyncValue<List<App>>;
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await _database.updateAppIcon(id, newCustomIconPath);
+      return _database.currentApps;
+    });
   }
 
   Future<void> deleteApp(int id) async {
-    state = AsyncValue.loading();
-    state = AsyncValue.guard(() async {
-      await database.deleteApp(id);
-      return database.currentApps;
-    }) as AsyncValue<List<App>>;
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await _database.deleteApp(id);
+      return _database.currentApps;
+    });
+  }
+
+  Future<void> deleteAllApps() async {
+    state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() async {
+      await _database.deleteAllApps();
+      return _database.currentApps;
+    });
   }
 }
