@@ -17,6 +17,23 @@ class AppDatabase {
   // Get current list of apps available to Alter for modification.
   final List<App> currentApps = [];
 
+  /*
+
+  QOL functions.
+
+  */
+
+  Future<bool> isAppInDatabase(String path) async {
+    final app = await isar.apps.where().filter().pathEqualTo(path).findFirst();
+    return app != null;
+  }
+
+  /*
+
+  Basic CRUD operations for the database.
+
+  */
+
   // Add an app to the database.
   Future<void> addApp(
       String pathToAssign, String customIconPathToAssign) async {
