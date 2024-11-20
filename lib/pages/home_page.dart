@@ -32,6 +32,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         },
         child: Center(
           child: Text(
+            // TODO: Remove the testbed text and "actually" work on the widget.
             'Multiple applications found! Tap to delete all. (testbed)',
             style: TextStyle(
               color: CupertinoColors.systemGrey,
