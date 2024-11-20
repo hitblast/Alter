@@ -7,5 +7,5 @@ class App {
   Id id = Isar.autoIncrement;
 
   late String path;
-  late String iconIdentifierName;
+  late String customIconPath;
 }

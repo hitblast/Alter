@@ -17,9 +17,9 @@ const AppSchema = CollectionSchema(
   name: r'App',
   id: -3570643489031920837,
   properties: {
-    r'iconIdentifierName': PropertySchema(
+    r'customIconPath': PropertySchema(
       id: 0,
-      name: r'iconIdentifierName',
+      name: r'customIconPath',
       type: IsarType.string,
     ),
     r'path': PropertySchema(
@@ -48,7 +48,7 @@ int _appEstimateSize(
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.iconIdentifierName.length * 3;
+  bytesCount += 3 + object.customIconPath.length * 3;
   bytesCount += 3 + object.path.length * 3;
   return bytesCount;
 }
@@ -59,7 +59,7 @@ void _appSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.iconIdentifierName);
+  writer.writeString(offsets[0], object.customIconPath);
   writer.writeString(offsets[1], object.path);
 }
 
@@ -70,7 +70,7 @@ App _appDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = App();
-  object.iconIdentifierName = reader.readString(offsets[0]);
+  object.customIconPath = reader.readString(offsets[0]);
   object.id = id;
   object.path = reader.readString(offsets[1]);
   return object;
@@ -180,20 +180,20 @@ extension AppQueryWhere on QueryBuilder<App, App, QWhereClause> {
 }
 
 extension AppQueryFilter on QueryBuilder<App, App, QFilterCondition> {
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameEqualTo(
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameGreaterThan(
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -201,14 +201,14 @@ extension AppQueryFilter on QueryBuilder<App, App, QFilterCondition> {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameLessThan(
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -216,14 +216,14 @@ extension AppQueryFilter on QueryBuilder<App, App, QFilterCondition> {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameBetween(
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -232,7 +232,7 @@ extension AppQueryFilter on QueryBuilder<App, App, QFilterCondition> {
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -242,69 +242,69 @@ extension AppQueryFilter on QueryBuilder<App, App, QFilterCondition> {
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameStartsWith(
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameEndsWith(
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameContains(
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameMatches(
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameIsEmpty() {
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         value: '',
       ));
     });
   }
 
-  QueryBuilder<App, App, QAfterFilterCondition> iconIdentifierNameIsNotEmpty() {
+  QueryBuilder<App, App, QAfterFilterCondition> customIconPathIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'iconIdentifierName',
+        property: r'customIconPath',
         value: '',
       ));
     });
@@ -496,15 +496,15 @@ extension AppQueryObject on QueryBuilder<App, App, QFilterCondition> {}
 extension AppQueryLinks on QueryBuilder<App, App, QFilterCondition> {}
 
 extension AppQuerySortBy on QueryBuilder<App, App, QSortBy> {
-  QueryBuilder<App, App, QAfterSortBy> sortByIconIdentifierName() {
+  QueryBuilder<App, App, QAfterSortBy> sortByCustomIconPath() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'iconIdentifierName', Sort.asc);
+      return query.addSortBy(r'customIconPath', Sort.asc);
     });
   }
 
-  QueryBuilder<App, App, QAfterSortBy> sortByIconIdentifierNameDesc() {
+  QueryBuilder<App, App, QAfterSortBy> sortByCustomIconPathDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'iconIdentifierName', Sort.desc);
+      return query.addSortBy(r'customIconPath', Sort.desc);
     });
   }
 
@@ -522,15 +522,15 @@ extension AppQuerySortBy on QueryBuilder<App, App, QSortBy> {
 }
 
 extension AppQuerySortThenBy on QueryBuilder<App, App, QSortThenBy> {
-  QueryBuilder<App, App, QAfterSortBy> thenByIconIdentifierName() {
+  QueryBuilder<App, App, QAfterSortBy> thenByCustomIconPath() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'iconIdentifierName', Sort.asc);
+      return query.addSortBy(r'customIconPath', Sort.asc);
     });
   }
 
-  QueryBuilder<App, App, QAfterSortBy> thenByIconIdentifierNameDesc() {
+  QueryBuilder<App, App, QAfterSortBy> thenByCustomIconPathDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'iconIdentifierName', Sort.desc);
+      return query.addSortBy(r'customIconPath', Sort.desc);
     });
   }
 
@@ -560,10 +560,10 @@ extension AppQuerySortThenBy on QueryBuilder<App, App, QSortThenBy> {
 }
 
 extension AppQueryWhereDistinct on QueryBuilder<App, App, QDistinct> {
-  QueryBuilder<App, App, QDistinct> distinctByIconIdentifierName(
+  QueryBuilder<App, App, QDistinct> distinctByCustomIconPath(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'iconIdentifierName',
+      return query.addDistinctBy(r'customIconPath',
           caseSensitive: caseSensitive);
     });
   }
@@ -583,9 +583,9 @@ extension AppQueryProperty on QueryBuilder<App, App, QQueryProperty> {
     });
   }
 
-  QueryBuilder<App, String, QQueryOperations> iconIdentifierNameProperty() {
+  QueryBuilder<App, String, QQueryOperations> customIconPathProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'iconIdentifierName');
+      return query.addPropertyName(r'customIconPath');
     });
   }
 
