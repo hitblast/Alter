@@ -1,3 +1,3 @@
-# alter
+## alter
 
-Easily change and manage your macOS app icons!
+Easily customize (alter) the app icons on your Mac!
