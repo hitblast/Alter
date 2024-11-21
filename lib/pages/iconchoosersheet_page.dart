@@ -37,45 +37,41 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
           children: [
             Text(
               'Choose icon for $appName',
+              textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: 21,
                 color: CupertinoColors.systemGrey,
                 fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: currentPickedIcon != null
-                      ? CupertinoColors.activeGreen
-                      : CupertinoColors.systemGrey,
-                  width: 3,
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Image(
+                  image: AssetImage('assets/alter_icon_frame.png'),
+                  width: 155,
+                  height: 155,
                 ),
-                borderRadius: BorderRadius.circular(40),
-              ),
-              child: GestureDetector(
-                onTap: () async {
-                  final XFile? file = await pickIcon();
+                GestureDetector(
+                  onTap: () async {
+                    final XFile? file = await pickIcon();
 
-                  if (file != null) {
-                    setState(() {
-                      currentPickedIcon = file;
-                    });
-                  }
-                },
-                child: currentPickedIcon != null
-                    ? Image.file(
-                        File(currentPickedIcon!.path),
-                        width: 145,
-                        height: 145,
-                      )
-                    : Image(
-                        image: AssetImage('assets/alter_empty.png'),
-                        width: 145,
-                        height: 145,
-                      ),
-              ),
+                    if (file != null) {
+                      setState(() {
+                        currentPickedIcon = file;
+                      });
+                    }
+                  },
+                  child: Image(
+                    image: currentPickedIcon != null
+                        ? FileImage(File(currentPickedIcon!.path))
+                        : AssetImage('assets/alter_empty.png') as ImageProvider,
+                    width: 145,
+                    height: 145,
+                  ),
+                ),
+              ],
             ),
             SizedBox(height: 20),
             Text(
@@ -95,6 +91,8 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                   },
                   child: Text('Cancel'),
                 ),
+                SizedBox(width: 10),
+                Text('or'),
                 SizedBox(width: 10),
                 PushButton(
                   controlSize: ControlSize.large,
