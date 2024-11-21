@@ -28,6 +28,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       return Center(
         child: ProgressCircle(
           value: null,
+          radius: 20,
         ),
       );
     } else {
