@@ -22,7 +22,14 @@ class _HomePageState extends ConsumerState<HomePage> {
     var apps = ref.watch(appDatabaseNotifierProvider);
 
     if (apps.value!.isNotEmpty) {
-      return Center(child: Text('Apps found!'));
+      return GestureDetector(
+        onTap: () async {
+          ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();
+        },
+        child: Center(
+          child: Text('Apps found!'),
+        ),
+      );
     }
 
     return PlatformMenuBar(menus: menuBarItems(), child: StarterPage());
