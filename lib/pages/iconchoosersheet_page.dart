@@ -30,6 +30,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
     final String appName = widget.appFile.name.replaceAll('.app', '');
 
     return MacosSheet(
+      insetAnimationDuration: Duration(milliseconds: 200),
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Center(
@@ -49,14 +50,23 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 20),
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      Image(
-                        image: AssetImage('assets/alter_icon_frame.png'),
-                        width: 155,
-                        height: 155,
+                      Container(
+                        decoration: BoxDecoration(boxShadow: [
+                          BoxShadow(
+                            color: CupertinoColors.darkBackgroundGray,
+                            blurRadius: 20,
+                            offset: Offset(0, 10),
+                          ),
+                        ]),
+                        child: Image(
+                          image: AssetImage('assets/alter_icon_frame.png'),
+                          width: 155,
+                          height: 155,
+                        ),
                       ),
                       GestureDetector(
                         onTap: () async {
@@ -79,7 +89,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 25),
                   Text(
                     currentPickedIcon != null
                         ? 'You can modify by left-clicking again!'
