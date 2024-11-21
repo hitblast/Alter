@@ -44,11 +44,13 @@ class StarterPage extends StatelessWidget {
                   else {
                     if (!context.mounted) return;
 
-                    Navigator.of(context).push(
-                      CupertinoPageRoute(
-                        builder: (context) =>
-                            IconChooserSheetPage(appFile: file),
-                      ),
+                    showMacosSheet(
+                      context: context,
+                      builder: (context) {
+                        return IconChooserSheetPage(
+                          appFile: file,
+                        );
+                      },
                     );
                   }
                 } else {

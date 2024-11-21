@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
+import 'package:alter/pages/apps_page.dart';
 import 'package:alter/platform_menus.dart';
 
 // The home page of the application.
@@ -35,7 +36,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       if (apps.value!.isEmpty) {
         page = StarterPage();
       } else {
-        page = Container();
+        page = AppsPage();
       }
 
       return PlatformMenuBar(
