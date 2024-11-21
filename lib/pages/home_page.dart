@@ -3,6 +3,7 @@ import 'package:alter/pages/starter_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/platform_menus.dart';
@@ -21,17 +22,26 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget build(BuildContext context) {
     var apps = ref.watch(appDatabaseNotifierProvider);
 
-    if (apps.value!.isNotEmpty) {
-      return GestureDetector(
-        onTap: () async {
-          ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();
-        },
-        child: Center(
-          child: Text('Apps found!'),
+    // Based on the asynchronous state, the page to display is decided.
+    if (apps.isLoading) {
+      return Center(
+        child: ProgressCircle(
+          value: null,
         ),
       );
-    }
+    } else {
+      Widget page;
 
-    return PlatformMenuBar(menus: menuBarItems(), child: StarterPage());
+      if (apps.value!.isEmpty) {
+        page = StarterPage();
+      } else {
+        page = Container();
+      }
+
+      return PlatformMenuBar(
+        menus: menuBarItems(),
+        child: page,
+      );
+    }
   }
 }
