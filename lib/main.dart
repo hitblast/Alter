@@ -1,4 +1,5 @@
 // Third-party imports.
+import 'package:alter/pages/error_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,9 +53,17 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return const MacosApp(
+    return MacosApp(
       title: 'Alter',
       debugShowCheckedModeBanner: false,
+      builder: (BuildContext context, Widget? widget) {
+        ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
+          return ErrorPage(
+            errorDetails: errorDetails,
+          );
+        };
+        return widget ?? Container();
+      },
       home: HomePage(),
     );
   }
