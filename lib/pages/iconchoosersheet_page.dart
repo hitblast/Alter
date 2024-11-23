@@ -28,9 +28,17 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
   @override
   Widget build(BuildContext context) {
     final String appName = widget.appFile.name.replaceAll('.app', '');
+    var brightness = MediaQuery.of(context).platformBrightness;
 
     return MacosSheet(
-      insetAnimationDuration: Duration(milliseconds: 200),
+      insetAnimationDuration: Duration(milliseconds: 500),
+      insetPadding: EdgeInsets.only(
+        top: 50,
+        left: 60,
+        right: 60,
+        bottom: 50,
+      ),
+      insetAnimationCurve: Curves.easeInOut,
       child: Padding(
         padding: const EdgeInsets.all(20),
         child: Center(
@@ -54,19 +62,10 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(boxShadow: [
-                          BoxShadow(
-                            color: CupertinoColors.systemGrey.withOpacity(0.5),
-                            blurRadius: 20,
-                            offset: Offset(0, 10),
-                          ),
-                        ]),
-                        child: Image(
-                          image: AssetImage('assets/alter_icon_frame.png'),
-                          width: 155,
-                          height: 155,
-                        ),
+                      Image(
+                        image: AssetImage('assets/alter_icon_frame.png'),
+                        width: 155,
+                        height: 155,
                       ),
                       GestureDetector(
                         onTap: () async {
@@ -81,8 +80,11 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                         child: Image(
                           image: currentPickedIcon != null
                               ? FileImage(File(currentPickedIcon!.path))
-                              : AssetImage('assets/alter_empty.png')
-                                  as ImageProvider,
+                              : AssetImage(
+                                  brightness == Brightness.dark
+                                      ? 'assets/alter_empty_dark.png'
+                                      : 'assets/alter_empty_light.png',
+                                ) as ImageProvider,
                           width: 145,
                           height: 145,
                         ),
