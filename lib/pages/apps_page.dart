@@ -1,9 +1,11 @@
 // Third-party imports.
-import 'package:alter/providers/app_database_provider.dart';
-import 'package:alter/utils/app_adding_seq.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
+
+// Local imports.
+import 'package:alter/providers/app_database_provider.dart';
+import 'package:alter/utils/app_adding_seq.dart';
 
 // The apps page.
 // This page is shown if the user has already populated Alter with apps to customize.
