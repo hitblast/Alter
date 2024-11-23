@@ -1,5 +1,6 @@
 // Third-party imports.
 import 'package:alter/providers/app_database_provider.dart';
+import 'package:alter/utils/app_adding_seq.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -28,8 +29,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             ),
             label: 'Add',
             showLabel: true,
-            onPressed: () =>
-                debugPrint('Apps page: Toolbar add button clicked!'),
+            onPressed: () async => await initiateAppAddingSequence(context),
           ),
           ToolBarIconButton(
             icon: MacosIcon(
