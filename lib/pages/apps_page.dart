@@ -52,6 +52,25 @@ class _AppsPageState extends ConsumerState<AppsPage> {
           ),
         ],
       ),
+      children: [
+        ContentArea(
+          builder: (BuildContext context, ScrollController scrollController) {
+            var apps = ref.watch(appDatabaseNotifierProvider);
+            var appCount = apps.value!.length;
+
+            return Center(
+              child: Text(
+                '$appCount apps found!',
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: CupertinoColors.systemGrey,
+                ),
+              ),
+            );
+          },
+        ),
+      ],
     );
   }
 }

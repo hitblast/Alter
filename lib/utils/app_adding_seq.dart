@@ -9,7 +9,6 @@ import 'package:alter/utils/file_picker.dart';
 
 // The function to initiate the app adding sequence.
 Future<void> initiateAppAddingSequence(BuildContext context) async {
-  debugPrint('Starter page tapped.');
   var file = await pickApplication();
 
   if (file == null) {

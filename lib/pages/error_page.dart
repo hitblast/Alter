@@ -11,7 +11,7 @@ class ErrorPage extends StatelessWidget {
       child: Text(
         '!',
         style: TextStyle(
-          fontSize: 100,
+          fontSize: 45,
           fontWeight: FontWeight.bold,
           color: CupertinoColors.systemGrey,
         ),
