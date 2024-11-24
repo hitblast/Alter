@@ -1,4 +1,6 @@
 // Third-party imports.
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -16,7 +18,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   }
 
   // If the file is an application, continue with the process.
-  else if (file.path.endsWith('.app')) {
+  else if (file.path.endsWith('.app') && await Directory(file.path).exists()) {
     // Currently dismissing system apps because it requires the implementation of
     // symlinks inside the app. This is a security feature of macOS.
     final bool isSystemApp = await ifAppIsSystemApplication(file.path);
