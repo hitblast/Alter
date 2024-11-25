@@ -1,12 +1,21 @@
 // Third-party imports.
-import 'package:alter/utils/app_adding_seq.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
+// Local imports.
+import 'package:alter/utils/app_adding_seq.dart';
+
 // The starter page widget.
 // This is the first page that the user sees if the have no apps added to the database yet.
-class StarterPage extends StatelessWidget {
+class StarterPage extends StatefulWidget {
   const StarterPage({super.key});
+
+  @override
+  State<StarterPage> createState() => _StarterPageState();
+}
+
+class _StarterPageState extends State<StarterPage> {
+  var opacity = 0.5;
 
   @override
   Widget build(BuildContext context) {
@@ -22,24 +31,42 @@ class StarterPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   controller: scrollController,
                   padding: const EdgeInsets.all(20),
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(
-                        image: AssetImage('assets/alter_empty_page_front.png'),
-                        width: 250,
-                        height: 250,
+                  child: MouseRegion(
+                    cursor: SystemMouseCursors.click,
+                    onEnter: (_) {
+                      setState(() {
+                        opacity = 1;
+                      });
+                    },
+                    onExit: (_) {
+                      setState(() {
+                        opacity = 0.5;
+                      });
+                    },
+                    child: AnimatedOpacity(
+                      opacity: opacity,
+                      duration: Duration(milliseconds: 200),
+                      child: const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image(
+                            image:
+                                AssetImage('assets/alter_empty_page_front.png'),
+                            width: 250,
+                            height: 250,
+                          ),
+                          Text(
+                            'Left-click to start customizing.',
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: CupertinoColors.systemGrey,
+                              letterSpacing: -2,
+                              overflow: TextOverflow.fade,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Left-click to start customizing.',
-                        style: TextStyle(
-                          fontSize: 25,
-                          color: CupertinoColors.systemGrey,
-                          letterSpacing: -2,
-                          overflow: TextOverflow.fade,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ),
               ),
