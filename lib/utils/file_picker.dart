@@ -20,12 +20,18 @@ Future<XFile?> pickIcon() async {
   return file;
 }
 
+String getAppNameFromPath(String path) {
+  final List<String> pathParts = path.split('/');
+  final String appName = pathParts[pathParts.length - 1];
+
+  return appName;
+}
+
 Future<bool> ifAppIsSystemApplication(String path) async {
   // first strip the path to get the application name, usually at the end of the path
   // then, check if the application also exists in /System/Applications
 
-  final List<String> pathParts = path.split('/');
-  final String appName = pathParts[pathParts.length - 1];
+  String appName = getAppNameFromPath(path);
 
   // check if the application exists in /System/Applications
   final Directory systemApplications = Directory('/System/Applications');
