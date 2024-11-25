@@ -35,9 +35,25 @@ class _AppsPageState extends ConsumerState<AppsPage> {
           ),
           ToolBarIconButton(
             icon: MacosIcon(
+              CupertinoIcons.refresh_bold,
+            ),
+            label: 'Refresh',
+            showLabel: true,
+            onPressed: () {},
+          ),
+          ToolBarIconButton(
+            icon: MacosIcon(
+              CupertinoIcons.globe,
+            ),
+            label: 'Get Icons',
+            showLabel: true,
+            onPressed: () {},
+          ),
+          ToolBarIconButton(
+            icon: MacosIcon(
               CupertinoIcons.trash,
             ),
-            label: 'Delete All',
+            label: 'Reset All',
             showLabel: true,
             onPressed: () {
               ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();

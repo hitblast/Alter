@@ -59,37 +59,43 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Image(
-                        image: AssetImage('assets/alter_icon_frame.png'),
-                        width: 155,
-                        height: 155,
-                      ),
-                      GestureDetector(
-                        onTap: () async {
-                          final XFile? file = await pickIcon();
+                  GestureDetector(
+                    onTap: () async {
+                      final XFile? file = await pickIcon();
 
-                          if (file != null) {
-                            setState(() {
-                              currentPickedIcon = file;
-                            });
-                          }
-                        },
-                        child: Image(
-                          image: currentPickedIcon != null
-                              ? FileImage(File(currentPickedIcon!.path))
-                              : AssetImage(
-                                  brightness == Brightness.dark
-                                      ? 'assets/alter_empty_dark.png'
-                                      : 'assets/alter_empty_light.png',
-                                ) as ImageProvider,
-                          width: 145,
-                          height: 145,
-                        ),
+                      if (file != null) {
+                        setState(() {
+                          currentPickedIcon = file;
+                        });
+                      }
+                    },
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Opacity(
+                            opacity: 0.4,
+                            child: Image(
+                              image: AssetImage('assets/alter_icon_frame.png'),
+                              width: 155,
+                              height: 155,
+                            ),
+                          ),
+                          Image(
+                            image: currentPickedIcon != null
+                                ? FileImage(File(currentPickedIcon!.path))
+                                : AssetImage(
+                                    brightness == Brightness.dark
+                                        ? 'assets/alter_empty_dark.png'
+                                        : 'assets/alter_empty_light.png',
+                                  ) as ImageProvider,
+                            width: 145,
+                            height: 145,
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                   SizedBox(height: 25),
                   Text(

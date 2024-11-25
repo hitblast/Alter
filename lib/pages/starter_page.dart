@@ -35,7 +35,7 @@ class _StarterPageState extends State<StarterPage> {
                     cursor: SystemMouseCursors.click,
                     onEnter: (_) {
                       setState(() {
-                        opacity = 1;
+                        opacity = 0.8;
                       });
                     },
                     onExit: (_) {
@@ -45,7 +45,8 @@ class _StarterPageState extends State<StarterPage> {
                     },
                     child: AnimatedOpacity(
                       opacity: opacity,
-                      duration: Duration(milliseconds: 200),
+                      curve: Curves.linearToEaseOut,
+                      duration: Duration(milliseconds: 250),
                       child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
