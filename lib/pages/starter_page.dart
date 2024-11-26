@@ -1,4 +1,5 @@
 // Third-party imports.
+import 'package:alter/utils/launch_url.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -29,7 +30,7 @@ class _StarterPageState extends State<StarterPage> {
             ),
             label: 'Get Icons',
             showLabel: true,
-            onPressed: () {},
+            onPressed: () async => await launchGetIconsPageOnWeb(context),
           ),
           ToolBarIconButton(
             icon: MacosIcon(
@@ -37,7 +38,7 @@ class _StarterPageState extends State<StarterPage> {
             ),
             label: 'Help',
             showLabel: true,
-            onPressed: () => {},
+            onPressed: () async => await launchHelpPageOnWeb(context),
           ),
         ],
       ),

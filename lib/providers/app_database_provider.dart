@@ -18,7 +18,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     return _database.currentApps;
   }
 
-  bool exists(String path) {
+  bool appExists(String path) {
     return state.value!.any((app) => app.path == path);
   }
 

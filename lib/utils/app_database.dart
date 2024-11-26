@@ -5,6 +5,12 @@ import 'package:isar/isar.dart';
 import 'package:alter/main.dart';
 import 'package:alter/models/app.dart';
 
+// Basic database utility functions.
+Future<bool> appExistsByPath(String path) async {
+  return await isar.apps.where().filter().pathEqualTo(path).count() > 0;
+}
+
+// The database class for managing the apps.
 class AppDatabase {
   List<App> currentApps = [];
 

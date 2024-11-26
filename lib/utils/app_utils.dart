@@ -1,6 +1,7 @@
 // Third-party imports.
 import 'dart:io';
 
+import 'package:alter/utils/app_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -15,6 +16,13 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
 
   if (file == null) {
     return;
+  }
+
+  // If the path already exists in the database.
+  else if (await appExistsByPath(file.path)) {
+    if (!context.mounted) return;
+    showAlertDialog(
+        context, 'App already exists!', 'Try adding a different application.');
   }
 
   // If the file is an application, continue with the process.
