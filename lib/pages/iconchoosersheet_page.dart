@@ -24,7 +24,6 @@ class IconChooserSheetPage extends ConsumerStatefulWidget {
 // The state for the IconChooserSheetPage.
 class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
   XFile? currentPickedIcon;
-  var enableAnimatedBoxShadowOnIconSelect = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +66,6 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       if (file != null) {
                         setState(() {
                           currentPickedIcon = file;
-                          enableAnimatedBoxShadowOnIconSelect = true;
                         });
                       }
                     },
@@ -88,10 +86,10 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                             duration: Duration(seconds: 2),
                             curve: Curves.fastOutSlowIn,
                             decoration: BoxDecoration(
-                              boxShadow: enableAnimatedBoxShadowOnIconSelect
+                              boxShadow: currentPickedIcon != null
                                   ? [
                                       BoxShadow(
-                                        color: CupertinoColors.activeGreen
+                                        color: CupertinoColors.systemGreen
                                             .withOpacity(0.3),
                                         offset: Offset(0, 5),
                                         blurRadius: 50,
@@ -151,14 +149,18 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       PushButton(
                         controlSize: ControlSize.large,
                         secondary: currentPickedIcon != null ? false : true,
-                        onPressed: () {
-                          if (currentPickedIcon == null) {
-                            return;
-                          }
-                          ref.read(appDatabaseNotifierProvider.notifier).addApp(
-                              widget.appFile.path, currentPickedIcon!.path);
-                          Navigator.of(context).pop();
-                        },
+                        onPressed: currentPickedIcon != null
+                            ? () {
+                                if (currentPickedIcon == null) {
+                                  return;
+                                }
+                                ref
+                                    .read(appDatabaseNotifierProvider.notifier)
+                                    .addApp(widget.appFile.path,
+                                        currentPickedIcon!.path);
+                                Navigator.of(context).pop();
+                              }
+                            : null,
                         child: Text('Apply Changes'),
                       )
                     ],
