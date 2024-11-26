@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/utils/app_adding_seq.dart';
+import 'package:alter/utils/app_utils.dart';
 
 // The starter page widget.
 // This is the first page that the user sees if the have no apps added to the database yet.
@@ -20,6 +20,27 @@ class _StarterPageState extends State<StarterPage> {
   @override
   Widget build(BuildContext context) {
     return MacosScaffold(
+      toolBar: ToolBar(
+        enableBlur: true,
+        actions: [
+          ToolBarIconButton(
+            icon: MacosIcon(
+              CupertinoIcons.globe,
+            ),
+            label: 'Get Icons',
+            showLabel: true,
+            onPressed: () {},
+          ),
+          ToolBarIconButton(
+            icon: MacosIcon(
+              CupertinoIcons.question_circle,
+            ),
+            label: 'Help',
+            showLabel: true,
+            onPressed: () => {},
+          ),
+        ],
+      ),
       children: [
         ContentArea(
           builder: (BuildContext context, scrollController) {

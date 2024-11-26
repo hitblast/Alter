@@ -8,7 +8,7 @@ import 'package:macos_ui/macos_ui.dart';
 // Local imports.
 import 'package:alter/utils/file_picker.dart';
 import 'package:alter/providers/app_database_provider.dart';
-import 'package:alter/utils/app_adding_seq.dart';
+import 'package:alter/utils/app_utils.dart';
 
 // The apps page.
 // This page is shown if the user has already populated Alter with apps to customize.
@@ -70,8 +70,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             ),
             label: 'Help',
             showLabel: true,
-            onPressed: () =>
-                debugPrint('Apps page: Toolbar help button clicked!'),
+            onPressed: () => {},
           ),
         ],
       ),
