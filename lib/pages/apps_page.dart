@@ -82,12 +82,11 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                 MediaQuery.of(context).platformBrightness == Brightness.dark;
 
             // Altering colors for the list items.
-            Color primaryColorDarkMode = CupertinoColors.black.withOpacity(0.1);
-            Color secondaryColorDarkMode =
-                CupertinoColors.black.withOpacity(0.3);
-            Color primaryColorLightMode = CupertinoColors.systemGrey6;
+            Color primaryColorDarkMode = Color.fromRGBO(40, 40, 40, 1.0);
+            Color secondaryColorDarkMode = Color.fromRGBO(28, 28, 28, 1.0);
+            Color primaryColorLightMode = Color.fromRGBO(246, 246, 246, 1.000);
             Color secondaryColorLightMode =
-                CupertinoColors.inactiveGray.withOpacity(0.2);
+                Color.fromRGBO(228, 228, 228, 1.000);
 
             var previousColor =
                 isDarkMode ? primaryColorDarkMode : primaryColorLightMode;
@@ -95,9 +94,11 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  for (var app in apps.value!)
+                  for (var i = 0; i < apps.value!.length; i++)
                     Builder(
                       builder: (context) {
+                        var app = apps.value![i];
+
                         // Alter the colors between the list items.
                         if (isDarkMode) {
                           previousColor = previousColor == primaryColorDarkMode
@@ -152,6 +153,13 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                   ),
                                   Spacer(),
                                   PushButton(
+                                    onPressed: () {},
+                                    controlSize: ControlSize.regular,
+                                    secondary: true,
+                                    child: Text('Update Icon'),
+                                  ),
+                                  SizedBox(width: 10),
+                                  PushButton(
                                     onPressed: () {
                                       ref
                                           .read(appDatabaseNotifierProvider
@@ -160,7 +168,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                     },
                                     controlSize: ControlSize.regular,
                                     secondary: true,
-                                    child: Text('Remove App'),
+                                    child: Text('Remove'),
                                   ),
                                 ],
                               ),
