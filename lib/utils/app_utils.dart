@@ -14,6 +14,7 @@ import 'package:alter/utils/file_picker.dart';
 Future<void> initiateAppAddingSequence(BuildContext context) async {
   var file = await pickApplication();
 
+  // Simply return if the user hasn't selected any file to modify.
   if (file == null) {
     return;
   }
@@ -25,36 +26,36 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
         context, 'App already exists!', 'Try adding a different application.');
   }
 
-  // If the file is an application, continue with the process.
-  else if (file.path.endsWith('.app') && await Directory(file.path).exists()) {
-    // TODO: Currently dismissing system apps because it requires the implementation of
-    // symlinks inside the app. This is a security feature of macOS.
-    final bool isSystemApp = await ifAppIsSystemApplication(file.path);
-
-    if (isSystemApp == true) {
-      if (!context.mounted) return;
-      showAlertDialog(context, 'System application!',
-          'Alter cannot alter system applications at this moment.');
-    }
-
-    // If not a system app, continue with the process.
-    else {
-      if (!context.mounted) return;
-
-      debugPrint("Chosen app: ${file.path}");
-      showMacosSheet(
-        context: context,
-        builder: (context) {
-          return IconChooserSheetPage(
-            appFile: file,
-          );
-        },
-      );
-    }
-  } else {
-    // If the app type is invalid, show a warning.
+  // If the app has authentic macOS app properties (e.g. is a folder and ends with the .app extension).
+  else if (!file.path.endsWith('.app') &&
+      !(await Directory(file.path).exists())) {
     if (!context.mounted) return;
     showAlertDialog(context, 'Invalid file type!',
         'Please select a proper application file.');
+  }
+
+  // If the app is a system app.
+  else if (await ifAppIsSystemApplication(file.path)) {
+    if (!context.mounted) return;
+    showAlertDialog(context, 'System application!',
+        'Alter cannot alter system applications at this moment.');
+  }
+
+  // If all of the checks above, actually pass. Then, route to IconChooserSheetPage.
+  else {
+    // TODO: Currently dismissing system apps because it requires the implementation of
+    // symlinks inside the app. This is a security feature of macOS.
+
+    if (!context.mounted) return;
+
+    debugPrint("Chosen app: ${file.path}");
+    showMacosSheet(
+      context: context,
+      builder: (context) {
+        return IconChooserSheetPage(
+          appFile: file,
+        );
+      },
+    );
   }
 }
