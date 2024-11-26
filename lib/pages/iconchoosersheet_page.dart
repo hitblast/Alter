@@ -24,11 +24,12 @@ class IconChooserSheetPage extends ConsumerStatefulWidget {
 // The state for the IconChooserSheetPage.
 class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
   XFile? currentPickedIcon;
+  var enableAnimatedBoxShadowOnIconSelect = false;
 
   @override
   Widget build(BuildContext context) {
-    final String appName = widget.appFile.name.replaceAll('.app', '');
-    var brightness = MediaQuery.of(context).platformBrightness;
+    final appName = widget.appFile.name.replaceAll('.app', '');
+    final brightness = MediaQuery.of(context).platformBrightness;
 
     return MacosSheet(
       insetAnimationDuration: Duration(milliseconds: 500),
@@ -66,6 +67,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       if (file != null) {
                         setState(() {
                           currentPickedIcon = file;
+                          enableAnimatedBoxShadowOnIconSelect = true;
                         });
                       }
                     },
@@ -82,17 +84,45 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                               height: 155,
                             ),
                           ),
-                          Image(
-                            image: currentPickedIcon != null
-                                ? FileImage(File(currentPickedIcon!.path))
-                                : AssetImage(
-                                    brightness == Brightness.dark
-                                        ? 'assets/alter_empty_dark.png'
-                                        : 'assets/alter_empty_light.png',
-                                  ) as ImageProvider,
-                            width: 145,
-                            height: 145,
-                          ),
+                          AnimatedContainer(
+                            duration: Duration(seconds: 2),
+                            curve: Curves.fastOutSlowIn,
+                            decoration: BoxDecoration(
+                              boxShadow: enableAnimatedBoxShadowOnIconSelect
+                                  ? [
+                                      BoxShadow(
+                                        color: CupertinoColors.activeGreen
+                                            .withOpacity(0.3),
+                                        offset: Offset(0, 5),
+                                        blurRadius: 50,
+                                      ),
+                                    ]
+                                  : [
+                                      BoxShadow(
+                                        color: CupertinoColors.systemGrey
+                                            .withOpacity(0.3),
+                                        offset: Offset(0, 5),
+                                        blurRadius: 100,
+                                      )
+                                    ],
+                            ),
+                            child: currentPickedIcon != null
+                                ? Image(
+                                    image: FileImage(
+                                        File(currentPickedIcon!.path)),
+                                    width: 145,
+                                    height: 145,
+                                  )
+                                : Image(
+                                    image: AssetImage(
+                                      brightness == Brightness.dark
+                                          ? 'assets/alter_empty_dark.png'
+                                          : 'assets/alter_empty_light.png',
+                                    ),
+                                    width: 145,
+                                    height: 145,
+                                  ),
+                          )
                         ],
                       ),
                     ),
