@@ -27,7 +27,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
 
   // If the file is an application, continue with the process.
   else if (file.path.endsWith('.app') && await Directory(file.path).exists()) {
-    // Currently dismissing system apps because it requires the implementation of
+    // TODO: Currently dismissing system apps because it requires the implementation of
     // symlinks inside the app. This is a security feature of macOS.
     final bool isSystemApp = await ifAppIsSystemApplication(file.path);
 
@@ -41,6 +41,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
     else {
       if (!context.mounted) return;
 
+      debugPrint("Chosen app: ${file.path}");
       showMacosSheet(
         context: context,
         builder: (context) {
@@ -51,7 +52,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
       );
     }
   } else {
-    // If the app type is invalid, show this warning:
+    // If the app type is invalid, show a warning.
     if (!context.mounted) return;
     showAlertDialog(context, 'Invalid file type!',
         'Please select a proper application file.');
