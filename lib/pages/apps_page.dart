@@ -124,7 +124,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                               ),
                               child: Row(
                                 children: [
-                                  Text('${app.id}.'),
+                                  Text('$i.'),
                                   SizedBox(width: 20),
                                   Container(
                                     decoration: BoxDecoration(
