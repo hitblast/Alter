@@ -10,6 +10,10 @@ Future<bool> appExistsByPath(String path) async {
   return await isar.apps.where().filter().pathEqualTo(path).count() > 0;
 }
 
+Future<List<App>> getAllApps() async {
+  return await isar.apps.where().findAll();
+}
+
 // The database class for managing the apps.
 class AppDatabase {
   List<App> currentApps = [];
@@ -53,11 +57,6 @@ class AppDatabase {
   Future<void> deleteApp(int id) async {
     await isar.writeTxn(() => isar.apps.delete(id));
     await fetchApps();
-  }
-
-  // Get all apps.
-  Future<List<App>> getAllApps() async {
-    return await isar.apps.where().findAll();
   }
 
   // Delete all apps.
