@@ -1,6 +1,7 @@
 // Third-party imports.
 import 'dart:io';
 
+import 'package:alter/utils/launch_url.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -48,14 +49,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
           ),
           ToolBarIconButton(
             icon: MacosIcon(
-              CupertinoIcons.globe,
-            ),
-            label: 'Get Icons',
-            showLabel: true,
-            onPressed: () {},
-          ),
-          ToolBarIconButton(
-            icon: MacosIcon(
               CupertinoIcons.trash,
             ),
             label: 'Reset All',
@@ -66,11 +59,19 @@ class _AppsPageState extends ConsumerState<AppsPage> {
           ),
           ToolBarIconButton(
             icon: MacosIcon(
+              CupertinoIcons.globe,
+            ),
+            label: 'Get Icons',
+            showLabel: true,
+            onPressed: () async => await launchGetIconsPageOnWeb(context),
+          ),
+          ToolBarIconButton(
+            icon: MacosIcon(
               CupertinoIcons.question_circle,
             ),
             label: 'Help',
             showLabel: true,
-            onPressed: () => {},
+            onPressed: () async => await launchHelpPageOnWeb(context),
           ),
         ],
       ),
@@ -123,7 +124,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                               ),
                               child: Row(
                                 children: [
-                                  Text('$i.'),
+                                  Text('${i + 1}.'),
                                   SizedBox(width: 20),
                                   Container(
                                     decoration: BoxDecoration(
