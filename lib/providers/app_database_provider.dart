@@ -1,8 +1,10 @@
+// Third-party imports.
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // Local imports.
 import 'package:alter/models/app.dart';
 import 'package:alter/utils/app_database.dart';
+import 'package:alter/utils/app_icons.dart';
 
 // Provider generator part file.
 part 'app_database_provider.g.dart';
@@ -22,10 +24,12 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     return state.value!.any((app) => app.path == path);
   }
 
-  Future<void> addApp(String path, String customIconPath) async {
+  Future<void> addApp(String appPath, String userCustomIconPath) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      await _database.addApp(path, customIconPath);
+      final processedCommand =
+          await setCustomIconForApp(appPath, userCustomIconPath);
+      await _database.addApp(appPath, processedCommand!.customIconPath);
       return _database.currentApps;
     });
   }

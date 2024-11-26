@@ -13,10 +13,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.6.1
+  freezed_annotation: ^2.4.4
   isar: ^3.1.0+1
   isar_flutter_libs: ^3.1.0+1
   macos_ui: ^2.0.9
   path_provider: ^2.1.5
+  process_run: ^1.2.2
   riverpod_annotation: ^2.6.1
   url_launcher: ^6.3.1
 
@@ -29,6 +31,7 @@ dev_dependencies:
   custom_lint: ^0.5.11
   riverpod_lint: ^2.1.1
   riverpod_generator: ^2.3.3
+  freezed: ^2.5.2
 
 flutter:
   uses-material-design: true
