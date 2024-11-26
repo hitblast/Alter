@@ -1,12 +1,12 @@
 // Third-party imports.
 import 'dart:io';
 
-import 'package:alter/utils/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
+import 'package:alter/utils/file_picker.dart';
 import 'package:alter/providers/app_database_provider.dart';
 import 'package:alter/utils/app_adding_seq.dart';
 

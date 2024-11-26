@@ -1,13 +1,13 @@
 // Third-party imports.
 import 'dart:io';
 
-import 'package:alter/providers/app_database_provider.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
+import 'package:alter/providers/app_database_provider.dart';
 import 'package:alter/utils/file_picker.dart';
 
 // The macOS sheet view for choosing the icon when the user prompts.

@@ -1,5 +1,8 @@
+// Third-party imports.
 import 'package:flutter/cupertino.dart';
 
+// A simple page for when the app encounters an error and crashes.
+// This might later be elaborated with sending debug logs to server and more.
 class ErrorPage extends StatelessWidget {
   final FlutterErrorDetails errorDetails;
 

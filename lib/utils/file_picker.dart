@@ -1,6 +1,7 @@
 // Third-party imports.
-import 'package:file_selector/file_selector.dart';
 import 'dart:io';
+
+import 'package:file_selector/file_selector.dart';
 
 /*
 
