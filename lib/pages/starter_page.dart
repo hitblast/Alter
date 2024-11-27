@@ -15,6 +15,7 @@ class StarterPage extends StatefulWidget {
   State<StarterPage> createState() => _StarterPageState();
 }
 
+// The state of the starter page.
 class _StarterPageState extends State<StarterPage> {
   var opacity = 0.5;
 
