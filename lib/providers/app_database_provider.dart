@@ -29,7 +29,13 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     state = await AsyncValue.guard(() async {
       final processedCommand =
           await setCustomIconForApp(appPath, userCustomIconPath);
-      await _database.addApp(appPath, processedCommand!.customIconPath);
+      await _database.addApp(
+        appPath,
+        processedCommand!.customIconPath,
+        processedCommand.previousCFBundleIconName,
+        processedCommand.previousCFBundleIconFile,
+      );
+
       return _database.currentApps;
     });
   }
@@ -45,6 +51,8 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   Future<void> deleteApp(int id) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
+      final App? app = await _database.fetchAppById(id);
+      await unsetCustomIconForApp(app!);
       await _database.deleteApp(id);
       return _database.currentApps;
     });

@@ -26,6 +26,16 @@ const AppSchema = CollectionSchema(
       id: 1,
       name: r'path',
       type: IsarType.string,
+    ),
+    r'previousCFBundleIconFile': PropertySchema(
+      id: 2,
+      name: r'previousCFBundleIconFile',
+      type: IsarType.string,
+    ),
+    r'previousCFBundleIconName': PropertySchema(
+      id: 3,
+      name: r'previousCFBundleIconName',
+      type: IsarType.string,
     )
   },
   estimateSize: _appEstimateSize,
@@ -50,6 +60,8 @@ int _appEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.customIconPath.length * 3;
   bytesCount += 3 + object.path.length * 3;
+  bytesCount += 3 + object.previousCFBundleIconFile.length * 3;
+  bytesCount += 3 + object.previousCFBundleIconName.length * 3;
   return bytesCount;
 }
 
@@ -61,6 +73,8 @@ void _appSerialize(
 ) {
   writer.writeString(offsets[0], object.customIconPath);
   writer.writeString(offsets[1], object.path);
+  writer.writeString(offsets[2], object.previousCFBundleIconFile);
+  writer.writeString(offsets[3], object.previousCFBundleIconName);
 }
 
 App _appDeserialize(
@@ -73,6 +87,8 @@ App _appDeserialize(
   object.customIconPath = reader.readString(offsets[0]);
   object.id = id;
   object.path = reader.readString(offsets[1]);
+  object.previousCFBundleIconFile = reader.readString(offsets[2]);
+  object.previousCFBundleIconName = reader.readString(offsets[3]);
   return object;
 }
 
@@ -86,6 +102,10 @@ P _appDeserializeProp<P>(
     case 0:
       return (reader.readString(offset)) as P;
     case 1:
+      return (reader.readString(offset)) as P;
+    case 2:
+      return (reader.readString(offset)) as P;
+    case 3:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -489,6 +509,278 @@ extension AppQueryFilter on QueryBuilder<App, App, QFilterCondition> {
       ));
     });
   }
+
+  QueryBuilder<App, App, QAfterFilterCondition> previousCFBundleIconFileEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'previousCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconFileGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'previousCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconFileLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'previousCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> previousCFBundleIconFileBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'previousCFBundleIconFile',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconFileStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'previousCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconFileEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'previousCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconFileContains(String value,
+          {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'previousCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> previousCFBundleIconFileMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'previousCFBundleIconFile',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconFileIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'previousCFBundleIconFile',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconFileIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'previousCFBundleIconFile',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> previousCFBundleIconNameEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'previousCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconNameGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'previousCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconNameLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'previousCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> previousCFBundleIconNameBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'previousCFBundleIconName',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconNameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'previousCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconNameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'previousCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconNameContains(String value,
+          {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'previousCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> previousCFBundleIconNameMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'previousCFBundleIconName',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconNameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'previousCFBundleIconName',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      previousCFBundleIconNameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'previousCFBundleIconName',
+        value: '',
+      ));
+    });
+  }
 }
 
 extension AppQueryObject on QueryBuilder<App, App, QFilterCondition> {}
@@ -517,6 +809,30 @@ extension AppQuerySortBy on QueryBuilder<App, App, QSortBy> {
   QueryBuilder<App, App, QAfterSortBy> sortByPathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'path', Sort.desc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> sortByPreviousCFBundleIconFile() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'previousCFBundleIconFile', Sort.asc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> sortByPreviousCFBundleIconFileDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'previousCFBundleIconFile', Sort.desc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> sortByPreviousCFBundleIconName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'previousCFBundleIconName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> sortByPreviousCFBundleIconNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'previousCFBundleIconName', Sort.desc);
     });
   }
 }
@@ -557,6 +873,30 @@ extension AppQuerySortThenBy on QueryBuilder<App, App, QSortThenBy> {
       return query.addSortBy(r'path', Sort.desc);
     });
   }
+
+  QueryBuilder<App, App, QAfterSortBy> thenByPreviousCFBundleIconFile() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'previousCFBundleIconFile', Sort.asc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> thenByPreviousCFBundleIconFileDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'previousCFBundleIconFile', Sort.desc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> thenByPreviousCFBundleIconName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'previousCFBundleIconName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> thenByPreviousCFBundleIconNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'previousCFBundleIconName', Sort.desc);
+    });
+  }
 }
 
 extension AppQueryWhereDistinct on QueryBuilder<App, App, QDistinct> {
@@ -572,6 +912,22 @@ extension AppQueryWhereDistinct on QueryBuilder<App, App, QDistinct> {
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'path', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<App, App, QDistinct> distinctByPreviousCFBundleIconFile(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'previousCFBundleIconFile',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<App, App, QDistinct> distinctByPreviousCFBundleIconName(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'previousCFBundleIconName',
+          caseSensitive: caseSensitive);
     });
   }
 }
@@ -592,6 +948,20 @@ extension AppQueryProperty on QueryBuilder<App, App, QQueryProperty> {
   QueryBuilder<App, String, QQueryOperations> pathProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'path');
+    });
+  }
+
+  QueryBuilder<App, String, QQueryOperations>
+      previousCFBundleIconFileProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'previousCFBundleIconFile');
+    });
+  }
+
+  QueryBuilder<App, String, QQueryOperations>
+      previousCFBundleIconNameProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'previousCFBundleIconName');
     });
   }
 }

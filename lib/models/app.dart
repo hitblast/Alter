@@ -12,4 +12,6 @@ class App {
 
   late String path;
   late String customIconPath;
+  late String previousCFBundleIconName;
+  late String previousCFBundleIconFile;
 }

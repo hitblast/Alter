@@ -31,12 +31,23 @@ class AppDatabase {
     currentApps = fetchedApps;
   }
 
+  // Fetch an app by its ID.
+  Future<App?> fetchAppById(int id) async {
+    return await isar.apps.get(id);
+  }
+
   // Add an app to the database.
   Future<void> addApp(
-      String pathToAssign, String customIconPathToAssign) async {
+    String pathToAssign,
+    String customIconPathToAssign,
+    String previousCFBundleIconNameToAssign,
+    String previousCFBundleIconFileToAssign,
+  ) async {
     final newApp = App()
       ..path = pathToAssign
-      ..customIconPath = customIconPathToAssign;
+      ..customIconPath = customIconPathToAssign
+      ..previousCFBundleIconName = previousCFBundleIconNameToAssign
+      ..previousCFBundleIconFile = previousCFBundleIconFileToAssign;
 
     await isar.writeTxn(() => isar.apps.put(newApp));
     await fetchApps();
