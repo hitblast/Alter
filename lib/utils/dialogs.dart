@@ -7,7 +7,8 @@ void showAlertDialog(BuildContext context, String title, String message) {
   showMacosAlertDialog(
     context: context,
     builder: (_) => MacosAlertDialog(
-      appIcon: const Image(image: AssetImage('assets/alter_warning.png')),
+      appIcon:
+          const Image(image: AssetImage('assets/images/alter_warning.png')),
       title: Text(title),
       message: Text(message),
       primaryButton: PushButton(

@@ -77,7 +77,8 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                           Opacity(
                             opacity: 0.4,
                             child: Image(
-                              image: AssetImage('assets/alter_icon_frame.png'),
+                              image: AssetImage(
+                                  'assets/images/alter_icon_frame.png'),
                               width: 155,
                               height: 155,
                             ),
@@ -114,8 +115,8 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                 : Image(
                                     image: AssetImage(
                                       brightness == Brightness.dark
-                                          ? 'assets/alter_empty_dark.png'
-                                          : 'assets/alter_empty_light.png',
+                                          ? 'assets/images/alter_empty_dark.png'
+                                          : 'assets/images/alter_empty_light.png',
                                     ),
                                     width: 145,
                                     height: 145,

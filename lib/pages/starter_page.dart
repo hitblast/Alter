@@ -74,8 +74,8 @@ class _StarterPageState extends State<StarterPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image(
-                            image:
-                                AssetImage('assets/alter_empty_page_front.png'),
+                            image: AssetImage(
+                                'assets/images/alter_empty_page_front.png'),
                             width: 250,
                             height: 250,
                           ),
