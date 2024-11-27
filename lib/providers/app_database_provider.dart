@@ -31,7 +31,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
           await setCustomIconForApp(appPath, userCustomIconPath);
       await _database.addApp(
         appPath,
-        processedCommand!.customIconPath,
+        processedCommand.customIconPath,
         processedCommand.previousCFBundleIconName,
         processedCommand.previousCFBundleIconFile,
       );

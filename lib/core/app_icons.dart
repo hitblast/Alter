@@ -1,59 +1,67 @@
 // Third-party imports.
 import 'dart:io';
 
-import 'package:alter/models/app.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:process_run/shell.dart';
 
 // Local imports.
+import 'package:alter/models/app.dart';
 import 'package:alter/models/processed_command.dart';
 
-// The function to set a custom icon for an app.
-Future<ProcessedCommand?> setCustomIconForApp(
-    String appPath, String userCustomIconPath) async {
+// This function sets a custom icon for an app.
+Future<ProcessedCommand> setCustomIconForApp(
+  String appPath,
+  String userCustomIconPath,
+) async {
+  // Get the custom icon file properly and copy it to the app's Resources folder.
   final File userCustomIcon = File(userCustomIconPath);
   final String userCustomIconName = userCustomIconPath.split('/').last;
 
-  // Copy the custom icon to the app's Resources folder for the app bundle to access it.
-  // This also creates a new file with access to the customIcon variable.
   final File customIcon = await userCustomIcon
       .copy('$appPath/Contents/Resources/$userCustomIconName');
 
-  // Run the shell commands to set the custom icon for the app.
+  // Setup shell environment for communication with commands.
+  // Also get the path to the app's Info.plist file.
   var shell = Shell(throwOnError: true);
   final String appBundleInfoPath = "$appPath/Contents/Info";
 
-  // Store the previous icon values for backup.
+  // Store these two for backup.
   late String previousCFBundleIconName;
   late String previousCFBundleIconFile;
 
-  // The shell script to set the custom icon for the app.
+  // Some apps do not have the CFBundleIconName key in their Info.plist file.
+  // In that case, ignore read-writing it for that particular app only.
   try {
     previousCFBundleIconName =
-        (await shell.run('defaults read $appBundleInfoPath CFBundleIconName'))
-            .first
+        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconName'))
+            .single
             .outText;
+    await shell.run(
+        'defaults write "$appBundleInfoPath" CFBundleIconName $userCustomIconName');
+  } catch (e) {
+    previousCFBundleIconName = '';
+  }
+
+  // Finally, set the required CFBundleIconFile key in the Info.plist file.
+  // Also, touch and sign the app so that it can be used normally on macOS.
+  try {
     previousCFBundleIconFile =
-        (await shell.run('defaults read $appBundleInfoPath CFBundleIconFile'))
-            .first
+        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconFile'))
+            .single
             .outText;
 
     await shell.run('''
-      # Set the custom icon for the app.
-      defaults write $appBundleInfoPath CFBundleIconFile "$userCustomIconName"
-      defaults write $appBundleInfoPath CFBundleIconName "$userCustomIconName"
+      defaults write "$appBundleInfoPath" CFBundleIconFile "$userCustomIconName"
 
-      # Touch the app to update the icon.
-      touch $appPath
+      touch "$appPath"
 
-      # Force-sign the app since otherwise macOS will not allow the app to run.
-      codesign --force --deep --sign - $appPath
+      codesign --force --deep --sign - "$appPath"
       ''');
   } catch (e) {
     debugPrint(e.toString());
   }
 
-  // Create an instance of the ProcessedCommand model and return it.
+  // Return the processed command for further use by the database and providers.
   return ProcessedCommand(
     customIconPath: customIcon.path,
     previousCFBundleIconFile: previousCFBundleIconFile,
@@ -61,28 +69,36 @@ Future<ProcessedCommand?> setCustomIconForApp(
   );
 }
 
-// The function to remove a custom icon for an app.
-Future<void> unsetCustomIconForApp(App app) async {
+// This function works directly in reverse to the previous one.
+// It unsets the custom icon for an app.
+Future<void> unsetCustomIconForApp(
+  App app,
+) async {
+  // Setup shell environment for communication with commands.
   var shell = Shell(throwOnError: true);
 
-  // Firstly, delete the custom icon file.
+  // Delete the custom icon file from the app's Resources folder.
   File customIcon = File(app.customIconPath);
   await customIcon.delete();
 
-  // Now, reset the app's icon to the previous default.
+  // Get the path to the app's Info.plist file.
   final String appBundleInfoPath = "${app.path}/Contents/Info";
 
+  // Restore the previous CFBundleIconName key in the Info.plist file.
+  // Of course, this will be ignored if the previous key was empty / non-existent.
+  if (app.previousCFBundleIconName.isNotEmpty) {
+    await shell.run(
+        'defaults write "$appBundleInfoPath" CFBundleIconName "${app.previousCFBundleIconName}"');
+  }
+
+  // Finally, restore the previous CFBundleIconFile key in the Info.plist file.
   try {
     await shell.run('''
-      # Re-write the defaults.
-      defaults write $appBundleInfoPath CFBundleIconFile "${app.previousCFBundleIconFile}"
-      defaults write $appBundleInfoPath CFBundleIconName "${app.previousCFBundleIconName}"
+      defaults write "$appBundleInfoPath" CFBundleIconFile "${app.previousCFBundleIconFile}"
 
-      # Touch the app to update the icon.
-      touch ${app.path}
+      touch "${app.path}"
 
-      # Pretty much like setting the custom icon, we need to force-sign the app.
-      codesign --force --deep --sign - ${app.path}
+      codesign --force --deep --sign - "${app.path}"
       ''');
   } catch (e) {
     debugPrint(e.toString());
