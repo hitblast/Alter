@@ -61,6 +61,9 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   Future<void> deleteAllApps() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
+      for (final app in _database.currentApps) {
+        await unsetCustomIconForApp(app);
+      }
       await _database.deleteAllApps();
       return _database.currentApps;
     });

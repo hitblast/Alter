@@ -25,10 +25,24 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     // Based on the asynchronous state, the page to display is decided.
     if (apps.isLoading) {
-      return Center(
-        child: ProgressCircle(
-          value: null,
-          radius: 15,
+      return const Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Processing... Please do not quit the app.',
+              style: TextStyle(
+                fontSize: 14,
+                color: CupertinoColors.systemGrey,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 15),
+            ProgressCircle(
+              value: null,
+              radius: 15,
+            ),
+          ],
         ),
       );
     } else {

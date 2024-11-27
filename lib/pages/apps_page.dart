@@ -176,7 +176,14 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                           ),
                         );
                       },
-                    )
+                    ),
+                  Container(
+                    width: double.infinity,
+                    height: 1.5,
+                    color: isDarkMode
+                        ? secondaryColorDarkMode
+                        : secondaryColorLightMode,
+                  )
                 ],
               ),
             );
