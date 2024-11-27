@@ -1,11 +1,11 @@
 // Third-party imports.
 import 'dart:io';
 
-import 'package:alter/utils/app_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
+import 'package:alter/core/app_database.dart';
 import 'package:alter/pages/iconchoosersheet_page.dart';
 import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/file_picker.dart';
