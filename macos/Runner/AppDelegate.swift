@@ -1,4 +1,3 @@
-import BackgroundTasks
 import Cocoa
 import FlutterMacOS
 
