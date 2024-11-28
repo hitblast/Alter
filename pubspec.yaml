@@ -8,7 +8,6 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.8
-  desktop_window: ^0.4.2
   file_selector: ^1.0.3
   flutter:
     sdk: flutter

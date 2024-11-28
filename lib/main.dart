@@ -1,7 +1,5 @@
 // Third-party imports.
-import 'package:alter/providers/app_theme_provider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:desktop_window/desktop_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
@@ -9,9 +7,10 @@ import 'package:macos_ui/macos_ui.dart';
 import 'package:path_provider/path_provider.dart';
 
 // Local imports.
-import 'package:alter/pages/error_page.dart';
 import 'package:alter/models/app.dart';
+import 'package:alter/pages/error_page.dart';
 import 'package:alter/pages/home_page.dart';
+import 'package:alter/providers/app_theme_provider.dart';
 
 /*
 
@@ -42,17 +41,6 @@ class MainApp extends ConsumerStatefulWidget {
 }
 
 class _MainAppState extends ConsumerState<MainApp> {
-  Future<void> setWindowSize() async {
-    await DesktopWindow.setMinWindowSize(const Size(640, 430));
-    await DesktopWindow.setWindowSize(const Size(640, 430));
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setWindowSize();
-  }
-
   @override
   Widget build(BuildContext context) {
     return MacosApp(
