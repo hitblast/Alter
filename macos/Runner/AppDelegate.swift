@@ -1,8 +1,6 @@
-// Imports.
 import Cocoa
 import FlutterMacOS
 
-// The AppDelegate class.
 @main
 class AppDelegate: FlutterAppDelegate {
     override func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -16,6 +14,13 @@ class AppDelegate: FlutterAppDelegate {
 
     override func applicationDidBecomeActive(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
+    }
+
+    override func applicationShouldTerminate(_ sender: NSApplication)
+        -> NSApplication.TerminateReply
+    {
+        NSApp.windows.first?.close()
+        return .terminateCancel
     }
 
     override func applicationShouldHandleReopen(
