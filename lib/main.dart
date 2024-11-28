@@ -12,20 +12,8 @@ import 'package:alter/pages/error_page.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:alter/providers/app_theme_provider.dart';
 
-/*
-
-Important parts.
-
-*/
-
 // Define the Isar database.
 late Isar isar;
-
-// Apply macOS design changes.
-Future<void> _configureMacosWindowUtils() async {
-  const config = MacosWindowUtilsConfig();
-  await config.apply();
-}
 
 /*
 
@@ -62,7 +50,7 @@ class _MainAppState extends ConsumerState<MainApp> {
 
 /*
 
-The main function of the application.
+The main functions of the application.
 
 */
 
@@ -83,4 +71,9 @@ Future<void> main() async {
   }
 
   runApp(ProviderScope(child: const MainApp()));
+}
+
+Future<void> _configureMacosWindowUtils() async {
+  const config = MacosWindowUtilsConfig();
+  await config.apply();
 }
