@@ -18,6 +18,7 @@ dependencies:
   macos_ui: ^2.0.9
   path_provider: ^2.1.5
   process_run: ^1.2.2
+  rive: ^0.13.19
   riverpod_annotation: ^2.6.1
   url_launcher: ^6.3.1
 
@@ -40,3 +41,4 @@ flutter:
     - assets/images/alter_empty_light.png
     - assets/images/alter_icon_frame.png
     - assets/images/alter_warning.png
+    - assets/animations/alter_starter_screen.riv
