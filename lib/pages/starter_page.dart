@@ -44,34 +44,39 @@ class StarterPage extends StatelessWidget {
                 await initiateAppAddingSequence(context);
               },
               child: Center(
-                child: SingleChildScrollView(
-                  controller: scrollController,
-                  padding: const EdgeInsets.all(20),
-                  child: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Opacity(
-                      opacity: 0.78,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 280,
-                            height: 280,
-                            child: RiveAnimation.asset(
-                              'assets/animations/alter_starter_screen.riv',
-                              fit: BoxFit.contain,
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(
+                    scrollbars: false,
+                  ),
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    padding: const EdgeInsets.all(20),
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Opacity(
+                        opacity: 0.78,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 280,
+                              height: 280,
+                              child: RiveAnimation.asset(
+                                'assets/animations/alter_starter_screen.riv',
+                                fit: BoxFit.contain,
+                              ),
                             ),
-                          ),
-                          const Text(
-                            'Left-click to start customizing.',
-                            style: TextStyle(
-                              fontSize: 25,
-                              color: CupertinoColors.systemGrey,
-                              letterSpacing: -2,
-                              overflow: TextOverflow.fade,
+                            const Text(
+                              'Left-click to start customizing.',
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: CupertinoColors.systemGrey,
+                                letterSpacing: -2,
+                                overflow: TextOverflow.fade,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
