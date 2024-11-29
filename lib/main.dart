@@ -1,4 +1,6 @@
 // Third-party imports.
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,7 +60,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
 
-  final dir = await getApplicationDocumentsDirectory();
+  final applicationDocumentsDirectory =
+      await getApplicationDocumentsDirectory();
+  final dir = Directory('${applicationDocumentsDirectory.path}/Alter');
+
+  if (!(await dir.exists())) {
+    await dir.create();
+  }
+
   if (Isar.instanceNames.isEmpty) {
     isar = await Isar.open(
       [
