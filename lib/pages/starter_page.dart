@@ -50,7 +50,9 @@ class StarterPage extends StatelessWidget {
                   ),
                   child: SingleChildScrollView(
                     controller: scrollController,
-                    padding: const EdgeInsets.all(20),
+                    padding: const EdgeInsets.only(
+                      bottom: 20,
+                    ),
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: Opacity(
