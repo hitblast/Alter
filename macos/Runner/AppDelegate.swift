@@ -1,6 +1,8 @@
+// Imports.
 import Cocoa
 import FlutterMacOS
 
+// The AppDelegate class which is the entry point of the application.
 @main
 class AppDelegate: FlutterAppDelegate {
     override func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
@@ -23,6 +25,7 @@ class AppDelegate: FlutterAppDelegate {
         return .terminateCancel
     }
 
+    // When reopening the app, show the previously opened window.
     override func applicationShouldHandleReopen(
         _ sender: NSApplication, hasVisibleWindows flag: Bool
     ) -> Bool {
