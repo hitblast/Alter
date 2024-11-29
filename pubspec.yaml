@@ -41,4 +41,5 @@ flutter:
     - assets/images/alter_empty_light.png
     - assets/images/alter_icon_frame.png
     - assets/images/alter_warning.png
+    - assets/animations/alter_click_hint.riv
     - assets/animations/alter_starter_screen.riv
