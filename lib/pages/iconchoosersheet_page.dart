@@ -9,6 +9,7 @@ import 'package:macos_ui/macos_ui.dart';
 // Local imports.
 import 'package:alter/providers/app_database_provider.dart';
 import 'package:alter/utils/file_picker.dart';
+import 'package:rive/rive.dart' hide Image;
 
 // The macOS sheet view for choosing the icon when the user prompts.
 class IconChooserSheetPage extends ConsumerStatefulWidget {
@@ -108,18 +109,32 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                             child: currentPickedIcon != null
                                 ? Image(
                                     image: FileImage(
-                                        File(currentPickedIcon!.path)),
-                                    width: 145,
-                                    height: 145,
-                                  )
-                                : Image(
-                                    image: AssetImage(
-                                      brightness == Brightness.dark
-                                          ? 'assets/images/alter_empty_dark.png'
-                                          : 'assets/images/alter_empty_light.png',
+                                      File(currentPickedIcon!.path),
                                     ),
                                     width: 145,
                                     height: 145,
+                                  )
+                                : Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      Image(
+                                        image: AssetImage(
+                                          brightness == Brightness.dark
+                                              ? 'assets/images/alter_empty_dark.png'
+                                              : 'assets/images/alter_empty_light.png',
+                                        ),
+                                        width: 145,
+                                        height: 145,
+                                      ),
+                                      SizedBox(
+                                        width: 100,
+                                        height: 100,
+                                        child: RiveAnimation.asset(
+                                          'assets/animations/alter_click_hint.riv',
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                           )
                         ],
