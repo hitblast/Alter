@@ -9,7 +9,7 @@ import 'package:alter/models/app.dart';
 import 'package:alter/models/processed_command.dart';
 
 // This function sets a custom icon for an app.
-Future<ProcessedCommand> setCustomIconForApp(
+Future<ProcessedCommand?> setCustomIconForApp(
   String appPath,
   String userCustomIconPath,
 ) async {
@@ -58,7 +58,7 @@ Future<ProcessedCommand> setCustomIconForApp(
       codesign --force --deep --sign - "$appPath"
       ''');
   } catch (e) {
-    debugPrint(e.toString());
+    return null;
   }
 
   // Return the processed command for further use by the database and providers.

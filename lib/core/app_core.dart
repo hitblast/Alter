@@ -38,7 +38,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   else if (await ifAppIsSystemApplication(file.path)) {
     if (!context.mounted) return;
     showAlertDialog(context, 'System application!',
-        'Alter cannot alter system applications at this moment.');
+        'Alter cannot alter system applications.');
   }
 
   // If all of the checks above, actually pass. Then, route to IconChooserSheetPage.

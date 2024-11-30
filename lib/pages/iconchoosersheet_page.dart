@@ -1,6 +1,7 @@
 // Third-party imports.
 import 'dart:io';
 
+import 'package:alter/utils/dialogs.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -166,15 +167,26 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                         controlSize: ControlSize.large,
                         secondary: currentPickedIcon != null ? false : true,
                         onPressed: currentPickedIcon != null
-                            ? () {
+                            ? () async {
                                 if (currentPickedIcon == null) {
                                   return;
                                 }
-                                ref
+
+                                bool hasAddedApp = await ref
                                     .read(appDatabaseNotifierProvider.notifier)
                                     .addApp(widget.appFile.path,
                                         currentPickedIcon!.path);
-                                Navigator.of(context).pop();
+
+                                if (!context.mounted) return;
+                                if (!hasAddedApp) {
+                                  showAlertDialog(
+                                    context,
+                                    "Couldn't apply changes!",
+                                    "Alter doesn't support modifying such types of apps.",
+                                  );
+                                } else {
+                                  Navigator.of(context).pop();
+                                }
                               }
                             : null,
                         child: Text('Apply Changes'),
