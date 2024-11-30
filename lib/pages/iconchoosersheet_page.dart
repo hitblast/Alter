@@ -172,6 +172,8 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   return;
                                 }
 
+                                // Returns false if there is an internal error while adding the app.
+                                // For now, skipping in-depth inspection.
                                 bool hasAddedApp = await ref
                                     .read(appDatabaseNotifierProvider.notifier)
                                     .addApp(widget.appFile.path,
