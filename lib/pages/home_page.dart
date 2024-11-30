@@ -55,7 +55,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             const SizedBox(height: 15),
             const ProgressCircle(
               value: null,
-              radius: 12,
             ),
           ],
         ),
