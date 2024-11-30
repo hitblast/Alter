@@ -1,16 +1,16 @@
 // Third-party imports.
 import 'dart:io';
 
-import 'package:alter/utils/dialogs.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
+import 'package:rive/rive.dart' hide Image;
 
 // Local imports.
-import 'package:alter/providers/app_database_provider.dart';
+import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/file_picker.dart';
-import 'package:rive/rive.dart' hide Image;
+import 'package:alter/providers/app_database_provider.dart';
 
 // The macOS sheet view for choosing the icon when the user prompts.
 class IconChooserSheetPage extends ConsumerStatefulWidget {
@@ -26,6 +26,9 @@ class IconChooserSheetPage extends ConsumerStatefulWidget {
 // The state for the IconChooserSheetPage.
 class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
   XFile? currentPickedIcon;
+
+  // Boolean value indicating if the user has picked an icon.
+  bool get hasPickedIcon => currentPickedIcon != null;
 
   @override
   Widget build(BuildContext context) {
@@ -89,7 +92,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                             duration: Duration(seconds: 2),
                             curve: Curves.fastOutSlowIn,
                             decoration: BoxDecoration(
-                              boxShadow: currentPickedIcon != null
+                              boxShadow: hasPickedIcon
                                   ? [
                                       BoxShadow(
                                         color: CupertinoColors.systemGreen
@@ -107,7 +110,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                       )
                                     ],
                             ),
-                            child: currentPickedIcon != null
+                            child: hasPickedIcon
                                 ? Image(
                                     image: FileImage(
                                       File(currentPickedIcon!.path),
@@ -144,7 +147,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                   ),
                   SizedBox(height: 25),
                   Text(
-                    currentPickedIcon != null
+                    hasPickedIcon
                         ? 'You can modify by left-clicking again!'
                         : 'Left-click above to choose a new icon.',
                   ),
@@ -165,15 +168,13 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       SizedBox(width: 10),
                       PushButton(
                         controlSize: ControlSize.large,
-                        secondary: currentPickedIcon != null ? false : true,
-                        onPressed: currentPickedIcon != null
+                        secondary: !hasPickedIcon,
+                        onPressed: hasPickedIcon
                             ? () async {
-                                if (currentPickedIcon == null) {
+                                if (!hasPickedIcon) {
                                   return;
                                 }
 
-                                // Returns false if there is an internal error while adding the app.
-                                // For now, skipping in-depth inspection.
                                 bool hasAddedApp = await ref
                                     .read(appDatabaseNotifierProvider.notifier)
                                     .addApp(widget.appFile.path,
