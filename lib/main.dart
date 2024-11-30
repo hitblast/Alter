@@ -60,13 +60,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
 
-  final applicationDocumentsDirectory =
-      await getApplicationDocumentsDirectory();
-  final dir = Directory('${applicationDocumentsDirectory.path}/Alter');
+  final applicationDocumentsDirectory = await getApplicationSupportDirectory();
+  final dir = Directory('${applicationDocumentsDirectory.path}/AppList');
 
   if (!(await dir.exists())) {
+    debugPrint("DB does not exist, creating one in ${dir.path}");
     await dir.create();
   }
+  debugPrint("Storage path: ${dir.path}");
 
   if (Isar.instanceNames.isEmpty) {
     isar = await Isar.open(
@@ -75,7 +76,7 @@ Future<void> main() async {
         AppSchema,
       ],
       directory: dir.path,
-      name: 'alterInstance',
+      name: 'alterAppListInstance',
     );
   }
 
