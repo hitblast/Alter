@@ -24,9 +24,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     return state.value!.any((app) => app.path == path);
   }
 
-  Future<bool> addApp(String appPath, String userCustomIconPath) async {
-    final previousData = state.value;
-
+  Future<void> addApp(String appPath, String userCustomIconPath) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final processedCommand =
@@ -43,8 +41,6 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
 
       return _database.currentApps;
     });
-
-    return previousData != state.value;
   }
 
   Future<void> updateAppIcon(int id, String newCustomIconPath) async {

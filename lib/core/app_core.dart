@@ -38,7 +38,14 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   else if (await ifAppIsSystemApplication(file.path)) {
     if (!context.mounted) return;
     showAlertDialog(context, 'System application!',
-        'Alter cannot alter system applications.');
+        'Alter cannot modify system applications.');
+  }
+
+  // If the app has a _MASReceipt folder (indicating it as an App store application).
+  else if (await Directory('${file.path}/Contents/_MASReceipt').exists()) {
+    if (!context.mounted) return;
+    showAlertDialog(context, 'App Store app!',
+        'Alter cannot modify App Store applications (for now).');
   }
 
   // If all of the checks above, actually pass. Then, route to IconChooserSheetPage.

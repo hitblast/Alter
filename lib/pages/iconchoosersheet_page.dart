@@ -8,7 +8,6 @@ import 'package:macos_ui/macos_ui.dart';
 import 'package:rive/rive.dart' hide Image;
 
 // Local imports.
-import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/file_picker.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
@@ -175,21 +174,12 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   return;
                                 }
 
-                                bool hasAddedApp = await ref
+                                ref
                                     .read(appDatabaseNotifierProvider.notifier)
                                     .addApp(widget.appFile.path,
                                         currentPickedIcon!.path);
 
-                                if (!context.mounted) return;
-                                if (!hasAddedApp) {
-                                  showAlertDialog(
-                                    context,
-                                    "Couldn't apply changes!",
-                                    "Alter doesn't support modifying such types of apps.",
-                                  );
-                                } else {
-                                  Navigator.of(context).pop();
-                                }
+                                Navigator.of(context).pop();
                               }
                             : null,
                         child: Text('Apply Changes'),
