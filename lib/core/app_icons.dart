@@ -14,16 +14,20 @@ Future<ProcessedCommand?> setCustomIconForApp(
   String userCustomIconPath,
 ) async {
   // Get the custom icon file properly and copy it to the app's Resources folder.
-  final File userCustomIcon = File(userCustomIconPath);
   final String userCustomIconName = userCustomIconPath.split('/').last;
-
-  final File customIcon = await userCustomIcon
-      .copy('$appPath/Contents/Resources/$userCustomIconName');
 
   // Setup shell environment for communication with commands.
   // Also get the path to the app's Info.plist file.
   var shell = Shell(throwOnError: true);
   final String appBundleInfoPath = "$appPath/Contents/Info";
+
+  // Copy the custom icon file to the app's Resources folder.
+  final String customIconPath =
+      "$appPath/Contents/Resources/$userCustomIconName";
+  await shell.run('''
+    cp "$userCustomIconPath" "$customIconPath"
+    chmod 644 "$appPath/Contents/Resources/$userCustomIconName"
+    ''');
 
   // Store these two for backup.
   late String previousCFBundleIconName;
@@ -63,7 +67,7 @@ Future<ProcessedCommand?> setCustomIconForApp(
 
   // Return the processed command for further use by the database and providers.
   return ProcessedCommand(
-    customIconPath: customIcon.path,
+    customIconPath: customIconPath,
     previousCFBundleIconFile: previousCFBundleIconFile,
     previousCFBundleIconName: previousCFBundleIconName,
   );
