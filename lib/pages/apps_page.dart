@@ -59,6 +59,17 @@ class _AppsPageState extends ConsumerState<AppsPage> {
           ),
           ToolBarIconButton(
             icon: MacosIcon(
+              CupertinoIcons.clear_circled,
+            ),
+            label: 'Kill Process',
+            showLabel: true,
+            onPressed: () {
+              // quit the app
+              exit(0);
+            },
+          ),
+          ToolBarIconButton(
+            icon: MacosIcon(
               CupertinoIcons.globe,
             ),
             label: 'Get Icons',
@@ -124,15 +135,22 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                               ),
                               child: Row(
                                 children: [
-                                  Text('${i + 1}.'),
+                                  Text(
+                                    '${i + 1}.',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   SizedBox(width: 20),
                                   Container(
                                     decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
                                           color: CupertinoColors.black
-                                              .withOpacity(0.2),
+                                              .withValues(alpha: 0.2),
                                           blurRadius: 10,
+                                          spreadRadius: -3,
                                           offset: Offset(0, 5),
                                         ),
                                       ],
