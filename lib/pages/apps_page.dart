@@ -142,7 +142,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  SizedBox(width: 20),
+                                  const SizedBox(width: 20),
                                   Container(
                                     decoration: BoxDecoration(
                                       boxShadow: [
@@ -161,7 +161,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                       height: 70,
                                     ),
                                   ),
-                                  SizedBox(width: 20),
+                                  const SizedBox(width: 20),
                                   Text(
                                     getAppNameFromPath(app.path),
                                     style: TextStyle(
@@ -169,14 +169,14 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   PushButton(
                                     onPressed: () {},
                                     controlSize: ControlSize.regular,
                                     secondary: true,
                                     child: Text('Update Icon'),
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   PushButton(
                                     onPressed: () {
                                       ref

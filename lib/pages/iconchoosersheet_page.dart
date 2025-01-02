@@ -34,8 +34,8 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
     final brightness = MediaQuery.of(context).platformBrightness;
 
     return MacosSheet(
-      insetAnimationDuration: Duration(milliseconds: 500),
-      insetPadding: EdgeInsets.only(
+      insetAnimationDuration: const Duration(milliseconds: 500),
+      insetPadding: const EdgeInsets.only(
         top: 50,
         left: 60,
         right: 60,
@@ -61,7 +61,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () async {
                       final XFile? file = await pickIcon();
@@ -77,7 +77,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          Opacity(
+                          const Opacity(
                             opacity: 0.4,
                             child: Image(
                               image: AssetImage(
@@ -135,13 +135,13 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 25),
+                  const SizedBox(height: 25),
                   Text(
                     hasPickedIcon
                         ? 'You can modify by left-clicking again!'
                         : 'Left-click above to choose a new icon.',
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -153,9 +153,9 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                         },
                         child: Text('Cancel'),
                       ),
-                      SizedBox(width: 10),
-                      Text('or'),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
+                      const Text('or'),
+                      const SizedBox(width: 10),
                       PushButton(
                         controlSize: ControlSize.large,
                         secondary: !hasPickedIcon,

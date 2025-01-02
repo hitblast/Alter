@@ -18,7 +18,7 @@ class StarterPage extends StatelessWidget {
         enableBlur: true,
         actions: [
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.globe,
             ),
             label: 'Get Icons',
@@ -26,7 +26,7 @@ class StarterPage extends StatelessWidget {
             onPressed: () async => await launchGetIconsPageOnWeb(context),
           ),
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.question_circle,
             ),
             label: 'Help',
@@ -52,7 +52,7 @@ class StarterPage extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       bottom: 20,
                     ),
-                    child: MouseRegion(
+                    child: const MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: Opacity(
                         opacity: 0.78,
@@ -65,7 +65,7 @@ class StarterPage extends StatelessWidget {
                               size: 100,
                             ),
                             SizedBox(height: 25),
-                            const Text(
+                            Text(
                               'Left-click to start customizing.',
                               style: TextStyle(
                                 fontSize: 25,

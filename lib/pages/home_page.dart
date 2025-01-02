@@ -25,11 +25,11 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     // Based on the asynchronous state, the page to display is decided.
     if (apps.isLoading) {
-      return Center(
+      return const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const ProgressCircle(
+            ProgressCircle(
               value: null,
             ),
           ],
@@ -39,9 +39,9 @@ class _HomePageState extends ConsumerState<HomePage> {
       Widget page;
 
       if (apps.value!.isEmpty) {
-        page = StarterPage();
+        page = const StarterPage();
       } else {
-        page = AppsPage();
+        page = const AppsPage();
       }
 
       return PlatformMenuBar(
