@@ -1,3 +1,4 @@
+// Third-party imports.
 import 'dart:io';
 
 import 'package:alter/utils/launch_url.dart';
@@ -5,10 +6,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
+// Local imports.
 import 'package:alter/core/app_core.dart';
 import 'package:alter/utils/file_picker.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
+// The apps page.
+// This page is shown if the user has already populated Alter with apps to customize.
 class AppsPage extends ConsumerStatefulWidget {
   const AppsPage({super.key});
 
@@ -16,6 +20,7 @@ class AppsPage extends ConsumerStatefulWidget {
   ConsumerState<AppsPage> createState() => _AppsPageState();
 }
 
+// The state for the AppsPage widget.
 class _AppsPageState extends ConsumerState<AppsPage> {
   @override
   Widget build(BuildContext context) {
