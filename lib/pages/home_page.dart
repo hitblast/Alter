@@ -8,7 +8,6 @@ import 'package:alter/pages/starter_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 import 'package:alter/pages/apps_page.dart';
 import 'package:alter/platform_menus.dart';
-import 'package:rive/rive.dart';
 
 // The home page of the application.
 class HomePage extends ConsumerStatefulWidget {
@@ -26,33 +25,10 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     // Based on the asynchronous state, the page to display is decided.
     if (apps.isLoading) {
-      final brightness = MediaQuery.of(context).platformBrightness;
-
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Opacity(
-              opacity: 0.78,
-              child: brightness == Brightness.dark
-                  ? SizedBox(
-                      width: 180,
-                      height: 180,
-                      child: RiveAnimation.asset(
-                        'assets/animations/alter_loading_dark.riv',
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : SizedBox(
-                      width: 180,
-                      height: 180,
-                      child: RiveAnimation.asset(
-                        'assets/animations/alter_loading_light.riv',
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-            ),
-            const SizedBox(height: 15),
             const ProgressCircle(
               value: null,
             ),

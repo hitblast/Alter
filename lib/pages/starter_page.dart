@@ -1,5 +1,4 @@
 // Third-party imports.
-import 'package:rive/rive.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -60,14 +59,12 @@ class StarterPage extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            SizedBox(
-                              width: 280,
-                              height: 280,
-                              child: RiveAnimation.asset(
-                                'assets/animations/alter_starter_screen.riv',
-                                fit: BoxFit.contain,
-                              ),
+                            MacosIcon(
+                              CupertinoIcons.add_circled_solid,
+                              color: CupertinoColors.systemGrey,
+                              size: 100,
                             ),
+                            SizedBox(height: 25),
                             const Text(
                               'Left-click to start customizing.',
                               style: TextStyle(

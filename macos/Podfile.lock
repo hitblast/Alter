@@ -13,8 +13,6 @@ PODS:
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
-  - rive_common (0.0.1):
-    - FlutterMacOS
   - url_launcher_macos (0.0.1):
     - FlutterMacOS
 
@@ -26,7 +24,6 @@ DEPENDENCIES:
   - macos_ui (from `Flutter/ephemeral/.symlinks/plugins/macos_ui/macos`)
   - macos_window_utils (from `Flutter/ephemeral/.symlinks/plugins/macos_window_utils/macos`)
   - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin`)
-  - rive_common (from `Flutter/ephemeral/.symlinks/plugins/rive_common/macos`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
 
 EXTERNAL SOURCES:
@@ -44,21 +41,18 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/macos_window_utils/macos
   path_provider_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/darwin
-  rive_common:
-    :path: Flutter/ephemeral/.symlinks/plugins/rive_common/macos
   url_launcher_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
 
 SPEC CHECKSUMS:
-  appkit_ui_element_colors: 39bb2d80be3f19b152ccf4c70d5bbe6cba43d74a
-  file_selector_macos: cc3858c981fe6889f364731200d6232dac1d812d
+  appkit_ui_element_colors: 711e7a2aa027790964e6fd90c78a666efe631432
+  file_selector_macos: 6280b52b459ae6c590af5d78fc35c7267a3c4b31
   FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  isar_flutter_libs: 43385c99864c168fadba7c9adeddc5d38838ca6a
-  macos_ui: 6229a8922cd97bafb7d9636c8eb8dfb0744183ca
-  macos_window_utils: 933f91f64805e2eb91a5bd057cf97cd097276663
-  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  rive_common: 9580b9f1f08a8c85006083078e80479edf3db26a
-  url_launcher_macos: c82c93949963e55b228a30115bd219499a6fe404
+  isar_flutter_libs: a65381780401f81ad6bf3f2e7cd0de5698fb98c4
+  macos_ui: 2047a8e6536a80491ef10684c53ca500e04f1bcf
+  macos_window_utils: 3bca8603c2a1cf2257351dfe6bbccc9accf739fd
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  url_launcher_macos: 0fba8ddabfc33ce0a9afe7c5fef5aab3d8d2d673
 
 PODFILE CHECKSUM: ee954fade8f3b11c1f8b26bea93380ea85316f08
 

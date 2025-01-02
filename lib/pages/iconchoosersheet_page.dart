@@ -5,7 +5,6 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
-import 'package:rive/rive.dart' hide Image;
 
 // Local imports.
 import 'package:alter/utils/file_picker.dart';
@@ -128,14 +127,6 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                         ),
                                         width: 145,
                                         height: 145,
-                                      ),
-                                      SizedBox(
-                                        width: 100,
-                                        height: 100,
-                                        child: RiveAnimation.asset(
-                                          'assets/animations/alter_click_hint.riv',
-                                          fit: BoxFit.contain,
-                                        ),
                                       ),
                                     ],
                                   ),
