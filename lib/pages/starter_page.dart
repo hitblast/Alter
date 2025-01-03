@@ -4,6 +4,7 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/app_core.dart';
+import 'package:alter/pages/help_sheet_page.dart';
 import 'package:alter/utils/launch_url.dart';
 
 // The starter page widget.
@@ -31,7 +32,12 @@ class StarterPage extends StatelessWidget {
             ),
             label: 'Help',
             showLabel: true,
-            onPressed: () async => await launchHelpPageOnWeb(context),
+            onPressed: () async => showMacosSheet(
+              context: context,
+              builder: (context) {
+                return HelpSheetPage();
+              },
+            ),
           ),
         ],
       ),

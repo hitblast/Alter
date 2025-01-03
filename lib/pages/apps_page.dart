@@ -1,7 +1,7 @@
 // Third-party imports.
 import 'dart:io';
 
-import 'package:alter/utils/launch_url.dart';
+import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -9,6 +9,9 @@ import 'package:macos_ui/macos_ui.dart';
 // Local imports.
 import 'package:alter/core/app_core.dart';
 import 'package:alter/utils/file_picker.dart';
+import 'package:alter/utils/launch_url.dart';
+import 'package:alter/pages/help_sheet_page.dart';
+import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
 // The apps page.
@@ -81,7 +84,12 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             ),
             label: 'Help',
             showLabel: true,
-            onPressed: () async => await launchHelpPageOnWeb(context),
+            onPressed: () async => showMacosSheet(
+              context: context,
+              builder: (context) {
+                return HelpSheetPage();
+              },
+            ),
           ),
         ],
       ),
@@ -159,7 +167,17 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                     ),
                                     const Spacer(),
                                     PushButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        showMacosSheet(
+                                          context: context,
+                                          builder: (context) {
+                                            return IconChooserSheetPage(
+                                              appFile: XFile(app.path),
+                                              isUpdating: true,
+                                            );
+                                          },
+                                        );
+                                      },
                                       controlSize: ControlSize.regular,
                                       secondary: true,
                                       child: Text('Update Icon'),

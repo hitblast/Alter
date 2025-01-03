@@ -6,7 +6,7 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/app_database.dart';
-import 'package:alter/pages/iconchoosersheet_page.dart';
+import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/file_picker.dart';
 
@@ -42,11 +42,11 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   }
 
   // If the app has a _MASReceipt folder (indicating it as an App store application).
-  // else if (await Directory('${file.path}/Contents/_MASReceipt').exists()) {
-  //   if (!context.mounted) return;
-  //   showAlertDialog(context, 'App Store app!',
-  //       'Alter cannot modify App Store applications (for now).');
-  // }
+  else if (await Directory('${file.path}/Contents/_MASReceipt').exists()) {
+    if (!context.mounted) return;
+    showAlertDialog(context, 'App Store app!',
+        'Alter cannot modify App Store applications (for now).');
+  }
 
   // If all of the checks above, actually pass. Then, route to IconChooserSheetPage.
   else {

@@ -12,9 +12,14 @@ import 'package:alter/providers/app_database_provider.dart';
 
 // The macOS sheet view for choosing the icon when the user prompts.
 class IconChooserSheetPage extends ConsumerStatefulWidget {
-  const IconChooserSheetPage({super.key, required this.appFile});
+  const IconChooserSheetPage({
+    super.key,
+    required this.appFile,
+    this.isUpdating = false,
+  });
 
   final XFile appFile;
+  final bool isUpdating;
 
   @override
   ConsumerState<IconChooserSheetPage> createState() =>
@@ -53,7 +58,9 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Choose icon for $appName',
+                    (widget.isUpdating)
+                        ? 'Modify icon for $appName'
+                        : 'Select icon for $appName',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 21,

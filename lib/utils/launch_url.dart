@@ -11,15 +11,6 @@ Future<bool> _launchOnWeb(String url) async {
   return await launchUrl(uri);
 }
 
-// The function to launch the help page.
-Future<void> launchHelpPageOnWeb(BuildContext context) async {
-  if (!await _launchOnWeb('https://hitblastis.me')) {
-    if (!context.mounted) return;
-    showAlertDialog(context, 'Cannot show help page.',
-        'Make sure you have a proper internet connection and try again.');
-  }
-}
-
 // The function to launch the icons page.
 Future<void> launchGetIconsPageOnWeb(BuildContext context) async {
   if (!await _launchOnWeb('https://macosicons.com')) {
