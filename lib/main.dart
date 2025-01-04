@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
 import 'package:alter/models/app.dart';
@@ -85,5 +86,9 @@ Future<void> main() async {
 
 Future<void> _configureMacosWindowUtils() async {
   const config = MacosWindowUtilsConfig();
+
+  await DesktopWindow.setMinWindowSize(const Size(640, 430));
+  await DesktopWindow.setWindowSize(const Size(640, 430));
+
   await config.apply();
 }
