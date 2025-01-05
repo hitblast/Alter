@@ -30,6 +30,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ProgressCircle(
+              radius: 15,
               value: null,
             ),
           ],
