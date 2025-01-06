@@ -148,12 +148,17 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                           ),
                                         ],
                                       ),
-                                      child: MouseRegion(
-                                        cursor: SystemMouseCursors.click,
-                                        child: Image.file(
-                                          File(app.customIconPath),
-                                          width: 70,
-                                          height: 70,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          openFileInPreview(app.customIconPath);
+                                        },
+                                        child: MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: Image.file(
+                                            File(app.customIconPath),
+                                            width: 70,
+                                            height: 70,
+                                          ),
                                         ),
                                       ),
                                     ),
