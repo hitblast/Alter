@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:file_selector/file_selector.dart';
+import 'package:process_run/process_run.dart';
 
 /*
 
@@ -12,6 +13,11 @@ File-picker functions for Alter.
 Future<XFile?> pickApplication() async {
   final XFile? file = await openFile(initialDirectory: '/Applications');
   return file;
+}
+
+Future<void> openFileInPreview(String path) async {
+  var shell = Shell();
+  await shell.run('open -a Preview "$path"');
 }
 
 Future<XFile?> pickIcon() async {
