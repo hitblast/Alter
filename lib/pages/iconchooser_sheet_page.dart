@@ -1,6 +1,7 @@
 // Third-party imports.
 import 'dart:io';
 
+import 'package:alter/gen/assets.gen.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -84,11 +85,10 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       child: Stack(
                         alignment: Alignment.center,
                         children: [
-                          const Opacity(
+                          Opacity(
                             opacity: 0.4,
                             child: Image(
-                              image: AssetImage(
-                                  'assets/images/alter_icon_frame.png'),
+                              image: Assets.images.alterIconFrame.provider(),
                               width: 155,
                               height: 155,
                             ),
@@ -101,7 +101,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   ? [
                                       BoxShadow(
                                         color: CupertinoColors.systemGreen
-                                            .withOpacity(0.3),
+                                            .withValues(alpha: 0.3),
                                         offset: Offset(0, 5),
                                         blurRadius: 50,
                                       ),
@@ -109,7 +109,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   : [
                                       BoxShadow(
                                         color: CupertinoColors.systemGrey
-                                            .withOpacity(0.3),
+                                            .withValues(alpha: 0.3),
                                         offset: Offset(0, 5),
                                         blurRadius: 100,
                                       )
@@ -127,11 +127,9 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                     alignment: Alignment.center,
                                     children: [
                                       Image(
-                                        image: AssetImage(
-                                          brightness == Brightness.dark
-                                              ? 'assets/images/alter_empty_dark.png'
-                                              : 'assets/images/alter_empty_light.png',
-                                        ),
+                                        image: brightness == Brightness.dark
+                                          ? Assets.images.alterEmptyDark.provider()
+                                          : Assets.images.alterEmptyLight.provider(),
                                         width: 145,
                                         height: 145,
                                       ),

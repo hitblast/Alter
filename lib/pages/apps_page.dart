@@ -141,7 +141,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                         boxShadow: [
                                           BoxShadow(
                                             color: CupertinoColors.black
-                                                .withOpacity(0.2),
+                                                .withValues(alpha: 0.2),
                                             blurRadius: 10,
                                             spreadRadius: -3,
                                             offset: Offset(0, 5),
@@ -207,7 +207,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                               width: double.infinity,
                               height: 1,
                               color:
-                                  CupertinoColors.systemGrey.withOpacity(0.5),
+                                  CupertinoColors.systemGrey.withValues(alpha: 0.5),
                             )
                           ],
                         );

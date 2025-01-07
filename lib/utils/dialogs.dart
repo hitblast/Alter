@@ -1,4 +1,5 @@
 // Third-party imports.
+import 'package:alter/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -7,8 +8,7 @@ void showAlertDialog(BuildContext context, String title, String message) {
   showMacosAlertDialog(
     context: context,
     builder: (_) => MacosAlertDialog(
-      appIcon:
-          const Image(image: AssetImage('assets/images/alter_warning.png')),
+      appIcon: Assets.images.alterWarning.image(),
       title: Text(title),
       message: Text(message),
       primaryButton: PushButton(

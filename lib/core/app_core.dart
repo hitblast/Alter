@@ -54,8 +54,6 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
     // symlinks inside the app. This is a security feature of macOS.
 
     if (!context.mounted) return;
-
-    debugPrint("Chosen app: ${file.path}");
     showMacosSheet(
       context: context,
       builder: (context) {
