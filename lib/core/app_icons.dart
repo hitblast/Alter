@@ -14,7 +14,7 @@ Future<ProcessedCommand?> setCustomIconForApp(
   String userCustomIconPath,
 ) async {
   // Get the custom icon file properly and copy it to the app's Resources folder.
-  final String userCustomIconName = userCustomIconPath.split('/').last;
+  final String customIconFileName = userCustomIconPath.split('/').last;
 
   // Setup shell environment for communication with commands.
   // Also get the path to the app's Info.plist file.
@@ -23,30 +23,17 @@ Future<ProcessedCommand?> setCustomIconForApp(
 
   // Copy the custom icon file to the app's Resources folder.
   final String customIconPath =
-      "$appPath/Contents/Resources/$userCustomIconName";
+      "$appPath/Contents/Resources/$customIconFileName";
   await shell.run('''
     cp "$userCustomIconPath" "$customIconPath"
-    chmod 644 "$appPath/Contents/Resources/$userCustomIconName"
+    chmod 644 "$appPath/Contents/Resources/$customIconFileName"
     ''');
 
   // Store these two for backup.
   late String previousCFBundleIconName;
   late String previousCFBundleIconFile;
 
-  // Some apps do not have the CFBundleIconName key in their Info.plist file.
-  // In that case, ignore read-writing it for that particular app only.
-  try {
-    previousCFBundleIconName =
-        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconName'))
-            .single
-            .outText;
-    await shell.run(
-        'defaults write "$appBundleInfoPath" CFBundleIconName $userCustomIconName');
-  } catch (e) {
-    previousCFBundleIconName = '';
-  }
-
-  // Finally, set the required CFBundleIconFile key in the Info.plist file.
+  // Set the required CFBundleIconFile key in the Info.plist file.
   // Also, touch and sign the app so that it can be used normally on macOS.
   try {
     previousCFBundleIconFile =
@@ -55,7 +42,7 @@ Future<ProcessedCommand?> setCustomIconForApp(
             .outText;
 
     await shell.run('''
-      defaults write "$appBundleInfoPath" CFBundleIconFile "$userCustomIconName"
+      defaults write "$appBundleInfoPath" CFBundleIconFile "$customIconFileName"
 
       touch "$appPath"
 
@@ -65,9 +52,25 @@ Future<ProcessedCommand?> setCustomIconForApp(
     return null;
   }
 
+  // Some apps do not have the CFBundleIconName key in their Info.plist file.
+  // In that case, ignore read-writing it for that particular app only.
+  try {
+    previousCFBundleIconName =
+        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconName'))
+            .single
+            .outText;
+    await shell.run(
+        'defaults write "$appBundleInfoPath" CFBundleIconName $customIconFileName');
+  } catch (e) {
+    previousCFBundleIconName = '';
+  }
+
   // Return the processed command for further use by the database and providers.
   return ProcessedCommand(
     customIconPath: customIconPath,
+    newCFBundleIconName:
+        previousCFBundleIconName == '' ? '' : customIconFileName,
+    newCFBundleIconFile: customIconFileName,
     previousCFBundleIconFile: previousCFBundleIconFile,
     previousCFBundleIconName: previousCFBundleIconName,
   );
