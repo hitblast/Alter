@@ -24,13 +24,22 @@ class $AssetsImagesGen {
   AssetGenImage get alterIconFrame =>
       const AssetGenImage('assets/images/alter_icon_frame.png');
 
+  /// File path: assets/images/alter_starter_page_pattern.png
+  AssetGenImage get alterStarterPagePattern =>
+      const AssetGenImage('assets/images/alter_starter_page_pattern.png');
+
   /// File path: assets/images/alter_warning.png
   AssetGenImage get alterWarning =>
       const AssetGenImage('assets/images/alter_warning.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [alterEmptyDark, alterEmptyLight, alterIconFrame, alterWarning];
+  List<AssetGenImage> get values => [
+        alterEmptyDark,
+        alterEmptyLight,
+        alterIconFrame,
+        alterStarterPagePattern,
+        alterWarning
+      ];
 }
 
 class Assets {
