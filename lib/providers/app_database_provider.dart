@@ -34,6 +34,8 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
         await _database.addApp(
           appPath,
           processedCommand.customIconPath,
+          processedCommand.newCFBundleIconName,
+          processedCommand.newCFBundleIconFile,
           processedCommand.previousCFBundleIconName,
           processedCommand.previousCFBundleIconFile,
         );
@@ -43,10 +45,20 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     });
   }
 
-  Future<void> updateAppIcon(int id, String newCustomIconPath) async {
+  Future<void> updateAppIcon(
+    int id,
+    String newCustomIconPath,
+    String newCFBundleIconName,
+    String newCFBundleIconFile,
+  ) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      await _database.updateAppIcon(id, newCustomIconPath);
+      await _database.updateAppIcon(
+        id,
+        newCustomIconPath,
+        newCFBundleIconName,
+        newCFBundleIconFile,
+      );
       return _database.currentApps;
     });
   }

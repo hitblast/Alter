@@ -10,6 +10,8 @@ part 'processed_command.freezed.dart';
 class ProcessedCommand with _$ProcessedCommand {
   const factory ProcessedCommand({
     required String customIconPath,
+    required String newCFBundleIconName,
+    required String newCFBundleIconFile,
     required String previousCFBundleIconName,
     required String previousCFBundleIconFile,
   }) = _ProcessedCommand;

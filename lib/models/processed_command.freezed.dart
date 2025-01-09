@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ProcessedCommand {
   String get customIconPath => throw _privateConstructorUsedError;
+  String get newCFBundleIconName => throw _privateConstructorUsedError;
+  String get newCFBundleIconFile => throw _privateConstructorUsedError;
   String get previousCFBundleIconName => throw _privateConstructorUsedError;
   String get previousCFBundleIconFile => throw _privateConstructorUsedError;
 
@@ -33,6 +35,8 @@ abstract class $ProcessedCommandCopyWith<$Res> {
   @useResult
   $Res call(
       {String customIconPath,
+      String newCFBundleIconName,
+      String newCFBundleIconFile,
       String previousCFBundleIconName,
       String previousCFBundleIconFile});
 }
@@ -51,6 +55,8 @@ class _$ProcessedCommandCopyWithImpl<$Res, $Val extends ProcessedCommand>
   @override
   $Res call({
     Object? customIconPath = null,
+    Object? newCFBundleIconName = null,
+    Object? newCFBundleIconFile = null,
     Object? previousCFBundleIconName = null,
     Object? previousCFBundleIconFile = null,
   }) {
@@ -58,6 +64,14 @@ class _$ProcessedCommandCopyWithImpl<$Res, $Val extends ProcessedCommand>
       customIconPath: null == customIconPath
           ? _value.customIconPath
           : customIconPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      newCFBundleIconName: null == newCFBundleIconName
+          ? _value.newCFBundleIconName
+          : newCFBundleIconName // ignore: cast_nullable_to_non_nullable
+              as String,
+      newCFBundleIconFile: null == newCFBundleIconFile
+          ? _value.newCFBundleIconFile
+          : newCFBundleIconFile // ignore: cast_nullable_to_non_nullable
               as String,
       previousCFBundleIconName: null == previousCFBundleIconName
           ? _value.previousCFBundleIconName
@@ -81,6 +95,8 @@ abstract class _$$ProcessedCommandImplCopyWith<$Res>
   @useResult
   $Res call(
       {String customIconPath,
+      String newCFBundleIconName,
+      String newCFBundleIconFile,
       String previousCFBundleIconName,
       String previousCFBundleIconFile});
 }
@@ -97,6 +113,8 @@ class __$$ProcessedCommandImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? customIconPath = null,
+    Object? newCFBundleIconName = null,
+    Object? newCFBundleIconFile = null,
     Object? previousCFBundleIconName = null,
     Object? previousCFBundleIconFile = null,
   }) {
@@ -104,6 +122,14 @@ class __$$ProcessedCommandImplCopyWithImpl<$Res>
       customIconPath: null == customIconPath
           ? _value.customIconPath
           : customIconPath // ignore: cast_nullable_to_non_nullable
+              as String,
+      newCFBundleIconName: null == newCFBundleIconName
+          ? _value.newCFBundleIconName
+          : newCFBundleIconName // ignore: cast_nullable_to_non_nullable
+              as String,
+      newCFBundleIconFile: null == newCFBundleIconFile
+          ? _value.newCFBundleIconFile
+          : newCFBundleIconFile // ignore: cast_nullable_to_non_nullable
               as String,
       previousCFBundleIconName: null == previousCFBundleIconName
           ? _value.previousCFBundleIconName
@@ -122,11 +148,17 @@ class __$$ProcessedCommandImplCopyWithImpl<$Res>
 class _$ProcessedCommandImpl implements _ProcessedCommand {
   const _$ProcessedCommandImpl(
       {required this.customIconPath,
+      required this.newCFBundleIconName,
+      required this.newCFBundleIconFile,
       required this.previousCFBundleIconName,
       required this.previousCFBundleIconFile});
 
   @override
   final String customIconPath;
+  @override
+  final String newCFBundleIconName;
+  @override
+  final String newCFBundleIconFile;
   @override
   final String previousCFBundleIconName;
   @override
@@ -134,7 +166,7 @@ class _$ProcessedCommandImpl implements _ProcessedCommand {
 
   @override
   String toString() {
-    return 'ProcessedCommand(customIconPath: $customIconPath, previousCFBundleIconName: $previousCFBundleIconName, previousCFBundleIconFile: $previousCFBundleIconFile)';
+    return 'ProcessedCommand(customIconPath: $customIconPath, newCFBundleIconName: $newCFBundleIconName, newCFBundleIconFile: $newCFBundleIconFile, previousCFBundleIconName: $previousCFBundleIconName, previousCFBundleIconFile: $previousCFBundleIconFile)';
   }
 
   @override
@@ -144,6 +176,10 @@ class _$ProcessedCommandImpl implements _ProcessedCommand {
             other is _$ProcessedCommandImpl &&
             (identical(other.customIconPath, customIconPath) ||
                 other.customIconPath == customIconPath) &&
+            (identical(other.newCFBundleIconName, newCFBundleIconName) ||
+                other.newCFBundleIconName == newCFBundleIconName) &&
+            (identical(other.newCFBundleIconFile, newCFBundleIconFile) ||
+                other.newCFBundleIconFile == newCFBundleIconFile) &&
             (identical(
                     other.previousCFBundleIconName, previousCFBundleIconName) ||
                 other.previousCFBundleIconName == previousCFBundleIconName) &&
@@ -153,8 +189,13 @@ class _$ProcessedCommandImpl implements _ProcessedCommand {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, customIconPath,
-      previousCFBundleIconName, previousCFBundleIconFile);
+  int get hashCode => Object.hash(
+      runtimeType,
+      customIconPath,
+      newCFBundleIconName,
+      newCFBundleIconFile,
+      previousCFBundleIconName,
+      previousCFBundleIconFile);
 
   @JsonKey(ignore: true)
   @override
@@ -167,11 +208,17 @@ class _$ProcessedCommandImpl implements _ProcessedCommand {
 abstract class _ProcessedCommand implements ProcessedCommand {
   const factory _ProcessedCommand(
       {required final String customIconPath,
+      required final String newCFBundleIconName,
+      required final String newCFBundleIconFile,
       required final String previousCFBundleIconName,
       required final String previousCFBundleIconFile}) = _$ProcessedCommandImpl;
 
   @override
   String get customIconPath;
+  @override
+  String get newCFBundleIconName;
+  @override
+  String get newCFBundleIconFile;
   @override
   String get previousCFBundleIconName;
   @override

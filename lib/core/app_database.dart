@@ -38,27 +38,40 @@ class AppDatabase {
 
   // Add an app to the database.
   Future<void> addApp(
-    String pathToAssign,
-    String customIconPathToAssign,
-    String previousCFBundleIconNameToAssign,
-    String previousCFBundleIconFileToAssign,
+    String path,
+    String customIconPath,
+    String newCFBundleIconName,
+    String newCFBundleIconFile,
+    String previousCFBundleIconName,
+    String previousCFBundleIconFile,
   ) async {
     final newApp = App()
-      ..path = pathToAssign
-      ..customIconPath = customIconPathToAssign
-      ..previousCFBundleIconName = previousCFBundleIconNameToAssign
-      ..previousCFBundleIconFile = previousCFBundleIconFileToAssign;
+      ..path = path
+      ..customIconPath = customIconPath
+      ..newCFBundleIconName = newCFBundleIconName
+      ..newCFBundleIconFile = newCFBundleIconFile
+      ..previousCFBundleIconName = previousCFBundleIconName
+      ..previousCFBundleIconFile = previousCFBundleIconFile;
 
     await isar.writeTxn(() => isar.apps.put(newApp));
     await fetchApps();
   }
 
   // Update the app in the database.
-  Future<void> updateAppIcon(int id, String newCustomIconPath) async {
+  Future<void> updateAppIcon(
+    int id,
+    String newCustomIconPath,
+    String newCFBundleIconName,
+    String newCFBundleIconFile,
+  ) async {
     final existingApp = await isar.apps.get(id);
 
     if (existingApp != null) {
+      // Modify existing fields.
       existingApp.customIconPath = newCustomIconPath;
+      existingApp.newCFBundleIconName = newCFBundleIconName;
+      existingApp.newCFBundleIconFile = newCFBundleIconFile;
+
       await isar.writeTxn(() => isar.apps.put(existingApp));
       await fetchApps();
     }

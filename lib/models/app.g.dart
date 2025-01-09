@@ -22,18 +22,28 @@ const AppSchema = CollectionSchema(
       name: r'customIconPath',
       type: IsarType.string,
     ),
-    r'path': PropertySchema(
+    r'newCFBundleIconFile': PropertySchema(
       id: 1,
+      name: r'newCFBundleIconFile',
+      type: IsarType.string,
+    ),
+    r'newCFBundleIconName': PropertySchema(
+      id: 2,
+      name: r'newCFBundleIconName',
+      type: IsarType.string,
+    ),
+    r'path': PropertySchema(
+      id: 3,
       name: r'path',
       type: IsarType.string,
     ),
     r'previousCFBundleIconFile': PropertySchema(
-      id: 2,
+      id: 4,
       name: r'previousCFBundleIconFile',
       type: IsarType.string,
     ),
     r'previousCFBundleIconName': PropertySchema(
-      id: 3,
+      id: 5,
       name: r'previousCFBundleIconName',
       type: IsarType.string,
     )
@@ -59,6 +69,8 @@ int _appEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.customIconPath.length * 3;
+  bytesCount += 3 + object.newCFBundleIconFile.length * 3;
+  bytesCount += 3 + object.newCFBundleIconName.length * 3;
   bytesCount += 3 + object.path.length * 3;
   bytesCount += 3 + object.previousCFBundleIconFile.length * 3;
   bytesCount += 3 + object.previousCFBundleIconName.length * 3;
@@ -72,9 +84,11 @@ void _appSerialize(
   Map<Type, List<int>> allOffsets,
 ) {
   writer.writeString(offsets[0], object.customIconPath);
-  writer.writeString(offsets[1], object.path);
-  writer.writeString(offsets[2], object.previousCFBundleIconFile);
-  writer.writeString(offsets[3], object.previousCFBundleIconName);
+  writer.writeString(offsets[1], object.newCFBundleIconFile);
+  writer.writeString(offsets[2], object.newCFBundleIconName);
+  writer.writeString(offsets[3], object.path);
+  writer.writeString(offsets[4], object.previousCFBundleIconFile);
+  writer.writeString(offsets[5], object.previousCFBundleIconName);
 }
 
 App _appDeserialize(
@@ -86,9 +100,11 @@ App _appDeserialize(
   final object = App();
   object.customIconPath = reader.readString(offsets[0]);
   object.id = id;
-  object.path = reader.readString(offsets[1]);
-  object.previousCFBundleIconFile = reader.readString(offsets[2]);
-  object.previousCFBundleIconName = reader.readString(offsets[3]);
+  object.newCFBundleIconFile = reader.readString(offsets[1]);
+  object.newCFBundleIconName = reader.readString(offsets[2]);
+  object.path = reader.readString(offsets[3]);
+  object.previousCFBundleIconFile = reader.readString(offsets[4]);
+  object.previousCFBundleIconName = reader.readString(offsets[5]);
   return object;
 }
 
@@ -106,6 +122,10 @@ P _appDeserializeProp<P>(
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
+      return (reader.readString(offset)) as P;
+    case 4:
+      return (reader.readString(offset)) as P;
+    case 5:
       return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -378,6 +398,268 @@ extension AppQueryFilter on QueryBuilder<App, App, QFilterCondition> {
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'newCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'newCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'newCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'newCFBundleIconFile',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'newCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'newCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'newCFBundleIconFile',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'newCFBundleIconFile',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconFileIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'newCFBundleIconFile',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      newCFBundleIconFileIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'newCFBundleIconFile',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'newCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'newCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'newCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'newCFBundleIconName',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'newCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'newCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'newCFBundleIconName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'newCFBundleIconName',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition> newCFBundleIconNameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'newCFBundleIconName',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<App, App, QAfterFilterCondition>
+      newCFBundleIconNameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'newCFBundleIconName',
+        value: '',
       ));
     });
   }
@@ -800,6 +1082,30 @@ extension AppQuerySortBy on QueryBuilder<App, App, QSortBy> {
     });
   }
 
+  QueryBuilder<App, App, QAfterSortBy> sortByNewCFBundleIconFile() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'newCFBundleIconFile', Sort.asc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> sortByNewCFBundleIconFileDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'newCFBundleIconFile', Sort.desc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> sortByNewCFBundleIconName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'newCFBundleIconName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> sortByNewCFBundleIconNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'newCFBundleIconName', Sort.desc);
+    });
+  }
+
   QueryBuilder<App, App, QAfterSortBy> sortByPath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'path', Sort.asc);
@@ -862,6 +1168,30 @@ extension AppQuerySortThenBy on QueryBuilder<App, App, QSortThenBy> {
     });
   }
 
+  QueryBuilder<App, App, QAfterSortBy> thenByNewCFBundleIconFile() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'newCFBundleIconFile', Sort.asc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> thenByNewCFBundleIconFileDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'newCFBundleIconFile', Sort.desc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> thenByNewCFBundleIconName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'newCFBundleIconName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<App, App, QAfterSortBy> thenByNewCFBundleIconNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'newCFBundleIconName', Sort.desc);
+    });
+  }
+
   QueryBuilder<App, App, QAfterSortBy> thenByPath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'path', Sort.asc);
@@ -908,6 +1238,22 @@ extension AppQueryWhereDistinct on QueryBuilder<App, App, QDistinct> {
     });
   }
 
+  QueryBuilder<App, App, QDistinct> distinctByNewCFBundleIconFile(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'newCFBundleIconFile',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<App, App, QDistinct> distinctByNewCFBundleIconName(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'newCFBundleIconName',
+          caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<App, App, QDistinct> distinctByPath(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -942,6 +1288,18 @@ extension AppQueryProperty on QueryBuilder<App, App, QQueryProperty> {
   QueryBuilder<App, String, QQueryOperations> customIconPathProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'customIconPath');
+    });
+  }
+
+  QueryBuilder<App, String, QQueryOperations> newCFBundleIconFileProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'newCFBundleIconFile');
+    });
+  }
+
+  QueryBuilder<App, String, QQueryOperations> newCFBundleIconNameProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'newCFBundleIconName');
     });
   }
 
