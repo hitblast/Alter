@@ -63,12 +63,13 @@ Future<void> main() async {
 
   final applicationDocumentsDirectory = await getApplicationSupportDirectory();
   final dir = Directory('${applicationDocumentsDirectory.path}/AppList');
+  debugPrint("Storage path: ${dir.path}");
 
+  // Create the database directory if it doesn't exist.
   if (!(await dir.exists())) {
-    debugPrint("DB does not exist, creating one in ${dir.path}");
+    debugPrint("Database does not exist, creating one in ${dir.path}");
     await dir.create();
   }
-  debugPrint("Storage path: ${dir.path}");
 
   if (Isar.instanceNames.isEmpty) {
     isar = await Isar.open(
