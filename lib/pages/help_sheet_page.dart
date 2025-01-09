@@ -49,16 +49,20 @@ class HelpSheetPage extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   Container(
-                      decoration: BoxDecoration(
-                          color: CupertinoColors.black,
-                          borderRadius: BorderRadius.circular(5)),
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                          'Only the .icns file format is supported for icons.',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: CupertinoColors.destructiveRed,
-                              fontWeight: FontWeight.bold))),
+                    decoration: BoxDecoration(
+                      color: CupertinoColors.darkBackgroundGray,
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Only the .icns file format is supported for icons.',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: CupertinoColors.destructiveRed,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 15),
                   const Text(
                     'Left-click on the blank starter screen / the "Add" button at the top of the apps page to pop-up the prompt for app selection. You must select a valid macOS application. \n\nThen, tap on the icon grid displayed on the icon selection page to select an icon. Finally, click on "Apply Changes" and wait for Alter to modify the existing app icon. This should only take a few seconds.',

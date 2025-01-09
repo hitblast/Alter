@@ -1,4 +1,5 @@
 // Third-party imports.
+import 'package:alter/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -44,49 +45,69 @@ class StarterPage extends StatelessWidget {
       children: [
         ContentArea(
           builder: (BuildContext context, scrollController) {
-            return GestureDetector(
-              onTap: () async {
-                await initiateAppAddingSequence(context);
-              },
-              child: Center(
-                child: ScrollConfiguration(
-                  behavior: ScrollConfiguration.of(context).copyWith(
-                    scrollbars: false,
-                  ),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    padding: const EdgeInsets.only(
-                      bottom: 20,
+            return Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Opacity(
+                      opacity: 0.1,
+                      child: Image(
+                        image: Assets.images.alterStarterPagePattern.provider(),
+                        width: 10,
+                        height: 10,
+                        repeat: ImageRepeat.repeat,
+                      ),
                     ),
-                    child: const MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: Opacity(
-                        opacity: 0.78,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            MacosIcon(
-                              CupertinoIcons.add_circled_solid,
-                              color: CupertinoColors.systemGrey,
-                              size: 100,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () async {
+                    await initiateAppAddingSequence(context);
+                  },
+                  child: Center(
+                    child: ScrollConfiguration(
+                      behavior: ScrollConfiguration.of(context).copyWith(
+                        scrollbars: false,
+                      ),
+                      child: SingleChildScrollView(
+                        controller: scrollController,
+                        padding: const EdgeInsets.only(
+                          bottom: 20,
+                        ),
+                        child: const MouseRegion(
+                          cursor: SystemMouseCursors.click,
+                          child: Opacity(
+                            opacity: 0.78,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                MacosIcon(
+                                  CupertinoIcons.add_circled_solid,
+                                  color: CupertinoColors.systemGrey,
+                                  size: 100,
+                                ),
+                                SizedBox(height: 25),
+                                Text(
+                                  'Left-click to start customizing.',
+                                  style: TextStyle(
+                                    fontSize: 25,
+                                    color: CupertinoColors.systemGrey,
+                                    letterSpacing: -2,
+                                    overflow: TextOverflow.fade,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 25),
-                            Text(
-                              'Left-click to start customizing.',
-                              style: TextStyle(
-                                fontSize: 25,
-                                color: CupertinoColors.systemGrey,
-                                letterSpacing: -2,
-                                overflow: TextOverflow.fade,
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
+              ],
             );
           },
         )
