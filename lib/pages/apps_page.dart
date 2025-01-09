@@ -206,8 +206,8 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                             Container(
                               width: double.infinity,
                               height: 1,
-                              color:
-                                  CupertinoColors.systemGrey.withValues(alpha: 0.5),
+                              color: CupertinoColors.systemGrey
+                                  .withValues(alpha: 0.5),
                             )
                           ],
                         );
