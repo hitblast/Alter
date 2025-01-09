@@ -128,8 +128,10 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                     children: [
                                       Image(
                                         image: brightness == Brightness.dark
-                                          ? Assets.images.alterEmptyDark.provider()
-                                          : Assets.images.alterEmptyLight.provider(),
+                                            ? Assets.images.alterEmptyDark
+                                                .provider()
+                                            : Assets.images.alterEmptyLight
+                                                .provider(),
                                         width: 145,
                                         height: 145,
                                       ),

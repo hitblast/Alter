@@ -86,7 +86,7 @@ Future<void> main() async {
 
 Future<void> _configureMacosWindowUtils() async {
   const config = MacosWindowUtilsConfig();
-  
+
   // Set custom desktop window sizes to persist responsiveness on Retina displays.
   await DesktopWindow.setMinWindowSize(const Size(640, 430));
   await DesktopWindow.setWindowSize(const Size(640, 430));
