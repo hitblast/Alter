@@ -45,69 +45,61 @@ class StarterPage extends StatelessWidget {
       children: [
         ContentArea(
           builder: (BuildContext context, scrollController) {
-            return Stack(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: Opacity(
-                      opacity: 0.1,
-                      child: Image(
-                        image: Assets.images.alterStarterPagePattern.provider(),
-                        width: 10,
-                        height: 10,
-                        repeat: ImageRepeat.repeat,
-                      ),
-                    ),
+            return GestureDetector(
+              onTap: () async {
+                await initiateAppAddingSequence(context);
+              },
+              child: Center(
+                child: ScrollConfiguration(
+                  behavior: ScrollConfiguration.of(context).copyWith(
+                    scrollbars: false,
                   ),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    await initiateAppAddingSequence(context);
-                  },
-                  child: Center(
-                    child: ScrollConfiguration(
-                      behavior: ScrollConfiguration.of(context).copyWith(
-                        scrollbars: false,
-                      ),
-                      child: SingleChildScrollView(
-                        controller: scrollController,
-                        padding: const EdgeInsets.only(
-                          bottom: 20,
-                        ),
-                        child: const MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: Opacity(
-                            opacity: 0.78,
-                            child: Column(
+                  child: SingleChildScrollView(
+                    controller: scrollController,
+                    padding: const EdgeInsets.only(
+                      bottom: 20,
+                    ),
+                    child: const MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Opacity(
+                        opacity: 0.78,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
                               mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 MacosIcon(
                                   CupertinoIcons.add_circled_solid,
                                   color: CupertinoColors.systemGrey,
                                   size: 100,
                                 ),
-                                SizedBox(height: 25),
-                                Text(
-                                  'Left-click to start customizing.',
-                                  style: TextStyle(
-                                    fontSize: 25,
-                                    color: CupertinoColors.systemGrey,
-                                    letterSpacing: -2,
-                                    overflow: TextOverflow.fade,
-                                  ),
-                                ),
+                                SizedBox(width: 10),
+                                MacosIcon(
+                                  CupertinoIcons.hammer_fill,
+                                  color: CupertinoColors.systemGrey,
+                                  size: 100,
+                                )
                               ],
                             ),
-                          ),
+                            SizedBox(height: 25),
+                            Text(
+                              'Left-click to start customizing.',
+                              style: TextStyle(
+                                fontSize: 25,
+                                color: CupertinoColors.systemGrey,
+                                letterSpacing: -2,
+                                overflow: TextOverflow.fade,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
                 ),
-              ],
+              ),
             );
           },
         )
