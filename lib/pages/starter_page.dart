@@ -1,5 +1,4 @@
 // Third-party imports.
-import 'package:alter/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
