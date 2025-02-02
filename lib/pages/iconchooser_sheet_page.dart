@@ -172,10 +172,26 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   return;
                                 }
 
-                                ref
-                                    .read(appDatabaseNotifierProvider.notifier)
-                                    .addApp(widget.appFile.path,
-                                        currentPickedIcon!.path);
+                                if (!widget.isUpdating) {
+                                  ref
+                                      .read(
+                                          appDatabaseNotifierProvider.notifier)
+                                      .addApp(widget.appFile.path,
+                                          currentPickedIcon!.path);
+                                } else {
+                                  ref
+                                      .read(
+                                          appDatabaseNotifierProvider.notifier)
+                                      .updateAppIcon(
+                                        ref
+                                            .read(appDatabaseNotifierProvider)
+                                            .value!
+                                            .firstWhere((app) =>
+                                                app.path == widget.appFile.path)
+                                            .id,
+                                        currentPickedIcon!.path,
+                                      );
+                                }
 
                                 Navigator.of(context).pop();
                               }

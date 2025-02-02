@@ -6,13 +6,14 @@ import 'package:process_run/shell.dart';
 
 // Local imports.
 import 'package:alter/models/app.dart';
-import 'package:alter/models/processed_command.dart';
+import 'package:alter/models/commands.dart';
 
 // This function sets a custom icon for an app.
-Future<ProcessedCommand?> setCustomIconForApp(
+Future<CommandOnAppAdd?> setCustomIconForApp(
   String appPath,
-  String userCustomIconPath,
-) async {
+  String userCustomIconPath, {
+  String? iconToDelete,
+}) async {
   // Get the custom icon file properly and copy it to the app's Resources folder.
   final String customIconFileName = userCustomIconPath.split('/').last;
 
@@ -20,6 +21,15 @@ Future<ProcessedCommand?> setCustomIconForApp(
   // Also get the path to the app's Info.plist file.
   var shell = Shell(throwOnError: true);
   final String appBundleInfoPath = "$appPath/Contents/Info";
+
+  // If iconToDelete is provided, delete the previous custom icon file if it exists.
+  if (iconToDelete != null) {
+    final File previousCustomIconFile =
+        File("$appPath/Contents/Resources/$iconToDelete");
+    if (await previousCustomIconFile.exists()) {
+      await previousCustomIconFile.delete();
+    }
+  }
 
   // Copy the custom icon file to the app's Resources folder.
   final String customIconPath =
@@ -65,8 +75,8 @@ Future<ProcessedCommand?> setCustomIconForApp(
     previousCFBundleIconName = '';
   }
 
-  // Return the processed command for further use by the database and providers.
-  return ProcessedCommand(
+  // Return the processed data for further use by the database and providers.
+  return CommandOnAppAdd(
     customIconPath: customIconPath,
     newCFBundleIconName:
         previousCFBundleIconName == '' ? '' : customIconFileName,

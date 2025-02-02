@@ -48,17 +48,24 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   Future<void> updateAppIcon(
     int id,
     String newCustomIconPath,
-    String newCFBundleIconName,
-    String newCFBundleIconFile,
   ) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      await _database.updateAppIcon(
-        id,
+      final app = await _database.fetchAppById(id);
+      final processedCommand = await setCustomIconForApp(
+        app!.path,
         newCustomIconPath,
-        newCFBundleIconName,
-        newCFBundleIconFile,
+        iconToDelete: app.newCFBundleIconFile,
       );
+
+      if (processedCommand != null) {
+        await _database.updateAppIcon(
+          id,
+          processedCommand.customIconPath,
+          processedCommand.newCFBundleIconName,
+          processedCommand.newCFBundleIconFile,
+        );
+      }
       return _database.currentApps;
     });
   }

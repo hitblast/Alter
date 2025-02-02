@@ -7,7 +7,7 @@ part of 'app_database_provider.dart';
 // **************************************************************************
 
 String _$appDatabaseNotifierHash() =>
-    r'08f1ac2f7b0a4ac355bb735711f032caaa307e12';
+    r'986c3d7238307af0da319b05157ab0ac273ad45d';
 
 /// See also [AppDatabaseNotifier].
 @ProviderFor(AppDatabaseNotifier)
