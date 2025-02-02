@@ -16,11 +16,11 @@ class IconChooserSheetPage extends ConsumerStatefulWidget {
   const IconChooserSheetPage({
     super.key,
     required this.appFile,
-    this.isUpdating = false,
+    this.preexistingAppId,
   });
 
   final XFile appFile;
-  final bool isUpdating;
+  final int? preexistingAppId;
 
   @override
   ConsumerState<IconChooserSheetPage> createState() =>
@@ -59,7 +59,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    (widget.isUpdating)
+                    (widget.preexistingAppId != null)
                         ? 'Modify icon for $appName'
                         : 'Select icon for $appName',
                     textAlign: TextAlign.center,
@@ -101,7 +101,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   ? [
                                       BoxShadow(
                                         color: CupertinoColors.systemGreen
-                                            .withValues(alpha: 0.3),
+                                            .withAlpha(77),
                                         offset: Offset(0, 5),
                                         blurRadius: 50,
                                       ),
@@ -109,7 +109,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   : [
                                       BoxShadow(
                                         color: CupertinoColors.systemGrey
-                                            .withValues(alpha: 0.3),
+                                            .withAlpha(77),
                                         offset: Offset(0, 5),
                                         blurRadius: 100,
                                       )
@@ -172,7 +172,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   return;
                                 }
 
-                                if (!widget.isUpdating) {
+                                if (widget.preexistingAppId == null) {
                                   ref
                                       .read(
                                           appDatabaseNotifierProvider.notifier)
@@ -183,12 +183,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                       .read(
                                           appDatabaseNotifierProvider.notifier)
                                       .updateAppIcon(
-                                        ref
-                                            .read(appDatabaseNotifierProvider)
-                                            .value!
-                                            .firstWhere((app) =>
-                                                app.path == widget.appFile.path)
-                                            .id,
+                                        widget.preexistingAppId!,
                                         currentPickedIcon!.path,
                                       );
                                 }

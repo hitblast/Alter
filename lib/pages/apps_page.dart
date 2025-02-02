@@ -178,7 +178,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                           builder: (context) {
                                             return IconChooserSheetPage(
                                               appFile: XFile(app.path),
-                                              isUpdating: true,
+                                              preexistingAppId: app.id,
                                             );
                                           },
                                         );

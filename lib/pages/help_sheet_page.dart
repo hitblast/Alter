@@ -55,7 +55,7 @@ class HelpSheetPage extends StatelessWidget {
                     ),
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      'Only the .icns file format is supported for icons.',
+                      'Only the .icns file format is supported for icons (for now)',
                       style: TextStyle(
                         fontSize: 14,
                         color: CupertinoColors.destructiveRed,
