@@ -16,14 +16,3 @@ class CommandOnAppAdd with _$CommandOnAppAdd {
     required String previousCFBundleIconFile,
   }) = _CommandOnAppAdd;
 }
-
-// The CommandOnAppUpdate model.
-// Used to parse command run data while updating an app icon.
-@freezed
-class CommandOnAppUpdate with _$CommandOnAppUpdate {
-  const factory CommandOnAppUpdate({
-    required String newCustomIconPath,
-    required String newCFBundleIconName,
-    required String newCFBundleIconFile,
-  }) = _CommandOnAppUpdate;
-}
