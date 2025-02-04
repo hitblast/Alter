@@ -1,4 +1,5 @@
 // Third-party imports.
+import 'package:alter/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
@@ -58,29 +59,16 @@ class StarterPage extends StatelessWidget {
                     padding: const EdgeInsets.only(
                       bottom: 20,
                     ),
-                    child: const MouseRegion(
+                    child: MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: Opacity(
                         opacity: 0.78,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                MacosIcon(
-                                  CupertinoIcons.add_circled_solid,
-                                  color: CupertinoColors.systemGrey,
-                                  size: 100,
-                                ),
-                                SizedBox(width: 10),
-                                MacosIcon(
-                                  CupertinoIcons.hammer_fill,
-                                  color: CupertinoColors.systemGrey,
-                                  size: 100,
-                                )
-                              ],
+                            Assets.images.alterStarter.image(
+                              width: 200,
+                              height: 200,
                             ),
                             SizedBox(height: 25),
                             Text(

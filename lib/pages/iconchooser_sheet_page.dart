@@ -87,8 +87,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                         children: [
                           Opacity(
                             opacity: 0.4,
-                            child: Image(
-                              image: Assets.images.alterIconFrame.provider(),
+                            child: Assets.images.alterIconFrame.image(
                               width: 155,
                               height: 155,
                             ),
@@ -123,20 +122,15 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                     width: 145,
                                     height: 145,
                                   )
-                                : Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      Image(
-                                        image: brightness == Brightness.dark
-                                            ? Assets.images.alterEmptyDark
-                                                .provider()
-                                            : Assets.images.alterEmptyLight
-                                                .provider(),
+                                : brightness == Brightness.dark
+                                    ? Assets.images.alterEmptyDark.image(
+                                        width: 145,
+                                        height: 145,
+                                      )
+                                    : Assets.images.alterEmptyLight.image(
                                         width: 145,
                                         height: 145,
                                       ),
-                                    ],
-                                  ),
                           )
                         ],
                       ),
