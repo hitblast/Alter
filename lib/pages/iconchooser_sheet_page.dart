@@ -99,7 +99,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                               boxShadow: hasPickedIcon
                                   ? [
                                       BoxShadow(
-                                        color: CupertinoColors.systemGreen
+                                        color: CupertinoColors.activeGreen
                                             .withAlpha(77),
                                         offset: Offset(0, 5),
                                         blurRadius: 50,
