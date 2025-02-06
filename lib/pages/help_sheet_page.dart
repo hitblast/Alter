@@ -8,6 +8,8 @@ class HelpSheetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = MediaQuery.of(context).platformBrightness;
+
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pop();
@@ -50,7 +52,9 @@ class HelpSheetPage extends StatelessWidget {
                   SizedBox(height: 15),
                   Container(
                     decoration: BoxDecoration(
-                      color: CupertinoColors.darkBackgroundGray,
+                      color: brightness == Brightness.dark
+                          ? CupertinoColors.darkBackgroundGray
+                          : CupertinoColors.systemGrey5,
                       borderRadius: BorderRadius.circular(5),
                     ),
                     padding: EdgeInsets.all(10),
@@ -58,7 +62,9 @@ class HelpSheetPage extends StatelessWidget {
                       'Only the .icns file format is supported for icons (for now)',
                       style: TextStyle(
                         fontSize: 14,
-                        color: CupertinoColors.destructiveRed,
+                        color: brightness == Brightness.dark
+                            ? CupertinoColors.destructiveRed
+                            : CupertinoColors.systemGrey,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -80,7 +86,7 @@ class HelpSheetPage extends StatelessWidget {
                       Navigator.of(context).pop();
                     },
                     child: Text(
-                      'Got it!',
+                      'Gotcha!',
                     ),
                   ),
                 ],
