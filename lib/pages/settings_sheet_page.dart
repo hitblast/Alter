@@ -29,7 +29,36 @@ class SettingsSheetPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: [],
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MacosIcon(
+                        CupertinoIcons.gear_alt_fill,
+                        color: CupertinoColors.systemGrey,
+                        size: 30,
+                      ),
+                      SizedBox(width: 8),
+                      Text(
+                        'Configure',
+                        style: TextStyle(
+                          fontSize: 21,
+                          color: CupertinoColors.systemGrey,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  const Text(
+                    'This page is still work-in-progress! :3',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: CupertinoColors.systemGrey,
+                    ),
+                    textAlign: TextAlign.center,
+                  )
+                ],
               ),
             ),
           ),
