@@ -1,5 +1,6 @@
 // First-party imports.
 import 'dart:io';
+import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -40,7 +41,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.add_circled,
             ),
             label: 'Add',
-            tooltipMessage: 'Set an app\'s icon.',
+            tooltipMessage: 'Set an app\'s icon',
             showLabel: false,
             onPressed: () async => await initiateAppAddingSequence(context),
           ),
@@ -49,7 +50,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.refresh_bold,
             ),
             label: 'Refresh',
-            tooltipMessage: 'Refresh for changes.',
+            tooltipMessage: 'Refresh for changes',
             showLabel: false,
             onPressed: () {},
           ),
@@ -58,7 +59,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.trash,
             ),
             label: 'Reset All',
-            tooltipMessage: 'Reset all changed icons.',
+            tooltipMessage: 'Reset all changed icons',
             showLabel: false,
             onPressed: () {
               ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();
@@ -69,7 +70,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.clear_circled,
             ),
             label: 'Kill Process',
-            tooltipMessage: 'Kill Alter\'s process completely.',
+            tooltipMessage: 'Kill Alter\'s process completely',
             showLabel: false,
             onPressed: () {
               exit(0);
@@ -77,10 +78,10 @@ class _AppsPageState extends ConsumerState<AppsPage> {
           ),
           ToolBarIconButton(
             icon: MacosIcon(
-              CupertinoIcons.globe,
+              CupertinoIcons.paintbrush_fill,
             ),
             label: 'Get Icons',
-            tooltipMessage: 'Browse for new app icons.',
+            tooltipMessage: 'Browse for new app icons',
             showLabel: false,
             onPressed: () async => await launchGetIconsPageOnWeb(context),
           ),
@@ -89,9 +90,9 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.question_circle,
             ),
             label: 'Help',
-            tooltipMessage: 'Show help menu.',
+            tooltipMessage: 'Show help menu',
             showLabel: false,
-            onPressed: () async => showMacosSheet(
+            onPressed: () => showMacosSheet(
               context: context,
               builder: (context) {
                 return HelpSheetPage();
@@ -105,7 +106,12 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             label: 'Settings',
             tooltipMessage: 'Show settings menu.',
             showLabel: false,
-            onPressed: () {},
+            onPressed: () => showMacosSheet(
+              context: context,
+              builder: (context) {
+                return SettingsSheetPage();
+              },
+            ),
           ),
         ],
       ),
@@ -115,7 +121,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             bool isDarkMode =
                 MediaQuery.of(context).platformBrightness == Brightness.dark;
 
-            Color secondaryColorDarkMode = Color.fromRGBO(28, 28, 28, 1.0);
+            Color secondaryColorDarkMode = Color.fromRGBO(28, 28, 28, 0.5);
             Color secondaryColorLightMode =
                 Color.fromRGBO(228, 228, 228, 1.000);
 
@@ -222,8 +228,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                             Container(
                               width: double.infinity,
                               height: 1,
-                              color: CupertinoColors.systemGrey
-                                  .withValues(alpha: 0.5),
+                              color: CupertinoColors.inactiveGray.withAlpha(70),
                             )
                           ],
                         );

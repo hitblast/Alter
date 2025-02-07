@@ -17,7 +17,7 @@ class HelpSheetPage extends StatelessWidget {
         Navigator.of(context).pop();
       },
       child: MacosSheet(
-        insetAnimationDuration: const Duration(milliseconds: 500),
+        insetAnimationDuration: const Duration(milliseconds: 300),
         insetPadding: const EdgeInsets.only(
           top: 50,
           left: 60,

@@ -1,4 +1,5 @@
 // First-party imports.
+import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -23,10 +24,10 @@ class StarterPage extends StatelessWidget {
         actions: [
           ToolBarIconButton(
             icon: const MacosIcon(
-              CupertinoIcons.globe,
+              CupertinoIcons.paintbrush_fill,
             ),
             label: 'Get Icons',
-            tooltipMessage: 'Browse for new app icons.',
+            tooltipMessage: 'Browse for new app icons',
             showLabel: false,
             onPressed: () async => await launchGetIconsPageOnWeb(context),
           ),
@@ -35,9 +36,9 @@ class StarterPage extends StatelessWidget {
               CupertinoIcons.question_circle,
             ),
             label: 'Help',
-            tooltipMessage: 'Show help menu.',
+            tooltipMessage: 'Show help menu',
             showLabel: false,
-            onPressed: () async => showMacosSheet(
+            onPressed: () => showMacosSheet(
               context: context,
               builder: (context) {
                 return HelpSheetPage();
@@ -49,9 +50,14 @@ class StarterPage extends StatelessWidget {
               CupertinoIcons.gear,
             ),
             label: 'Settings',
-            tooltipMessage: 'Show settings menu.',
+            tooltipMessage: 'Show settings menu',
             showLabel: false,
-            onPressed: () {},
+            onPressed: () => showMacosSheet(
+              context: context,
+              builder: (context) {
+                return SettingsSheetPage();
+              },
+            ),
           ),
         ],
       ),

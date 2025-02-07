@@ -41,7 +41,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
     final brightness = MediaQuery.of(context).platformBrightness;
 
     return MacosSheet(
-      insetAnimationDuration: const Duration(milliseconds: 500),
+      insetAnimationDuration: const Duration(milliseconds: 300),
       insetPadding: const EdgeInsets.only(
         top: 50,
         left: 60,
