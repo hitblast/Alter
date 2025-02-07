@@ -39,7 +39,8 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.add_circled,
             ),
             label: 'Add',
-            showLabel: true,
+            tooltipMessage: 'Set an app\'s icon.',
+            showLabel: false,
             onPressed: () async => await initiateAppAddingSequence(context),
           ),
           ToolBarIconButton(
@@ -47,7 +48,8 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.refresh_bold,
             ),
             label: 'Refresh',
-            showLabel: true,
+            tooltipMessage: 'Refresh for changes.',
+            showLabel: false,
             onPressed: () {},
           ),
           ToolBarIconButton(
@@ -55,7 +57,8 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.trash,
             ),
             label: 'Reset All',
-            showLabel: true,
+            tooltipMessage: 'Reset all changed icons.',
+            showLabel: false,
             onPressed: () {
               ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();
             },
@@ -65,7 +68,8 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.clear_circled,
             ),
             label: 'Kill Process',
-            showLabel: true,
+            tooltipMessage: 'Completely kill Alter.',
+            showLabel: false,
             onPressed: () {
               exit(0);
             },
@@ -75,7 +79,8 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.globe,
             ),
             label: 'Get Icons',
-            showLabel: true,
+            tooltipMessage: 'Browse for new app icons.',
+            showLabel: false,
             onPressed: () async => await launchGetIconsPageOnWeb(context),
           ),
           ToolBarIconButton(
@@ -83,7 +88,8 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.question_circle,
             ),
             label: 'Help',
-            showLabel: true,
+            tooltipMessage: 'Show help menu.',
+            showLabel: false,
             onPressed: () async => showMacosSheet(
               context: context,
               builder: (context) {
