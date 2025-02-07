@@ -1,6 +1,5 @@
 // First-party imports.
 import 'dart:io';
-import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -14,6 +13,7 @@ import 'package:alter/utils/file_picker.dart';
 import 'package:alter/utils/launch_url.dart';
 import 'package:alter/pages/help_sheet_page.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';
+import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
 // The apps page.
