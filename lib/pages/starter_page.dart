@@ -24,7 +24,8 @@ class StarterPage extends StatelessWidget {
               CupertinoIcons.globe,
             ),
             label: 'Get Icons',
-            showLabel: true,
+            tooltipMessage: 'Browse for new app icons.',
+            showLabel: false,
             onPressed: () async => await launchGetIconsPageOnWeb(context),
           ),
           ToolBarIconButton(
@@ -32,13 +33,23 @@ class StarterPage extends StatelessWidget {
               CupertinoIcons.question_circle,
             ),
             label: 'Help',
-            showLabel: true,
+            tooltipMessage: 'Show help menu.',
+            showLabel: false,
             onPressed: () async => showMacosSheet(
               context: context,
               builder: (context) {
                 return HelpSheetPage();
               },
             ),
+          ),
+          ToolBarIconButton(
+            icon: const MacosIcon(
+              CupertinoIcons.gear,
+            ),
+            label: 'Settings',
+            tooltipMessage: 'Show settings menu.',
+            showLabel: false,
+            onPressed: () {},
           ),
         ],
       ),

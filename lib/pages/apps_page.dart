@@ -68,7 +68,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               CupertinoIcons.clear_circled,
             ),
             label: 'Kill Process',
-            tooltipMessage: 'Completely kill Alter.',
+            tooltipMessage: 'Kill Alter\'s process completely.',
             showLabel: false,
             onPressed: () {
               exit(0);
@@ -96,6 +96,15 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                 return HelpSheetPage();
               },
             ),
+          ),
+          ToolBarIconButton(
+            icon: const MacosIcon(
+              CupertinoIcons.gear,
+            ),
+            label: 'Settings',
+            tooltipMessage: 'Show settings menu.',
+            showLabel: false,
+            onPressed: () {},
           ),
         ],
       ),
