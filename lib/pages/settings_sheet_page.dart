@@ -1,7 +1,10 @@
 // First-party imports.
 import 'package:flutter/cupertino.dart';
+
+// Third-party imports.
 import 'package:macos_ui/macos_ui.dart';
 
+// The settings sheet page which can be used to directly modify the inner configuration of Alter.
 class SettingsSheetPage extends StatelessWidget {
   const SettingsSheetPage({super.key});
 
