@@ -9,7 +9,7 @@ import 'package:alter/models/app.dart';
 import 'package:alter/models/commands.dart';
 
 // This function sets a custom icon for an app.
-Future<CommandOnAppAdd?> setCustomIconForApp(
+Future<CommandResult?> setCustomIconForApp(
   String appPath,
   String userCustomIconPath, {
   String? iconToDelete,
@@ -43,25 +43,6 @@ Future<CommandOnAppAdd?> setCustomIconForApp(
   late String previousCFBundleIconName;
   late String previousCFBundleIconFile;
 
-  // Set the required CFBundleIconFile key in the Info.plist file.
-  // Also, touch and sign the app so that it can be used normally on macOS.
-  try {
-    previousCFBundleIconFile =
-        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconFile'))
-            .single
-            .outText;
-
-    await shell.run('''
-      defaults write "$appBundleInfoPath" CFBundleIconFile "$customIconFileName"
-
-      touch "$appPath"
-
-      codesign --force --deep --sign - "$appPath"
-      ''');
-  } catch (e) {
-    return null;
-  }
-
   // Some apps do not have the CFBundleIconName key in their Info.plist file.
   // In that case, ignore read-writing it for that particular app only.
   try {
@@ -75,8 +56,27 @@ Future<CommandOnAppAdd?> setCustomIconForApp(
     previousCFBundleIconName = '';
   }
 
+  // Set the required CFBundleIconFile key in the Info.plist file.
+  // Also, touch and sign the app so that it can be used normally on macOS.
+  try {
+    previousCFBundleIconFile =
+        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconFile'))
+            .single
+            .outText;
+
+    await shell.run('''
+        defaults write "$appBundleInfoPath" CFBundleIconFile "$customIconFileName"
+
+        touch "$appPath"
+
+        codesign --force --deep --sign - "$appPath"
+        ''');
+  } catch (e) {
+    return null;
+  }
+
   // Return the processed data for further use by the database and providers.
-  return CommandOnAppAdd(
+  return CommandResult(
     customIconPath: customIconPath,
     newCFBundleIconName:
         previousCFBundleIconName == '' ? '' : customIconFileName,
