@@ -1,6 +1,7 @@
-// Third-party imports.
+// First-party imports.
 import 'dart:io';
 
+// Third-party imports.
 import 'package:file_selector/file_selector.dart';
 import 'package:process_run/process_run.dart';
 

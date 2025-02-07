@@ -1,8 +1,9 @@
-// Third-party imports.
+// First-party imports.
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+// Third-party imports.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
 import 'package:macos_ui/macos_ui.dart';

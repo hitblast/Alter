@@ -1,7 +1,8 @@
-// Third-party imports.
+// First-party imports.
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
+
+// Third-party imports.
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.

@@ -1,4 +1,4 @@
-// Third-party imports.
+// First-party imports.
 import 'package:flutter/widgets.dart';
 
 // The function for constructing the platform-based menu bar.

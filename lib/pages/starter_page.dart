@@ -1,10 +1,12 @@
-// Third-party imports.
-import 'package:alter/gen/assets.gen.dart';
+// First-party imports.
 import 'package:flutter/cupertino.dart';
+
+// Third-party imports.
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/app_core.dart';
+import 'package:alter/gen/assets.gen.dart';
 import 'package:alter/pages/help_sheet_page.dart';
 import 'package:alter/utils/launch_url.dart';
 

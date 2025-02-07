@@ -1,5 +1,7 @@
-// Third-party imports.
+// First-party imports.
 import 'package:flutter/material.dart';
+
+// Third-party imports.
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // Provider generator part file.

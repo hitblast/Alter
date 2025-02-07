@@ -1,5 +1,7 @@
-// Third-party imports.
+// First-party imports.
 import 'package:flutter/cupertino.dart';
+
+// Third-party imports.
 import 'package:macos_ui/macos_ui.dart';
 
 // The help sheet view for letting the users know about certain aspects of the app.

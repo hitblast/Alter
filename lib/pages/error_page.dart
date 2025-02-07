@@ -1,4 +1,4 @@
-// Third-party imports.
+// First-party imports.
 import 'package:flutter/cupertino.dart';
 
 // A simple page for when the app encounters an error and crashes.
