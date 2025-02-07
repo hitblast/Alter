@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CommandOnAppAdd {
+mixin _$CommandResult {
   String get customIconPath => throw _privateConstructorUsedError;
   String get newCFBundleIconName => throw _privateConstructorUsedError;
   String get newCFBundleIconFile => throw _privateConstructorUsedError;
@@ -23,15 +23,15 @@ mixin _$CommandOnAppAdd {
   String get previousCFBundleIconFile => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CommandOnAppAddCopyWith<CommandOnAppAdd> get copyWith =>
+  $CommandResultCopyWith<CommandResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CommandOnAppAddCopyWith<$Res> {
-  factory $CommandOnAppAddCopyWith(
-          CommandOnAppAdd value, $Res Function(CommandOnAppAdd) then) =
-      _$CommandOnAppAddCopyWithImpl<$Res, CommandOnAppAdd>;
+abstract class $CommandResultCopyWith<$Res> {
+  factory $CommandResultCopyWith(
+          CommandResult value, $Res Function(CommandResult) then) =
+      _$CommandResultCopyWithImpl<$Res, CommandResult>;
   @useResult
   $Res call(
       {String customIconPath,
@@ -42,9 +42,9 @@ abstract class $CommandOnAppAddCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CommandOnAppAddCopyWithImpl<$Res, $Val extends CommandOnAppAdd>
-    implements $CommandOnAppAddCopyWith<$Res> {
-  _$CommandOnAppAddCopyWithImpl(this._value, this._then);
+class _$CommandResultCopyWithImpl<$Res, $Val extends CommandResult>
+    implements $CommandResultCopyWith<$Res> {
+  _$CommandResultCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -86,11 +86,11 @@ class _$CommandOnAppAddCopyWithImpl<$Res, $Val extends CommandOnAppAdd>
 }
 
 /// @nodoc
-abstract class _$$CommandOnAppAddImplCopyWith<$Res>
-    implements $CommandOnAppAddCopyWith<$Res> {
-  factory _$$CommandOnAppAddImplCopyWith(_$CommandOnAppAddImpl value,
-          $Res Function(_$CommandOnAppAddImpl) then) =
-      __$$CommandOnAppAddImplCopyWithImpl<$Res>;
+abstract class _$$CommandResultImplCopyWith<$Res>
+    implements $CommandResultCopyWith<$Res> {
+  factory _$$CommandResultImplCopyWith(
+          _$CommandResultImpl value, $Res Function(_$CommandResultImpl) then) =
+      __$$CommandResultImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,11 +102,11 @@ abstract class _$$CommandOnAppAddImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$CommandOnAppAddImplCopyWithImpl<$Res>
-    extends _$CommandOnAppAddCopyWithImpl<$Res, _$CommandOnAppAddImpl>
-    implements _$$CommandOnAppAddImplCopyWith<$Res> {
-  __$$CommandOnAppAddImplCopyWithImpl(
-      _$CommandOnAppAddImpl _value, $Res Function(_$CommandOnAppAddImpl) _then)
+class __$$CommandResultImplCopyWithImpl<$Res>
+    extends _$CommandResultCopyWithImpl<$Res, _$CommandResultImpl>
+    implements _$$CommandResultImplCopyWith<$Res> {
+  __$$CommandResultImplCopyWithImpl(
+      _$CommandResultImpl _value, $Res Function(_$CommandResultImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +118,7 @@ class __$$CommandOnAppAddImplCopyWithImpl<$Res>
     Object? previousCFBundleIconName = null,
     Object? previousCFBundleIconFile = null,
   }) {
-    return _then(_$CommandOnAppAddImpl(
+    return _then(_$CommandResultImpl(
       customIconPath: null == customIconPath
           ? _value.customIconPath
           : customIconPath // ignore: cast_nullable_to_non_nullable
@@ -145,8 +145,8 @@ class __$$CommandOnAppAddImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CommandOnAppAddImpl implements _CommandOnAppAdd {
-  const _$CommandOnAppAddImpl(
+class _$CommandResultImpl implements _CommandResult {
+  const _$CommandResultImpl(
       {required this.customIconPath,
       required this.newCFBundleIconName,
       required this.newCFBundleIconFile,
@@ -166,14 +166,14 @@ class _$CommandOnAppAddImpl implements _CommandOnAppAdd {
 
   @override
   String toString() {
-    return 'CommandOnAppAdd(customIconPath: $customIconPath, newCFBundleIconName: $newCFBundleIconName, newCFBundleIconFile: $newCFBundleIconFile, previousCFBundleIconName: $previousCFBundleIconName, previousCFBundleIconFile: $previousCFBundleIconFile)';
+    return 'CommandResult(customIconPath: $customIconPath, newCFBundleIconName: $newCFBundleIconName, newCFBundleIconFile: $newCFBundleIconFile, previousCFBundleIconName: $previousCFBundleIconName, previousCFBundleIconFile: $previousCFBundleIconFile)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CommandOnAppAddImpl &&
+            other is _$CommandResultImpl &&
             (identical(other.customIconPath, customIconPath) ||
                 other.customIconPath == customIconPath) &&
             (identical(other.newCFBundleIconName, newCFBundleIconName) ||
@@ -200,18 +200,17 @@ class _$CommandOnAppAddImpl implements _CommandOnAppAdd {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CommandOnAppAddImplCopyWith<_$CommandOnAppAddImpl> get copyWith =>
-      __$$CommandOnAppAddImplCopyWithImpl<_$CommandOnAppAddImpl>(
-          this, _$identity);
+  _$$CommandResultImplCopyWith<_$CommandResultImpl> get copyWith =>
+      __$$CommandResultImplCopyWithImpl<_$CommandResultImpl>(this, _$identity);
 }
 
-abstract class _CommandOnAppAdd implements CommandOnAppAdd {
-  const factory _CommandOnAppAdd(
+abstract class _CommandResult implements CommandResult {
+  const factory _CommandResult(
       {required final String customIconPath,
       required final String newCFBundleIconName,
       required final String newCFBundleIconFile,
       required final String previousCFBundleIconName,
-      required final String previousCFBundleIconFile}) = _$CommandOnAppAddImpl;
+      required final String previousCFBundleIconFile}) = _$CommandResultImpl;
 
   @override
   String get customIconPath;
@@ -225,6 +224,6 @@ abstract class _CommandOnAppAdd implements CommandOnAppAdd {
   String get previousCFBundleIconFile;
   @override
   @JsonKey(ignore: true)
-  _$$CommandOnAppAddImplCopyWith<_$CommandOnAppAddImpl> get copyWith =>
+  _$$CommandResultImplCopyWith<_$CommandResultImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
