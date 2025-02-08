@@ -3,15 +3,11 @@ import 'package:isar/isar.dart';
 
 // Local imports.
 import 'package:alter/main.dart';
-import 'package:alter/models/app.dart';
+import 'package:alter/models/app_model.dart';
 
 // Basic database utility functions.
 Future<bool> appExistsByPath(String path) async {
   return await isar.apps.where().filter().pathEqualTo(path).count() > 0;
-}
-
-Future<List<App>> getAllApps() async {
-  return await isar.apps.where().findAll();
 }
 
 // The database class for managing the apps.
@@ -85,7 +81,7 @@ class AppDatabase {
 
   // Delete all apps.
   Future<void> deleteAllApps() async {
-    for (final app in await getAllApps()) {
+    for (final app in await isar.apps.where().findAll()) {
       await isar.writeTxn(() => isar.apps.delete(app.id));
       await fetchApps();
     }

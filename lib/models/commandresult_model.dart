@@ -2,7 +2,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 // Generator part file.
-part 'commands.freezed.dart';
+part 'commandresult_model.freezed.dart';
 
 // The CommandResult model.
 // Used to parse command run data while customizing a new app icon.

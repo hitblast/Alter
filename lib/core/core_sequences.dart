@@ -6,10 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/core/app_database.dart';
+import 'package:alter/core/core_database.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';
-import 'package:alter/utils/dialogs.dart';
-import 'package:alter/utils/file_picker.dart';
+import 'package:alter/utils/dialog_util.dart';
+import 'package:alter/utils/file_util.dart';
 
 // The function to initiate the app adding sequence.
 Future<void> initiateAppAddingSequence(BuildContext context) async {

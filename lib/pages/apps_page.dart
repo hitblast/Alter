@@ -8,9 +8,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/core/app_core.dart';
-import 'package:alter/utils/file_picker.dart';
-import 'package:alter/utils/launch_url.dart';
+import 'package:alter/core/core_sequences.dart';
+import 'package:alter/utils/file_util.dart';
+import 'package:alter/utils/links_util.dart';
 import 'package:alter/pages/help_sheet_page.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/pages/settings_sheet_page.dart';

@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
-import 'package:alter/models/app.dart';
+import 'package:alter/models/app_model.dart';
 import 'package:alter/pages/error_page.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:alter/providers/app_theme_provider.dart';

@@ -6,8 +6,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:process_run/shell.dart';
 
 // Local imports.
-import 'package:alter/models/app.dart';
-import 'package:alter/models/commands.dart';
+import 'package:alter/models/app_model.dart';
+import 'package:alter/models/commandresult_model.dart';
 
 // This function sets a custom icon for an app.
 Future<CommandResult?> setCustomIconForApp(

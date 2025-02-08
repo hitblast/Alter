@@ -5,11 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/core/app_core.dart';
+import 'package:alter/core/core_sequences.dart';
 import 'package:alter/gen/assets.gen.dart';
 import 'package:alter/pages/help_sheet_page.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
-import 'package:alter/utils/launch_url.dart';
+import 'package:alter/utils/links_util.dart';
 
 // The starter page widget.
 // This is the first page that the user sees if the have no apps added to the database yet.

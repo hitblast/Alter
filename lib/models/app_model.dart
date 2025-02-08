@@ -2,7 +2,7 @@
 import 'package:isar/isar.dart';
 
 // Generator part file.
-part 'app.g.dart';
+part 'app_model.g.dart';
 
 // The App model.
 // Used to store app data in the database.

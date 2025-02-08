@@ -9,7 +9,7 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/gen/assets.gen.dart';
-import 'package:alter/utils/file_picker.dart';
+import 'package:alter/utils/file_util.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
 // The macOS sheet view for choosing the icon when the user prompts.
