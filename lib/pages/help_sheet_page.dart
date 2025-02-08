@@ -10,8 +10,6 @@ class HelpSheetPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final brightness = MediaQuery.of(context).platformBrightness;
-
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pop();
@@ -32,48 +30,19 @@ class HelpSheetPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      MacosIcon(
-                        CupertinoIcons.info,
-                        color: CupertinoColors.systemGrey,
-                        size: 30,
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        'How to use?',
-                        style: TextStyle(
-                          fontSize: 21,
-                          color: CupertinoColors.systemGrey,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 15),
-                  Container(
-                    decoration: BoxDecoration(
-                      color: brightness == Brightness.dark
-                          ? CupertinoColors.darkBackgroundGray
-                          : CupertinoColors.systemGrey5,
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Only the .icns file format is supported for icons as of now.',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: brightness == Brightness.dark
-                            ? CupertinoColors.destructiveRed
-                            : CupertinoColors.systemGrey,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  const MacosIcon(CupertinoIcons.info_circle_fill, size: 30),
+                  const SizedBox(height: 15),
+                  const Text(
+                    'How to use?',
+                    style: TextStyle(
+                      fontSize: 21,
+                      color: CupertinoColors.systemGrey,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 15),
                   const Text(
-                    'Left-click on the blank starter screen / the "Add" button at the top of the apps page to pop-up the prompt for app selection. You must select a valid macOS application. \n\nThen, tap on the icon grid displayed on the icon selection page to select an icon. Finally, click on "Apply Changes" and wait for Alter to modify the existing app icon. This should only take a few seconds.',
+                    'Left-click the starter screen, or the "+" icon on the toolbar to start customizing an application\'s icon. You\'ll have to choose a valid macOS app, typically located inside the "Applications" folder.\n\nNow, choose a valid image to apply as the icon by clicking on the icon frame. Note that the image must either be in .icns or .png format. Finally, click on "Apply Changes" and wait a few seconds to complete the procedure.',
                     style: TextStyle(
                       fontSize: 14,
                       color: CupertinoColors.systemGrey,
