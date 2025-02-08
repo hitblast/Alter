@@ -3,7 +3,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // Local imports.
 import 'package:alter/core/core_database.dart';
-import 'package:alter/core/core_iconlogic.dart';
+import 'package:alter/core/core_icons.dart';
 import 'package:alter/models/app_model.dart';
 
 // Provider generator part file.
