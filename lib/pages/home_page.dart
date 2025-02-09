@@ -26,6 +26,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   final List<String> _loadingMessages = [
     'This might take a while.',
     'Loading command blocks...',
+    'Mining Bitcoin...',
     'Purging annoying icon caches...',
     'Making steak...',
     'Almost there!',
