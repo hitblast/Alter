@@ -43,7 +43,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     super.initState();
     _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
       setState(() {
-        _currentMessageIndex = (_currentMessageIndex + 1) % _loadingMessages.length;
+        _currentMessageIndex =
+            (_currentMessageIndex + 1) % _loadingMessages.length;
       });
     });
   }
@@ -123,4 +124,3 @@ class _HomePageState extends ConsumerState<HomePage> {
     }
   }
 }
-</rewrite_this>
