@@ -1,6 +1,6 @@
 // First-party imports.
 import 'dart:io';
-import 'dart:math';
+import 'dart:async';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -29,11 +29,29 @@ class _HomePageState extends ConsumerState<HomePage> {
     'Purging annoying icon caches...',
     'Making steak...',
     'Almost there!',
+    'Almost...',
+    'Oh well.',
+    'Incorporating async logic...',
+    'Calling DaVinci...'
   ];
 
-  String _getRandomMessage() {
-    final random = Random();
-    return _loadingMessages[random.nextInt(_loadingMessages.length)];
+  int _currentMessageIndex = 0;
+  late Timer _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
+      setState(() {
+        _currentMessageIndex = (_currentMessageIndex + 1) % _loadingMessages.length;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
@@ -52,7 +70,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
             const SizedBox(height: 20),
             Text(
-              _getRandomMessage(),
+              _loadingMessages[_currentMessageIndex],
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -105,3 +123,4 @@ class _HomePageState extends ConsumerState<HomePage> {
     }
   }
 }
+</rewrite_this>
