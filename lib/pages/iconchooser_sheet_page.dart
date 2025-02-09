@@ -109,9 +109,9 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                   : [
                                       BoxShadow(
                                         color: CupertinoColors.systemGrey
-                                            .withAlpha(77),
+                                            .withAlpha(50),
                                         offset: Offset(0, 5),
-                                        blurRadius: 100,
+                                        blurRadius: 50,
                                       )
                                     ],
                             ),

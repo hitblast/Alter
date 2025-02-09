@@ -1,4 +1,5 @@
 // First-party imports.
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -21,6 +22,18 @@ class StarterPage extends StatelessWidget {
       toolBar: ToolBar(
         enableBlur: true,
         actions: [
+          ToolBarIconButton(
+            icon: MacosIcon(
+              CupertinoIcons.xmark_octagon,
+              color: CupertinoColors.destructiveRed,
+            ),
+            label: 'Kill Alter',
+            tooltipMessage: 'Kill / quit Alter',
+            showLabel: false,
+            onPressed: () {
+              exit(0);
+            },
+          ),
           ToolBarIconButton(
             icon: const MacosIcon(
               CupertinoIcons.paintbrush_fill,

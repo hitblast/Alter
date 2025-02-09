@@ -66,10 +66,11 @@ class _AppsPageState extends ConsumerState<AppsPage> {
           ),
           ToolBarIconButton(
             icon: MacosIcon(
-              CupertinoIcons.clear_circled,
+              CupertinoIcons.xmark_octagon,
+              color: CupertinoColors.destructiveRed,
             ),
-            label: 'Kill Process',
-            tooltipMessage: 'Kill Alter\'s process completely',
+            label: 'Kill Alter',
+            tooltipMessage: 'Kill / quit Alter',
             showLabel: false,
             onPressed: () {
               exit(0);

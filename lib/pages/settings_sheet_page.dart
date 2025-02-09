@@ -51,7 +51,7 @@ class SettingsSheetPage extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   const Text(
-                    'This page is still work-in-progress! :3',
+                    'This page is still a work-in-progress.',
                     style: TextStyle(
                       fontSize: 14,
                       color: CupertinoColors.systemGrey,
