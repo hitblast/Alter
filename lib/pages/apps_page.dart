@@ -86,7 +86,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
-              CupertinoIcons.gear,
+              CupertinoIcons.settings,
             ),
             label: 'Settings',
             tooltipMessage: 'Show settings menu.',

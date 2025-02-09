@@ -34,15 +34,15 @@ class SettingsSheetPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       MacosIcon(
-                        CupertinoIcons.gear_alt_fill,
+                        CupertinoIcons.settings,
                         color: CupertinoColors.systemGrey,
-                        size: 30,
+                        size: 28,
                       ),
                       SizedBox(width: 8),
                       Text(
-                        'Configure',
+                        'Configuration',
                         style: TextStyle(
-                          fontSize: 21,
+                          fontSize: 20,
                           color: CupertinoColors.systemGrey,
                           fontWeight: FontWeight.bold,
                         ),

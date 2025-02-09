@@ -32,7 +32,7 @@ class StarterPage extends StatelessWidget {
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
-              CupertinoIcons.gear,
+              CupertinoIcons.settings,
             ),
             label: 'Settings',
             tooltipMessage: 'Show settings menu',
