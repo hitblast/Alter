@@ -1,6 +1,6 @@
 // First-party imports.
 import 'dart:io';
-import 'dart:async';
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -22,7 +22,6 @@ class HomePage extends ConsumerStatefulWidget {
 
 // The state of the home page.
 class _HomePageState extends ConsumerState<HomePage> {
-  late Timer _timer;
   final List<String> _loadingMessages = [
     'This might take a while.',
     'Loading command blocks...',
@@ -31,23 +30,10 @@ class _HomePageState extends ConsumerState<HomePage> {
     'Making steak...',
     'Almost there!',
   ];
-  int _currentMessageIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
-      setState(() {
-        _currentMessageIndex =
-            (_currentMessageIndex + 1) % _loadingMessages.length;
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
+  String _getRandomMessage() {
+    final random = Random();
+    return _loadingMessages[random.nextInt(_loadingMessages.length)];
   }
 
   @override
@@ -66,7 +52,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
             const SizedBox(height: 20),
             Text(
-              _loadingMessages[_currentMessageIndex],
+              _getRandomMessage(),
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -103,11 +89,14 @@ class _HomePageState extends ConsumerState<HomePage> {
               PlatformMenuItemGroup(
                 members: [
                   PlatformMenuItem(
-                    label: 'Kill Alter',
+                    label: 'Kill Process',
                     onSelected: () => exit(0),
                   )
                 ],
               ),
+              PlatformProvidedMenuItem(
+                type: PlatformProvidedMenuItemType.quit,
+              )
             ],
           )
         ],
