@@ -27,8 +27,8 @@ class StarterPage extends StatelessWidget {
               CupertinoIcons.xmark_octagon,
               color: CupertinoColors.destructiveRed,
             ),
-            label: 'Kill Alter',
-            tooltipMessage: 'Kill / quit Alter',
+            label: 'Kill Process',
+            tooltipMessage: 'Kill Alter and halt background processing',
             showLabel: false,
             onPressed: () {
               exit(0);

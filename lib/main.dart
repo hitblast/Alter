@@ -83,7 +83,11 @@ Future<void> main() async {
     );
   }
 
-  runApp(ProviderScope(child: const MainApp()));
+  runApp(
+    ProviderScope(
+      child: const MainApp(),
+    ),
+  );
 }
 
 Future<void> _configureMacosWindowUtils() async {
