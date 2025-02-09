@@ -11,7 +11,6 @@ import 'package:macos_ui/macos_ui.dart';
 import 'package:alter/core/core_sequences.dart';
 import 'package:alter/utils/file_util.dart';
 import 'package:alter/utils/links_util.dart';
-import 'package:alter/pages/help_sheet_page.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
@@ -84,20 +83,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             tooltipMessage: 'Browse for new app icons',
             showLabel: false,
             onPressed: () async => await launchGetIconsPageOnWeb(context),
-          ),
-          ToolBarIconButton(
-            icon: MacosIcon(
-              CupertinoIcons.question_circle,
-            ),
-            label: 'Help',
-            tooltipMessage: 'Show help menu',
-            showLabel: false,
-            onPressed: () => showMacosSheet(
-              context: context,
-              builder: (context) {
-                return HelpSheetPage();
-              },
-            ),
           ),
           ToolBarIconButton(
             icon: const MacosIcon(

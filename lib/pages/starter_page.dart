@@ -7,7 +7,6 @@ import 'package:macos_ui/macos_ui.dart';
 // Local imports.
 import 'package:alter/core/core_sequences.dart';
 import 'package:alter/gen/assets.gen.dart';
-import 'package:alter/pages/help_sheet_page.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/utils/links_util.dart';
 
@@ -30,20 +29,6 @@ class StarterPage extends StatelessWidget {
             tooltipMessage: 'Browse for new app icons',
             showLabel: false,
             onPressed: () async => await launchGetIconsPageOnWeb(context),
-          ),
-          ToolBarIconButton(
-            icon: const MacosIcon(
-              CupertinoIcons.question_circle,
-            ),
-            label: 'Help',
-            tooltipMessage: 'Show help menu',
-            showLabel: false,
-            onPressed: () => showMacosSheet(
-              context: context,
-              builder: (context) {
-                return HelpSheetPage();
-              },
-            ),
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
