@@ -1,16 +1,14 @@
 // First-party imports.
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 // Third-party imports.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:isar/isar.dart';
 import 'package:macos_ui/macos_ui.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
+import 'package:alter/core/core_database.dart';
 import 'package:alter/models/app_model.dart';
 import 'package:alter/pages/error_page.dart';
 import 'package:alter/pages/home_page.dart';
@@ -61,16 +59,7 @@ The main functions of the application.
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
-
-  final applicationDocumentsDirectory = await getApplicationSupportDirectory();
-  final dir = Directory('${applicationDocumentsDirectory.path}/AppList');
-  debugPrint("Storage path: ${dir.path}");
-
-  // Create the database directory if it doesn't exist.
-  if (!(await dir.exists())) {
-    debugPrint("Database does not exist, creating one in ${dir.path}");
-    await dir.create();
-  }
+  final dir = await ensureDatabase(); 
 
   if (Isar.instanceNames.isEmpty) {
     isar = await Isar.open(
@@ -80,6 +69,7 @@ Future<void> main() async {
       ],
       directory: dir.path,
       name: 'alterAppListInstance',
+      inspector: false,
     );
   }
 

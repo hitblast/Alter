@@ -1,11 +1,30 @@
+// First-party imports.
+import 'dart:io'; 
+import 'package:flutter/foundation.dart';
+
 // Third-party imports.
 import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 
 // Local imports.
 import 'package:alter/main.dart';
 import 'package:alter/models/app_model.dart';
 
 // Basic database utility functions.
+Future<Directory> ensureDatabase() async {
+  final applicationDocumentsDirectory = await getApplicationSupportDirectory();
+  final dir = Directory('${applicationDocumentsDirectory.path}/AppList');
+  debugPrint("Storage path: ${dir.path}");
+
+  // Create the database directory if it doesn't exist.
+  if (!(await dir.exists())) {
+    debugPrint("Database does not exist, creating one in ${dir.path}");
+    await dir.create();
+  } 
+
+  return dir;
+}
+
 Future<bool> appExistsByPath(String path) async {
   return await isar.apps.where().filter().pathEqualTo(path).count() > 0;
 }
