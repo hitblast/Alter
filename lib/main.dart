@@ -62,6 +62,7 @@ Future<void> main() async {
   final dir = await ensureDatabase(); 
 
   if (Isar.instanceNames.isEmpty) {
+    debugPrint('Initializing database...');
     isar = await Isar.open(
       [
         // The base schema for storing application data.
