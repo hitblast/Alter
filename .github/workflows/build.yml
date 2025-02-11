@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version-file: pubspec.yaml
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Build Flutter app
+        run: flutter build macos --release
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          path: build/macos/Build/Products/Release/alter.app
