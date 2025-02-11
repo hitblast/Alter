@@ -18,9 +18,7 @@ void showAlertDialog(BuildContext context, String title, String message) {
       primaryButton: PushButton(
         controlSize: ControlSize.large,
         child: const Text('OK'),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+        onPressed: () => Navigator.of(context).pop(),
       ),
     ),
   );

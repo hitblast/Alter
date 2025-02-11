@@ -60,9 +60,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             label: 'Reset All',
             tooltipMessage: 'Reset all changed icons',
             showLabel: false,
-            onPressed: () {
-              ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();
-            },
+            onPressed: () => ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps(),
           ),
           ToolBarIconButton(
             icon: MacosIcon(
@@ -155,9 +153,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                         ],
                                       ),
                                       child: GestureDetector(
-                                        onTap: () {
-                                          openFileInPreview(app.customIconPath);
-                                        },
+                                        onTap: () => openFileInPreview(app.customIconPath),
                                         child: MouseRegion(
                                           cursor: SystemMouseCursors.click,
                                           child: Image.file(

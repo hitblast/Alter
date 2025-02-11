@@ -150,9 +150,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       PushButton(
                         controlSize: ControlSize.large,
                         secondary: true,
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
+                        onPressed: () => Navigator.of(context).pop(),
                         child: Text('Cancel'),
                       ),
                       const SizedBox(width: 10),

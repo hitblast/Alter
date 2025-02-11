@@ -60,9 +60,7 @@ class StarterPage extends StatelessWidget {
         ContentArea(
           builder: (BuildContext context, scrollController) {
             return GestureDetector(
-              onTap: () async {
-                await initiateAppAddingSequence(context);
-              },
+              onTap: () async => await initiateAppAddingSequence(context),
               child: Center(
                 child: ScrollConfiguration(
                   behavior: ScrollConfiguration.of(context).copyWith(
