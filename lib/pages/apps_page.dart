@@ -72,9 +72,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             label: 'Kill Process',
             tooltipMessage: 'Kill Alter and halt background processing',
             showLabel: false,
-            onPressed: () {
-              exit(0);
-            },
+            onPressed: () => initiateKillSequence(context),
           ),
           ToolBarIconButton(
             icon: MacosIcon(

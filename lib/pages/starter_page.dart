@@ -1,5 +1,4 @@
 // First-party imports.
-import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -30,9 +29,7 @@ class StarterPage extends StatelessWidget {
             label: 'Kill Process',
             tooltipMessage: 'Kill Alter and halt background processing',
             showLabel: false,
-            onPressed: () {
-              exit(0);
-            },
+            onPressed: () => initiateKillSequence(context),
           ),
           ToolBarIconButton(
             icon: const MacosIcon(

@@ -1,6 +1,6 @@
 // First-party imports.
-import 'dart:io';
 import 'dart:async';
+import 'package:alter/core/core_sequences.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -109,7 +109,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 members: [
                   PlatformMenuItem(
                     label: 'Kill Process',
-                    onSelected: () => exit(0),
+                    onSelected: () => initiateKillSequence(context),
                   )
                 ],
               ),
