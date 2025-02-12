@@ -6,8 +6,10 @@ import 'package:flutter/services.dart';
 
 // Third-party imports.
 import 'package:isar/isar.dart';
+import 'package:watcher/watcher.dart';
 
 // Local imports.
+import 'package:alter/main.dart';
 import 'package:alter/models/app_model.dart';
 import 'package:alter/core/core_database.dart';
 
@@ -15,26 +17,45 @@ import 'package:alter/core/core_database.dart';
 // This connects with AppDatabaseNotifier with a StreamController to update the user interface
 // (when running in the foreground).
 class BackgroundService {
-  final Duration _checkInterval = Duration(minutes: 1);
-  Timer? _timer;
   final StreamController<void> _streamController =
       StreamController<void>.broadcast();
+  final List<DirectoryWatcher> _watchers = [];
 
   // Entrypoint.
   Stream<void> get onAppDataChanged => _streamController.stream;
 
   // Start the background service.
   // Only works if the class is applied as a singleton across the whole app.
-  void start() {
-    _timer = Timer.periodic(_checkInterval, (timer) {
-      _runBackgroundCheck();
-    });
+  void start() async {
+    final apps = await isar.apps.where().findAll();
+    for (final app in apps) {
+      addWatcher(app.path);
+    }
   }
 
   // Stop the background service and the stream controller to prevent further updates.
   void stop() {
-    _timer?.cancel();
+    _watchers.clear();
     _streamController.close();
+  }
+
+  // Utility functions.
+  // Although primarily for external usage, these are also sometimes repeated within the service itself.
+  void addWatcher(String appPath) async {
+    final watcher = DirectoryWatcher(appPath);
+    _watchers.add(watcher);
+    watcher.events.listen((event) {
+      _runBackgroundCheck();
+    });
+    await watcher.ready;
+  }
+
+  void removeWatcher(String appPath) {
+    _watchers.removeWhere((watcher) => watcher.path == appPath);
+  }
+
+  void clearAllWatchers() {
+    _watchers.clear();
   }
 
   // The primary orchestration function for the background service.
@@ -68,7 +89,7 @@ class BackgroundService {
 
     BackgroundIsolateBinaryMessenger.ensureInitialized(rootToken);
     final dir = await ensureDatabasePath();
-    Isar isar = await Isar.open(
+    Isar isolateIsar = await Isar.open(
       [
         AppSchema,
       ],
@@ -77,20 +98,20 @@ class BackgroundService {
       inspector: false,
     );
 
-    final apps = await isar.apps.where().findAll();
+    final apps = await isolateIsar.apps.where().findAll();
     bool dataChanged = false;
 
     for (final app in apps) {
       // If the application does not exist anymore / has been uninstalled.
       final appExists = await Directory(app.path).exists();
       if (!appExists) {
-        await isar.writeTxn(() => isar.apps.delete(app.id));
+        await isolateIsar.writeTxn(() => isolateIsar.apps.delete(app.id));
         dataChanged = true;
         continue;
       }
     }
 
-    await isar.close();
+    await isolateIsar.close();
 
     if (dataChanged) {
       sendPort.send('withMods');

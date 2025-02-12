@@ -59,6 +59,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
           processedCommand.previousCFBundleIconName,
           processedCommand.previousCFBundleIconFile,
         );
+        service.addWatcher(appPath);
       }
 
       return _database.currentApps;
@@ -98,6 +99,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
       final App? app = await _database.fetchAppById(id);
       await unsetCustomIconForApp(app!);
       await _database.deleteApp(id);
+      service.removeWatcher(app.path);
       return _database.currentApps;
     });
   }
@@ -110,6 +112,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
         await unsetCustomIconForApp(app);
       }
       await _database.deleteAllApps();
+      service.clearAllWatchers();
       return _database.currentApps;
     });
   }
