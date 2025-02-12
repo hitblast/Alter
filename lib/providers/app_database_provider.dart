@@ -19,6 +19,7 @@ part 'app_database_provider.g.dart';
 class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   final AppDatabase _database = AppDatabase();
   late StreamSubscription<void> _subscription;
+  bool _isSubscriptionListenerEventRunning = false;
 
   @override
   Future<List<App>> build() async {
@@ -26,10 +27,14 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
 
     // Integration with services/background_service.dart for database integrity.
     _subscription = service.onAppDataChanged.listen((_) async {
-      state = await AsyncValue.guard(() async {
-        await _database.fetchApps();
-        return _database.currentApps;
-      });
+      if (!_isSubscriptionListenerEventRunning) {
+        _isSubscriptionListenerEventRunning = true;
+        state = await AsyncValue.guard(() async {
+          await _database.fetchApps();
+          return _database.currentApps;
+        });
+        _isSubscriptionListenerEventRunning = false;
+      }
     });
 
     ref.onDispose(() {
