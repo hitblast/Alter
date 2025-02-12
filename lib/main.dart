@@ -8,6 +8,7 @@ import 'package:macos_ui/macos_ui.dart';
 import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
+import 'package:alter/background_service.dart';
 import 'package:alter/core/core_database.dart';
 import 'package:alter/models/app_model.dart';
 import 'package:alter/pages/error_page.dart';
@@ -16,6 +17,10 @@ import 'package:alter/providers/app_theme_provider.dart';
 
 // Define the Isar database.
 late Isar isar;
+
+// Define the background service for Alter.
+// This is used for database integrity checks and more.
+final BackgroundService service = BackgroundService();
 
 /*
 
@@ -31,6 +36,18 @@ class MainApp extends ConsumerStatefulWidget {
 }
 
 class _MainAppState extends ConsumerState<MainApp> {
+  @override
+  void initState() {
+    super.initState();
+    service.start();
+  }
+
+  @override
+  void dispose() {
+    service.stop();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MacosApp(
@@ -59,10 +76,10 @@ The main functions of the application.
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
-  final dir = await ensureDatabase(); 
+  final dir = await ensureDatabasePath();
+  debugPrint('Database is located at: ${dir.path}');
 
   if (Isar.instanceNames.isEmpty) {
-    debugPrint('Initializing database...');
     isar = await Isar.open(
       [
         // The base schema for storing application data.
@@ -72,6 +89,7 @@ Future<void> main() async {
       name: 'alterAppListInstance',
       inspector: false,
     );
+    debugPrint('Initialized database.');
   }
 
   runApp(
