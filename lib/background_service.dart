@@ -72,12 +72,10 @@ class BackgroundService {
     final isolate = await Isolate.spawn(_backgroundCheck, isolateData);
 
     receivePort.listen((message) {
-      if (message == 'noMod') {
-        isolate.kill(priority: Isolate.immediate);
-      } else if (message == 'withMods') {
+      if (message == 'withMods') {
         _streamController.add(null);
-        isolate.kill(priority: Isolate.immediate);
       }
+      isolate.kill(priority: Isolate.immediate);
     });
   }
 
