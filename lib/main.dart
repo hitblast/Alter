@@ -77,7 +77,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
   final dir = await ensureDatabasePath();
-  debugPrint('Database is located at: ${dir.path}');
 
   if (Isar.instanceNames.isEmpty) {
     isar = await Isar.open(
@@ -89,7 +88,7 @@ Future<void> main() async {
       name: 'alterAppListInstance',
       inspector: false,
     );
-    debugPrint('Initialized database.');
+    debugPrint('Initialized database at path: ${isar.path}');
   }
 
   runApp(

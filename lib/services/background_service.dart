@@ -2,6 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 // Third-party imports.
@@ -49,14 +50,17 @@ class BackgroundService {
       _runBackgroundCheck();
     });
     await watcher.ready;
+    debugPrint('Added watcher for path: $appPath');
   }
 
   void removeWatcher(String appPath) {
     _watchers.removeWhere((watcher) => watcher.path == appPath);
+    debugPrint('Removed watcher for path: $appPath');
   }
 
   void clearAllWatchers() {
     _watchers.clear();
+    debugPrint('Cleared watchers (possible reset event).');
   }
 
   // The primary orchestration function for the background service.
@@ -73,7 +77,12 @@ class BackgroundService {
     };
 
     // Because Isolate.run() does not give granular access to the API.
-    final isolate = await Isolate.spawn(_backgroundCheck, isolateData);
+    final isolate = await Isolate.spawn(
+      _backgroundCheck,
+      isolateData,
+      debugName: 'alterBackgroundServiceIsolate',
+    );
+    debugPrint('Spawned isolate: ${isolate.debugName}');
 
     receivePort.listen((message) {
       if (message == 'withMods') {
@@ -100,6 +109,7 @@ class BackgroundService {
       name: 'alterAppListInstance',
       inspector: false,
     );
+    debugPrint('Initialized background Isar instance: ${isar.path}');
 
     final apps = await isolateIsar.apps.where().findAll();
     bool dataChanged = false;
