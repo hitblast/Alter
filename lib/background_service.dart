@@ -20,6 +20,7 @@ class BackgroundService {
   final StreamController<void> _streamController =
       StreamController<void>.broadcast();
   final List<DirectoryWatcher> _watchers = [];
+  bool _isBackgroundCheckRunning = false;
 
   // Entrypoint.
   Stream<void> get onAppDataChanged => _streamController.stream;
@@ -61,6 +62,9 @@ class BackgroundService {
   // The primary orchestration function for the background service.
   // This is responsible for isolate spawning and determining if the UI needs change.
   Future<void> _runBackgroundCheck() async {
+    if (_isBackgroundCheckRunning) return;
+    _isBackgroundCheckRunning = true;
+
     final rootToken = RootIsolateToken.instance!;
     final receivePort = ReceivePort();
     final isolateData = {
@@ -76,6 +80,7 @@ class BackgroundService {
         _streamController.add(null);
       }
       isolate.kill(priority: Isolate.immediate);
+      _isBackgroundCheckRunning = false;
     });
   }
 
