@@ -8,12 +8,12 @@ import 'package:macos_ui/macos_ui.dart';
 import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
-import 'package:alter/background_service.dart';
 import 'package:alter/core/core_database.dart';
 import 'package:alter/models/app_model.dart';
 import 'package:alter/pages/error_page.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:alter/providers/app_theme_provider.dart';
+import 'package:alter/services/background_service.dart';
 
 // Define the Isar database.
 late Isar isar;
