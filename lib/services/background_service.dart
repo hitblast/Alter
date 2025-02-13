@@ -109,7 +109,7 @@ class BackgroundService {
       name: 'alterAppListInstance',
       inspector: false,
     );
-    debugPrint('Initialized background Isar instance: ${isar.path}');
+    debugPrint('Initialized background Isar instance: ${isolateIsar.path}');
 
     final apps = await isolateIsar.apps.where().findAll();
     bool dataChanged = false;

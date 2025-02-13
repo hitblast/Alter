@@ -102,9 +102,9 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final App? app = await _database.fetchAppById(id);
-      await unsetCustomIconForApp(app!);
+      service.removeWatcher(app!.path);
+      await unsetCustomIconForApp(app);
       await _database.deleteApp(id);
-      service.removeWatcher(app.path);
       return _database.currentApps;
     });
   }
