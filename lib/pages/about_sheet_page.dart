@@ -64,7 +64,7 @@ class AboutSheetPage extends StatelessWidget {
                           Text('Build Version: ${packageInfo.version}'),
                           SizedBox(height: 20),
                           Text(
-                            'Special thanks to Arni, Isfer & Sadman for supporting the development and giving a ton of inspiration.',
+                            'Special thanks to Raven for supporting the development and giving a ton of inspiration.',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
