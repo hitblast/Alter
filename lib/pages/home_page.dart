@@ -33,7 +33,10 @@ class _HomePageState extends ConsumerState<HomePage> {
     'Almost...',
     'Oh well.',
     'Incorporating async logic...',
-    'Calling DaVinci...'
+    'Calling DaVinci...',
+    'Wowing minions...',
+    'Firing engine 01...',
+    'Engine stall! Engine stall!'
   ];
 
   int _currentMessageIndex = 0;
