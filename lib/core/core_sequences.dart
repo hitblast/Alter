@@ -82,8 +82,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
 
   // If all of the checks above, actually pass. Then, route to IconChooserSheetPage.
   else {
-    // TODO: Currently dismissing system apps because it requires the implementation of
-    // symlinks inside the app. This is a security feature of macOS.
+    debugPrint('Chosen app: ${file.path}');
 
     if (!context.mounted) return;
     showMacosSheet(

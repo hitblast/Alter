@@ -41,19 +41,26 @@ String getAppNameFromPath(String path) {
 
 /// Function to determine if an application is a system application.
 Future<bool> ifAppIsSystemApplication(String path) async {
-  // first strip the path to get the application name, usually at the end of the path
-  // then, check if the application also exists in /System/Applications
-
   String appName = getAppNameFromPath(path);
 
-  // check if the application exists in /System/Applications
-  final Directory systemApplications = Directory('/System/Applications');
-  final List<FileSystemEntity> systemApplicationsList =
-      await systemApplications.list().toList();
+  // Directories which hold the system applications on macOS.
+  final List<String> systemApplicationDirs = [
+    '/System/Applications',
+    '/System/Applications/Utilities',
+  ];
 
-  for (final FileSystemEntity systemApplication in systemApplicationsList) {
-    if (systemApplication.path.contains(appName)) {
-      return true;
+  for (final String systemDirPath in systemApplicationDirs) {
+    final Directory systemDirectory = Directory(systemDirPath);
+
+    if (await systemDirectory.exists()) {
+      final List<FileSystemEntity> systemApplicationsList =
+          await systemDirectory.list().toList();
+
+      for (final FileSystemEntity systemApplication in systemApplicationsList) {
+        if (systemApplication.path.contains(appName)) {
+          return true;
+        }
+      }
     }
   }
   return false;
