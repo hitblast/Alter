@@ -20,6 +20,10 @@ class $AssetsImagesGen {
   AssetGenImage get alterEmptyLight =>
       const AssetGenImage('assets/images/alter_empty_light.png');
 
+  /// File path: assets/images/alter_icon.png
+  AssetGenImage get alterIcon =>
+      const AssetGenImage('assets/images/alter_icon.png');
+
   /// File path: assets/images/alter_icon_frame.png
   AssetGenImage get alterIconFrame =>
       const AssetGenImage('assets/images/alter_icon_frame.png');
@@ -36,6 +40,7 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
         alterEmptyDark,
         alterEmptyLight,
+        alterIcon,
         alterIconFrame,
         alterStarter,
         alterWarning

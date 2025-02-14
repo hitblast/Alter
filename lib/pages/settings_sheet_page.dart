@@ -11,17 +11,10 @@ class SettingsSheetPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pop();
-      },
+      onTap: () => Navigator.of(context).pop(),
       child: MacosSheet(
         insetAnimationDuration: const Duration(milliseconds: 300),
-        insetPadding: const EdgeInsets.only(
-          top: 50,
-          left: 60,
-          right: 60,
-          bottom: 50,
-        ),
+        insetPadding: const EdgeInsets.all(50),
         insetAnimationCurve: Curves.easeInOut,
         child: Padding(
           padding: const EdgeInsets.all(30),

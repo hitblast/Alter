@@ -1,6 +1,7 @@
 // First-party imports.
 import 'dart:async';
 import 'package:alter/core/core_sequences.dart';
+import 'package:alter/pages/about_sheet_page.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -101,8 +102,12 @@ class _HomePageState extends ConsumerState<HomePage> {
                 members: [
                   PlatformMenuItem(
                     label: 'About',
-                    onSelected:
-                        () {}, // TODO: Start working on the about sheet page
+                    onSelected: () => showMacosSheet(
+                      context: context,
+                      builder: (context) {
+                        return AboutSheetPage();
+                      },
+                    ),
                   ),
                 ],
               ),
