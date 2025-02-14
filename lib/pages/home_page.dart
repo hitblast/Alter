@@ -101,7 +101,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                 members: [
                   PlatformMenuItem(
                     label: 'About',
-                    onSelected: () {}, // TODO: Start working on the about sheet page
+                    onSelected:
+                        () {}, // TODO: Start working on the about sheet page
                   ),
                 ],
               ),

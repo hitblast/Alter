@@ -74,7 +74,7 @@ class BackgroundService {
     debugPrint('Added watcher for path: $appPath');
   }
 
-  /// Removes a watcher given an app path.
+  /// Removes a watcher and cancels its subscription given an app path.
   void removeWatcher(String appPath) {
     final watchersToRemove = _watcherSubscriptions.keys
         .where((watcher) => watcher.path == appPath)
@@ -91,6 +91,7 @@ class BackgroundService {
     }
   }
 
+  /// Clears all watchers and cancels their subscriptions.
   void clearAllWatchers() {
     for (final subscription in _watcherSubscriptions.values) {
       subscription.cancel();
@@ -130,6 +131,7 @@ class BackgroundService {
 
     receivePort.listen((message) {
       if (message == 'withMods') {
+        removeWatcher(appPath);
         _streamController.add(null);
       }
       isolate.kill(priority: Isolate.immediate);

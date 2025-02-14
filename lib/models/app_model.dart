@@ -5,7 +5,7 @@ import 'package:isar/isar.dart';
 part 'app_model.g.dart';
 
 /// The App model.
-/// Used to store app data in Alter's database.
+/// This is used to store app data in Alter's database.
 @collection
 class App {
   Id id = Isar.autoIncrement;

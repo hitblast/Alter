@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'commandresult_model.freezed.dart';
 
 /// The CommandResult model.
-/// Used to parse command run data while customizing a new app icon.
+/// This is used to parse command run data while customizing a new app icon.
 @freezed
 class CommandResult with _$CommandResult {
   const factory CommandResult({
