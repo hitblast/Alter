@@ -13,7 +13,7 @@ import 'package:alter/pages/starter_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 import 'package:alter/pages/apps_page.dart';
 
-// The home page of the application.
+/// The home page of the application.
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
@@ -21,7 +21,7 @@ class HomePage extends ConsumerStatefulWidget {
   ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-// The state of the home page.
+/// The state of the home page.
 class _HomePageState extends ConsumerState<HomePage> {
   final List<String> _loadingMessages = [
     'This might take a while.',

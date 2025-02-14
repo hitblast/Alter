@@ -16,8 +16,8 @@ import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
-// The apps page.
-// This page is shown if the user has already populated Alter with apps to customize.
+/// The apps page.
+/// This page is shown if the user has already populated Alter with apps to customize.
 class AppsPage extends ConsumerStatefulWidget {
   const AppsPage({super.key});
 
@@ -25,7 +25,7 @@ class AppsPage extends ConsumerStatefulWidget {
   ConsumerState<AppsPage> createState() => _AppsPageState();
 }
 
-// The state for the AppsPage widget.
+/// The state for the AppsPage widget.
 class _AppsPageState extends ConsumerState<AppsPage> {
   @override
   Widget build(BuildContext context) {

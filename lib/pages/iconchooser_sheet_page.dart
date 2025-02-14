@@ -13,7 +13,7 @@ import 'package:alter/gen/assets.gen.dart';
 import 'package:alter/utils/file_util.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
-// The macOS sheet view for choosing the icon when the user prompts.
+/// The macOS sheet view for choosing the icon when the user prompts.
 class IconChooserSheetPage extends ConsumerStatefulWidget {
   const IconChooserSheetPage({
     super.key,
@@ -29,7 +29,7 @@ class IconChooserSheetPage extends ConsumerStatefulWidget {
       _IconChooserSheetPageState();
 }
 
-// The state for the IconChooserSheetPage.
+/// The state for the IconChooserSheetPage.
 class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
   XFile? currentPickedIcon;
 

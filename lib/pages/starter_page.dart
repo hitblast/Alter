@@ -10,8 +10,8 @@ import 'package:alter/gen/assets.gen.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/utils/links_util.dart';
 
-// The starter page widget.
-// This is the first page that the user sees if the have no apps added to the database yet.
+/// The starter page widget.
+/// This is the first page that the user sees if the have no apps added to the database yet.
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
 
