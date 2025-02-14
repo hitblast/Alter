@@ -17,8 +17,13 @@ Future<CommandResult?> setCustomIconForApp(
   String userCustomIconPath, {
   String? iconToDelete,
 }) async {
-  // Get the custom icon file properly and copy it to the app's Resources folder.
-  final String customIconFileName = userCustomIconPath.split('/').last;
+  // Get the original custom icon file name.
+  // Then, modify the file name by adding _alterModify before the extension.
+  final String originalFileName = userCustomIconPath.split('/').last;
+  final int originalFileNameDotIndex = originalFileName.lastIndexOf('.');
+  final String customIconFileName = originalFileNameDotIndex != -1
+      ? "${originalFileName.substring(0, originalFileNameDotIndex)}_alterModify${originalFileName.substring(originalFileNameDotIndex)}"
+      : "${originalFileName}_alterModify";
 
   // Setup shell environment for communication with commands.
   var shell = Shell(throwOnError: true);
