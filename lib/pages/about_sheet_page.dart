@@ -1,10 +1,13 @@
 // First-party imports.
-import 'package:alter/gen/assets.gen.dart';
-import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+
+// Third-party imports.
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+
+// Local imports.
+import 'package:alter/gen/assets.gen.dart';
 
 /// The about sheet page.
 /// This holds the developer details, logo, and other "about" information for the app.
@@ -21,8 +24,11 @@ class AboutSheetPage extends StatelessWidget {
       future: packageInfoFuture,
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return Center(
-            child: CircularProgressIndicator(),
+          return const Center(
+            child: ProgressCircle(
+              radius: 13,
+              value: null,
+            ),
           );
         }
         final packageInfo = snapshot.data!;
@@ -50,7 +56,7 @@ class AboutSheetPage extends StatelessWidget {
                             width: 120,
                             height: 120,
                           ),
-                          Text(
+                          const Text(
                             'Alter',
                             style: TextStyle(
                               fontSize: 30,
@@ -59,12 +65,12 @@ class AboutSheetPage extends StatelessWidget {
                               color: CupertinoColors.systemGrey,
                             ),
                           ),
-                          SizedBox(height: 15),
+                          const SizedBox(height: 15),
                           Text('Package Name: ${packageInfo.packageName}'),
                           Text('Build Version: ${packageInfo.version}'),
-                          SizedBox(height: 20),
-                          Text(
-                            'Special thanks to Raven for supporting the development and giving a ton of inspiration.',
+                          const SizedBox(height: 20),
+                          const Text(
+                            'Special thanks to Raven and Firstrain for supporting the development and giving a ton of inspiration.\n\nDeveloped by HitBlast.\n\nReach out via mail:\nhitblastlive@gmail.com\n\nSee more apps and tools:\nwww.hitblastis.me',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
@@ -72,7 +78,7 @@ class AboutSheetPage extends StatelessWidget {
                               overflow: TextOverflow.fade,
                             ),
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                         ],
                       ),
                     ),
