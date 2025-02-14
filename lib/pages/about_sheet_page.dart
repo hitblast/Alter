@@ -62,20 +62,23 @@ class AboutSheetPage extends StatelessWidget {
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
                               letterSpacing: -2,
-                              color: CupertinoColors.systemGrey,
+                              color: CupertinoColors.systemGrey3,
                             ),
                           ),
                           const SizedBox(height: 15),
                           Text('Package Name: ${packageInfo.packageName}'),
                           Text('Build Version: ${packageInfo.version}'),
                           const SizedBox(height: 20),
-                          const Text(
-                            'Special thanks to Raven and Firstrain for supporting the development and giving a ton of inspiration.\n\nDeveloped by HitBlast.\n\nReach out via mail:\nhitblastlive@gmail.com\n\nSee more apps and tools:\nwww.hitblastis.me',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              color: CupertinoColors.systemGrey,
-                              overflow: TextOverflow.fade,
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 400),
+                            child: const Text(
+                              'Special thanks to Raven and Firstrain for supporting the development and giving a ton of inspiration.\n\nDeveloped with <3 by HitBlast.\n\nSee more apps and tools:\nwww.hitblastis.me\n\nReach out via mail:\nhitblastlive@gmail.com',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: CupertinoColors.systemGrey,
+                                overflow: TextOverflow.fade,
+                              ),
                             ),
                           ),
                           const SizedBox(height: 20),
