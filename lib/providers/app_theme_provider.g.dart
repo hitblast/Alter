@@ -8,7 +8,9 @@ part of 'app_theme_provider.dart';
 
 String _$themeModeHash() => r'13fd5925ec4a1c1f95b62cb16ff08725c1eec887';
 
-/// See also [themeMode].
+/// The provider for ensuring dynamic theme change of the application.
+///
+/// Copied from [themeMode].
 @ProviderFor(themeMode)
 final themeModeProvider = AutoDisposeProvider<ThemeMode>.internal(
   themeMode,

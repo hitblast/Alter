@@ -25,7 +25,7 @@ Future<Directory> ensureDatabasePath() async {
 }
 
 Future<bool> appExistsByPath(String path) async {
-  return await isar.apps.where().filter().pathEqualTo(path).count() > 0;
+  return await isar.apps.filter().pathEqualTo(path).count() > 0;
 }
 
 // The database class for managing the apps.

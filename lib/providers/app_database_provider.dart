@@ -13,8 +13,8 @@ import 'package:alter/models/app_model.dart';
 // Provider generator part file.
 part 'app_database_provider.g.dart';
 
-// The AppDatabaseNotifier for handling queries with the database directly from the interface of Alter.
-// This is primarily needed for UI synchronization and updates.
+/// The AppDatabaseNotifier provider for handling queries with the database directly from the interface of Alter.
+/// This is primarily needed for UI synchronization and updates.
 @Riverpod(keepAlive: true)
 class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   final AppDatabase _database = AppDatabase();
@@ -23,8 +23,6 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
 
   @override
   Future<List<App>> build() async {
-    await _database.fetchApps();
-
     // Integration with services/background_service.dart for database integrity.
     _subscription = service.onAppDataChanged.listen((_) async {
       if (!_isSubscriptionListenerEventRunning) {
@@ -41,14 +39,11 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
       _subscription.cancel();
     });
 
+    await _database.fetchApps();
     return _database.currentApps;
   }
 
-  bool appExists(String path) {
-    return state.value!.any((app) => app.path == path);
-  }
-
-  // Function to add an app to the database.
+  /// Function to add an app to the database.
   Future<void> addApp(String appPath, String userCustomIconPath) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
@@ -71,7 +66,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     });
   }
 
-  // Function to update the custom icon for an already added app.
+  /// Function to update the custom icon for an already added app.
   Future<void> updateAppIcon(
     int id,
     String newCustomIconPath,
@@ -97,24 +92,30 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     });
   }
 
-  // Function to remove an app to the database.
+  /// Function to remove an app from the database.
   Future<void> deleteApp(int id) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final App? app = await _database.fetchAppById(id);
       service.removeWatcher(app!.path);
-      await unsetCustomIconForApp(app);
+
+      try {
+        await unsetCustomIconForApp(app);
+      } catch (_) {} // TODO: Add integrity checks within closure.
+
       await _database.deleteApp(id);
       return _database.currentApps;
     });
   }
 
-  // Function to remove all apps from the database.
+  /// Function to remove all apps from the database.
   Future<void> deleteAllApps() async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       for (final app in _database.currentApps) {
-        await unsetCustomIconForApp(app);
+        try {
+          await unsetCustomIconForApp(app);
+        } catch (_) {} // TODO: Add integrity checks within closure.
       }
       await _database.deleteAllApps();
       service.clearAllWatchers();

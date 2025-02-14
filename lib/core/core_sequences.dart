@@ -12,7 +12,7 @@ import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/utils/dialog_util.dart';
 import 'package:alter/utils/file_util.dart';
 
-// The function to initiate the sequence for killing the application.
+/// The function to initiate the sequence for killing the application.
 Future<void> initiateKillSequence(BuildContext context) async {
   showMacosAlertDialog(
     context: context,
@@ -42,7 +42,7 @@ Future<void> initiateKillSequence(BuildContext context) async {
   );
 }
 
-// The function to initiate the app adding sequence.
+/// The function to initiate the app adding sequence.
 Future<void> initiateAppAddingSequence(BuildContext context) async {
   var file = await pickApplication();
 

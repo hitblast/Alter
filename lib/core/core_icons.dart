@@ -9,7 +9,9 @@ import 'package:process_run/shell.dart';
 import 'package:alter/models/app_model.dart';
 import 'package:alter/models/commandresult_model.dart';
 
-// This function sets a custom icon for an app.
+/// Set a custom icon for an app given its path.
+/// Returns an optional CommandResult containing important, reusable data for the application.
+/// If [iconToDelete] is passed, it will instead run in update mode.
 Future<CommandResult?> setCustomIconForApp(
   String appPath,
   String userCustomIconPath, {
@@ -19,8 +21,9 @@ Future<CommandResult?> setCustomIconForApp(
   final String customIconFileName = userCustomIconPath.split('/').last;
 
   // Setup shell environment for communication with commands.
-  // Also get the path to the app's Info.plist file.
   var shell = Shell(throwOnError: true);
+
+  // Define path to Info.plist file of application.
   final String appBundleInfoPath = "$appPath/Contents/Info";
 
   // If iconToDelete is provided, delete the previous custom icon file if it exists.
@@ -87,8 +90,8 @@ Future<CommandResult?> setCustomIconForApp(
   );
 }
 
-// This function works directly in reverse to the previous one.
-// It unsets the custom icon for an app.
+/// Unset an App object's custom icon if one was previously applied on it.
+/// This reverses the effects put in place by setCustomIconForApp().
 Future<void> unsetCustomIconForApp(
   App app,
 ) async {
