@@ -1,0 +1,13 @@
+[
+  {
+    "label": "Build Alter (Release)",
+    "command": "flutter build macos --release --tree-shake-icons",
+    //"args": [],
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "reveal_target": "dock",
+    "hide": "never",
+    "shell": "system"
+  }
+]
