@@ -1,5 +1,5 @@
 // First-party imports.
-import 'dart:async';
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -39,23 +39,18 @@ class _HomePageState extends ConsumerState<HomePage> {
     'Engine stall! Engine stall!',
   ];
 
-  int _currentMessageIndex = 0;
-  late Timer _timer;
+  final Random _random = Random();
+  late String _currentMessage;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
-      setState(() {
-        _currentMessageIndex =
-            (_currentMessageIndex + 1) % _loadingMessages.length;
-      });
-    });
+    _currentMessage =
+        _loadingMessages[_random.nextInt(_loadingMessages.length)];
   }
 
   @override
   void dispose() {
-    _timer.cancel();
     super.dispose();
   }
 
@@ -75,7 +70,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
             const SizedBox(height: 20),
             Text(
-              _loadingMessages[_currentMessageIndex],
+              _currentMessage,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
