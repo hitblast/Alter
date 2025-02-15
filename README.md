@@ -1,8 +1,5 @@
-<div align="center">
-
-<img src="assets/images/alter_icon.png" alt="Alter Icon" style="width: 200px; height: auto;">
+<img src="assets/images/alter_icon.png" width="30%" height="30%" align="right" alt="Alter Icon">
 
 # Alter
-### Customize your macOS app icons with ease!
 
-</div>
+Beautiful app for customizing macOS app icons with ease.
