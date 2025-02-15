@@ -40,7 +40,7 @@ flutter:
   assets:
     - assets/images/alter_empty_dark.png
     - assets/images/alter_empty_light.png
-    - assets/images/alter_icon.png
     - assets/images/alter_icon_frame.png
     - assets/images/alter_starter.png
     - assets/images/alter_warning.png
+    - macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png

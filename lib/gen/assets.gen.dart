@@ -21,8 +21,8 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/alter_empty_light.png');
 
   /// File path: assets/images/alter_icon.png
-  AssetGenImage get alterIcon =>
-      const AssetGenImage('assets/images/alter_icon.png');
+  AssetGenImage get alterIcon => const AssetGenImage(
+      'macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png');
 
   /// File path: assets/images/alter_icon_frame.png
   AssetGenImage get alterIconFrame =>
