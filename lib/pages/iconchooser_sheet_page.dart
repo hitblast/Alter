@@ -35,10 +35,16 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
 
   // Boolean value indicating if the user has picked an icon.
   bool get hasPickedIcon => currentPickedIcon != null;
+  final scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final scrollController = ScrollController();
     final appName = widget.appFile.name.replaceAll('.app', '');
     final brightness = MediaQuery.of(context).platformBrightness;
 

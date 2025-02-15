@@ -12,12 +12,12 @@ class SettingsSheetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context).pop(),
-      child: MacosSheet(
-        insetAnimationDuration: const Duration(milliseconds: 300),
-        insetPadding: const EdgeInsets.all(50),
+      child: const MacosSheet(
+        insetAnimationDuration: Duration(milliseconds: 300),
+        insetPadding: EdgeInsets.all(50),
         insetAnimationCurve: Curves.easeInOut,
         child: Padding(
-          padding: const EdgeInsets.all(30),
+          padding: EdgeInsets.all(30),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
@@ -43,7 +43,7 @@ class SettingsSheetPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 15),
-                  const Text(
+                  Text(
                     'This page is still a work-in-progress.',
                     style: TextStyle(
                       fontSize: 14,

@@ -37,7 +37,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
         enableBlur: true,
         actions: [
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.add_circled,
             ),
             label: 'Add',
@@ -46,7 +46,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             onPressed: () async => await initiateAppAddingSequence(context),
           ),
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.refresh_bold,
             ),
             label: 'Refresh',
@@ -55,7 +55,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             onPressed: () => ref.invalidate(appDatabaseNotifierProvider),
           ),
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.trash,
             ),
             label: 'Reset All',
@@ -65,7 +65,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                 ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps(),
           ),
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.xmark_octagon,
               color: CupertinoColors.destructiveRed,
             ),
@@ -75,7 +75,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             onPressed: () => initiateKillSequence(context),
           ),
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.paintbrush_fill,
             ),
             label: 'Get Icons',

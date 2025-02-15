@@ -22,7 +22,7 @@ class StarterPage extends StatelessWidget {
         enableBlur: true,
         actions: [
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.xmark_octagon,
               color: CupertinoColors.destructiveRed,
             ),
@@ -82,8 +82,8 @@ class StarterPage extends StatelessWidget {
                               width: 200,
                               height: 200,
                             ),
-                            SizedBox(height: 25),
-                            Text(
+                            const SizedBox(height: 25),
+                            const Text(
                               'Left-click to start customizing.',
                               style: TextStyle(
                                 fontSize: 25,
