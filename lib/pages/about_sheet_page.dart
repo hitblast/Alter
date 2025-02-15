@@ -62,23 +62,53 @@ class AboutSheetPage extends StatelessWidget {
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
                               letterSpacing: -2,
-                              color: CupertinoColors.systemGrey3,
+                              color: CupertinoColors.systemGrey,
                             ),
                           ),
                           const SizedBox(height: 15),
-                          Text('Package Name: ${packageInfo.packageName}'),
-                          Text('Build Version: ${packageInfo.version}'),
+                          Text(
+                            'Package name: ${packageInfo.packageName}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            'Build version: ${packageInfo.version}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           const SizedBox(height: 20),
                           ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 400),
-                            child: const Text(
-                              'Special thanks to Raven and Firstrain for supporting the development and giving a ton of inspiration.\n\nDeveloped with <3 by HitBlast.\n\nSee more apps and tools:\nwww.hitblastis.me\n\nReach out via mail:\nhitblastlive@gmail.com',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: CupertinoColors.systemGrey,
-                                overflow: TextOverflow.fade,
-                              ),
+                            constraints: const BoxConstraints(maxWidth: 380),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  'Special thanks to Raven and Firstrain for supporting the development and giving a ton of inspiration.\n\nThis is my first macOS app project which I took on in desperation since I wanted to add a personal look to most of my apps, but the most stable option at that time was paywalled and not really "stable".',
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 30),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    PushButton(
+                                      onPressed:
+                                          () {}, // TODO: Add external links.
+                                      secondary: true,
+                                      controlSize: ControlSize.regular,
+                                      child: Text('Learn more'),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    PushButton(
+                                      onPressed: () =>
+                                          Navigator.of(context).pop(),
+                                      secondary: true,
+                                      controlSize: ControlSize.regular,
+                                      child: Text('Close'),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ),
                           const SizedBox(height: 20),
