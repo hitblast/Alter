@@ -8,12 +8,12 @@ import 'package:macos_ui/macos_ui.dart';
 import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
-import 'package:alter/background_service.dart';
 import 'package:alter/core/core_database.dart';
 import 'package:alter/models/app_model.dart';
 import 'package:alter/pages/error_page.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:alter/providers/app_theme_provider.dart';
+import 'package:alter/services/background_service.dart';
 
 // Define the Isar database.
 late Isar isar;
@@ -77,7 +77,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
   final dir = await ensureDatabasePath();
-  debugPrint('Database is located at: ${dir.path}');
 
   if (Isar.instanceNames.isEmpty) {
     isar = await Isar.open(
@@ -89,7 +88,7 @@ Future<void> main() async {
       name: 'alterAppListInstance',
       inspector: false,
     );
-    debugPrint('Initialized database.');
+    debugPrint('Initialized database at path: ${isar.path}');
   }
 
   runApp(

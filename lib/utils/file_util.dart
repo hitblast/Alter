@@ -11,16 +11,19 @@ File-picker functions for Alter.
 
 */
 
+/// Open a macOS-native file picker window for picking applications inside the Applications folder.
 Future<XFile?> pickApplication() async {
   final XFile? file = await openFile(initialDirectory: '/Applications');
   return file;
 }
 
+/// Open the custom icon of the application using Preview.
 Future<void> openFileInPreview(String path) async {
   var shell = Shell();
   await shell.run('open -a Preview "$path"');
 }
 
+/// Open a macOS-native file picker window for picking .icns and .png (coming) files for using as custom app icons.
 Future<XFile?> pickIcon() async {
   final XFile? file = await openFile(acceptedTypeGroups: [
     const XTypeGroup(label: 'Icons', extensions: ['icns'])
@@ -28,6 +31,7 @@ Future<XFile?> pickIcon() async {
   return file;
 }
 
+/// Do cutlery on an application's absolute path and extract the name of it.
 String getAppNameFromPath(String path) {
   final List<String> pathParts = path.split('/');
   final String appName = pathParts[pathParts.length - 1];
@@ -35,20 +39,28 @@ String getAppNameFromPath(String path) {
   return appName;
 }
 
+/// Function to determine if an application is a system application.
 Future<bool> ifAppIsSystemApplication(String path) async {
-  // first strip the path to get the application name, usually at the end of the path
-  // then, check if the application also exists in /System/Applications
-
   String appName = getAppNameFromPath(path);
 
-  // check if the application exists in /System/Applications
-  final Directory systemApplications = Directory('/System/Applications');
-  final List<FileSystemEntity> systemApplicationsList =
-      await systemApplications.list().toList();
+  // Directories which hold the system applications on macOS.
+  final List<String> systemApplicationDirs = [
+    '/System/Applications',
+    '/System/Applications/Utilities',
+  ];
 
-  for (final FileSystemEntity systemApplication in systemApplicationsList) {
-    if (systemApplication.path.contains(appName)) {
-      return true;
+  for (final String systemDirPath in systemApplicationDirs) {
+    final Directory systemDirectory = Directory(systemDirPath);
+
+    if (await systemDirectory.exists()) {
+      final List<FileSystemEntity> systemApplicationsList =
+          await systemDirectory.list().toList();
+
+      for (final FileSystemEntity systemApplication in systemApplicationsList) {
+        if (systemApplication.path.contains(appName)) {
+          return true;
+        }
+      }
     }
   }
   return false;

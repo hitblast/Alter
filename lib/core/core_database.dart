@@ -10,7 +10,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:alter/main.dart';
 import 'package:alter/models/app_model.dart';
 
-// Basic database utility functions.
+/*
+
+Basic database utility functions.
+These can be used independent of the provider.
+
+*/
+
+/// Returns the path to the database directory and creates it if necessary.
 Future<Directory> ensureDatabasePath() async {
   final applicationDocumentsDirectory = await getApplicationSupportDirectory();
   final dir = Directory('${applicationDocumentsDirectory.path}/AppList');
@@ -24,11 +31,15 @@ Future<Directory> ensureDatabasePath() async {
   return dir;
 }
 
+/// Checks if an app exists given its path.
 Future<bool> appExistsByPath(String path) async {
-  return await isar.apps.where().filter().pathEqualTo(path).count() > 0;
+  return await isar.apps.filter().pathEqualTo(path).count() > 0;
 }
 
-// The database class for managing the apps.
+/// Core database class for Alter.
+/// This interacts with the root isolate's Isar instance to manage and keep track of modified apps.
+/// Note that background services must NOT use this class (if not modified to support multiple Isar
+/// instances later on).
 class AppDatabase {
   List<App> currentApps = [];
 
@@ -38,19 +49,19 @@ class AppDatabase {
 
   */
 
-  // Fetch the apps from the database.
+  /// Fetch the apps from the database.
   Future<void> fetchApps() async {
     List<App> fetchedApps = await isar.apps.where().findAll();
     currentApps.clear();
     currentApps = fetchedApps;
   }
 
-  // Fetch an app by its ID.
+  /// Fetch an app by its ID.
   Future<App?> fetchAppById(int id) async {
     return await isar.apps.get(id);
   }
 
-  // Add an app to the database.
+  /// Add an app to the database.
   Future<void> addApp(
     String path,
     String customIconPath,
@@ -71,7 +82,7 @@ class AppDatabase {
     await fetchApps();
   }
 
-  // Update the app in the database.
+  /// Update the app in the database.
   Future<void> updateAppIcon(
     int id,
     String newCustomIconPath,
@@ -91,13 +102,13 @@ class AppDatabase {
     }
   }
 
-  // Delete an app from the database.
+  /// Delete an app from the database.
   Future<void> deleteApp(int id) async {
     await isar.writeTxn(() => isar.apps.delete(id));
     await fetchApps();
   }
 
-  // Delete all apps.
+  /// Delete all apps from the database
   Future<void> deleteAllApps() async {
     for (final app in await isar.apps.where().findAll()) {
       await isar.writeTxn(() => isar.apps.delete(app.id));

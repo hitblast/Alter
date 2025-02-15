@@ -1,6 +1,5 @@
 // First-party imports.
-import 'dart:async';
-import 'package:alter/core/core_sequences.dart';
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -8,11 +7,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
+import 'package:alter/core/core_sequences.dart';
+import 'package:alter/pages/about_sheet_page.dart';
 import 'package:alter/pages/starter_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 import 'package:alter/pages/apps_page.dart';
 
-// The home page of the application.
+/// The home page of the application.
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
@@ -20,7 +21,7 @@ class HomePage extends ConsumerStatefulWidget {
   ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-// The state of the home page.
+/// The state of the home page.
 class _HomePageState extends ConsumerState<HomePage> {
   final List<String> _loadingMessages = [
     'This might take a while.',
@@ -32,26 +33,24 @@ class _HomePageState extends ConsumerState<HomePage> {
     'Almost...',
     'Oh well.',
     'Incorporating async logic...',
-    'Calling DaVinci...'
+    'Calling DaVinci...',
+    'Wowing minions...',
+    'Firing engine 01...',
+    'Engine stall! Engine stall!',
   ];
 
-  int _currentMessageIndex = 0;
-  late Timer _timer;
+  final Random _random = Random();
+  late String _currentMessage;
 
   @override
   void initState() {
     super.initState();
-    _timer = Timer.periodic(const Duration(seconds: 4), (timer) {
-      setState(() {
-        _currentMessageIndex =
-            (_currentMessageIndex + 1) % _loadingMessages.length;
-      });
-    });
+    _currentMessage =
+        _loadingMessages[_random.nextInt(_loadingMessages.length)];
   }
 
   @override
   void dispose() {
-    _timer.cancel();
     super.dispose();
   }
 
@@ -71,7 +70,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
             const SizedBox(height: 20),
             Text(
-              _loadingMessages[_currentMessageIndex],
+              _currentMessage,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -101,16 +100,27 @@ class _HomePageState extends ConsumerState<HomePage> {
                 members: [
                   PlatformMenuItem(
                     label: 'About',
-                    onSelected: () {}, // TODO: Start working on the about sheet page
+                    onSelected: () => showMacosSheet(
+                      context: context,
+                      builder: (context) {
+                        return AboutSheetPage();
+                      },
+                    ),
                   ),
                 ],
               ),
               PlatformMenuItemGroup(
                 members: [
                   PlatformMenuItem(
-                    label: 'Kill Process',
+                    label: 'Kill Alter',
                     onSelected: () => initiateKillSequence(context),
-                  )
+                  ),
+                  PlatformProvidedMenuItem(
+                    type: PlatformProvidedMenuItemType.hide,
+                  ),
+                  PlatformProvidedMenuItem(
+                    type: PlatformProvidedMenuItemType.minimizeWindow,
+                  ),
                 ],
               ),
               PlatformProvidedMenuItem(

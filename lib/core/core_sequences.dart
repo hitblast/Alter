@@ -12,7 +12,7 @@ import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/utils/dialog_util.dart';
 import 'package:alter/utils/file_util.dart';
 
-// The function to initiate the sequence for killing the application.
+/// The function to initiate the sequence for killing the application.
 Future<void> initiateKillSequence(BuildContext context) async {
   showMacosAlertDialog(
     context: context,
@@ -42,7 +42,7 @@ Future<void> initiateKillSequence(BuildContext context) async {
   );
 }
 
-// The function to initiate the app adding sequence.
+/// The function to initiate the app adding sequence.
 Future<void> initiateAppAddingSequence(BuildContext context) async {
   var file = await pickApplication();
 
@@ -82,8 +82,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
 
   // If all of the checks above, actually pass. Then, route to IconChooserSheetPage.
   else {
-    // TODO: Currently dismissing system apps because it requires the implementation of
-    // symlinks inside the app. This is a security feature of macOS.
+    debugPrint('Chosen app: ${file.path}');
 
     if (!context.mounted) return;
     showMacosSheet(

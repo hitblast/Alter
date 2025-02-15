@@ -10,8 +10,8 @@ import 'package:alter/gen/assets.gen.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/utils/links_util.dart';
 
-// The starter page widget.
-// This is the first page that the user sees if the have no apps added to the database yet.
+/// The starter page widget.
+/// This is the first page that the user sees if the have no apps added to the database yet.
 class StarterPage extends StatelessWidget {
   const StarterPage({super.key});
 
@@ -22,7 +22,7 @@ class StarterPage extends StatelessWidget {
         enableBlur: true,
         actions: [
           ToolBarIconButton(
-            icon: MacosIcon(
+            icon: const MacosIcon(
               CupertinoIcons.xmark_octagon,
               color: CupertinoColors.destructiveRed,
             ),
@@ -82,11 +82,12 @@ class StarterPage extends StatelessWidget {
                               width: 200,
                               height: 200,
                             ),
-                            SizedBox(height: 25),
-                            Text(
+                            const SizedBox(height: 25),
+                            const Text(
                               'Left-click to start customizing.',
                               style: TextStyle(
                                 fontSize: 25,
+                                fontWeight: FontWeight.w500,
                                 color: CupertinoColors.systemGrey,
                                 letterSpacing: -2,
                                 overflow: TextOverflow.fade,
