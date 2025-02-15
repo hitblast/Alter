@@ -1,4 +1,4 @@
-<img src="assets/images/alter_icon.png" width="40%" height="40%" align="right" alt="Alter Icon">
+<img src="macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" width="40%" height="40%" align="right" alt="Alter Icon">
 
 # Alter Beta
 
