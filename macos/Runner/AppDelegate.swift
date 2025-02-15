@@ -16,6 +16,7 @@ class AppDelegate: FlutterAppDelegate {
 
     override func applicationDidFinishLaunching(_ notification: Notification) {
         NSApp.setActivationPolicy(.regular)
+        NSApp.activate(ignoringOtherApps: true)
     }
 
     override func applicationDidBecomeActive(_ notification: Notification) {
@@ -35,6 +36,7 @@ class AppDelegate: FlutterAppDelegate {
     ) -> Bool {
         NSApp.setActivationPolicy(.regular)
         if !flag, let window = NSApp.windows.first {
+            NSApp.activate(ignoringOtherApps: true)
             window.makeKeyAndOrderFront(self)
         }
         return true
