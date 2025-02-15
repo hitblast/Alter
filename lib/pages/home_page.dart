@@ -36,7 +36,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     'Calling DaVinci...',
     'Wowing minions...',
     'Firing engine 01...',
-    'Engine stall! Engine stall!'
+    'Engine stall! Engine stall!',
   ];
 
   int _currentMessageIndex = 0;
@@ -117,9 +117,15 @@ class _HomePageState extends ConsumerState<HomePage> {
               PlatformMenuItemGroup(
                 members: [
                   PlatformMenuItem(
-                    label: 'Kill Process',
+                    label: 'Kill Alter',
                     onSelected: () => initiateKillSequence(context),
-                  )
+                  ),
+                  PlatformProvidedMenuItem(
+                    type: PlatformProvidedMenuItemType.hide,
+                  ),
+                  PlatformProvidedMenuItem(
+                    type: PlatformProvidedMenuItemType.minimizeWindow,
+                  ),
                 ],
               ),
               PlatformProvidedMenuItem(
