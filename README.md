@@ -1,4 +1,4 @@
-<img src="assets/images/alter_icon.png" width="30%" height="30%" align="right" alt="Alter Icon">
+<img src="assets/images/alter_icon.png" width="40%" height="40%" align="right" alt="Alter Icon">
 
 # Alter Beta
 
