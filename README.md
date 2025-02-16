@@ -3,11 +3,14 @@
 # Alter Beta
 
 Beautiful app for customizing macOS app icons with ease. <br>
-Works on [macOS Big Sur 11.5 or newer]().
+
+> [!NOTE]
+> This project is still under active development. Expect breaking changes till v1.
+> Works on [macOS Big Sur 11.5 or newer]().
 
 ## Table of Contents
 
-- [Key Features]()
+- [Key Features](<README#Key Features>)
 - [Project Status](<README#Project Status>)
 - [Backstory](README#Backstory)
 - [License](README#License)
@@ -15,10 +18,10 @@ Works on [macOS Big Sur 11.5 or newer]().
 ## Key Features
 
 - [Simple workflow]() for changing regular app icons.
-- Beautiful user interface with low overhead using [Flutter](https://flutter.dev/).
+- Beautiful UI with low overhead using [Flutter](https://flutter.dev/).
+- Use any image format like [.png (WIP)]() and [.icns]() as your icon.
 - Continuous and managed app synchronization in the background.
-- Use any image format like [.png (WIP) and .icns]() as your icon.
--
+- Icon modification using application-default attributes.
 
 ## Project Status
 
