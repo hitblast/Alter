@@ -39,7 +39,7 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 > [!NOTE]
 > By using Alter, you acknowledge that Alter is not [notarized.](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
 >
-> It's a security feature of Apple, based on which binaries are validated before running on consumer hardware. Since I do not plan to notarize Alter, the [Homebrew installation script] will automatically remove `com.apple.quarantine` attribute upon installation.
+> It's a security feature of Apple, based on which binaries are validated before running on consumer hardware. Since I do not plan to notarize Alter, the [Homebrew installation script]() will automatically remove the `com.apple.quarantine` attribute upon installation.
 >
 > A better reference could be found for this concept and why invalidating the attribute is important in [this section](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution) of the documentation nikitabobko wrote for AeroSpace.
 
@@ -47,6 +47,20 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 
 This project is still under active development. Although it's stable enough for
 daily-driving, expect breaking changes till v1 is relesed.
+
+## Common Pitfalls
+
+Based on common analysis of the project, a few common pitfalls could be found for this type of project on Macs:
+
+- Self-validating binaries like [Discord]() do not cooperate with the attribute
+modifications happening inside, and could very as well broken once they're
+customized. To solve this, I've tried incorporating a [blacklist feature]() for
+apps which shouldn't be modified at all.
+
+- The [Flutter Engine](https://github.com/flutter/engine) is a part of the
+compiled binary (obviously since it's a Flutter project), so it will not be *as
+memory-efficient* as it would've been if I had used something like SwiftUI. It's
+not really a pitfall, rather something to note when programming on Alter.
 
 ## Backstory
 As an ex-Linux and ex-Windows user, customizability was at the forefront of what
