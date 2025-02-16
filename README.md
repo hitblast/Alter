@@ -10,12 +10,12 @@ Beautiful app for customizing macOS app icons with ease. <br>
 
 ## Table of Contents
 
-- [Key Features](<README#Key Features>)
-- [Installation](README#Installation)
-- [Project Status](<README#Project Status>)
-- [Common Pitfalls](<README#Common Pitfalls>)
-- [Backstory](README#Backstory)
-- [License](README#License)
+- [Key Features](#Key Features)
+- [Installation](#installation)
+- [Project Status](#Project Status)
+- [Common Pitfalls](#Common Pitfalls)
+- [Backstory](#Backstory)
+- [License](#License)
 
 ## Key Features
 
