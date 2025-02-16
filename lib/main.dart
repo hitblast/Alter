@@ -78,18 +78,16 @@ Future<void> main() async {
   await _configureMacosWindowUtils();
   final dir = await ensureDatabasePath();
 
-  if (Isar.instanceNames.isEmpty) {
-    isar = await Isar.open(
-      [
-        // The base schema for storing application data.
-        AppSchema,
-      ],
-      directory: dir.path,
-      name: 'alterAppListInstance',
-      inspector: false,
-    );
-    debugPrint('Initialized database at path: ${isar.path}');
-  }
+  isar = await Isar.open(
+    [
+      // The base schema for storing application data.
+      AppSchema,
+    ],
+    directory: dir.path,
+    name: 'alterAppListInstance',
+    inspector: false,
+  );
+  debugPrint('Initialized database at path: ${isar.path}');
 
   runApp(
     ProviderScope(
