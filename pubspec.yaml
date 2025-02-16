@@ -1,7 +1,7 @@
 name: alter
 description: "Customize your macOS app icons with ease!"
 publish_to: "none"
-version: 1.0.0
+version: 0.1.0
 
 environment:
   sdk: ^3.5.4
