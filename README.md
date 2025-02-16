@@ -1,12 +1,12 @@
 <img src="macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" width="40%" height="40%" align="right" alt="Alter Icon">
 
-# Alter Beta
+# Alter Beta [![Build](https://github.com/hitblast/Alter/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/hitblast/Alter/actions/workflows/build.yml)
 
 Beautiful app for customizing macOS app icons with ease. <br>
 
 > [!NOTE]
 > This project is still under active development. Expect breaking changes till v1.
-> Works on [macOS Big Sur 11.5 or newer]().
+> Works on [macOS Ventura 13 or newer]().
 
 ## Table of Contents
 
@@ -25,6 +25,23 @@ Beautiful app for customizing macOS app icons with ease. <br>
 - Use any image format like [.png (WIP)]() and [.icns]() as your icon.
 - Continuous and managed app synchronization in the background.
 - Icon modification using application-default attributes.
+
+## Installation
+
+(Recommended) Install Alter using [Homebrew](https://brew.sh/):
+
+```
+brew install --cask hitblast/tap/alter
+```
+
+Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases) to download the latest builds.
+
+> [!NOTE]
+> By using Alter, you acknowledge that Alter is not [notarized.](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
+>
+> It's a security feature of Apple, based on which binaries are validated before running on consumer hardware. Since I do not plan to notarize Alter, the [Homebrew installation script] will automatically remove `com.apple.quarantine` attribute upon installation.
+>
+> A better reference could be found for this concept and why invalidating the attribute is important in [this section](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution) of the documentation nikitabobko wrote for AeroSpace.
 
 ## Project Status
 
