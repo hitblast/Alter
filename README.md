@@ -24,6 +24,7 @@ Beautiful app for customizing macOS app icons with ease. <br>
 - Use any image format like [.png (WIP)]() and [.icns]() as your icon.
 - Continuous and managed app synchronization in the background.
 - Icon modification using application-default attributes.
+- A small binary size. **Less than 50 MB as of now.**
 
 ## Installation
 
