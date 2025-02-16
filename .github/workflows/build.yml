@@ -27,4 +27,4 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter app
-        run: flutter build macos --release
+        run: flutter build macos
