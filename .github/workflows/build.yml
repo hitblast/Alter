@@ -33,9 +33,9 @@ jobs:
       - name: Build Flutter app
         run: flutter build macos --tree-shake-icons
 
-      - name: Upload build artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifact
-          path: build/macos/Build/Products/Debug/alter.app
-          retention-days: 1
+      # - name: Upload build artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: build-artifact
+      #     path: build/macos/Build/Products/Debug/alter.app
+      #     retention-days: 1
