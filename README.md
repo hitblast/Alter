@@ -30,7 +30,7 @@ Beautiful app for customizing macOS app icons with ease. <br>
 
 ## Installation
 
-(Recommended) Install Alter using [Homebrew](https://brew.sh/):
+Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
 
 ```
 brew install --cask hitblast/tap/alter
