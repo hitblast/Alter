@@ -34,7 +34,7 @@ jobs:
         run: flutter build macos --tree-shake-icons
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifact
           path: build/macos/Build/Products/Debug/alter.app
