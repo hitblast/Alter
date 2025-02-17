@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: Test Builds-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     strategy:
