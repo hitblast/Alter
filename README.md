@@ -21,10 +21,11 @@ Beautiful app for customizing macOS app icons with ease. <br>
 
 ## Key Features
 
-- [Simple workflow]() for changing regular app icons.
-- Beautiful UI with low overhead using [Flutter](https://flutter.dev/).
-- Use any image format like [.png (WIP)]() and [.icns]() as your icon.
-- Continuous and managed app synchronization in the background.
+- [Simple workflow]() for changing regular app icons
+- Beautiful UI with low overhead using [Flutter](https://flutter.dev/)
+- Both [.png (work-in-progress)]() and [.icns]() usable as valid formats for icons
+- Doesn't require disabling SIP (System Integrity Protection)
+- Continuous and managed app synchronization in the background
 - Icon modification using application-default attributes.
 - A moderately small binary size for its application.
 
