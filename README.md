@@ -26,8 +26,7 @@ Beautiful app for customizing macOS app icons with ease. <br>
 - Both [.png (work-in-progress)]() and [.icns]() usable as valid formats for icons
 - Doesn't require disabling SIP (System Integrity Protection)
 - Continuous and managed app synchronization in the background
-- Icon modification using application-default attributes.
-- A moderately small binary size for its application.
+- Icon modification using application-default attributes
 
 ## Installation
 
