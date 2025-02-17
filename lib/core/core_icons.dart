@@ -54,14 +54,19 @@ Future<CommandResult?> setCustomIconForApp(
 
   // Some apps do not have the CFBundleIconName key in their Info.plist file.
   // In that case, ignore read-writing it for that particular app only.
+  String? tempCFBundleIconName;
   try {
-    previousCFBundleIconName =
-        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconName'))
-            .single
-            .outText;
+    final readResult =
+        await shell.run('defaults read "$appBundleInfoPath" CFBundleIconName');
+    tempCFBundleIconName = readResult.single.outText;
+  } catch (e) {
+    tempCFBundleIconName = null;
+  }
+  if (tempCFBundleIconName != null) {
+    previousCFBundleIconName = tempCFBundleIconName;
     await shell.run(
         'defaults write "$appBundleInfoPath" CFBundleIconName $customIconFileName');
-  } catch (e) {
+  } else {
     previousCFBundleIconName = '';
   }
 
