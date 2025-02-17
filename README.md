@@ -62,7 +62,7 @@ compiled binary (obviously since it's a Flutter project), so it will not be *as
 memory-efficient* as it would've been if I had used something like SwiftUI. It's
 not really a pitfall, rather something to note when programming on Alter.
 
-- Apps like IDEs such as [Android Studio]() and other JetBrains IDEs tend to
+- Large apps like IDEs such as [Android Studio]() tend to
 check for file integrity before updating instead of entirely replacing the
 binary due to their sheer size. These might cause some issues for Alter, so it's
 best suggested to remove the icon and reapply after completing the update
