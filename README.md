@@ -30,7 +30,7 @@ Works on **macOS Ventura 13 or newer.**
 
 ## Installation
 
-Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
+📦 Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
 
 ```
 brew install --cask hitblast/tap/alter
@@ -47,8 +47,11 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 
 ## Project Status
 
-This project is still under active development. Although it's stable enough for
-daily-driving, expect breaking changes till v1 is relesed.
+This project is still under active development. Before the release of v1, some important tasks need to be filled up such as:
+
+- [ ] Improved integrity checks for each app.
+- [ ] Taking ["Common Pitfalls"](#common-pitfalls) into account, try and resolve the ongoing conflicts with some apps.
+- [ ] Integration of standard image formats such as JPG and PNG.
 
 ## Common Pitfalls
 
