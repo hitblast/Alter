@@ -15,7 +15,6 @@ Works on **macOS Ventura 13 or newer.**
 - [Key Features](#key-features)
 - [Installation](#installation)
 - [Project Status](#project-status)
-- [User Interface](#user-interface)
 - [Common Pitfalls](#common-pitfalls)
 - [Backstory](#backstory)
 - [License](#license)
@@ -53,26 +52,6 @@ This project is still under active development. Before the release of v1, some i
 - [ ] Improved integrity checks for each app.
 - [ ] Taking ["Common Pitfalls"](#common-pitfalls) into account - try and resolve the ongoing conflicts with some apps.
 - [ ] Integration of standard image formats such as JPG and PNG.
-
-## User Interface
-
-<div align="center">
-    <table>
-        <tr>
-            <td align="center">
-                <img src="static/demo_starter_screen_light.png">
-                <br>
-                Light Mode
-            </td>
-            <td align="center">
-                <img src="static/demo_starter_screen_dark.png">
-                <br>
-                Dark Mode
-            </td>
-        </tr>
-    </table>
-    <i>The "starter screen" of Alter, <a href="https://freemacsoft.net/appcleaner">inspired by AppCleaner</a></i>
-</div>
 
 ## Common Pitfalls
 
