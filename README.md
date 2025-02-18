@@ -5,10 +5,10 @@
 [![Test Builds](https://github.com/hitblast/Alter/actions/workflows/build.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/build.yml)
 
 Beautiful app for customizing macOS app icons with ease. <br>
+Works on **macOS Ventura 13 or newer.**
 
 > [!NOTE]
-> This project is still under active development (see [Project Status](#Project Status)). Expect breaking changes till v1.
-> Works on [macOS Ventura 13 or newer]().
+> This project is still under active development. Expect breaking changes till v1. See [Project Status](#Project Status) for reference.
 
 ## Table of Contents
 
