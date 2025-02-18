@@ -60,19 +60,18 @@ This project is still under active development. Before the release of v1, some i
     <table>
         <tr>
             <td align="center">
-                <img src="static/demo_starter_screen_light.png" width="200px" height="auto">
+                <img src="static/demo_starter_screen_light.png">
                 <br>
                 Light Mode
             </td>
             <td align="center">
-                <img src="static/demo_starter_screen_dark.png" width="200px" height="auto">
+                <img src="static/demo_starter_screen_dark.png">
                 <br>
                 Dark Mode
             </td>
         </tr>
     </table>
-_ The "starter screen" of Alter, heavily inspired by freeMacSoft's [AppCleaner](https://freemacsoft.net/appcleaner/) app _
-
+    <i>The "starter screen" of Alter, heavily inspired by freeMacSoft's [AppCleaner](https://freemacsoft.net/appcleaner/) app</i>
 </div>
 
 ## Common Pitfalls
