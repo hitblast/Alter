@@ -50,12 +50,12 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 This project is still under active development. Before the release of v1, some important tasks need to be filled up such as:
 
 - [ ] Improved integrity checks for each app.
-- [ ] Taking ["Common Pitfalls"](#common-pitfalls) into account, try and resolve the ongoing conflicts with some apps.
+- [ ] Taking ["Common Pitfalls"](#common-pitfalls) into account - try and resolve the ongoing conflicts with some apps.
 - [ ] Integration of standard image formats such as JPG and PNG.
 
 ## Common Pitfalls
 
-Based on common analysis of the project, a few common pitfalls could be found for this type of project on Macs:
+Based on common analysis of the project, a few issues have been found for this type of project on Macs:
 
 - Self-validating binaries like [Discord]() do not cooperate with the attribute
 modifications happening inside, and could very as well broken once they're
