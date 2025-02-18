@@ -71,7 +71,7 @@ This project is still under active development. Before the release of v1, some i
             </td>
         </tr>
     </table>
-    <i>The "starter screen" of Alter, heavily inspired by freeMacSoft's [AppCleaner](https://freemacsoft.net/appcleaner/) app</i>
+    <i>The "starter screen" of Alter, <a href="https://freemacsoft.net/appcleaner">inspired by AppCleaner</a></i>
 </div>
 
 ## Common Pitfalls
