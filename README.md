@@ -80,9 +80,7 @@ procedure.
 As an ex-Linux and ex-Windows user, customizability was at the forefront of what
 I was doing with my laptop back when I started learning. However, when I
 switched to my Apple Silicon-powered machine, I wasn't really sure how to take
-"customizability" like I used to.
-
-Sure, there are apps like
+"customizability" like I used to. Sure, there are apps like
 [AeroSpace](https://github.com/nikitabobko/AeroSpace), [Karabiner
 Elements](https://karabiner-elements.pqrs.org/) and
 [Raycast](https://www.raycast.com/) which help me power through my everyday
