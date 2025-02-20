@@ -60,7 +60,7 @@ This project is still under active development. Before the release of v1, some i
 
 Based on common analysis of the project, a few issues have been found for this type of project on Macs:
 
-- Self-validating binaries like [Discord]() do not cooperate with the attribute
+- Self-validating binaries like [Discord](https://discord.com/) do not cooperate with the attribute
 modifications happening inside, and could very as well broken once they're
 customized. To solve this, I've tried incorporating a [blacklist feature]() for
 apps which shouldn't be modified at all.
@@ -70,7 +70,7 @@ compiled binary (obviously since it's a Flutter project), so it will not be *as
 memory-efficient* as it would've been if I had used something like SwiftUI. It's
 not really a pitfall, rather something to note when programming on Alter.
 
-- Large apps like IDEs such as [Android Studio]() tend to
+- Large apps like IDEs such as [Android Studio](https://developer.android.com/studio) tend to
 check for file integrity before updating instead of entirely replacing the
 binary due to their sheer size. These might cause some issues for Alter, so it's
 best suggested to remove the icon and reapply after completing the update
@@ -80,7 +80,9 @@ procedure.
 As an ex-Linux and ex-Windows user, customizability was at the forefront of what
 I was doing with my laptop back when I started learning. However, when I
 switched to my Apple Silicon-powered machine, I wasn't really sure how to take
-"customizability" like I used to. Sure, there are apps like
+"customizability" like I used to.
+
+Sure, there are apps like
 [AeroSpace](https://github.com/nikitabobko/AeroSpace), [Karabiner
 Elements](https://karabiner-elements.pqrs.org/) and
 [Raycast](https://www.raycast.com/) which help me power through my everyday
