@@ -30,6 +30,9 @@ Works on **macOS Ventura 13 or newer.**
 
 ## Installation
 
+> [!IMPORTANT]
+> ⚠️ This section is still a work-in-progress. Installation methods will only work after the initial release.
+
 📦 Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
 
 ```
