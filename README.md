@@ -4,7 +4,7 @@
 
 [![Test Builds](https://github.com/hitblast/Alter/actions/workflows/build.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/build.yml)
 
-Beautiful app for customizing macOS app icons with ease. <br>
+Beautiful app to customize your macOS app icons with ease. <br>
 Works on **macOS Ventura 13 or newer.**
 
 > [!NOTE]
