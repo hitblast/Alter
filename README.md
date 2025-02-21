@@ -15,8 +15,8 @@ Works on **macOS Ventura 13 or newer.**
 - [Key Features](#key-features)
 - [Installation](#installation)
 - [Project Status](#project-status)
-- [Common Pitfalls](#common-pitfalls)
 - [Backstory](#backstory)
+- [Common Pitfalls](#common-pitfalls)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -51,31 +51,9 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 
 ## Project Status
 
-This project is still under active development. Before the release of v1, some important tasks need to be filled up such as:
-
-- [ ] Improved integrity checks for each app.
-- [ ] Taking ["Common Pitfalls"](#common-pitfalls) into account - try and resolve the ongoing conflicts with some apps.
-- [ ] Integration of standard image formats such as JPG and PNG.
-
-## Common Pitfalls
-
-Based on common analysis of the project, a few issues have been found for this type of project on Macs:
-
-- Self-validating binaries like [Discord](https://discord.com/) do not cooperate with the attribute
-modifications happening inside, and could very as well broken once they're
-customized. To solve this, I've tried incorporating a [blacklist feature]() for
-apps which shouldn't be modified at all.
-
-- The [Flutter Engine](https://github.com/flutter/engine) is a part of the
-compiled binary (obviously since it's a Flutter project), so it will not be *as
-memory-efficient* as it would've been if I had used something like SwiftUI. It's
-not really a pitfall, rather something to note when programming on Alter.
-
-- Large apps like IDEs such as [Android Studio](https://developer.android.com/studio) tend to
-check for file integrity before updating instead of entirely replacing the
-binary due to their sheer size. These might cause some issues for Alter, so it's
-best suggested to remove the icon and reapply after completing the update
-procedure.
+Alter v1 is still out of scope for development. However, the initial beta release of v0.1.0 is
+under active development. Please see [v0.1.0 (project)](https://github.com/users/hitblast/projects/12)
+to see the ongoing chain of code.
 
 ## Backstory
 As an ex-Linux and ex-Windows user, customizability was at the forefront of what
@@ -101,11 +79,35 @@ basis.
 I wanted to take the good parts of both apps and make my own, personal solution
 with a fully open-sourced near-native development experience.
 
+---
+
+## Common Pitfalls
+
+Based on common analysis of the project, a few issues have been found for this type of project on Macs:
+
+- Self-validating binaries like [Discord](https://discord.com/) do not cooperate with the attribute
+modifications happening inside, and could very as well broken once they're
+customized. To solve this, I've tried incorporating a [blacklist feature]() for
+apps which shouldn't be modified at all.
+
+- The [Flutter Engine](https://github.com/flutter/engine) is a part of the
+compiled binary (obviously since it's a Flutter project), so there will always be a tiny
+burden of a few megabytes worth of memory usage unless Flutter is optimized further.
+
+- Large apps like IDEs such as [Android Studio](https://developer.android.com/studio) tend to
+check for file integrity before updating instead of entirely replacing the
+binary due to their sheer size. It's suggested to remove the icon and reapply after completing
+the update procedure.
+
 ## Contributing
 
-If you're a Flutter, Swift or a general macOS enthusiast who also works with apps and would
-like to contribute to this project, consider reading the [development guide]() preincluded
-with Alter. Any new ideas, changes, bug fixes are always welcome.
+Since Alter is still in its early development phase, contributions are always welcome.
+If you are a developer who is willing to improve *any* aspect of the application, consider
+reading [dev-docs/DEVELOPMENT.md](/dev-docs/DEVELOPMENT.md) for everything related to
+reproducing the development environment and more.
+
+If you have already attached the development environment, consider following through the
+ethical guidelines of contributing written in [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 ## License
 
