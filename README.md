@@ -17,6 +17,7 @@ Works on **macOS Ventura 13 or newer.**
 - [Project Status](#project-status)
 - [Common Pitfalls](#common-pitfalls)
 - [Backstory](#backstory)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Key Features
@@ -99,6 +100,12 @@ basis.
 
 I wanted to take the good parts of both apps and make my own, personal solution
 with a fully open-sourced near-native development experience.
+
+## Contributing
+
+If you're a Flutter, Swift or a general macOS enthusiast who also works with apps and would
+like to contribute to this project, consider reading the [development guide]() preincluded
+with Alter. Any new ideas, changes, bug fixes are always welcome.
 
 ## License
 
