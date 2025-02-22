@@ -17,8 +17,8 @@ These can be used independent of the provider.
 
 */
 
-/// Returns the path to the database directory and creates it if necessary.
-Future<Directory> ensureDatabasePath() async {
+/// Returns a newly initialized Isar instance for an isolate.
+Future<Isar> ensureDatabase() async {
   final applicationDocumentsDirectory = await getApplicationSupportDirectory();
   final dir = Directory('${applicationDocumentsDirectory.path}/AppList');
 
@@ -28,12 +28,24 @@ Future<Directory> ensureDatabasePath() async {
     await dir.create();
   }
 
-  return dir;
+  // Initialize an Isar database instance.
+  final newIsarInstance = await Isar.open(
+    [
+      // The base schema for storing application data.
+      AppSchema,
+    ],
+    directory: dir.path,
+    name: 'alterAppListInstance',
+    inspector: false,
+  );
+  debugPrint('Initialized database at path: ${newIsarInstance.path}');
+
+  return newIsarInstance;
 }
 
 /// Checks if an app exists given its path.
 Future<bool> appExistsByPath(String path) async {
-  return await isar.apps.filter().pathEqualTo(path).count() > 0;
+  return await coreIsolateIsar.apps.filter().pathEqualTo(path).count() > 0;
 }
 
 /// Core database class for Alter.
@@ -51,14 +63,19 @@ class AppDatabase {
 
   /// Fetch the apps from the database.
   Future<void> fetchApps() async {
-    List<App> fetchedApps = await isar.apps.where().findAll();
+    List<App> fetchedApps = await coreIsolateIsar.apps.where().findAll();
     currentApps.clear();
     currentApps = fetchedApps;
   }
 
-  /// Fetch an app by its ID.
-  Future<App?> fetchAppById(int id) async {
-    return await isar.apps.get(id);
+  /// Get an app by its ID from the current list of apps.
+  /// Returns null if the app does not exist.
+  Future<App?> getAppById(int id) async {
+    try {
+      return currentApps.firstWhere((app) => app.id == id);
+    } catch (e) {
+      return null;
+    }
   }
 
   /// Add an app to the database.
@@ -78,7 +95,7 @@ class AppDatabase {
       ..previousCFBundleIconName = previousCFBundleIconName
       ..previousCFBundleIconFile = previousCFBundleIconFile;
 
-    await isar.writeTxn(() => isar.apps.put(newApp));
+    await coreIsolateIsar.writeTxn(() => coreIsolateIsar.apps.put(newApp));
     await fetchApps();
   }
 
@@ -89,7 +106,7 @@ class AppDatabase {
     String newCFBundleIconName,
     String newCFBundleIconFile,
   ) async {
-    final existingApp = await isar.apps.get(id);
+    final existingApp = await coreIsolateIsar.apps.get(id);
 
     if (existingApp != null) {
       // Modify existing fields.
@@ -97,21 +114,22 @@ class AppDatabase {
       existingApp.newCFBundleIconName = newCFBundleIconName;
       existingApp.newCFBundleIconFile = newCFBundleIconFile;
 
-      await isar.writeTxn(() => isar.apps.put(existingApp));
+      await coreIsolateIsar
+          .writeTxn(() => coreIsolateIsar.apps.put(existingApp));
       await fetchApps();
     }
   }
 
   /// Delete an app from the database.
   Future<void> deleteApp(int id) async {
-    await isar.writeTxn(() => isar.apps.delete(id));
+    await coreIsolateIsar.writeTxn(() => coreIsolateIsar.apps.delete(id));
     await fetchApps();
   }
 
   /// Delete all apps from the database
   Future<void> deleteAllApps() async {
-    for (final app in await isar.apps.where().findAll()) {
-      await isar.writeTxn(() => isar.apps.delete(app.id));
+    for (final app in await coreIsolateIsar.apps.where().findAll()) {
+      await coreIsolateIsar.writeTxn(() => coreIsolateIsar.apps.delete(app.id));
       await fetchApps();
     }
   }
