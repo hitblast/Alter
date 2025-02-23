@@ -60,7 +60,7 @@ mise run build
 
 ## File Hierarchy
 
-Like all other Flutter projects, Alter's primary code resides in the [lib/](lib) directory.
+Like all other Flutter projects, Alter's primary code resides in the [lib/](../lib/) directory.
 
 ```bash
 lib
