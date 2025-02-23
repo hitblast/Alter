@@ -38,7 +38,6 @@ Future<Isar> ensureDatabase() async {
     name: 'alterAppListInstance',
     inspector: false,
   );
-  debugPrint('Initialized database at path: ${newIsarInstance.path}');
 
   return newIsarInstance;
 }

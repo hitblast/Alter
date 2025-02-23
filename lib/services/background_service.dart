@@ -149,6 +149,8 @@ class BackgroundService {
     BackgroundIsolateBinaryMessenger.ensureInitialized(rootToken);
 
     Isar thisIsolateIsar = await ensureDatabase();
+    debugPrint('Opened database instance for appPath: $appPath');
+
     bool dataChanged = false;
 
     final app =

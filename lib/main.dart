@@ -77,6 +77,7 @@ Future<void> main() async {
   await _configureMacosWindowUtils();
 
   coreIsolateIsar = await ensureDatabase();
+  debugPrint('Database initialized at path: ${coreIsolateIsar.path}');
 
   runApp(
     ProviderScope(
