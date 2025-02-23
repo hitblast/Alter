@@ -5,7 +5,9 @@ This guide walks you through the setup and development process for contributing 
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
+- [Code Editor](#code-editor)
 - [Setup](#setup)
+- [File Hierarchy](#file-hierarchy)
 
 ## Prerequisites
 
@@ -55,3 +57,31 @@ git clone git@github.com:hitblast/alter.git
 mise run build
 # this is the same as running: flutter build macos --verbose --release --tree-shake-icons
 ```
+
+## File Hierarchy
+
+Like all other Flutter projects, Alter's primary code resides in the [lib/](lib) directory.
+
+```bash
+lib
+├── core # A
+├── gen # B
+├── models # C
+├── pages # D
+├── providers # E
+├── services # F
+└── utils # G
+```
+
+**A** : The core mechanics of the app. This includes the following:
+  i. Database I/O functions, along with basic utility functions for interacting with it.
+  ii. Sequences to spawn UI components such as dialogs and sheets. These basically contain the logic behind.
+  iii. Functions / methods to actually set / unset / update icons.
+**B** : Generated code for managing assets for the app.
+**C** : Classes and models. The primary ones are:
+  i. `App`: Represents an app which has been customized by Alter.
+  ii. `CommandResult` Often used by section A for processing icon modification.
+**D** : Pages and screens. These are the primary view components.
+**E** : State management providers. Primary used for storing `riverpod` providers.
+**F** : Background services such as integrity checks.
+**G** : Utility functions for using across the whole source code.
