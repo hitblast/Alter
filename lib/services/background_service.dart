@@ -30,7 +30,7 @@ class BackgroundService {
   /// Start the background service.
   /// Only works if the class is applied as a singleton across the whole app.
   void start() async {
-    final apps = await isar.apps.where().findAll();
+    final apps = await coreIsolateIsar.apps.where().findAll();
     for (final app in apps) {
       addWatcher(app.path);
     }
@@ -148,30 +148,24 @@ class BackgroundService {
 
     BackgroundIsolateBinaryMessenger.ensureInitialized(rootToken);
 
-    final dir = await ensureDatabasePath();
-    Isar isolateIsar = await Isar.open(
-      [
-        AppSchema,
-      ],
-      directory: dir.path,
-      name: 'alterAppListInstance',
-      inspector: false,
-    );
+    Isar thisIsolateIsar = await ensureDatabase();
+    debugPrint('Opened database instance for appPath: $appPath');
 
     bool dataChanged = false;
 
     final app =
-        await isolateIsar.apps.filter().pathEqualTo(appPath).findFirst();
+        await thisIsolateIsar.apps.filter().pathEqualTo(appPath).findFirst();
     if (app != null) {
       // If the application does not exist anymore / has been uninstalled.
       final appExists = await Directory(app.path).exists();
       if (!appExists) {
-        await isolateIsar.writeTxn(() => isolateIsar.apps.delete(app.id));
+        await thisIsolateIsar
+            .writeTxn(() => thisIsolateIsar.apps.delete(app.id));
         dataChanged = true;
       }
     }
 
-    await isolateIsar.close();
+    await thisIsolateIsar.close();
 
     if (dataChanged) {
       sendPort.send('withMods');
