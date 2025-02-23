@@ -51,7 +51,7 @@ git clone git@github.com:hitblast/alter.git
 
 - Step 3: Build a production release.
 
-  ```bash
-  mise run build
-  # this is the same as running: flutter build macos --verbose --release --tree-shake-icons
-  ```
+```bash
+mise run build
+# this is the same as running: flutter build macos --verbose --release --tree-shake-icons
+```
