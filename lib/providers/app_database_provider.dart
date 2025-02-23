@@ -73,7 +73,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   ) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      final app = await _database.fetchAppById(id);
+      final app = await _database.getAppById(id);
       final processedCommand = await setCustomIconForApp(
         app!.path,
         newCustomIconPath,
@@ -96,7 +96,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   Future<void> deleteApp(int id) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      final App? app = await _database.fetchAppById(id);
+      final App? app = await _database.getAppById(id);
       service.removeWatcher(app!.path);
 
       try {

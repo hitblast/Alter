@@ -9,14 +9,13 @@ import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
 import 'package:alter/core/core_database.dart';
-import 'package:alter/models/app_model.dart';
 import 'package:alter/pages/error_page.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:alter/providers/app_theme_provider.dart';
 import 'package:alter/services/background_service.dart';
 
 // Define the Isar database.
-late Isar isar;
+late Isar coreIsolateIsar;
 
 // Define the background service for Alter.
 // This is used for database integrity checks and more.
@@ -76,18 +75,9 @@ The main functions of the application.
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
-  final dir = await ensureDatabasePath();
 
-  isar = await Isar.open(
-    [
-      // The base schema for storing application data.
-      AppSchema,
-    ],
-    directory: dir.path,
-    name: 'alterAppListInstance',
-    inspector: false,
-  );
-  debugPrint('Initialized database at path: ${isar.path}');
+  coreIsolateIsar = await ensureDatabase();
+  debugPrint('Database initialized at path: ${coreIsolateIsar.path}');
 
   runApp(
     ProviderScope(

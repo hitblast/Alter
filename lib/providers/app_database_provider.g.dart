@@ -7,7 +7,7 @@ part of 'app_database_provider.dart';
 // **************************************************************************
 
 String _$appDatabaseNotifierHash() =>
-    r'1d87c92bfb51aa6b6dd7319c7b7246f8aaba61a6';
+    r'281d0db5946e28ffce7b0128bae686f30560fe99';
 
 /// The AppDatabaseNotifier provider for handling queries with the database directly from the interface of Alter.
 /// This is primarily needed for UI synchronization and updates.
