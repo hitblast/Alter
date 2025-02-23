@@ -74,17 +74,13 @@ lib
 ```
 
 - **A**: The core mechanics of the app. This includes the following:
-
-  i. Database I/O functions, along with basic utility functions for interacting with it.
-  ii. Sequences to spawn UI components such as dialogs and sheets. These basically contain the logic behind.
-  iii. Functions / methods to actually set / unset / update icons.
-
+  1. Database I/O functions, along with basic utility functions for interacting with it.
+  2. Sequences to spawn UI components such as dialogs and sheets. These basically contain the logic behind.
+  3. Functions / methods to actually set / unset / update icons.
 - **B**: Generated code for managing assets for the app.
 - **C**: Classes and models. The primary ones are:
-
-  i. `App`: Represents an app which has been customized by Alter.
-  ii. `CommandResult` Often used by section A for processing icon modification.
-
+  1. `App`: Represents an app which has been customized by Alter.
+  2. `CommandResult` Often used by section A for processing icon modification.
 - **D**: Pages and screens. These are the primary view components.
 - **E**: State management providers. Primary used for storing `riverpod` providers.
 - **F**: Background services such as integrity checks.
