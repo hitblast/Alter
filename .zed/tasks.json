@@ -1,7 +1,7 @@
 [
   {
     "label": "Build Alter (Release)",
-    "command": "flutter build macos --release --tree-shake-icons",
+    "command": "mise run build",
     //"args": [],
     "use_new_terminal": true,
     "allow_concurrent_runs": false,
