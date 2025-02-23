@@ -31,7 +31,7 @@ Works on **macOS Ventura 13 or newer.**
 
 ## Installation
 
-> [!IMPORTANT]
+> [!WARNING]
 > ⚠️ This section is still a work-in-progress. Installation methods will only work after the initial release.
 
 📦 Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
@@ -42,7 +42,7 @@ brew install --cask hitblast/tap/alter
 
 Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases) to download the latest builds.
 
-> [!NOTE]
+> [!IMPORTANT]
 > By using Alter, you acknowledge that Alter is not [notarized.](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
 >
 > It's a security feature of Apple, based on which binaries are validated before running on consumer hardware. Since I do not plan to notarize Alter, the [Homebrew installation script]() will automatically remove the `com.apple.quarantine` attribute upon installation.
