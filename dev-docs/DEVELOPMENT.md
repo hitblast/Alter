@@ -30,10 +30,13 @@ bundled with this repository:
 
 ```bash
 # HTTPS
-git clone https://github.com/hitblast/alter.git
+git clone https://github.com/hitblast/Alter.git
 
 # SSH
-git clone git@github.com:hitblast/alter.git
+git clone git@github.com:hitblast/Alter.git
+
+# Enter the directory.
+cd Alter
 ```
 
 - Step 2: Install the dependencies.
