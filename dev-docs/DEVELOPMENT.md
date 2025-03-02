@@ -23,7 +23,7 @@ particular setup. If you're using Zed, this gives you a few benefits since the c
 bundled with this repository:
 
   - Low memory overhead while debugging Alter (excluding Flutter).
-  - [Spawning tasks](https://zed.dev/docs/tasks) for building a production release instead of depending on `mise` / `flutter` directly.
+  - [Spawning tasks](https://zed.dev/docs/tasks) for building a production release instead of depending on `mise`/`flutter` directly.
 
 ## Setup
 
@@ -81,7 +81,7 @@ lib
 
   1. Database I/O functions, along with basic utility functions for interacting with it.
   2. Sequences to spawn UI components such as dialogs and sheets. These basically contain the logic behind.
-  3. Functions / methods to actually set / unset / update icons.
+  3. Functions/methods to actually set/unset/update icons.
 
 - **B**: Generated code for managing assets for the app.
 - **C**: Classes and models. The primary ones are:
