@@ -8,6 +8,7 @@ This guide walks you through the setup and development process for contributing 
 - [Code Editor](#code-editor)
 - [Setup](#setup)
 - [File Hierarchy](#file-hierarchy)
+- [Formatting](#formatting)
 
 ## Prerequisites
 
@@ -92,3 +93,19 @@ lib
 - **E**: State management providers. Primary used for storing `riverpod` providers.
 - **F**: Background services such as integrity checks.
 - **G**: Utility functions for using across the whole source code.
+
+## Formatting
+
+This project uses traditional Dart code formatting principles for the entire codebase. If you are a developer
+who is working on any concurrent issue/task on Alter, integrate your changes by executing:
+
+```bash
+dart format .
+```
+
+This project also uses the following development dependencies for additional linting support.
+Refer to the [pubspec.yaml](../pubspec.yaml) file for more information:
+
+- `flutter_lints`
+- `custom_lint`
+- `riverpod_lint`
