@@ -148,24 +148,24 @@ class BackgroundService {
 
     BackgroundIsolateBinaryMessenger.ensureInitialized(rootToken);
 
-    Isar thisIsolateIsar = await ensureDatabase();
+    Isar isolateIsar = await ensureDatabase();
     debugPrint('Opened database instance for appPath: $appPath');
 
     bool dataChanged = false;
 
     final app =
-        await thisIsolateIsar.apps.filter().pathEqualTo(appPath).findFirst();
+        await isolateIsar.apps.filter().pathEqualTo(appPath).findFirst();
     if (app != null) {
       // If the application does not exist anymore / has been uninstalled.
       final appExists = await Directory(app.path).exists();
       if (!appExists) {
-        await thisIsolateIsar
-            .writeTxn(() => thisIsolateIsar.apps.delete(app.id));
+        await isolateIsar
+            .writeTxn(() => isolateIsar.apps.delete(app.id));
         dataChanged = true;
       }
     }
 
-    await thisIsolateIsar.close();
+    await isolateIsar.close();
 
     if (dataChanged) {
       sendPort.send('withMods');
