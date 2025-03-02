@@ -36,7 +36,7 @@ Works on **macOS Ventura 13 or newer.**
 
 📦 Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
 
-```
+```bash
 brew install --cask hitblast/tap/alter
 ```
 
