@@ -19,7 +19,7 @@ Future<XFile?> pickApplication() async {
 
 /// Open the custom icon of the application using Preview.
 Future<void> openFileInPreview(String path) async {
-  var shell = Shell();
+  final shell = Shell();
   await shell.run('open -a Preview "$path"');
 }
 

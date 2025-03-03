@@ -26,7 +26,7 @@ Future<CommandResult?> setCustomIconForApp(
       : "${originalFileName}_alterModify";
 
   // Setup shell environment for communication with commands.
-  var shell = Shell(throwOnError: true);
+  final shell = Shell(throwOnError: true);
 
   // Define path to Info.plist file of application.
   final String appBundleInfoPath = "$appPath/Contents/Info";
@@ -102,11 +102,8 @@ Future<CommandResult?> setCustomIconForApp(
 
 /// Unset an App object's custom icon if one was previously applied on it.
 /// This reverses the effects put in place by setCustomIconForApp().
-Future<void> unsetCustomIconForApp(
-  App app,
-) async {
-  // Setup shell environment for communication with commands.
-  var shell = Shell(throwOnError: true);
+Future<void> unsetCustomIconForApp(App app) async {
+  final shell = Shell(throwOnError: true);
 
   // Delete the custom icon file from the app's Resources folder.
   File customIcon = File(app.customIconPath);
