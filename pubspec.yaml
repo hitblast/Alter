@@ -33,7 +33,6 @@ dev_dependencies:
   riverpod_lint: ^2.1.1
   riverpod_generator: ^2.3.3
   freezed: ^2.5.2
-  flutter_gen: ^5.9.0
 
 flutter:
   uses-material-design: false

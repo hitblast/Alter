@@ -159,8 +159,7 @@ class BackgroundService {
       // If the application does not exist anymore / has been uninstalled.
       final appExists = await Directory(app.path).exists();
       if (!appExists) {
-        await isolateIsar
-            .writeTxn(() => isolateIsar.apps.delete(app.id));
+        await isolateIsar.writeTxn(() => isolateIsar.apps.delete(app.id));
         dataChanged = true;
       }
     }

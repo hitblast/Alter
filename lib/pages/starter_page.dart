@@ -6,7 +6,6 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/core_sequences.dart';
-import 'package:alter/gen/assets.gen.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/utils/links_util.dart';
 
@@ -78,7 +77,8 @@ class StarterPage extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Assets.images.alterStarter.image(
+                            Image.asset(
+                              'assets/images/alter_starter.png',
                               width: 200,
                               height: 200,
                             ),

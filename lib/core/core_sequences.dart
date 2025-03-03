@@ -1,6 +1,5 @@
 // First-party imports.
 import 'dart:io';
-import 'package:alter/gen/assets.gen.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -17,7 +16,7 @@ Future<void> initiateKillSequence(BuildContext context) async {
   showMacosAlertDialog(
     context: context,
     builder: (_) => MacosAlertDialog(
-      appIcon: Assets.images.alterWarning.image(),
+      appIcon: Image.asset('assets/images/alter_warning.png'),
       horizontalActions: false,
       title: Text(
         'Kill Alter?',
