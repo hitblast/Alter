@@ -6,9 +6,6 @@ import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-// Local imports.
-import 'package:alter/gen/assets.gen.dart';
-
 /// The about sheet page.
 /// This holds the developer details, logo, and other "about" information for the app.
 /// As well as, probably, some quotes?
@@ -52,7 +49,8 @@ class AboutSheetPage extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Assets.images.alterIcon.image(
+                          Image.asset(
+                            'macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png',
                             width: 120,
                             height: 120,
                           ),

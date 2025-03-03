@@ -9,7 +9,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/gen/assets.gen.dart';
 import 'package:alter/utils/file_util.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
@@ -93,7 +92,8 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                           children: [
                             Opacity(
                               opacity: 0.4,
-                              child: Assets.images.alterIconFrame.image(
+                              child: Image.asset(
+                                'assets/images/alter_icon_frame.png',
                                 width: 155,
                                 height: 155,
                               ),
@@ -129,11 +129,13 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                       height: 145,
                                     )
                                   : brightness == Brightness.dark
-                                      ? Assets.images.alterEmptyDark.image(
+                                      ? Image.asset(
+                                          'assets/images/alter_empty_dark.png',
                                           width: 145,
                                           height: 145,
                                         )
-                                      : Assets.images.alterEmptyLight.image(
+                                      : Image.asset(
+                                          'assets/images/alter_empty_light.png',
                                           width: 145,
                                           height: 145,
                                         ),
