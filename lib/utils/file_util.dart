@@ -26,7 +26,7 @@ Future<void> openFileInPreview(String path) async {
 /// Open a macOS-native file picker window for picking .icns and .png (coming) files for using as custom app icons.
 Future<XFile?> pickIcon() async {
   final XFile? file = await openFile(acceptedTypeGroups: [
-    const XTypeGroup(label: 'Icons', extensions: ['icns'])
+    const XTypeGroup(label: 'Icons', extensions: ['icns', 'png'])
   ]);
   return file;
 }
