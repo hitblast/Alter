@@ -1,5 +1,6 @@
 // First-party imports.
 import 'dart:io';
+import 'package:flutter/foundation.dart';
 
 // Third-party imports.
 import 'package:file_selector/file_selector.dart';
@@ -28,6 +29,7 @@ Future<XFile?> pickIcon() async {
   final XFile? file = await openFile(acceptedTypeGroups: [
     const XTypeGroup(label: 'Icons', extensions: ['icns', 'png'])
   ]);
+  debugPrint("Chosen icon: ${file?.name}");
   return file;
 }
 
