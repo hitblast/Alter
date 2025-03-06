@@ -9,5 +9,16 @@
     "reveal_target": "dock",
     "hide": "never",
     "shell": "system"
+  },
+  {
+    "label": "Generate build files",
+    "command": "dart run build_runner build --delete-conflicting-outputs",
+    //"args": [],
+    "use_new_terminal": true,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "reveal_target": "dock",
+    "hide": "never",
+    "shell": "system"
   }
 ]
