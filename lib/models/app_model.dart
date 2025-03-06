@@ -1,5 +1,8 @@
+// Third-party imports.
 import 'package:objectbox/objectbox.dart';
 
+/// The App model.
+/// This is an ObjectBox entity - to be used by the database for managing modified app data.
 @Entity()
 class App {
   // ObjectBox requires your ID property to be an int and annotated with @Id.
