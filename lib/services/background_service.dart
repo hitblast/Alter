@@ -6,13 +6,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 
 // Third-party imports.
-import 'package:isar/isar.dart';
 import 'package:watcher/watcher.dart';
 
 // Local imports.
 import 'package:alter/main.dart';
 import 'package:alter/models/app_model.dart';
-import 'package:alter/core/core_database.dart';
+import 'package:alter/objectbox.g.dart';
 
 /// The BackgroundService class for handling background updates to the apps present in the database.
 /// This connects with AppDatabaseNotifier with a StreamController to update the user interface
@@ -30,7 +29,7 @@ class BackgroundService {
   /// Start the background service.
   /// Only works if the class is applied as a singleton across the whole app.
   void start() async {
-    final apps = await coreIsolateIsar.apps.where().findAll();
+    final apps = await objectBox.appBox.getAllAsync();
     for (final app in apps) {
       addWatcher(app.path);
     }
@@ -118,6 +117,7 @@ class BackgroundService {
       'rootToken': rootToken,
       'sendPort': receivePort.sendPort,
       'appPath': appPath,
+      'databasePath': objectBox.store.directoryPath,
     };
 
     // Because Isolate.run() does not give granular access to the API.
@@ -147,24 +147,32 @@ class BackgroundService {
     final appPath = isolateData['appPath'] as String;
 
     BackgroundIsolateBinaryMessenger.ensureInitialized(rootToken);
-
-    Isar isolateIsar = await ensureDatabase();
-    debugPrint('Opened database instance for appPath: $appPath');
-
     bool dataChanged = false;
 
-    final app =
-        await isolateIsar.apps.filter().pathEqualTo(appPath).findFirst();
+    // Attaches to root isolate's ObjectBox instance.
+    final isolateStore = Store.attach(
+      getObjectBoxModel(),
+      isolateData['databasePath'],
+    );
+    final isolateAppBox = isolateStore.box<App>();
+
+    final query = (isolateAppBox.query(App_.path.equals(appPath))
+          ..order(App_.path))
+        .build();
+    final app = await query.findFirstAsync();
+
     if (app != null) {
       // If the application does not exist anymore / has been uninstalled.
       final appExists = await Directory(app.path).exists();
       if (!appExists) {
-        await isolateIsar.writeTxn(() => isolateIsar.apps.delete(app.id));
+        debugPrint('Application not found');
+        await isolateAppBox.removeAsync(app.id);
         dataChanged = true;
       }
     }
 
-    await isolateIsar.close();
+    query.close();
+    isolateStore.close();
 
     if (dataChanged) {
       sendPort.send('withMods');
