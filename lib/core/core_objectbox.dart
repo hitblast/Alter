@@ -1,11 +1,14 @@
-// Local imports.
+// First-party imports.
 import 'dart:io';
-
-import 'package:alter/models/app_model.dart';
 import 'package:flutter/foundation.dart';
+
+// Third-party imports.
 import 'package:path_provider/path_provider.dart';
 
-// Generated file.
+// Local imports.
+import 'package:alter/models/app_model.dart';
+
+// Use ObjectBox's generated file.
 import '../objectbox.g.dart';
 
 /// The primary class for database creation and management.
