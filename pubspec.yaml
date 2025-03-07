@@ -15,9 +15,9 @@ dependencies:
     sdk: flutter
   flutter_riverpod: ^2.6.1
   freezed_annotation: ^2.4.4
-  isar: ^3.1.0+1
-  isar_flutter_libs: ^3.1.0+1
   macos_ui: ^2.0.9
+  objectbox: ^4.1.0
+  objectbox_flutter_libs: any
   package_info_plus: ^8.2.1
   path_provider: ^2.1.5
   process_run: ^1.2.2
@@ -27,12 +27,12 @@ dependencies:
 
 dev_dependencies:
   flutter_lints: ^5.0.0
-  build_runner: ^2.4.13
-  isar_generator: ^3.1.0+1
-  custom_lint: ^0.5.11
+  build_runner: ^2.4.15
+  custom_lint: ^0.7.0
   riverpod_lint: ^2.1.1
   riverpod_generator: ^2.3.3
   freezed: ^2.5.2
+  objectbox_generator: any
 
 flutter:
   uses-material-design: false

@@ -52,7 +52,7 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 ## Project Status
 
 Alter v1 is still out of scope for development. However, the initial beta release of v0.1.0 is
-under active development. Please see [v0.1.0 (project)](https://github.com/users/hitblast/projects/12)
+under active development. Please see [v1.0.0 (project)](https://github.com/users/hitblast/projects/12)
 to see the ongoing chain of code.
 
 ## Backstory

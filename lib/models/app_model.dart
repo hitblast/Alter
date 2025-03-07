@@ -1,19 +1,29 @@
 // Third-party imports.
-import 'package:isar/isar.dart';
-
-// Generator part file.
-part 'app_model.g.dart';
+import 'package:objectbox/objectbox.dart';
 
 /// The App model.
-/// This is used to store app data in Alter's database.
-@collection
+/// This is an ObjectBox entity - to be used by the database for managing modified app data.
+@Entity()
 class App {
-  Id id = Isar.autoIncrement;
+  // ObjectBox requires your ID property to be an int and annotated with @Id.
+  @Id()
+  int id;
 
-  late String path;
-  late String customIconPath;
-  late String newCFBundleIconName;
-  late String newCFBundleIconFile;
-  late String previousCFBundleIconName;
-  late String previousCFBundleIconFile;
+  String path;
+  String customIconPath;
+  String newCFBundleIconName;
+  String newCFBundleIconFile;
+  String previousCFBundleIconName;
+  String previousCFBundleIconFile;
+
+  // Provide a default constructor (and optionally a full constructor)
+  App({
+    this.id = 0,
+    required this.path,
+    required this.customIconPath,
+    required this.newCFBundleIconName,
+    required this.newCFBundleIconFile,
+    required this.previousCFBundleIconName,
+    required this.previousCFBundleIconFile,
+  });
 }

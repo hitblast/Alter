@@ -3,19 +3,18 @@ import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:isar/isar.dart';
 import 'package:macos_ui/macos_ui.dart';
 import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
-import 'package:alter/core/core_database.dart';
+import 'package:alter/core/core_objectbox.dart';
 import 'package:alter/pages/error_page.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:alter/providers/app_theme_provider.dart';
 import 'package:alter/services/background_service.dart';
 
 // Define the Isar database.
-late Isar coreIsolateIsar;
+late ObjectBox objectBox;
 
 // Define the background service for Alter.
 // This is used for database integrity checks and more.
@@ -76,8 +75,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _configureMacosWindowUtils();
 
-  coreIsolateIsar = await ensureDatabase();
-  debugPrint('Database initialized at path: ${coreIsolateIsar.path}');
+  objectBox = await ObjectBox.create();
+  debugPrint('Database initialized at path: ${objectBox.store.directoryPath}');
 
   runApp(
     ProviderScope(
