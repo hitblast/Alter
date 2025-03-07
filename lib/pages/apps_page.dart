@@ -10,8 +10,8 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/core_sequences.dart';
-import 'package:alter/utils/file_util.dart';
-import 'package:alter/utils/links_util.dart';
+import 'package:alter/utils/funcs.dart';
+import 'package:alter/utils/links.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/providers/app_database_provider.dart';

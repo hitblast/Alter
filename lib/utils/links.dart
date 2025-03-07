@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 // Local imports.
-import 'package:alter/utils/dialog_util.dart';
+import 'package:alter/utils/dialogs.dart';
 
 /// The function to launch a URL.
 Future<bool> _launchOnWeb(String url) async {
