@@ -86,8 +86,8 @@ class StarterPage extends StatelessWidget {
                             const Text(
                               'Left-click to start customizing.',
                               style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 26,
+                                fontWeight: FontWeight.w300,
                                 color: CupertinoColors.systemGrey,
                                 letterSpacing: -2,
                                 overflow: TextOverflow.fade,
