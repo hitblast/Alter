@@ -1,4 +1,6 @@
 // First-party imports.
+import 'package:alter/utils/dialogs.dart';
+import 'package:alter/utils/links.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -90,8 +92,9 @@ class AboutSheetPage extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     PushButton(
-                                      onPressed:
-                                          () {}, // TODO: Add external links.
+                                      onPressed: () async => await launchOnWeb(
+                                          context,
+                                          'https://github.com/hitblast/Alter'),
                                       secondary: true,
                                       controlSize: ControlSize.regular,
                                       child: Text('Learn more'),

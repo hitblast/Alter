@@ -8,16 +8,18 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:alter/utils/dialogs.dart';
 
 /// The function to launch a URL.
-Future<bool> _launchOnWeb(String url) async {
+Future<void> launchOnWeb(BuildContext context, String url) async {
   Uri uri = Uri.parse(url);
-  return await launchUrl(uri);
-}
+  late bool hasLaunchedURL;
 
-/// The function to launch the icons page (https://macosicons.com/).
-Future<void> launchGetIconsPageOnWeb(BuildContext context) async {
-  if (!await _launchOnWeb('https://macosicons.com/')) {
-    if (!context.mounted) return;
-    showAlertDialog(context, 'Cannot show icons page.',
-        'Make sure you have a proper internet connection and try again.');
+  try {
+    hasLaunchedURL = await launchUrl(uri);
+  } catch (_) {
+    hasLaunchedURL = false;
+  }
+
+  if (!hasLaunchedURL && context.mounted) {
+    showAlertDialog(context, 'Could not show page.',
+        'Please make sure your browser and internet connection are properly set up.');
   }
 }

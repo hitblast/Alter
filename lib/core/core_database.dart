@@ -87,7 +87,7 @@ class AppDatabase {
       existingApp.newCFBundleIconName = newCFBundleIconName;
       existingApp.newCFBundleIconFile = newCFBundleIconFile;
 
-      await objectBox.appBox.put(existingApp);
+      await objectBox.appBox.putAsync(existingApp);
       await fetchApps();
     }
   }

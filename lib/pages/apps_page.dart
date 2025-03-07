@@ -81,14 +81,15 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             label: 'Get Icons',
             tooltipMessage: 'Browse for new app icons',
             showLabel: false,
-            onPressed: () async => await launchGetIconsPageOnWeb(context),
+            onPressed: () async =>
+                await launchOnWeb(context, 'https://macosicons.com/'),
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
               CupertinoIcons.settings,
             ),
             label: 'Settings',
-            tooltipMessage: 'Show settings menu.',
+            tooltipMessage: 'Show settings menu',
             showLabel: false,
             onPressed: () => showMacosSheet(
               context: context,

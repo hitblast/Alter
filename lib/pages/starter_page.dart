@@ -37,7 +37,8 @@ class StarterPage extends StatelessWidget {
             label: 'Get Icons',
             tooltipMessage: 'Browse for new app icons',
             showLabel: false,
-            onPressed: () async => await launchGetIconsPageOnWeb(context),
+            onPressed: () async =>
+                await launchOnWeb(context, 'https://macosicons.com/'),
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
