@@ -13,32 +13,15 @@ import 'package:alter/utils/file_util.dart';
 
 /// The function to initiate the sequence for killing the application.
 Future<void> initiateKillSequence(BuildContext context) async {
-  showMacosAlertDialog(
-    context: context,
-    builder: (_) => MacosAlertDialog(
-      appIcon: Image.asset('assets/images/alter_warning.png'),
-      horizontalActions: false,
-      title: Text(
-        'Kill Alter?',
-        style: MacosTheme.of(context).typography.headline,
-      ),
-      message: Text(
-        'This will permanently stop all background processes till you open the app again.',
-        textAlign: TextAlign.center,
-      ),
-      primaryButton: PushButton(
-        controlSize: ControlSize.large,
-        child: Text('Proceed'),
-        onPressed: () => exit(0),
-      ),
-      secondaryButton: PushButton(
-        secondary: true,
-        controlSize: ControlSize.large,
-        child: Text('Keep it running'),
-        onPressed: () => Navigator.of(context).pop(),
-      ),
-    ),
+  final shouldKill = await showConfirmationDialog(
+    context,
+    'Kill Alter?',
+    'Alter will stop running all background processes and quit promptly.',
+    noLabel: 'Continue using app',
   );
+  if (shouldKill) {
+    exit(0);
+  }
 }
 
 /// The function to initiate the app adding sequence.

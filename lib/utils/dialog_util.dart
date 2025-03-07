@@ -5,7 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 /// This function shows macOS-native alert dialogs as needed by the application.
-void showAlertDialog(BuildContext context, String title, String message) {
+void showAlertDialog(
+  BuildContext context,
+  String title,
+  String message,
+) {
   showMacosAlertDialog(
     context: context,
     builder: (_) => MacosAlertDialog(
@@ -19,4 +23,35 @@ void showAlertDialog(BuildContext context, String title, String message) {
       ),
     ),
   );
+}
+
+/// This function shows macOS-native confirmation dialogs as needed by the application.
+Future<bool> showConfirmationDialog(
+  BuildContext context,
+  String title,
+  String message, {
+  String yesLabel = 'Proceed',
+  String noLabel = 'Cancel',
+}) async {
+  final result = await showMacosAlertDialog<bool>(
+    context: context,
+    builder: (_) => MacosAlertDialog(
+      appIcon: Image.asset('assets/images/alter_warning.png'),
+      title: Text(title),
+      message: Text(message),
+      horizontalActions: false,
+      primaryButton: PushButton(
+        controlSize: ControlSize.large,
+        child: Text(yesLabel),
+        onPressed: () => Navigator.of(context).pop(true),
+      ),
+      secondaryButton: PushButton(
+        controlSize: ControlSize.large,
+        child: Text(noLabel),
+        secondary: true,
+        onPressed: () => Navigator.of(context).pop(false),
+      ),
+    ),
+  );
+  return result ?? false;
 }
