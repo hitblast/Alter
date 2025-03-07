@@ -42,14 +42,14 @@ Future<bool> showConfirmationDialog(
       horizontalActions: false,
       primaryButton: PushButton(
         controlSize: ControlSize.large,
-        child: Text(yesLabel),
         onPressed: () => Navigator.of(context).pop(true),
+        child: Text(yesLabel),
       ),
       secondaryButton: PushButton(
         controlSize: ControlSize.large,
-        child: Text(noLabel),
         secondary: true,
         onPressed: () => Navigator.of(context).pop(false),
+        child: Text(noLabel),
       ),
     ),
   );
