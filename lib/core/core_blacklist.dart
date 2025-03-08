@@ -3,4 +3,5 @@
 /// applied. If not, only then add the app's name to the list.
 const List<String> blacklistedApps = [
   'Discord.app',
+  'Android Studio.app',
 ];
