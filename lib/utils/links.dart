@@ -7,7 +7,8 @@ import 'package:url_launcher/url_launcher.dart';
 // Local imports.
 import 'package:alter/utils/dialogs.dart';
 
-/// The function to launch a URL.
+/// The function to launch an URL.
+/// Shows a macOS-native alert dialog if the page could not be shown.
 Future<void> launchOnWeb(BuildContext context, String url) async {
   Uri uri = Uri.parse(url);
   late bool hasLaunchedURL;
