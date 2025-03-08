@@ -30,9 +30,10 @@ Future<CommandResult?> setCustomIconForApp(
 
   // If a PNG file is provided, convert it to ICNS.
   String iconPathToUse = userCustomIconPath;
+  File? convertedIconFile;
   if (isPng) {
-    final convertedIcon = await convertToIcns(userCustomIconPath);
-    iconPathToUse = convertedIcon.path;
+    convertedIconFile = await convertToIcns(userCustomIconPath);
+    iconPathToUse = convertedIconFile.path;
   }
 
   // Initialize shell and define paths.
@@ -55,6 +56,11 @@ Future<CommandResult?> setCustomIconForApp(
     cp "$iconPathToUse" "$customIconPath"
     chmod 644 "$appPath/Contents/Resources/$customIconFileName"
     ''');
+
+  // If a PNG was converted, delete the converted icon after copying.
+  if (isPng && convertedIconFile != null && await convertedIconFile.exists()) {
+    await convertedIconFile.delete();
+  }
 
   // Backup current CFBundleIconName and CFBundleIconFile.
   late String previousCFBundleIconName;
