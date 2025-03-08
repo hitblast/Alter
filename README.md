@@ -22,10 +22,10 @@ Works on **macOS Ventura 13 or newer.**
 
 ## Key Features
 
-- [Simple workflow]() for changing regular app icons
+- Simple workflow for changing regular app icons
 - Beautiful UI with low overhead using [Flutter](https://flutter.dev/)
-- Both [.png (work-in-progress)]() and [.icns]() usable as valid formats for icons
-- Doesn't require disabling SIP (System Integrity Protection)
+- Both [.png]() and [.icns]() usable as valid formats for icons
+- Doesn't require disabling [SIP (System Integrity Protection)]()
 - Continuous and managed app synchronization in the background
 - Icon modification using application-default attributes
 
@@ -87,17 +87,19 @@ Based on common analysis of the project, a few issues have been found for this t
 
 - Self-validating binaries like [Discord](https://discord.com/) do not cooperate with the attribute
 modifications happening inside, and could very as well broken once they're
-customized. To solve this, I've tried incorporating a [blacklist feature]() for
-apps which shouldn't be modified at all.
+customized. To solve this, I've tried incorporating a blacklist of
+apps which should be prohibited from modifying unless the user really desires.
 
 - The [Flutter Engine](https://github.com/flutter/engine) is a part of the
 compiled binary (obviously since it's a Flutter project), so there will always be a tiny
 burden of a few megabytes worth of memory usage unless Flutter is optimized further.
 
+- For now, Alter cannot modify the system apps on macOS due to SIP (System Integrity Protection) being a thing.
+
 - Large apps like IDEs such as [Android Studio](https://developer.android.com/studio) tend to
 check for file integrity before updating instead of entirely replacing the
 binary due to their sheer size. It's suggested to remove the icon and reapply after completing
-the update procedure.
+the update procedure. The blacklist rule also applies for such binaries. 
 
 ## Contributing
 
