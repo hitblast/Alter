@@ -1,4 +1,3 @@
-// First-party imports.
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
@@ -8,6 +7,7 @@ import 'package:process_run/shell.dart';
 // Local imports.
 import 'package:alter/models/app_model.dart';
 import 'package:alter/models/commandresult_model.dart';
+import 'package:alter/core/core_sips.dart';
 
 /// Set a custom icon for an app given its path.
 /// Returns an optional CommandResult containing important, reusable data for the application.
@@ -17,13 +17,25 @@ Future<CommandResult?> setCustomIconForApp(
   String userCustomIconPath, {
   String? iconToDelete,
 }) async {
-  // Get the original custom icon file name.
-  // Then, modify the file name by adding _alterModify before the extension.
+  // Determine if the selected icon is a PNG file.
   final String originalFileName = userCustomIconPath.split('/').last;
   final int originalFileNameDotIndex = originalFileName.lastIndexOf('.');
-  final String customIconFileName = originalFileNameDotIndex != -1
-      ? "${originalFileName.substring(0, originalFileNameDotIndex)}_alterModify${originalFileName.substring(originalFileNameDotIndex)}"
-      : "${originalFileName}_alterModify";
+  final bool isPng = userCustomIconPath.toLowerCase().endsWith('.png');
+
+  // If the icon is a PNG, change the extension to .icns; otherwise, preserve original extension.
+  final String customIconFileName = isPng
+      ? "${originalFileName.substring(0, originalFileNameDotIndex)}_alterModify.icns"
+      : (originalFileNameDotIndex != -1
+          ? "${originalFileName.substring(0, originalFileNameDotIndex)}_alterModify${originalFileName.substring(originalFileNameDotIndex)}"
+          : "${originalFileName}_alterModify");
+
+  // If the icon is a PNG file, convert it to an ICNS file.
+  String iconPathToUse = userCustomIconPath;
+  String? convertedIconPath;
+  if (isPng) {
+    convertedIconPath = (await convertToIcns(userCustomIconPath)).path;
+    iconPathToUse = convertedIconPath;
+  }
 
   // Setup shell environment for communication with commands.
   final shell = Shell(throwOnError: true);
@@ -44,7 +56,7 @@ Future<CommandResult?> setCustomIconForApp(
   final String customIconPath =
       "$appPath/Contents/Resources/$customIconFileName";
   await shell.run('''
-    cp "$userCustomIconPath" "$customIconPath"
+    cp "$iconPathToUse" "$customIconPath"
     chmod 644 "$appPath/Contents/Resources/$customIconFileName"
     ''');
 
