@@ -1,5 +1,4 @@
 // First-party imports.
-import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/links.dart';
 import 'package:flutter/cupertino.dart';
 
