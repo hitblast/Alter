@@ -8,19 +8,13 @@ import 'package:process_run/process_run.dart';
 
 /*
 
-File-picker functions for Alter.
+Basic functions for using inside Alter.
 
 */
 
-/// Open a macOS-native file picker window for picking applications inside the Applications folder.
-Future<XFile?> pickApplication() async {
-  final XFile? file = await openFile(initialDirectory: '/Applications');
-  return file;
-}
-
 /// Open the custom icon of the application using Preview.
 Future<void> openFileInPreview(String path) async {
-  var shell = Shell();
+  final shell = Shell();
   await shell.run('open -a Preview "$path"');
 }
 
@@ -33,12 +27,11 @@ Future<XFile?> pickIcon() async {
   return file;
 }
 
-/// Do cutlery on an application's absolute path and extract the name of it.
-String getAppNameFromPath(String path) {
-  final List<String> pathParts = path.split('/');
-  final String appName = pathParts[pathParts.length - 1];
-
-  return appName;
+/// Strip the application name from a path.
+/// Optionally, use `withoutExtension` to only return the app's branding name.
+String getAppNameFromPath(String path, [bool withoutExtension = false]) {
+  final String appName = path.split(Platform.pathSeparator).last;
+  return withoutExtension ? appName.split('.').first : appName;
 }
 
 /// Function to determine if an application is a system application.

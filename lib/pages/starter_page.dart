@@ -7,7 +7,7 @@ import 'package:macos_ui/macos_ui.dart';
 // Local imports.
 import 'package:alter/core/core_sequences.dart';
 import 'package:alter/pages/settings_sheet_page.dart';
-import 'package:alter/utils/links_util.dart';
+import 'package:alter/utils/links.dart';
 
 /// The starter page widget.
 /// This is the first page that the user sees if the have no apps added to the database yet.
@@ -37,7 +37,8 @@ class StarterPage extends StatelessWidget {
             label: 'Get Icons',
             tooltipMessage: 'Browse for new app icons',
             showLabel: false,
-            onPressed: () async => await launchGetIconsPageOnWeb(context),
+            onPressed: () async =>
+                await launchOnWeb(context, 'https://macosicons.com/'),
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
@@ -86,8 +87,8 @@ class StarterPage extends StatelessWidget {
                             const Text(
                               'Left-click to start customizing.',
                               style: TextStyle(
-                                fontSize: 25,
-                                fontWeight: FontWeight.w500,
+                                fontSize: 26,
+                                fontWeight: FontWeight.w300,
                                 color: CupertinoColors.systemGrey,
                                 letterSpacing: -2,
                                 overflow: TextOverflow.fade,

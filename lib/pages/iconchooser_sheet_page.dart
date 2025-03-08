@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/utils/file_util.dart';
+import 'package:alter/utils/funcs.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
 /// The macOS sheet view for choosing the icon when the user prompts.
@@ -44,7 +44,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appName = widget.appFile.name.replaceAll('.app', '');
+    final appName = getAppNameFromPath(widget.appFile.path, true);
     final brightness = MediaQuery.of(context).platformBrightness;
 
     return MacosSheet(
