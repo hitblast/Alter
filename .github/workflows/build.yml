@@ -39,6 +39,5 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.FILE_NAME }}
           path: ${{ env.FILE_NAME }}
           retention-days: 2
