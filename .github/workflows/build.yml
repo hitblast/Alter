@@ -33,10 +33,12 @@ jobs:
       - name: Build Flutter app
         run: |
           flutter build macos --release --tree-shake-icons
-          zip -r ${{ env.FILE_NAME }} build/macos/Build/Products/Release/alter.app
+          cd build/macos/Build/Products/Release
+          zip -r ${{ env.FILE_NAME }} alter.app
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
+          name: ${{ env.FILE_NAME }}
           path: ${{ env.FILE_NAME }}
           retention-days: 2
