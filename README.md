@@ -32,7 +32,8 @@ Works on **macOS Sonoma 14 or newer.**
 ## Installation
 
 > [!WARNING]
-> ⚠️ This section is still a work-in-progress. Installation methods will only work after the initial release.
+> This section is still a work-in-progress. If you would like to install Alter, please check out
+> the build artifacts of the scheduled Test Builds workflow.
 
 📦 Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
 
