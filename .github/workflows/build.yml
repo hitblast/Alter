@@ -17,6 +17,9 @@ jobs:
 
     runs-on: ${{ matrix.macos-version }}
 
+    env:
+      FILE_NAME: alter-pre-darwin-arm64.zip
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -28,11 +31,12 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter app
-        run: flutter build macos --release --tree-shake-icons
+        run: |
+          flutter build macos --release --tree-shake-icons
+          zip -j ${{ env.FILE_NAME }} build/macos/Build/Products/Release/alter.app
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: alter-darwin-arm64
-          path: build/macos/Build/Products/Release/alter.app
+          path: ${{ env.FILE_NAME }} 
           retention-days: 2
