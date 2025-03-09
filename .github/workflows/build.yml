@@ -12,7 +12,7 @@ jobs:
   build:
     strategy:
       matrix:
-        macos-version: [macos-13, macos-14, macos-15]
+        macos-version: [macos-14]
 
     runs-on: ${{ matrix.macos-version }}
 
@@ -32,6 +32,6 @@ jobs:
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: build-artifact
+          name: alter-darwin-arm64
           path: build/macos/Build/Products/Release/alter.app
           retention-days: 2

@@ -73,6 +73,6 @@ SPEC CHECKSUMS:
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   url_launcher_macos: 0fba8ddabfc33ce0a9afe7c5fef5aab3d8d2d673
 
-PODFILE CHECKSUM: 9cc8fc8fc62b1d9a89fd6f974ad4157b35254030
+PODFILE CHECKSUM: 3670ccb6294e31d623a61a9caedc69c5a53a7333
 
 COCOAPODS: 1.16.2
