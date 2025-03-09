@@ -5,7 +5,7 @@
 [![Test Builds](https://github.com/hitblast/Alter/actions/workflows/build.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/build.yml)
 
 Beautiful app to customize your macOS app icons with ease. <br>
-Works on **macOS Ventura 13 or newer.**
+Works on **macOS Sonoma 14 or newer.**
 
 > [!NOTE]
 > This project is still under active development. Expect breaking changes till v1. See "Project Status" for reference.
@@ -99,7 +99,7 @@ burden of a few megabytes worth of memory usage unless Flutter is optimized furt
 - Large apps like IDEs such as [Android Studio](https://developer.android.com/studio) tend to
 check for file integrity before updating instead of entirely replacing the
 binary due to their sheer size. It's suggested to remove the icon and reapply after completing
-the update procedure. The blacklist rule also applies for such binaries. 
+the update procedure. The blacklist rule also applies for such binaries.
 
 ## Contributing
 
