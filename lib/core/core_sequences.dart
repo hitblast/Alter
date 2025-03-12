@@ -1,9 +1,10 @@
 // First-party imports.
 import 'dart:io';
-import 'package:file_selector/file_selector.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
+import 'package:path/path.dart' as path;
+import 'package:file_selector/file_selector.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
@@ -45,9 +46,9 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   // If the app has authentic macOS app properties (e.g. is a folder and ends with the .app extension).
   else if (!file.path.endsWith('.app') &&
       !await Directory(file.path).exists() &&
-      await Directory('${file.path}/Resources').exists() &&
-      await Directory('${file.path}/Contents').exists() &&
-      await File('${file.path}/Contents/Info.plist').exists()) {
+      await Directory(path.join(file.path, 'Resources')).exists() &&
+      await Directory(path.join(file.path, 'Contents')).exists() &&
+      await File(path.join(file.path, 'Contents', 'Info.plist')).exists()) {
     if (!context.mounted) return;
     showAlertDialog(context, 'Invalid file type!',
         'Please select a proper application file.');
@@ -61,7 +62,8 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   }
 
   // If the app has a _MASReceipt folder (indicating it as an App store application).
-  else if (await Directory('${file.path}/Contents/_MASReceipt').exists()) {
+  else if (await Directory(path.join(file.path, 'Contents', '_MASReceipt'))
+      .exists()) {
     if (!context.mounted) return;
     showAlertDialog(context, 'App Store app!',
         'Alter cannot modify App Store applications for now.');
@@ -70,7 +72,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   // If all of the checks above pass.
   else {
     // Check if the selected app is blacklisted.
-    final appName = getAppNameFromPath(file.path);
+    final appName = path.basename(file.path);
 
     if (blacklistedApps.contains(appName) && context.mounted) {
       final proceed = await showConfirmationDialog(

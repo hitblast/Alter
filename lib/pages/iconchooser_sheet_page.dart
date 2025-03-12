@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
+import 'package:path/path.dart' as path;
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -44,7 +45,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appName = getAppNameFromPath(widget.appFile.path, true);
+    final appName = path.basenameWithoutExtension(widget.appFile.path);
     final brightness = MediaQuery.of(context).platformBrightness;
 
     return MacosSheet(

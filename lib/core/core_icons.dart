@@ -4,11 +4,13 @@ import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
 import 'package:process_run/shell.dart';
+import 'package:path/path.dart' as path;
 
 // Local imports.
 import 'package:alter/models/app_model.dart';
 import 'package:alter/models/commandresult_model.dart';
 import 'package:alter/core/core_sips.dart';
+import 'package:alter/core/core_icon_storage.dart';
 
 /// Set a custom icon for an app given its path.
 /// Returns an optional CommandResult containing important, reusable data for the application.
@@ -19,9 +21,9 @@ Future<CommandResult?> setCustomIconForApp(
   String? iconToDelete,
 }) async {
   // Determine file info and whether the icon is a PNG.
-  final String originalFileName = userCustomIconPath.split('/').last;
+  final String originalFileName = path.basename(userCustomIconPath);
   final int dotIndex = originalFileName.lastIndexOf('.');
-  final bool isPng = userCustomIconPath.toLowerCase().endsWith('.png');
+  final bool isPng = originalFileName.endsWith('.png');
   final String customIconFileName = isPng
       ? "${originalFileName.substring(0, dotIndex)}_alterModify.icns"
       : (dotIndex != -1
@@ -38,14 +40,13 @@ Future<CommandResult?> setCustomIconForApp(
 
   // Initialize shell and define paths.
   final shell = Shell(throwOnError: true);
-  final String appBundleInfoPath = "$appPath/Contents/Info";
+  final String appBundleInfoPath = path.join(appPath, 'Contents', 'Info');
   final String customIconPath =
-      "$appPath/Contents/Resources/$customIconFileName";
+      path.join(appPath, 'Contents', 'Resources', customIconFileName);
 
-  // Delete previous custom icon if requested.
   if (iconToDelete != null) {
     final File previousIconFile =
-        File("$appPath/Contents/Resources/$iconToDelete");
+        File(path.join(appPath, 'Contents', 'Resources', iconToDelete));
     if (await previousIconFile.exists()) {
       await previousIconFile.delete();
     }
@@ -54,7 +55,7 @@ Future<CommandResult?> setCustomIconForApp(
   // Copy the (possibly converted) icon to the app's Resources folder and set permissions.
   await shell.run('''
     cp "$iconPathToUse" "$customIconPath"
-    chmod 644 "$appPath/Contents/Resources/$customIconFileName"
+    chmod 644 "$customIconPath"
     ''');
 
   // If a PNG was converted, delete the converted icon after copying.
@@ -96,6 +97,9 @@ Future<CommandResult?> setCustomIconForApp(
     return null;
   }
 
+  // Store the custom icon for backup and reapplying.
+  await storeCustomIconInStorage(customIconPath, appPath);
+
   // Return the command result with the necessary data.
   return CommandResult(
     customIconPath: customIconPath,
@@ -116,13 +120,16 @@ Future<void> unsetCustomIconForApp(App app) async {
   await customIcon.delete();
 
   // Define the path to the app's Info.plist.
-  final String appBundleInfoPath = "${app.path}/Contents/Info";
+  final String appBundleInfoPath = path.join(app.path, 'Contents', 'Info');
 
   // Restore CFBundleIconName if it was modified.
   if (app.previousCFBundleIconName.isNotEmpty) {
     await shell.run(
         'defaults write "$appBundleInfoPath" CFBundleIconName "${app.previousCFBundleIconName}"');
   }
+
+  // Delete the backup icon file.
+  await deleteStoredIconForAppPath(app.path);
 
   // Restore CFBundleIconFile, touch and codesign the app.
   try {

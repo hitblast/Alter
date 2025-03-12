@@ -2,6 +2,7 @@
 import 'dart:io';
 
 // Third-party imports.
+import 'package:path/path.dart' as path;
 import 'package:process_run/shell.dart';
 
 /// The function to convert a given PNG image to ICNS.
@@ -9,7 +10,7 @@ Future<File> convertToIcns(String iconPath) async {
   final shell = Shell();
   final iconName = iconPath.split('/').last.split('.').first;
   final parentDir = Directory(iconPath).parent.path;
-  final newIconPath = "$parentDir/$iconName.iconset";
+  final newIconPath = path.join(parentDir, '$iconName.iconset');
 
   await shell.run("""
     mkdir "$newIconPath"

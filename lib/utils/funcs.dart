@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 
 // Third-party imports.
+import 'package:path/path.dart' as path;
 import 'package:file_selector/file_selector.dart';
 import 'package:process_run/process_run.dart';
 
@@ -27,21 +28,14 @@ Future<XFile?> pickIcon() async {
   return file;
 }
 
-/// Strip the application name from a path.
-/// Optionally, use `withoutExtension` to only return the app's branding name.
-String getAppNameFromPath(String path, [bool withoutExtension = false]) {
-  final String appName = path.split(Platform.pathSeparator).last;
-  return withoutExtension ? appName.split('.').first : appName;
-}
-
 /// Function to determine if an application is a system application.
-Future<bool> ifAppIsSystemApplication(String path) async {
-  String appName = getAppNameFromPath(path);
+Future<bool> ifAppIsSystemApplication(String appPath) async {
+  String appName = path.basename(appPath);
 
   // Directories which hold the system applications on macOS.
   final List<String> systemApplicationDirs = [
-    '/System/Applications',
-    '/System/Applications/Utilities',
+    path.join('/', 'System', 'Applications'),
+    path.join('/', 'System', 'Applications', 'Utilities'),
   ];
 
   for (final String systemDirPath in systemApplicationDirs) {
