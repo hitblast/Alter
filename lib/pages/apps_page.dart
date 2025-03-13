@@ -13,7 +13,6 @@ import 'package:alter/core/core_sequences.dart';
 import 'package:alter/utils/funcs.dart';
 import 'package:alter/utils/links.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';
-import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 
 /// The apps page.
@@ -79,19 +78,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             onPressed:
                 () async =>
                     await launchOnWeb(context, 'https://macosicons.com/'),
-          ),
-          ToolBarIconButton(
-            icon: const MacosIcon(CupertinoIcons.settings),
-            label: 'Settings',
-            tooltipMessage: 'Show settings menu',
-            showLabel: false,
-            onPressed:
-                () => showMacosSheet(
-                  context: context,
-                  builder: (context) {
-                    return SettingsSheetPage();
-                  },
-                ),
           ),
         ],
       ),
