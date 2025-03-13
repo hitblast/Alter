@@ -83,6 +83,14 @@ Future<CommandResult?> setCustomIconForApp(
     previousCFBundleIconName = '';
   }
 
+  // TODO: check this feature
+  if ((await shell.run('xattr "$appPath"'))
+      .outText
+      .contains('com.apple.quarantine')) {
+    debugPrint("Removing quarantine attribute for app: $appPath");
+    await shell.run('xattr -d com.apple.quarantine "$appPath"');
+  }
+
   // Backup and update CFBundleIconFile key, then touch and codesign the app.
   try {
     final readResult =
@@ -141,4 +149,42 @@ Future<void> unsetCustomIconForApp(App app) async {
   } catch (e) {
     debugPrint(e.toString());
   }
+}
+
+/// Returns a boolean value for an App object if its custom icon needs to be reapplied.
+Future<bool> shouldReapplyIcon(App app) async {
+  final shell = Shell();
+
+  final String appBundleInfoPath = path.join(app.path, 'Contents', 'Info');
+  late String readCFBundleIconName;
+  late String readCFBundleIconFile;
+
+  // Optional check triggered for the current value of CFBundleIconName.
+  if (app.previousCFBundleIconName != '') {
+    readCFBundleIconName =
+        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconName'))
+            .single
+            .outText;
+
+    if (readCFBundleIconName != app.newCFBundleIconName) {
+      return true;
+    }
+  }
+
+  // Either way, CFBundleIconFile gets checked for sure.
+  readCFBundleIconFile =
+      (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconFile'))
+          .single
+          .outText;
+
+  if (readCFBundleIconFile != app.newCFBundleIconFile) {
+    return true;
+  }
+
+  // Also blow the alarm if the icon is missing.
+  if (!await File(app.customIconPath).exists()) {
+    return true;
+  }
+
+  return false;
 }

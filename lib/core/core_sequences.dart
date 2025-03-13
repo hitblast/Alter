@@ -44,11 +44,11 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   }
 
   // If the app has authentic macOS app properties (e.g. is a folder and ends with the .app extension).
-  else if (!file.path.endsWith('.app') &&
-      !await Directory(file.path).exists() &&
-      await Directory(path.join(file.path, 'Resources')).exists() &&
-      await Directory(path.join(file.path, 'Contents')).exists() &&
-      await File(path.join(file.path, 'Contents', 'Info.plist')).exists()) {
+  else if (!(file.path.endsWith('.app') ||
+      await Directory(file.path).exists() ||
+      await Directory(path.join(file.path, 'Resources')).exists() ||
+      await Directory(path.join(file.path, 'Contents')).exists() ||
+      await File(path.join(file.path, 'Contents', 'Info.plist')).exists())) {
     if (!context.mounted) return;
     showAlertDialog(context, 'Invalid file type!',
         'Please select a proper application file.');
