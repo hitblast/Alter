@@ -35,8 +35,6 @@ brew install --cask hitblast/tap/alter
 
 Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases) to download the latest builds.
 
-- 📦 v1.0.0 - [alter-v1.0.0-darwin-arm64.zip](https://github.com/hitblast/alter/releases/download/v1.0.0/alter-v1.0.0-darwin-arm64.zip)
-
 > [!IMPORTANT]
 > By using Alter, you acknowledge that Alter is not [notarized.](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
 >
