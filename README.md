@@ -2,7 +2,11 @@
 
 # Alter
 
-Alter is a minimal macOS app which can be used to customize your app icons with ease. Works on **macOS Ventura 13 or newer.**
+A minimal app to customize your macOS app icons with ease. <br>
+Works on **macOS Ventura 13 or newer.**
+
+> [!NOTE]
+> If you like using this project, consider starring it! :D It motivates me a lot to develop and deploy these projects.
 
 ## Table of Contents
 
@@ -16,11 +20,10 @@ Alter is a minimal macOS app which can be used to customize your app icons with 
 ## Key Features
 
 - Simple workflow for changing regular app icons
-- Beautiful UI with low overhead using [Flutter](https://flutter.dev/)
-- Both [.png]() and [.icns]() usable as valid formats for icons
 - Doesn't require disabling [SIP (System Integrity Protection)]()
 - Continuous and managed app synchronization in the background
-- Icon modification using application-default attributes
+- Small binary size (19 MiB when compressed)
+- Based on the [Flutter](https://flutter.dev/) framework
 
 ## Installation
 
