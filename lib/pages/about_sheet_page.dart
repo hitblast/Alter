@@ -83,7 +83,7 @@ class AboutSheetPage extends StatelessWidget {
                             child: Column(
                               children: [
                                 const Text(
-                                  'Special thanks to Raven and Firstrain for supporting the development and giving a ton of inspiration.\n\nThis is my first macOS app project which I took on in desperation since I wanted to add a personal look to most of my apps, but the most stable option at that time was paywalled and not really "stable".',
+                                  'Special thanks to Raven and furtidev for supporting the development and giving a ton of inspiration.\n\nThis is my first macOS app project which I took on in desperation since I wanted to add a personal look to most of my apps, but the most stable option at that time was paywalled and not really "stable".',
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(height: 30),

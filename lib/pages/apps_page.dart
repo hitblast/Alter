@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
+import 'package:path/path.dart' as path;
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -173,7 +174,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                       ),
                                       const SizedBox(width: 20),
                                       Text(
-                                        getAppNameFromPath(app.path),
+                                        path.basename(app.path),
                                         style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,

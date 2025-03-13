@@ -12,6 +12,8 @@ import 'package:watcher/watcher.dart';
 import 'package:alter/main.dart';
 import 'package:alter/models/app_model.dart';
 import 'package:alter/objectbox.g.dart';
+import 'package:alter/core/core_icon_storage.dart';
+import 'package:alter/core/core_icons.dart';
 
 /// The BackgroundService class for handling background updates to the apps present in the database.
 /// This connects with AppDatabaseNotifier with a StreamController to update the user interface
@@ -32,6 +34,9 @@ class BackgroundService {
     final apps = await objectBox.appBox.getAllAsync();
     for (final app in apps) {
       addWatcher(app.path);
+
+      // Trigger a one-time immediate background check for each app.
+      _runBackgroundCheck(app.path);
     }
   }
 
@@ -130,10 +135,13 @@ class BackgroundService {
     debugPrint('Spawned isolate: ${isolate.debugName} for appPath: $appPath');
 
     receivePort.listen((message) {
-      if (message == 'withMods') {
+      if (message == 'updateAndWatcherRemoval') {
         removeWatcher(appPath);
         _streamController.add(null);
+      } else if (message == 'updateOnly') {
+        _streamController.add(null);
       }
+
       isolate.kill(priority: Isolate.immediate);
       _runningIsolates.remove(appPath);
     });
@@ -147,7 +155,7 @@ class BackgroundService {
     final appPath = isolateData['appPath'] as String;
 
     BackgroundIsolateBinaryMessenger.ensureInitialized(rootToken);
-    bool dataChanged = false;
+    String portMessage = 'noMod';
 
     // Attaches to root isolate's ObjectBox instance.
     final isolateStore = Store.attach(
@@ -159,25 +167,37 @@ class BackgroundService {
     final query = (isolateAppBox.query(App_.path.equals(appPath))
           ..order(App_.path))
         .build();
-    final app = await query.findFirstAsync();
+    App? app = await query.findFirstAsync();
 
     if (app != null) {
       // If the application does not exist anymore / has been uninstalled.
-      final appExists = await Directory(app.path).exists();
-      if (!appExists) {
-        debugPrint('Application not found');
+      if (!(await Directory(app.path).exists())) {
+        debugPrint('Application not found.');
         await isolateAppBox.removeAsync(app.id);
-        dataChanged = true;
+        portMessage = 'updateAndWatcherRemoval';
+      }
+
+      // If the custom icon needs to be reapplied.
+      // The database I/O has been derived from lib/core/core_database.dart
+      // TODO: Possibly unify the AppDatabase class for less duplication of I/O code
+      else if (await shouldReapplyIcon(app)) {
+        debugPrint('Reapplying custom icon for app.');
+
+        final storedIcon = await getStoredIconForAppPath(appPath);
+        final setResult = await setCustomIconForApp(appPath, storedIcon!,
+            iconToDelete: app.newCFBundleIconFile);
+
+        app.customIconPath = setResult!.customIconPath;
+        app.newCFBundleIconName = setResult.newCFBundleIconName;
+        app.newCFBundleIconFile = setResult.newCFBundleIconFile;
+
+        await isolateAppBox.putAsync(app);
+        portMessage = 'updateOnly';
       }
     }
 
     query.close();
     isolateStore.close();
-
-    if (dataChanged) {
-      sendPort.send('withMods');
-    } else {
-      sendPort.send('noMod');
-    }
+    sendPort.send(portMessage);
   }
 }

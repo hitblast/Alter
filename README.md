@@ -4,7 +4,7 @@
 
 [![Test Builds](https://github.com/hitblast/Alter/actions/workflows/build.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/build.yml)
 
-Beautiful app to customize your macOS app icons with ease. <br>
+Alter is a minimal macOS app which can be used to customize your app icons with ease. <br>
 Works on **macOS Sonoma 14 or newer.**
 
 > [!NOTE]

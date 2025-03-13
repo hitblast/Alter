@@ -1,7 +1,7 @@
 name: alter
-description: "Beautiful app to customize your macOS app icons with ease."
+description: "Alter is a minimal macOS app which can be used to customize your app icons with ease."
 publish_to: "none"
-version: 0.1.0
+version: 1.0.0
 
 environment:
   sdk: ^3.5.4
@@ -19,6 +19,7 @@ dependencies:
   objectbox: ^4.1.0
   objectbox_flutter_libs: any
   package_info_plus: ^8.2.1
+  path: ^1.9.1
   path_provider: ^2.1.5
   process_run: ^1.2.2
   riverpod_annotation: ^2.6.1
