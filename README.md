@@ -2,10 +2,8 @@
 
 # Alter
 
-[![Test Builds](https://github.com/hitblast/Alter/actions/workflows/build.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/build.yml)
-
 Alter is a minimal macOS app which can be used to customize your app icons with ease. <br>
-Works on **macOS Sonoma 14 or newer.**
+📦 Works on **macOS Sonoma 14 or newer.**
 
 ## Table of Contents
 
@@ -28,7 +26,7 @@ Works on **macOS Sonoma 14 or newer.**
 
 ## Installation
 
-📦 Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
+🍺 Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
 
 ```bash
 brew install --cask hitblast/tap/alter
