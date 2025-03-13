@@ -34,6 +34,9 @@ class BackgroundService {
     final apps = await objectBox.appBox.getAllAsync();
     for (final app in apps) {
       addWatcher(app.path);
+
+      // Trigger a one-time immediate background check for each app.
+      _runBackgroundCheck(app.path);
     }
   }
 
