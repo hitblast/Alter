@@ -3,7 +3,7 @@
 # Alter
 
 Alter is a minimal macOS app which can be used to customize your app icons with ease. <br>
-📦 Works on **macOS Sonoma 14 or newer.**
+📦 Works on **macOS Ventura 13 or newer.**
 
 ## Table of Contents
 
