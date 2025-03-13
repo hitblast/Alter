@@ -7,14 +7,11 @@
 Alter is a minimal macOS app which can be used to customize your app icons with ease. <br>
 Works on **macOS Sonoma 14 or newer.**
 
-> [!NOTE]
-> This project is still under active development. Expect breaking changes till v1. See "Project Status" for reference.
-
 ## Table of Contents
 
 - [Key Features](#key-features)
 - [Installation](#installation)
-- [Project Status](#project-status)
+- [Roadmap](#roadmap)
 - [Backstory](#backstory)
 - [Common Pitfalls](#common-pitfalls)
 - [Contributing](#contributing)
@@ -31,10 +28,6 @@ Works on **macOS Sonoma 14 or newer.**
 
 ## Installation
 
-> [!WARNING]
-> This section is still a work-in-progress. If you would like to install Alter, please check out
-> the build artifacts of the scheduled Test Builds workflow.
-
 📦 Install Alter using [Homebrew](https://brew.sh/) **(Recommended)**:
 
 ```bash
@@ -50,11 +43,12 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 >
 > A better reference could be found for this concept and why invalidating the attribute is important in [this section](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution) of the documentation nikitabobko wrote for AeroSpace.
 
-## Project Status
+## Roadmap
 
-The first version of Alter is being actively worked on. Please see [v1.0.0
-(project)](https://github.com/users/hitblast/projects/12) to see the ongoing
-pull requests, issues and more.
+After the initial release of v1 for this project, my target is to take the whole codebase
+and enhance it by entirely using [Swift]() and [SwiftUI]() with an identical user experience.
+Since Flutter is a great framework for creating production-ready prototypes, I figured it'd
+be best for the users that I migrate the toolchain to be Apple's native.
 
 ## Backstory
 As an ex-Linux and ex-Windows user, customizability was at the forefront of what
@@ -97,20 +91,12 @@ burden of a few megabytes worth of memory usage unless Flutter is optimized furt
 
 - For now, Alter cannot modify the system apps on macOS due to SIP (System Integrity Protection) being a thing.
 
-- Large apps like IDEs such as [Android Studio](https://developer.android.com/studio) tend to
-check for file integrity before updating instead of entirely replacing the
-binary due to their sheer size. It's suggested to remove the icon and reapply after completing
-the update procedure. The blacklist rule also applies for such binaries.
-
 ## Contributing
 
-Since Alter is still in its early development phase, contributions are always welcome.
-If you are a developer who is willing to improve *any* aspect of the application, consider
-reading [dev-docs/DEVELOPMENT.md](/dev-docs/DEVELOPMENT.md) for everything related to
-reproducing the development environment and more.
-
-If you have already attached the development environment, consider following through the
-ethical guidelines of contributing written in [CONTRIBUTING.md](/CONTRIBUTING.md).
+Contributions are always welcome. If you are a developer who is willing to improve *any* aspect of the application,
+consider reading [dev-docs/DEVELOPMENT.md](/dev-docs/DEVELOPMENT.md) for everything related to
+reproducing the development environment and more. If you have already attached the development environment, however,
+consider following through the ethical guidelines of contributing written in [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 ## License
 
