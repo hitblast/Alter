@@ -44,8 +44,6 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    _currentMessage =
-        _loadingMessages[_random.nextInt(_loadingMessages.length)];
   }
 
   @override
@@ -59,6 +57,9 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     // Based on the asynchronous state, the page to display is decided.
     if (apps.isLoading) {
+      _currentMessage =
+          _loadingMessages[_random.nextInt(_loadingMessages.length)];
+
       return Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
