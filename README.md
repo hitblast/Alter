@@ -2,14 +2,12 @@
 
 # Alter
 
-Alter is a minimal macOS app which can be used to customize your app icons with ease. <br>
-📦 Works on **macOS Ventura 13 or newer.**
+Alter is a minimal macOS app which can be used to customize your app icons with ease. Works on **macOS Ventura 13 or newer.**
 
 ## Table of Contents
 
 - [Key Features](#key-features)
 - [Installation](#installation)
-- [Roadmap](#roadmap)
 - [Backstory](#backstory)
 - [Common Pitfalls](#common-pitfalls)
 - [Contributing](#contributing)
@@ -34,6 +32,8 @@ brew install --cask hitblast/tap/alter
 
 Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases) to download the latest builds.
 
+- 📦 v1.0.0 - [alter-v1.0.0-darwin-arm64.zip](https://github.com/hitblast/alter/releases/download/v1.0.0/alter-v1.0.0-darwin-arm64.zip)
+
 > [!IMPORTANT]
 > By using Alter, you acknowledge that Alter is not [notarized.](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
 >
@@ -41,21 +41,11 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 >
 > A better reference could be found for this concept and why invalidating the attribute is important in [this section](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution) of the documentation nikitabobko wrote for AeroSpace.
 
-## Roadmap
-
-After the initial release of v1 for this project, my target is to take the whole codebase
-and enhance it by entirely using [Swift]() and [SwiftUI]() with an identical user experience.
-Since Flutter is a great framework for creating production-ready prototypes, I figured it'd
-be best for the users that I migrate the toolchain to be Apple's native.
-
 ## Backstory
-As an ex-Linux and ex-Windows user, customizability was at the forefront of what
+I come from a Linux and Windows background, and customizability was at the forefront of what
 I was doing with my laptop back when I started learning. However, when I
 switched to my Apple Silicon-powered machine, I wasn't really sure how to take
-"customizability" like I used to. Sure, there are apps like
-[AeroSpace](https://github.com/nikitabobko/AeroSpace), [Karabiner
-Elements](https://karabiner-elements.pqrs.org/) and
-[Raycast](https://www.raycast.com/) which help me power through my everyday
+"customizability" like I used to. Sure, there are apps which help me power through my everyday
 workflow now, but aside of keybindings and shortcuts, I also wanted my Mac to
 look and feel just like how I want it to.
 
