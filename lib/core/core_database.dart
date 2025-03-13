@@ -12,9 +12,9 @@ These can be used independent of the provider.
 
 /// Checks if an app exists given its path.
 Future<bool> appExistsByPath(String path) async {
-  final query = (objectBox.appBox.query(App_.path.equals(path))
-        ..order(App_.path))
-      .build();
+  final query =
+      (objectBox.appBox.query(App_.path.equals(path))
+        ..order(App_.path)).build();
   final exists = await query.findFirstAsync() != null;
   query.close();
   return exists;
@@ -101,5 +101,6 @@ class AppDatabase {
   /// Delete all apps from the database
   Future<void> deleteAllApps() async {
     await objectBox.appBox.removeAllAsync();
+    await fetchApps();
   }
 }

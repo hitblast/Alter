@@ -33,7 +33,7 @@ class SettingsSheetPage extends StatelessWidget {
                       ),
                       SizedBox(width: 8),
                       Text(
-                        'Configuration',
+                        'Settings',
                         style: TextStyle(
                           fontSize: 20,
                           color: CupertinoColors.systemGrey,
@@ -44,13 +44,13 @@ class SettingsSheetPage extends StatelessWidget {
                   ),
                   SizedBox(height: 15),
                   Text(
-                    'This page is still a work-in-progress.',
+                    'Under work-in-progress.',
                     style: TextStyle(
                       fontSize: 14,
                       color: CupertinoColors.systemGrey,
                     ),
                     textAlign: TextAlign.center,
-                  )
+                  ),
                 ],
               ),
             ),

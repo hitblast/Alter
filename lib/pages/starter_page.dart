@@ -31,28 +31,26 @@ class StarterPage extends StatelessWidget {
             onPressed: () => initiateKillSequence(context),
           ),
           ToolBarIconButton(
-            icon: const MacosIcon(
-              CupertinoIcons.paintbrush_fill,
-            ),
+            icon: const MacosIcon(CupertinoIcons.paintbrush_fill),
             label: 'Get Icons',
             tooltipMessage: 'Browse for new app icons',
             showLabel: false,
-            onPressed: () async =>
-                await launchOnWeb(context, 'https://macosicons.com/'),
+            onPressed:
+                () async =>
+                    await launchOnWeb(context, 'https://macosicons.com/'),
           ),
           ToolBarIconButton(
-            icon: const MacosIcon(
-              CupertinoIcons.settings,
-            ),
+            icon: const MacosIcon(CupertinoIcons.settings),
             label: 'Settings',
             tooltipMessage: 'Show settings menu',
             showLabel: false,
-            onPressed: () => showMacosSheet(
-              context: context,
-              builder: (context) {
-                return SettingsSheetPage();
-              },
-            ),
+            onPressed:
+                () => showMacosSheet(
+                  context: context,
+                  builder: (context) {
+                    return SettingsSheetPage();
+                  },
+                ),
           ),
         ],
       ),
@@ -63,14 +61,12 @@ class StarterPage extends StatelessWidget {
               onTap: () async => await initiateAppAddingSequence(context),
               child: Center(
                 child: ScrollConfiguration(
-                  behavior: ScrollConfiguration.of(context).copyWith(
-                    scrollbars: false,
-                  ),
+                  behavior: ScrollConfiguration.of(
+                    context,
+                  ).copyWith(scrollbars: false),
                   child: SingleChildScrollView(
                     controller: scrollController,
-                    padding: const EdgeInsets.only(
-                      bottom: 20,
-                    ),
+                    padding: const EdgeInsets.only(bottom: 20),
                     child: MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: Opacity(
@@ -87,12 +83,29 @@ class StarterPage extends StatelessWidget {
                             const Text(
                               'Left-click to start customizing.',
                               style: TextStyle(
-                                fontSize: 26,
-                                fontWeight: FontWeight.w300,
-                                color: CupertinoColors.systemGrey,
-                                letterSpacing: -2,
                                 overflow: TextOverflow.fade,
+                                fontSize: 21,
+                                letterSpacing: -1,
+                                fontWeight: FontWeight.bold,
                               ),
+                            ),
+                            const SizedBox(height: 5),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  CupertinoIcons.command,
+                                  size: 15,
+                                  color: CupertinoColors.systemGrey,
+                                ),
+                                Text(
+                                  ' + Q to put Alter in background.',
+                                  overflow: TextOverflow.fade,
+                                  style: TextStyle(
+                                    color: CupertinoColors.systemGrey,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -103,7 +116,7 @@ class StarterPage extends StatelessWidget {
               ),
             );
           },
-        )
+        ),
       ],
     );
   }

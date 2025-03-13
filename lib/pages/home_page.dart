@@ -8,7 +8,6 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/core_sequences.dart';
-import 'package:alter/pages/about_sheet_page.dart';
 import 'package:alter/pages/starter_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 import 'package:alter/pages/apps_page.dart';
@@ -64,10 +63,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const ProgressCircle(
-              radius: 15,
-              value: null,
-            ),
+            const ProgressCircle(radius: 15, value: null),
             const SizedBox(height: 20),
             Text(
               _currentMessage,
@@ -76,7 +72,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                 fontWeight: FontWeight.bold,
                 color: CupertinoColors.systemGrey,
               ),
-            )
+            ),
           ],
         ),
       );
@@ -96,18 +92,8 @@ class _HomePageState extends ConsumerState<HomePage> {
           PlatformMenu(
             label: 'Alter',
             menus: [
-              PlatformMenuItemGroup(
-                members: [
-                  PlatformMenuItem(
-                    label: 'About',
-                    onSelected: () => showMacosSheet(
-                      context: context,
-                      builder: (context) {
-                        return AboutSheetPage();
-                      },
-                    ),
-                  ),
-                ],
+              PlatformProvidedMenuItem(
+                type: PlatformProvidedMenuItemType.about,
               ),
               PlatformMenuItemGroup(
                 members: [
@@ -123,11 +109,9 @@ class _HomePageState extends ConsumerState<HomePage> {
                   ),
                 ],
               ),
-              PlatformProvidedMenuItem(
-                type: PlatformProvidedMenuItemType.quit,
-              )
+              PlatformProvidedMenuItem(type: PlatformProvidedMenuItemType.quit),
             ],
-          )
+          ),
         ],
         child: page,
       );

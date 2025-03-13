@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
 import 'package:path/path.dart' as path;
-import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -38,32 +37,29 @@ class _AppsPageState extends ConsumerState<AppsPage> {
         enableBlur: true,
         actions: [
           ToolBarIconButton(
-            icon: const MacosIcon(
-              CupertinoIcons.add_circled,
-            ),
+            icon: const MacosIcon(CupertinoIcons.add_circled),
             label: 'Add',
             tooltipMessage: 'Set an app\'s icon',
             showLabel: false,
             onPressed: () async => await initiateAppAddingSequence(context),
           ),
           ToolBarIconButton(
-            icon: const MacosIcon(
-              CupertinoIcons.refresh_bold,
-            ),
+            icon: const MacosIcon(CupertinoIcons.refresh_bold),
             label: 'Refresh',
-            tooltipMessage: 'Refresh user interface',
+            tooltipMessage: 'Refreshes the state of the list view',
             showLabel: false,
             onPressed: () => ref.invalidate(appDatabaseNotifierProvider),
           ),
           ToolBarIconButton(
-            icon: const MacosIcon(
-              CupertinoIcons.trash,
-            ),
+            icon: const MacosIcon(CupertinoIcons.trash),
             label: 'Reset All',
             tooltipMessage: 'Reset all changed icons',
             showLabel: false,
-            onPressed: () =>
-                ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps(),
+            onPressed:
+                () =>
+                    ref
+                        .read(appDatabaseNotifierProvider.notifier)
+                        .deleteAllApps(),
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
@@ -76,28 +72,26 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             onPressed: () => initiateKillSequence(context),
           ),
           ToolBarIconButton(
-            icon: const MacosIcon(
-              CupertinoIcons.paintbrush_fill,
-            ),
+            icon: const MacosIcon(CupertinoIcons.paintbrush_fill),
             label: 'Get Icons',
             tooltipMessage: 'Browse for new app icons',
             showLabel: false,
-            onPressed: () async =>
-                await launchOnWeb(context, 'https://macosicons.com/'),
+            onPressed:
+                () async =>
+                    await launchOnWeb(context, 'https://macosicons.com/'),
           ),
           ToolBarIconButton(
-            icon: const MacosIcon(
-              CupertinoIcons.settings,
-            ),
+            icon: const MacosIcon(CupertinoIcons.settings),
             label: 'Settings',
             tooltipMessage: 'Show settings menu',
             showLabel: false,
-            onPressed: () => showMacosSheet(
-              context: context,
-              builder: (context) {
-                return SettingsSheetPage();
-              },
-            ),
+            onPressed:
+                () => showMacosSheet(
+                  context: context,
+                  builder: (context) {
+                    return SettingsSheetPage();
+                  },
+                ),
           ),
         ],
       ),
@@ -108,128 +102,133 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                 MediaQuery.of(context).platformBrightness == Brightness.dark;
 
             Color secondaryColorDarkMode = Color.fromRGBO(28, 28, 28, 0.5);
-            Color secondaryColorLightMode =
-                Color.fromRGBO(228, 228, 228, 1.000);
+            Color secondaryColorLightMode = Color.fromRGBO(
+              228,
+              228,
+              228,
+              1.000,
+            );
 
-            return FadingEdgeScrollView.fromSingleChildScrollView(
-              gradientFractionOnEnd: 0.3,
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: Column(
-                  children: [
-                    for (var i = 0; i < apps.value!.length; i++)
-                      Builder(
-                        builder: (context) {
-                          var app = apps.value![i];
+            return SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                children: [
+                  for (var i = 0; i < apps.value!.length; i++)
+                    Builder(
+                      builder: (context) {
+                        var app = apps.value![i];
 
-                          return Column(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: isDarkMode
-                                      ? secondaryColorDarkMode
-                                      : secondaryColorLightMode,
+                        return Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color:
+                                    isDarkMode
+                                        ? secondaryColorDarkMode
+                                        : secondaryColorLightMode,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 15,
+                                  bottom: 15,
+                                  left: 25,
+                                  right: 25,
                                 ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                    top: 15,
-                                    bottom: 15,
-                                    left: 25,
-                                    right: 25,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Text(
-                                        '${i + 1}.',
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      '${i + 1}.',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      const SizedBox(width: 20),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: CupertinoColors.black
-                                                  .withValues(alpha: 0.2),
-                                              blurRadius: 10,
-                                              spreadRadius: -3,
-                                              offset: Offset(0, 5),
+                                    ),
+                                    const SizedBox(width: 20),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: CupertinoColors.black
+                                                .withValues(alpha: 0.2),
+                                            blurRadius: 10,
+                                            spreadRadius: -3,
+                                            offset: Offset(0, 5),
+                                          ),
+                                        ],
+                                      ),
+                                      child: GestureDetector(
+                                        onTap:
+                                            () => openFileInPreview(
+                                              app.customIconPath,
                                             ),
-                                          ],
-                                        ),
-                                        child: GestureDetector(
-                                          onTap: () => openFileInPreview(
-                                              app.customIconPath),
-                                          child: MouseRegion(
-                                            cursor: SystemMouseCursors.click,
-                                            child: Image.file(
-                                              File(app.customIconPath),
-                                              width: 70,
-                                              height: 70,
-                                            ),
+                                        child: MouseRegion(
+                                          cursor: SystemMouseCursors.click,
+                                          child: Image.file(
+                                            File(app.customIconPath),
+                                            width: 70,
+                                            height: 70,
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(width: 20),
-                                      Text(
-                                        path.basename(app.path),
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                    ),
+                                    const SizedBox(width: 20),
+                                    Text(
+                                      path.basename(app.path),
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                      const Spacer(),
-                                      PushButton(
-                                        onPressed: () {
-                                          showMacosSheet(
-                                            context: context,
-                                            builder: (context) {
-                                              return IconChooserSheetPage(
-                                                appFile: XFile(app.path),
-                                                preexistingAppId: app.id,
-                                              );
-                                            },
-                                          );
-                                        },
-                                        controlSize: ControlSize.regular,
-                                        secondary: true,
-                                        child: Text('Update Icon'),
-                                      ),
-                                      const SizedBox(width: 10),
-                                      PushButton(
-                                        onPressed: () {
-                                          ref
-                                              .read(appDatabaseNotifierProvider
-                                                  .notifier)
-                                              .deleteApp(app.id);
-                                        },
-                                        controlSize: ControlSize.regular,
-                                        secondary: true,
-                                        child: Text('Remove'),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                    const Spacer(),
+                                    PushButton(
+                                      onPressed: () {
+                                        showMacosSheet(
+                                          context: context,
+                                          builder: (context) {
+                                            return IconChooserSheetPage(
+                                              appFile: XFile(app.path),
+                                              preexistingAppId: app.id,
+                                            );
+                                          },
+                                        );
+                                      },
+                                      controlSize: ControlSize.regular,
+                                      secondary: true,
+                                      child: Text('Update Icon'),
+                                    ),
+                                    const SizedBox(width: 10),
+                                    PushButton(
+                                      onPressed: () {
+                                        ref
+                                            .read(
+                                              appDatabaseNotifierProvider
+                                                  .notifier,
+                                            )
+                                            .deleteApp(app.id);
+                                      },
+                                      controlSize: ControlSize.regular,
+                                      secondary: true,
+                                      child: Text('Remove'),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Container(
-                                width: double.infinity,
-                                height: 1,
-                                color:
-                                    CupertinoColors.inactiveGray.withAlpha(70),
-                              )
-                            ],
-                          );
-                        },
-                      ),
-                    SizedBox(height: 80),
-                  ],
-                ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 1,
+                              color: CupertinoColors.inactiveGray.withAlpha(70),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  SizedBox(height: 80),
+                ],
               ),
             );
           },
-        )
+        ),
       ],
     );
   }

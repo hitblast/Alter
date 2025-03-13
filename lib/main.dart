@@ -54,9 +54,7 @@ class _MainAppState extends ConsumerState<MainApp> {
       debugShowCheckedModeBanner: false,
       builder: (BuildContext context, Widget? widget) {
         ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-          return ErrorPage(
-            errorDetails: errorDetails,
-          );
+          return ErrorPage(errorDetails: errorDetails);
         };
         return widget ?? Container();
       },
@@ -78,11 +76,7 @@ Future<void> main() async {
   objectBox = await ObjectBox.create();
   debugPrint('Database initialized at path: ${objectBox.store.directoryPath}');
 
-  runApp(
-    ProviderScope(
-      child: const MainApp(),
-    ),
-  );
+  runApp(ProviderScope(child: const MainApp()));
 }
 
 Future<void> _configureMacosWindowUtils() async {

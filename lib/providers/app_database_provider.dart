@@ -47,8 +47,10 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   Future<void> addApp(String appPath, String userCustomIconPath) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      final processedCommand =
-          await setCustomIconForApp(appPath, userCustomIconPath);
+      final processedCommand = await setCustomIconForApp(
+        appPath,
+        userCustomIconPath,
+      );
 
       if (processedCommand != null) {
         await _database.addApp(
@@ -67,10 +69,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   }
 
   /// Function to update the custom icon for an already added app.
-  Future<void> updateAppIcon(
-    int id,
-    String newCustomIconPath,
-  ) async {
+  Future<void> updateAppIcon(int id, String newCustomIconPath) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final app = await _database.getAppById(id);

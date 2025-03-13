@@ -4,7 +4,6 @@ import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
 import 'package:path/path.dart' as path;
-import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
@@ -56,55 +55,56 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
         padding: const EdgeInsets.all(20),
         child: Center(
           child: ScrollConfiguration(
-            behavior:
-                ScrollConfiguration.of(context).copyWith(scrollbars: false),
-            child: FadingEdgeScrollView.fromSingleChildScrollView(
-              child: SingleChildScrollView(
-                controller: scrollController,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      (widget.preexistingAppId != null)
-                          ? 'Modify icon for $appName'
-                          : 'Select icon for $appName',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 21,
-                        color: CupertinoColors.systemGrey,
-                        fontWeight: FontWeight.bold,
-                      ),
+            behavior: ScrollConfiguration.of(
+              context,
+            ).copyWith(scrollbars: false),
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    (widget.preexistingAppId != null)
+                        ? 'Modify icon for $appName'
+                        : 'Select icon for $appName',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 21,
+                      color: CupertinoColors.systemGrey,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 20),
-                    GestureDetector(
-                      onTap: () async {
-                        final XFile? file = await pickIcon();
+                  ),
+                  const SizedBox(height: 20),
+                  GestureDetector(
+                    onTap: () async {
+                      final XFile? file = await pickIcon();
 
-                        if (file != null) {
-                          setState(() {
-                            currentPickedIcon = file;
-                          });
-                        }
-                      },
-                      child: MouseRegion(
-                        cursor: SystemMouseCursors.click,
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Opacity(
-                              opacity: 0.4,
-                              child: Image.asset(
-                                'assets/images/alter_icon_frame.png',
-                                width: 155,
-                                height: 155,
-                              ),
+                      if (file != null) {
+                        setState(() {
+                          currentPickedIcon = file;
+                        });
+                      }
+                    },
+                    child: MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Opacity(
+                            opacity: 0.4,
+                            child: Image.asset(
+                              'assets/images/alter_icon_frame.png',
+                              width: 155,
+                              height: 155,
                             ),
-                            AnimatedContainer(
-                              duration: Duration(seconds: 2),
-                              curve: Curves.fastOutSlowIn,
-                              decoration: BoxDecoration(
-                                boxShadow: hasPickedIcon
-                                    ? [
+                          ),
+                          AnimatedContainer(
+                            duration: Duration(seconds: 2),
+                            curve: Curves.fastOutSlowIn,
+                            decoration: BoxDecoration(
+                              boxShadow:
+                                  hasPickedIcon
+                                      ? [
                                         BoxShadow(
                                           color: CupertinoColors.activeGreen
                                               .withAlpha(77),
@@ -112,77 +112,83 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                           blurRadius: 50,
                                         ),
                                       ]
-                                    : [
+                                      : [
                                         BoxShadow(
                                           color: CupertinoColors.systemGrey
                                               .withAlpha(50),
                                           offset: Offset(0, 5),
                                           blurRadius: 50,
-                                        )
+                                        ),
                                       ],
-                              ),
-                              child: hasPickedIcon
-                                  ? Image(
+                            ),
+                            child:
+                                hasPickedIcon
+                                    ? Image(
                                       image: FileImage(
                                         File(currentPickedIcon!.path),
                                       ),
                                       width: 145,
                                       height: 145,
                                     )
-                                  : brightness == Brightness.dark
-                                      ? Image.asset(
-                                          'assets/images/alter_empty_dark.png',
-                                          width: 145,
-                                          height: 145,
-                                        )
-                                      : Image.asset(
-                                          'assets/images/alter_empty_light.png',
-                                          width: 145,
-                                          height: 145,
-                                        ),
-                            )
-                          ],
-                        ),
+                                    : brightness == Brightness.dark
+                                    ? Image.asset(
+                                      'assets/images/alter_empty_dark.png',
+                                      width: 145,
+                                      height: 145,
+                                    )
+                                    : Image.asset(
+                                      'assets/images/alter_empty_light.png',
+                                      width: 145,
+                                      height: 145,
+                                    ),
+                          ),
+                        ],
                       ),
                     ),
-                    const SizedBox(height: 25),
-                    Text(
-                      hasPickedIcon
-                          ? 'You can modify by left-clicking again!'
-                          : 'Left-click above to choose a new icon.',
-                    ),
-                    const SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        PushButton(
-                          controlSize: ControlSize.large,
-                          secondary: true,
-                          onPressed: () => Navigator.of(context).pop(),
-                          child: Text('Cancel'),
-                        ),
-                        const SizedBox(width: 10),
-                        const Text('or'),
-                        const SizedBox(width: 10),
-                        PushButton(
-                          controlSize: ControlSize.large,
-                          secondary: !hasPickedIcon,
-                          onPressed: hasPickedIcon
-                              ? () async {
+                  ),
+                  const SizedBox(height: 25),
+                  Text(
+                    hasPickedIcon
+                        ? 'You can modify by left-clicking again!'
+                        : 'Left-click above to choose a new icon.',
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      PushButton(
+                        controlSize: ControlSize.large,
+                        secondary: true,
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text('Cancel'),
+                      ),
+                      const SizedBox(width: 10),
+                      const Text('or'),
+                      const SizedBox(width: 10),
+                      PushButton(
+                        controlSize: ControlSize.large,
+                        secondary: !hasPickedIcon,
+                        onPressed:
+                            hasPickedIcon
+                                ? () async {
                                   if (!hasPickedIcon) {
                                     return;
                                   }
 
                                   if (widget.preexistingAppId == null) {
                                     ref
-                                        .read(appDatabaseNotifierProvider
-                                            .notifier)
-                                        .addApp(widget.appFile.path,
-                                            currentPickedIcon!.path);
+                                        .read(
+                                          appDatabaseNotifierProvider.notifier,
+                                        )
+                                        .addApp(
+                                          widget.appFile.path,
+                                          currentPickedIcon!.path,
+                                        );
                                   } else {
                                     ref
-                                        .read(appDatabaseNotifierProvider
-                                            .notifier)
+                                        .read(
+                                          appDatabaseNotifierProvider.notifier,
+                                        )
                                         .updateAppIcon(
                                           widget.preexistingAppId!,
                                           currentPickedIcon!.path,
@@ -191,13 +197,12 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
 
                                   Navigator.of(context).pop();
                                 }
-                              : null,
-                          child: Text('Apply Changes'),
-                        )
-                      ],
-                    ),
-                  ],
-                ),
+                                : null,
+                        child: Text('Apply Changes'),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
