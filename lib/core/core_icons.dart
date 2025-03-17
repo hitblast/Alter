@@ -12,6 +12,26 @@ import 'package:alter/models/commandresult_model.dart';
 import 'package:alter/core/core_sips.dart';
 import 'package:alter/core/core_icon_storage.dart';
 
+/// Resets system-granted permissions for the app - given its absolute path.
+/// This is essential for execution when the code signature for a particular app has been changed.
+Future<String> _resetPermissions(String appPath) async {
+    final shell = Shell();
+
+    try {
+        final appBundleId = (await shell.run("""
+            osascript -e 'id of app "$appPath"'
+        """)).single.outText;
+
+        // Call tccutil to reset.
+        await shell.run('tccutil reset All $appBundleId');
+        debugPrint('Reset permissions for bundle ID: $appBundleId');
+
+        return appBundleId;
+    } catch (_) {
+        return "";
+    } 
+}
+
 /// Set a custom icon for an app given its path.
 /// Returns an optional CommandResult containing important, reusable data for the application.
 /// If [iconToDelete] is passed, it will instead run in update mode.
@@ -39,7 +59,7 @@ Future<CommandResult?> setCustomIconForApp(
   }
 
   // Initialize shell and define paths.
-  final shell = Shell(throwOnError: true);
+  final shell = Shell();
   final String appBundleInfoPath = path.join(appPath, 'Contents', 'Info');
   final String customIconPath =
       path.join(appPath, 'Contents', 'Resources', customIconFileName);
@@ -83,14 +103,6 @@ Future<CommandResult?> setCustomIconForApp(
     previousCFBundleIconName = '';
   }
 
-  // TODO: check this feature
-  if ((await shell.run('xattr "$appPath"'))
-      .outText
-      .contains('com.apple.quarantine')) {
-    debugPrint("Removing quarantine attribute for app: $appPath");
-    await shell.run('xattr -d com.apple.quarantine "$appPath"');
-  }
-
   // Backup and update CFBundleIconFile key, then touch and codesign the app.
   try {
     final readResult =
@@ -105,12 +117,16 @@ Future<CommandResult?> setCustomIconForApp(
     return null;
   }
 
+  // Reset permissions for the app here.
+  final appBundleId = await _resetPermissions(appPath);
+
   // Store the custom icon for backup and reapplying.
   await storeCustomIconInStorage(customIconPath, appPath);
 
   // Return the command result with the necessary data.
   return CommandResult(
     customIconPath: customIconPath,
+    appBundleId: appBundleId,
     newCFBundleIconName:
         previousCFBundleIconName == '' ? '' : customIconFileName,
     newCFBundleIconFile: customIconFileName,
@@ -122,7 +138,8 @@ Future<CommandResult?> setCustomIconForApp(
 /// Unset an App object's custom icon if one was previously applied on it.
 /// This reverses the effects put in place by setCustomIconForApp().
 Future<void> unsetCustomIconForApp(App app) async {
-  final shell = Shell(throwOnError: true);
+  final shell = Shell();
+
   // Delete the custom icon file.
   final File customIcon = File(app.customIconPath);
   await customIcon.delete();
@@ -148,6 +165,11 @@ Future<void> unsetCustomIconForApp(App app) async {
       ''');
   } catch (e) {
     debugPrint(e.toString());
+  }
+
+  // Reset permissions if needed.
+  if (app.appBundleId != '') {
+    await _resetPermissions(app.path);
   }
 }
 

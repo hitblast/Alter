@@ -55,6 +55,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
       if (processedCommand != null) {
         await _database.addApp(
           appPath,
+          processedCommand.appBundleId,
           processedCommand.customIconPath,
           processedCommand.newCFBundleIconName,
           processedCommand.newCFBundleIconFile,
