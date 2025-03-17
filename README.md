@@ -78,7 +78,9 @@ apps which should be prohibited from modifying unless the user really desires.
 compiled binary (obviously since it's a Flutter project), so there will always be a tiny
 burden of a few megabytes worth of memory usage unless Flutter is optimized further.
 
-- For now, Alter cannot modify the system apps on macOS due to SIP (System Integrity Protection) being a thing.
+- Alter resets the granted permissions for each app whenever custom icons are applied or unapplied.
+
+- For now, Alter cannot modify the system apps on macOS due to SIP (System Integrity Protection) being a thing. I'm still working on possible workarounds.
 
 ## Contributing
 
