@@ -10,6 +10,7 @@ class App {
   int id;
 
   String path;
+  String appBundleId;
   String customIconPath;
   String newCFBundleIconName;
   String newCFBundleIconFile;
@@ -20,6 +21,7 @@ class App {
   App({
     this.id = 0,
     required this.path,
+    required this.appBundleId,
     required this.customIconPath,
     required this.newCFBundleIconName,
     required this.newCFBundleIconFile,

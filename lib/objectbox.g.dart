@@ -22,7 +22,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(1, 2217227808595652313),
       name: 'App',
-      lastPropertyId: const obx_int.IdUid(7, 3408047609102543168),
+      lastPropertyId: const obx_int.IdUid(8, 492610898139750734),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -58,6 +58,11 @@ final _entities = <obx_int.ModelEntity>[
         obx_int.ModelProperty(
             id: const obx_int.IdUid(7, 3408047609102543168),
             name: 'previousCFBundleIconFile',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 492610898139750734),
+            name: 'appBundleId',
             type: 9,
             flags: 0)
       ],
@@ -132,7 +137,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
               fbb.writeString(object.previousCFBundleIconName);
           final previousCFBundleIconFileOffset =
               fbb.writeString(object.previousCFBundleIconFile);
-          fbb.startTable(8);
+          final appBundleIdOffset = fbb.writeString(object.appBundleId);
+          fbb.startTable(9);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, pathOffset);
           fbb.addOffset(2, customIconPathOffset);
@@ -140,6 +146,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addOffset(4, newCFBundleIconFileOffset);
           fbb.addOffset(5, previousCFBundleIconNameOffset);
           fbb.addOffset(6, previousCFBundleIconFileOffset);
+          fbb.addOffset(7, appBundleIdOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -150,6 +157,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final pathParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
+          final appBundleIdParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 18, '');
           final customIconPathParam =
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 8, '');
@@ -168,6 +178,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final object = App(
               id: idParam,
               path: pathParam,
+              appBundleId: appBundleIdParam,
               customIconPath: customIconPathParam,
               newCFBundleIconName: newCFBundleIconNameParam,
               newCFBundleIconFile: newCFBundleIconFileParam,
@@ -208,4 +219,8 @@ class App_ {
   /// See [App.previousCFBundleIconFile].
   static final previousCFBundleIconFile =
       obx.QueryStringProperty<App>(_entities[0].properties[6]);
+
+  /// See [App.appBundleId].
+  static final appBundleId =
+      obx.QueryStringProperty<App>(_entities[0].properties[7]);
 }

@@ -53,6 +53,7 @@ class AppDatabase {
   /// Add an app to the database.
   Future<void> addApp(
     String path,
+    String appBundleId,
     String customIconPath,
     String newCFBundleIconName,
     String newCFBundleIconFile,
@@ -61,6 +62,7 @@ class AppDatabase {
   ) async {
     final newApp = App(
       path: path,
+      appBundleId: appBundleId,
       customIconPath: customIconPath,
       newCFBundleIconName: newCFBundleIconName,
       newCFBundleIconFile: newCFBundleIconFile,

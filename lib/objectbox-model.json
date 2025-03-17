@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:2217227808595652313",
-      "lastPropertyId": "7:3408047609102543168",
+      "lastPropertyId": "8:492610898139750734",
       "name": "App",
       "properties": [
         {
@@ -42,6 +42,11 @@
         {
           "id": "7:3408047609102543168",
           "name": "previousCFBundleIconFile",
+          "type": 9
+        },
+        {
+          "id": "8:492610898139750734",
+          "name": "appBundleId",
           "type": 9
         }
       ],

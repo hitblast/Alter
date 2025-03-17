@@ -9,6 +9,7 @@ part 'commandresult_model.freezed.dart';
 @freezed
 class CommandResult with _$CommandResult {
   const factory CommandResult({
+    required String appBundleId,
     required String customIconPath,
     required String newCFBundleIconName,
     required String newCFBundleIconFile,

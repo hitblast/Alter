@@ -16,6 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CommandResult {
+  String get appBundleId => throw _privateConstructorUsedError;
   String get customIconPath => throw _privateConstructorUsedError;
   String get newCFBundleIconName => throw _privateConstructorUsedError;
   String get newCFBundleIconFile => throw _privateConstructorUsedError;
@@ -36,7 +37,8 @@ abstract class $CommandResultCopyWith<$Res> {
       _$CommandResultCopyWithImpl<$Res, CommandResult>;
   @useResult
   $Res call(
-      {String customIconPath,
+      {String appBundleId,
+      String customIconPath,
       String newCFBundleIconName,
       String newCFBundleIconFile,
       String previousCFBundleIconName,
@@ -58,6 +60,7 @@ class _$CommandResultCopyWithImpl<$Res, $Val extends CommandResult>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? appBundleId = null,
     Object? customIconPath = null,
     Object? newCFBundleIconName = null,
     Object? newCFBundleIconFile = null,
@@ -65,6 +68,10 @@ class _$CommandResultCopyWithImpl<$Res, $Val extends CommandResult>
     Object? previousCFBundleIconFile = null,
   }) {
     return _then(_value.copyWith(
+      appBundleId: null == appBundleId
+          ? _value.appBundleId
+          : appBundleId // ignore: cast_nullable_to_non_nullable
+              as String,
       customIconPath: null == customIconPath
           ? _value.customIconPath
           : customIconPath // ignore: cast_nullable_to_non_nullable
@@ -98,7 +105,8 @@ abstract class _$$CommandResultImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String customIconPath,
+      {String appBundleId,
+      String customIconPath,
       String newCFBundleIconName,
       String newCFBundleIconFile,
       String previousCFBundleIconName,
@@ -118,6 +126,7 @@ class __$$CommandResultImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? appBundleId = null,
     Object? customIconPath = null,
     Object? newCFBundleIconName = null,
     Object? newCFBundleIconFile = null,
@@ -125,6 +134,10 @@ class __$$CommandResultImplCopyWithImpl<$Res>
     Object? previousCFBundleIconFile = null,
   }) {
     return _then(_$CommandResultImpl(
+      appBundleId: null == appBundleId
+          ? _value.appBundleId
+          : appBundleId // ignore: cast_nullable_to_non_nullable
+              as String,
       customIconPath: null == customIconPath
           ? _value.customIconPath
           : customIconPath // ignore: cast_nullable_to_non_nullable
@@ -153,12 +166,15 @@ class __$$CommandResultImplCopyWithImpl<$Res>
 
 class _$CommandResultImpl implements _CommandResult {
   const _$CommandResultImpl(
-      {required this.customIconPath,
+      {required this.appBundleId,
+      required this.customIconPath,
       required this.newCFBundleIconName,
       required this.newCFBundleIconFile,
       required this.previousCFBundleIconName,
       required this.previousCFBundleIconFile});
 
+  @override
+  final String appBundleId;
   @override
   final String customIconPath;
   @override
@@ -172,7 +188,7 @@ class _$CommandResultImpl implements _CommandResult {
 
   @override
   String toString() {
-    return 'CommandResult(customIconPath: $customIconPath, newCFBundleIconName: $newCFBundleIconName, newCFBundleIconFile: $newCFBundleIconFile, previousCFBundleIconName: $previousCFBundleIconName, previousCFBundleIconFile: $previousCFBundleIconFile)';
+    return 'CommandResult(appBundleId: $appBundleId, customIconPath: $customIconPath, newCFBundleIconName: $newCFBundleIconName, newCFBundleIconFile: $newCFBundleIconFile, previousCFBundleIconName: $previousCFBundleIconName, previousCFBundleIconFile: $previousCFBundleIconFile)';
   }
 
   @override
@@ -180,6 +196,8 @@ class _$CommandResultImpl implements _CommandResult {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CommandResultImpl &&
+            (identical(other.appBundleId, appBundleId) ||
+                other.appBundleId == appBundleId) &&
             (identical(other.customIconPath, customIconPath) ||
                 other.customIconPath == customIconPath) &&
             (identical(other.newCFBundleIconName, newCFBundleIconName) ||
@@ -197,6 +215,7 @@ class _$CommandResultImpl implements _CommandResult {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      appBundleId,
       customIconPath,
       newCFBundleIconName,
       newCFBundleIconFile,
@@ -214,12 +233,15 @@ class _$CommandResultImpl implements _CommandResult {
 
 abstract class _CommandResult implements CommandResult {
   const factory _CommandResult(
-      {required final String customIconPath,
+      {required final String appBundleId,
+      required final String customIconPath,
       required final String newCFBundleIconName,
       required final String newCFBundleIconFile,
       required final String previousCFBundleIconName,
       required final String previousCFBundleIconFile}) = _$CommandResultImpl;
 
+  @override
+  String get appBundleId;
   @override
   String get customIconPath;
   @override
