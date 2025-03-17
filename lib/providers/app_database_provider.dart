@@ -100,7 +100,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
 
       try {
         await unsetCustomIconForApp(app);
-      } catch (_) {} // TODO: Add integrity checks within closure.
+      } catch (_) {} 
 
       await _database.deleteApp(id);
       return _database.currentApps;
@@ -114,8 +114,9 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
       for (final app in _database.currentApps) {
         try {
           await unsetCustomIconForApp(app);
-        } catch (_) {} // TODO: Add integrity checks within closure.
+        } catch (_) {} 
       }
+
       await _database.deleteAllApps();
       service.clearAllWatchers();
       return _database.currentApps;
