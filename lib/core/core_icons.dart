@@ -78,7 +78,7 @@ Future<CommandResult?> setCustomIconForApp(
   if (currentIconName != null) {
     previousCFBundleIconName = currentIconName;
     await shell.run(
-        'defaults write "$appBundleInfoPath" CFBundleIconName $customIconFileName');
+        'defaults write "$appBundleInfoPath" CFBundleIconName "$customIconFileName"');
   } else {
     previousCFBundleIconName = '';
   }
