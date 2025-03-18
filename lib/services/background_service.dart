@@ -15,6 +15,9 @@ import 'package:alter/objectbox.g.dart';
 import 'package:alter/core/icons.dart';
 import 'package:alter/core/icons_storage.dart';
 
+// Enum for message transfer beetween the core isolate and update isolates.
+enum PortMessage { noMod, updateOnly, updateAndWatcherRemoval }
+
 /// The BackgroundService class for handling background updates to the apps present in the database.
 /// This connects with AppDatabaseNotifier with a StreamController to update the user interface
 /// (when running in the foreground).
@@ -136,10 +139,10 @@ class BackgroundService {
     debugPrint('Spawned isolate: ${isolate.debugName} for appPath: $appPath');
 
     receivePort.listen((message) {
-      if (message == 'updateAndWatcherRemoval') {
+      if (message == PortMessage.updateAndWatcherRemoval) {
         removeWatcher(appPath);
         _streamController.add(null);
-      } else if (message == 'updateOnly') {
+      } else if (message == PortMessage.updateOnly) {
         _streamController.add(null);
       }
 
@@ -156,7 +159,7 @@ class BackgroundService {
     final appPath = isolateData['appPath'] as String;
 
     BackgroundIsolateBinaryMessenger.ensureInitialized(rootToken);
-    String portMessage = 'noMod';
+    PortMessage portMessage = PortMessage.noMod;
 
     // Attaches to root isolate's ObjectBox instance.
     final isolateStore = Store.attach(
@@ -175,7 +178,7 @@ class BackgroundService {
       if (!(await Directory(app.path).exists())) {
         debugPrint('Application not found.');
         await isolateAppBox.removeAsync(app.id);
-        portMessage = 'updateAndWatcherRemoval';
+        portMessage = PortMessage.updateAndWatcherRemoval;
       }
       // If the application has been updated.
       else if (await shouldReapplyIcon(app)) {
@@ -197,7 +200,7 @@ class BackgroundService {
           app.newCFBundleIconFile = setResult.newCFBundleIconFile;
 
           await isolateAppBox.putAsync(app);
-          portMessage = 'updateOnly';
+          portMessage = PortMessage.updateOnly;
           debugPrint("Reapplied custom icon for app: ${app.path}");
         }
         /*
@@ -206,7 +209,7 @@ class BackgroundService {
         */
         else {
           await isolateAppBox.removeAsync(app.id);
-          portMessage = 'updateAndWatcherRemoval';
+          portMessage = PortMessage.updateAndWatcherRemoval;
           debugPrint('Stored icon not found, removing app: ${app.path}');
         }
       }
