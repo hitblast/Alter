@@ -10,7 +10,7 @@ import 'package:path/path.dart' as path;
 import 'package:alter/models/app_model.dart';
 import 'package:alter/models/commandresult_model.dart';
 import 'package:alter/core/image_converter.dart';
-import 'package:alter/core/icons_storage.dart';
+import 'package:alter/core/icons_storage.dart' as icon_storage;
 import 'package:alter/core/permissions.dart';
 
 /// Set a custom icon for an app given its path.
@@ -114,7 +114,7 @@ Future<CommandResult?> setCustomIconForApp(
   final appBundleId = await resetPermissions(appPath);
 
   // Store the custom icon for backup and reapplying.
-  await storeCustomIconInStorage(customIconPath, appPath);
+  await icon_storage.storeIconForAppPath(customIconPath, appPath);
 
   // Return the command result with the necessary data.
   return CommandResult(
@@ -148,7 +148,7 @@ Future<void> unsetCustomIconForApp(App app) async {
   }
 
   // Delete the backup icon file.
-  await deleteStoredIconForAppPath(app.path);
+  await icon_storage.deleteStoredIconForAppPath(app.path);
 
   // Restore CFBundleIconFile, touch and codesign the app.
   try {

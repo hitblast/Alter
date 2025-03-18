@@ -23,8 +23,10 @@ String _getStoredFilePath(String appPath, Directory iconsDir) {
 /// Saves the final custom icon into the AppIcons folder
 /// (inside the application support directory).
 /// Returns the file's path.
-Future<String> storeCustomIconInStorage(
-    String appliedIconPath, String appPath) async {
+Future<String> storeIconForAppPath(
+  String appliedIconPath,
+  String appPath,
+) async {
   final iconsDir = await _getAppIconsDirectory();
   final storedFilePath = _getStoredFilePath(appPath, iconsDir);
 
