@@ -12,8 +12,8 @@ import 'package:watcher/watcher.dart';
 import 'package:alter/main.dart';
 import 'package:alter/models/app_model.dart';
 import 'package:alter/objectbox.g.dart';
-import 'package:alter/core/core_icon_storage.dart';
-import 'package:alter/core/core_icons.dart';
+import 'package:alter/core/icons.dart';
+import 'package:alter/core/icons_storage.dart';
 
 /// The BackgroundService class for handling background updates to the apps present in the database.
 /// This connects with AppDatabaseNotifier with a StreamController to update the user interface
@@ -80,9 +80,10 @@ class BackgroundService {
 
   /// Removes a watcher and cancels its subscription given an app path.
   void removeWatcher(String appPath) {
-    final watchersToRemove = _watcherSubscriptions.keys
-        .where((watcher) => watcher.path == appPath)
-        .toList();
+    final watchersToRemove =
+        _watcherSubscriptions.keys
+            .where((watcher) => watcher.path == appPath)
+            .toList();
     for (final watcher in watchersToRemove) {
       // Reset the onData event by canceling the subscription.
       _watcherSubscriptions[watcher]?.cancel();
@@ -164,9 +165,9 @@ class BackgroundService {
     );
     final isolateAppBox = isolateStore.box<App>();
 
-    final query = (isolateAppBox.query(App_.path.equals(appPath))
-          ..order(App_.path))
-        .build();
+    final query =
+        (isolateAppBox.query(App_.path.equals(appPath))
+          ..order(App_.path)).build();
     App? app = await query.findFirstAsync();
 
     if (app != null) {
@@ -176,7 +177,6 @@ class BackgroundService {
         await isolateAppBox.removeAsync(app.id);
         portMessage = 'updateAndWatcherRemoval';
       }
-
       // If the custom icon needs to be reapplied.
       // The database I/O has been derived from lib/core/core_database.dart
       // TODO: Possibly unify the AppDatabase class for less duplication of I/O code
@@ -184,8 +184,11 @@ class BackgroundService {
         debugPrint('Reapplying custom icon for app.');
 
         final storedIcon = await getStoredIconForAppPath(appPath);
-        final setResult = await setCustomIconForApp(appPath, storedIcon!,
-            iconToDelete: app.newCFBundleIconFile);
+        final setResult = await setCustomIconForApp(
+          appPath,
+          storedIcon!,
+          iconToDelete: app.newCFBundleIconFile,
+        );
 
         app.customIconPath = setResult!.customIconPath;
         app.newCFBundleIconName = setResult.newCFBundleIconName;

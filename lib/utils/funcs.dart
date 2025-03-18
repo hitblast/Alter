@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 // Third-party imports.
 import 'package:path/path.dart' as path;
 import 'package:file_selector/file_selector.dart';
-import 'package:process_run/process_run.dart';
+import 'package:process_run/shell.dart';
 
 /*
 
@@ -21,9 +21,11 @@ Future<void> openFileInPreview(String path) async {
 
 /// Open a macOS-native file picker window for picking .icns and .png (coming) files for using as custom app icons.
 Future<XFile?> pickIcon() async {
-  final XFile? file = await openFile(acceptedTypeGroups: [
-    const XTypeGroup(label: 'Icons', extensions: ['icns', 'png'])
-  ]);
+  final XFile? file = await openFile(
+    acceptedTypeGroups: [
+      const XTypeGroup(label: 'Icons', extensions: ['icns', 'png']),
+    ],
+  );
   debugPrint("Chosen icon: ${file?.name}");
   return file;
 }

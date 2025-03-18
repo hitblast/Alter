@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/core/core_sequences.dart';
+import 'package:alter/core/sequences.dart';
 import 'package:alter/utils/links.dart';
 
 /// The starter page widget.

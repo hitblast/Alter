@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/core/core_sequences.dart';
+import 'package:alter/core/sequences.dart';
 import 'package:alter/utils/funcs.dart';
 import 'package:alter/utils/links.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';

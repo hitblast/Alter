@@ -9,9 +9,9 @@ import 'package:path/path.dart' as path;
 // Local imports.
 import 'package:alter/models/app_model.dart';
 import 'package:alter/models/commandresult_model.dart';
-import 'package:alter/core/core_sips.dart';
-import 'package:alter/core/core_icon_storage.dart';
-import 'package:alter/core/core_permissions.dart';
+import 'package:alter/core/image_converter.dart';
+import 'package:alter/core/icons_storage.dart';
+import 'package:alter/core/permissions.dart';
 
 /// Set a custom icon for an app given its path.
 /// Returns an optional CommandResult containing important, reusable data for the application.

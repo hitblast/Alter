@@ -6,8 +6,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 // Local imports.
 import 'package:alter/main.dart';
-import 'package:alter/core/core_database.dart';
-import 'package:alter/core/core_icons.dart';
+import 'package:alter/core/database.dart';
+import 'package:alter/core/icons.dart';
 import 'package:alter/models/app_model.dart';
 
 // Provider generator part file.
@@ -101,7 +101,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
 
       try {
         await unsetCustomIconForApp(app);
-      } catch (_) {} 
+      } catch (_) {}
 
       await _database.deleteApp(id);
       return _database.currentApps;
@@ -115,7 +115,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
       for (final app in _database.currentApps) {
         try {
           await unsetCustomIconForApp(app);
-        } catch (_) {} 
+        } catch (_) {}
       }
 
       await _database.deleteAllApps();
