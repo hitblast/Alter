@@ -47,7 +47,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
   Future<void> addApp(String appPath, String userCustomIconPath) async {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
-      final processedCommand = await setCustomIconForApp(
+      final processedCommand = await setCustomIconForAppPath(
         appPath,
         userCustomIconPath,
       );
@@ -74,7 +74,7 @@ class AppDatabaseNotifier extends _$AppDatabaseNotifier {
     state = const AsyncValue.loading();
     state = await AsyncValue.guard(() async {
       final app = await _database.getAppById(id);
-      final processedCommand = await setCustomIconForApp(
+      final processedCommand = await setCustomIconForAppPath(
         app!.path,
         newCustomIconPath,
         iconToDelete: app.newCFBundleIconFile,

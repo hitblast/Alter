@@ -186,7 +186,7 @@ class BackgroundService {
         This is the most basic type of background update.
         */
         if (storedIcon != null) {
-          final setResult = await setCustomIconForApp(
+          final setResult = await setCustomIconForAppPath(
             appPath,
             storedIcon,
             iconToDelete: app.newCFBundleIconFile,

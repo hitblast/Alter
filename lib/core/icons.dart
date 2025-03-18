@@ -16,7 +16,7 @@ import 'package:alter/core/permissions.dart';
 /// Set a custom icon for an app given its path.
 /// Returns an optional CommandResult containing important, reusable data for the application.
 /// If [iconToDelete] is passed, it will instead run in update mode.
-Future<CommandResult?> setCustomIconForApp(
+Future<CommandResult?> setCustomIconForAppPath(
   String appPath,
   String userCustomIconPath, {
   String? iconToDelete,
