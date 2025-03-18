@@ -14,22 +14,23 @@ import 'package:alter/core/core_icon_storage.dart';
 
 /// Resets system-granted permissions for the app - given its absolute path.
 /// This is essential for execution when the code signature for a particular app has been changed.
-Future<String> _resetPermissions(String appPath) async {
-    final shell = Shell();
+Future<String?> _resetPermissions(String appPath) async {
+  final shell = Shell();
 
-    try {
-        final appBundleId = (await shell.run("""
+  try {
+    final appBundleId =
+        (await shell.run("""
             osascript -e 'id of app "$appPath"'
         """)).single.outText;
 
-        // Call tccutil to reset.
-        await shell.run('tccutil reset All $appBundleId');
-        debugPrint('Reset permissions for bundle ID: $appBundleId');
+    // Call tccutil to reset.
+    await shell.run('tccutil reset All $appBundleId');
+    debugPrint('Reset permissions for bundle ID: $appBundleId');
 
-        return appBundleId;
-    } catch (_) {
-        return "";
-    } 
+    return appBundleId;
+  } catch (_) {
+    return null;
+  }
 }
 
 /// Set a custom icon for an app given its path.
@@ -44,11 +45,12 @@ Future<CommandResult?> setCustomIconForApp(
   final String originalFileName = path.basename(userCustomIconPath);
   final int dotIndex = originalFileName.lastIndexOf('.');
   final bool isPng = originalFileName.endsWith('.png');
-  final String customIconFileName = isPng
-      ? "${originalFileName.substring(0, dotIndex)}_alterModify.icns"
-      : (dotIndex != -1
-          ? "${originalFileName.substring(0, dotIndex)}_alterModify${originalFileName.substring(dotIndex)}"
-          : "${originalFileName}_alterModify");
+  final String customIconFileName =
+      isPng
+          ? "${originalFileName.substring(0, dotIndex)}_alterModify.icns"
+          : (dotIndex != -1
+              ? "${originalFileName.substring(0, dotIndex)}_alterModify${originalFileName.substring(dotIndex)}"
+              : "${originalFileName}_alterModify");
 
   // If a PNG file is provided, convert it to ICNS.
   String iconPathToUse = userCustomIconPath;
@@ -61,12 +63,17 @@ Future<CommandResult?> setCustomIconForApp(
   // Initialize shell and define paths.
   final shell = Shell();
   final String appBundleInfoPath = path.join(appPath, 'Contents', 'Info');
-  final String customIconPath =
-      path.join(appPath, 'Contents', 'Resources', customIconFileName);
+  final String customIconPath = path.join(
+    appPath,
+    'Contents',
+    'Resources',
+    customIconFileName,
+  );
 
   if (iconToDelete != null) {
-    final File previousIconFile =
-        File(path.join(appPath, 'Contents', 'Resources', iconToDelete));
+    final File previousIconFile = File(
+      path.join(appPath, 'Contents', 'Resources', iconToDelete),
+    );
     if (await previousIconFile.exists()) {
       await previousIconFile.delete();
     }
@@ -83,31 +90,37 @@ Future<CommandResult?> setCustomIconForApp(
     await convertedIconFile.delete();
   }
 
-  // Backup current CFBundleIconName and CFBundleIconFile.
+  // Backup current CFBundleIconName if it exists.
+  // Some applications can be modified without writing this property.
   late String previousCFBundleIconName;
-  late String previousCFBundleIconFile;
 
   String? currentIconName;
   try {
-    final readResult =
-        await shell.run('defaults read "$appBundleInfoPath" CFBundleIconName');
-    currentIconName = readResult.single.outText;
+    currentIconName =
+        (await shell.run(
+          'defaults read "$appBundleInfoPath" CFBundleIconName',
+        )).single.outText;
   } catch (e) {
     currentIconName = null;
   }
+
   if (currentIconName != null) {
     previousCFBundleIconName = currentIconName;
     await shell.run(
-        'defaults write "$appBundleInfoPath" CFBundleIconName "$customIconFileName"');
+      'defaults write "$appBundleInfoPath" CFBundleIconName "$customIconFileName"',
+    );
   } else {
     previousCFBundleIconName = '';
   }
 
   // Backup and update CFBundleIconFile key, then touch and codesign the app.
+  late String previousCFBundleIconFile;
   try {
-    final readResult =
-        await shell.run('defaults read "$appBundleInfoPath" CFBundleIconFile');
-    previousCFBundleIconFile = readResult.single.outText;
+    previousCFBundleIconFile =
+        (await shell.run(
+          'defaults read "$appBundleInfoPath" CFBundleIconFile',
+        )).single.outText;
+
     await shell.run('''
         defaults write "$appBundleInfoPath" CFBundleIconFile "$customIconFileName"
         touch "$appPath"
@@ -126,7 +139,7 @@ Future<CommandResult?> setCustomIconForApp(
   // Return the command result with the necessary data.
   return CommandResult(
     customIconPath: customIconPath,
-    appBundleId: appBundleId,
+    appBundleId: appBundleId ?? '',
     newCFBundleIconName:
         previousCFBundleIconName == '' ? '' : customIconFileName,
     newCFBundleIconFile: customIconFileName,
@@ -150,7 +163,8 @@ Future<void> unsetCustomIconForApp(App app) async {
   // Restore CFBundleIconName if it was modified.
   if (app.previousCFBundleIconName.isNotEmpty) {
     await shell.run(
-        'defaults write "$appBundleInfoPath" CFBundleIconName "${app.previousCFBundleIconName}"');
+      'defaults write "$appBundleInfoPath" CFBundleIconName "${app.previousCFBundleIconName}"',
+    );
   }
 
   // Delete the backup icon file.
@@ -184,9 +198,9 @@ Future<bool> shouldReapplyIcon(App app) async {
   // Optional check triggered for the current value of CFBundleIconName.
   if (app.previousCFBundleIconName != '') {
     readCFBundleIconName =
-        (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconName'))
-            .single
-            .outText;
+        (await shell.run(
+          'defaults read "$appBundleInfoPath" CFBundleIconName',
+        )).single.outText;
 
     if (readCFBundleIconName != app.newCFBundleIconName) {
       return true;
@@ -195,9 +209,9 @@ Future<bool> shouldReapplyIcon(App app) async {
 
   // Either way, CFBundleIconFile gets checked for sure.
   readCFBundleIconFile =
-      (await shell.run('defaults read "$appBundleInfoPath" CFBundleIconFile'))
-          .single
-          .outText;
+      (await shell.run(
+        'defaults read "$appBundleInfoPath" CFBundleIconFile',
+      )).single.outText;
 
   if (readCFBundleIconFile != app.newCFBundleIconFile) {
     return true;
