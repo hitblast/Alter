@@ -7,7 +7,7 @@ This guide walks you through the setup and development process for contributing 
 - [Prerequisites](#prerequisites)
 - [Code Editor](#code-editor)
 - [Setup](#setup)
-- [File Hierarchy](#file-hierarchy)
+- [Anatomy](#anatomy)
 - [Formatting](#formatting)
 
 ## Prerequisites
