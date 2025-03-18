@@ -14,7 +14,8 @@ import 'package:alter/core/core_icon_storage.dart';
 
 /// Resets system-granted permissions for the app - given its absolute path.
 /// This is essential for execution when the code signature for a particular app has been changed.
-Future<String?> _resetPermissions(String appPath) async {
+/// Returns the bundle ID of the app if successful, otherwise an empty string.
+Future<String> _resetPermissions(String appPath) async {
   final shell = Shell();
 
   try {
@@ -29,7 +30,7 @@ Future<String?> _resetPermissions(String appPath) async {
 
     return appBundleId;
   } catch (_) {
-    return null;
+    return '';
   }
 }
 
@@ -139,7 +140,7 @@ Future<CommandResult?> setCustomIconForApp(
   // Return the command result with the necessary data.
   return CommandResult(
     customIconPath: customIconPath,
-    appBundleId: appBundleId ?? '',
+    appBundleId: appBundleId,
     newCFBundleIconName:
         previousCFBundleIconName == '' ? '' : customIconFileName,
     newCFBundleIconFile: customIconFileName,
