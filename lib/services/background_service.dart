@@ -1,6 +1,5 @@
 // First-party imports.
 import 'dart:async';
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
 import 'package:flutter/foundation.dart';
