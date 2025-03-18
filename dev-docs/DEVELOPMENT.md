@@ -7,7 +7,7 @@ This guide walks you through the setup and development process for contributing 
 - [Prerequisites](#prerequisites)
 - [Code Editor](#code-editor)
 - [Setup](#setup)
-- [Anatomy](#anatomy)
+- [Project Anatomy](#project-anatomy)
 - [Formatting](#formatting)
 
 ## Prerequisites
@@ -62,9 +62,9 @@ mise run build
 # this is the same as running: flutter build macos --verbose --release --tree-shake-icons
 ```
 
-## Anatomy
+## Project Anatomy
 
-<img src="structure.png" alt="Anatomy of Alter">
+<img src="structure.png" alt="Project Anatomy of Alter">
 
 ## Formatting
 
