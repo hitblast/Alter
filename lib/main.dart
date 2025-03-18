@@ -8,7 +8,7 @@ import 'package:desktop_window/desktop_window.dart';
 
 // Local imports.
 import 'package:alter/core/objectbox.dart';
-import 'package:alter/pages/error_page.dart';
+import 'package:alter/pages/error_view.dart';
 import 'package:alter/pages/home_page.dart';
 import 'package:alter/providers/app_theme_provider.dart';
 import 'package:alter/services/background_service.dart';
@@ -54,7 +54,7 @@ class _MainAppState extends ConsumerState<MainApp> {
       debugShowCheckedModeBanner: false,
       builder: (BuildContext context, Widget? widget) {
         ErrorWidget.builder = (FlutterErrorDetails errorDetails) {
-          return ErrorPage(errorDetails: errorDetails);
+          return ErrorView(errorDetails: errorDetails);
         };
         return widget ?? Container();
       },

@@ -1,5 +1,4 @@
 // First-party imports.
-import 'dart:io';
 import 'dart:math';
 import 'package:flutter/cupertino.dart';
 
@@ -9,10 +8,11 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/sequences.dart';
-import 'package:alter/pages/starter_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
 import 'package:alter/providers/app_dependencies_provider.dart';
 import 'package:alter/pages/apps_page.dart';
+import 'package:alter/pages/starter_page.dart';
+import 'package:alter/pages/missing_deps_view.dart';
 
 /// The home page of the application.
 class HomePage extends ConsumerStatefulWidget {
@@ -86,43 +86,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       // Based on whether the user has modified any apps' icons,
       // either the starter page or the apps page will be displayed.
       if (missingDependencies.value != null) {
-        return Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  CupertinoIcons.exclamationmark_circle_fill,
-                  color: CupertinoColors.systemRed,
-                  size: 40,
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Missing dependencies!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: CupertinoColors.systemGrey,
-                  ),
-                ),
-                const SizedBox(height: 15),
-                Text(
-                  'The following dependencies are required for Alter to run: ${missingDependencies.value}.',
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 30),
-                PushButton(
-                  onPressed: () => exit(0),
-                  controlSize: ControlSize.large,
-                  secondary: true,
-                  child: Text('Close application'),
-                ),
-              ],
-            ),
-          ),
-        );
+        return MissingDepsView(missingDependencies: missingDependencies.value!);
       } else if (apps.value!.isEmpty) {
         page = const StarterPage();
       } else {
