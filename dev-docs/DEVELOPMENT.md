@@ -62,52 +62,9 @@ mise run build
 # this is the same as running: flutter build macos --verbose --release --tree-shake-icons
 ```
 
-## File Hierarchy
+## Anatomy
 
-Like all other Flutter projects, Alter's primary code resides in the [lib/](../lib/) directory.
-
-```bash
-lib
-├── core # A
-├── models # B
-├── pages # C
-├── providers # D
-├── services # E
-└── utils # F
-```
-
-- (A) The Core
-
-This directory contains the code for the primary business logic of the application (e.g. to set and unset icons).
-It also contains other things such as icon backup logic, app blacklisting (a currently essential part to be contributed on),
-database CRUD operations and more. It also holds some reproducible UI components such as alert boxes and dialogs.
-
-- (B) Models
-
-This directory holds the essential data structure models used by the `core` module and other providers.
-
-- (C) Pages
-
-This holds the primary UI components of the application. Alter has three, primary pages:
-
-    1. The starter page (when no apps have been modified),
-    2. The icon chooser page (which shows up as a sheet), and
-    3. The apps list page (when apps have been modified).
-
-Alter can also show an error page but it's currently underdeveloped.
-
-- (D) Providers/State Management
-
-The state management logic of the application is handled by [riverpod](https://riverpod.dev/), which in my opinion is a
-more convenient option (and advanced) than packages such as BloC and Provider.
-
-- (E) Services
-
-Background services are assigned in this module
-
-- (F) Utils
-
-A simple module for utility functions. Write any boilerplate here!
+<img src="structure.png" alt="Anatomy of Alter">
 
 ## Formatting
 
