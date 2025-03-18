@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Alter - Customize macOS App Icons</title>
+
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+            /* Reset styles */
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                font-family: "Space Mono", sans-serif;
+                text-align: center;
+                margin: 0;
+                display: flex;
+                flex-direction: column;
+                background: #f0f0f0;
+            }
+            /* Container for main content */
+            .content {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+            }
+            /* Header styling */
+            h1 {
+                font-family: "Space Mono", monospace;
+                font-size: 3em;
+                font-weight: 700;
+                letter-spacing: -2px;
+            }
+            /* Description placeholder */
+            .description {
+                margin-bottom: 35px;
+                font-size: 1em;
+                color: #333;
+            }
+
+            /* Button styling */
+            a.button {
+                display: inline-block;
+                background: #000;
+                color: #fff;
+                text-decoration: none;
+                padding: 10px 20px;
+                border-radius: 20px;
+                font-size: 16px;
+            }
+            /* Download options container */
+            .download-options {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 5px;
+                gap: 10px;
+            }
+            .download-separator {
+                font-size: 16px;
+                color: #333;
+            }
+            .code-block {
+                background: #ddd;
+                color: #000;
+                padding: 10px 20px;
+                border-radius: 20px;
+                font-family: "Space Mono", monospace;
+                font-size: 16px;
+                transition: 0.3s ease;
+            }
+            .code-block:hover {
+                background: #ccc;
+                cursor: pointer;
+            }
+            /* Version text styling */
+            .version {
+                color: grey;
+                font-size: 0.9em;
+                margin-top: 20px;
+                margin-bottom: 20px;
+            }
+            .version a {
+                color: grey;
+            }
+            .version a:hover {
+                color: #000;
+            }
+            /* Image placeholder styling */
+            .image {
+                width: 300px;
+                height: auto;
+                margin: 0 auto;
+                display: block;
+                transition: transform 0.3s ease;
+                cursor: pointer;
+            }
+            .image.clicked {
+                transform: scale(0.9);
+            }
+            /* Footer minimal styling */
+            footer {
+                text-align: center;
+                padding: 10px;
+                font-size: 0.8em;
+                background-color: inherit;
+                margin-bottom: 40px;
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 800px) {
+                h1 {
+                    margin-bottom: 40px;
+                }
+                .description {
+                    display: none;
+                }
+                .download-options {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <img
+                class="image"
+                src="../macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png"
+            />
+            <h1>Alter</h1>
+            <p class="description">Customize your macOS app icons with ease.</p>
+            <div class="download-options">
+                <code class="code-block"
+                    >🍺 brew install hitblast/tap/alter</code
+                >
+                <span class="download-separator">or</span>
+                <a class="button" href="https://github.com/hitblast/Alter"
+                    >⭐ Star on GitHub!</a
+                >
+            </div>
+            <p class="version">
+                Download
+                <a
+                    href="https://github.com/hitblast/Alter/releases/download/v1.0.4/alter-v1.0.4-darwin-arm64.zip"
+                    >latest zip (not recommended)</a
+                ><br />
+                v1.0.4 on Apple Silicon
+            </p>
+        </div>
+        <footer>Copyright (c) 2025 HitBlast. All Rights Reserved.<br /></footer>
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            ScrollReveal().reveal(".content > *", {
+                delay: 500,
+                interval: 100,
+                distance: "50px",
+                origin: "bottom",
+            });
+            ScrollReveal().reveal("footer", {
+                delay: 400,
+                distance: "50px",
+                origin: "bottom",
+            });
+
+            // Image switching on click with scale transition
+            (function () {
+                var imageElement = document.querySelector(".image");
+                // Array of image sources to cycle through
+                var images = [
+                    "../macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png",
+                ];
+                var currentIndex = 0;
+
+                imageElement.addEventListener("click", function () {
+                    // Add the clicked class to scale down the image
+                    imageElement.classList.add("clicked");
+                    // Wait for the scale down transition, then switch the image and scale back up
+                    setTimeout(function () {
+                        // Cycle to next image
+                        currentIndex = (currentIndex + 1) % images.length;
+                        imageElement.src = images[currentIndex];
+                        // Remove the class to bring the image back to original scale
+                        imageElement.classList.remove("clicked");
+                    }, 150);
+                });
+            })();
+        </script>
+    </body>
+</html>
