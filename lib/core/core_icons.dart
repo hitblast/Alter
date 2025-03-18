@@ -11,28 +11,7 @@ import 'package:alter/models/app_model.dart';
 import 'package:alter/models/commandresult_model.dart';
 import 'package:alter/core/core_sips.dart';
 import 'package:alter/core/core_icon_storage.dart';
-
-/// Resets system-granted permissions for the app - given its absolute path.
-/// This is essential for execution when the code signature for a particular app has been changed.
-/// Returns the bundle ID of the app if successful, otherwise an empty string.
-Future<String> _resetPermissions(String appPath) async {
-  final shell = Shell();
-
-  try {
-    final appBundleId =
-        (await shell.run("""
-            osascript -e 'id of app "$appPath"'
-        """)).single.outText;
-
-    // Call tccutil to reset.
-    await shell.run('tccutil reset All $appBundleId');
-    debugPrint('Reset permissions for bundle ID: $appBundleId');
-
-    return appBundleId;
-  } catch (_) {
-    return '';
-  }
-}
+import 'package:alter/core/core_permissions.dart';
 
 /// Set a custom icon for an app given its path.
 /// Returns an optional CommandResult containing important, reusable data for the application.
@@ -132,7 +111,7 @@ Future<CommandResult?> setCustomIconForApp(
   }
 
   // Reset permissions for the app here.
-  final appBundleId = await _resetPermissions(appPath);
+  final appBundleId = await resetPermissions(appPath);
 
   // Store the custom icon for backup and reapplying.
   await storeCustomIconInStorage(customIconPath, appPath);
@@ -184,7 +163,7 @@ Future<void> unsetCustomIconForApp(App app) async {
 
   // Reset permissions if needed.
   if (app.appBundleId != '') {
-    await _resetPermissions(app.path);
+    await resetPermissions(app.path);
   }
 }
 
