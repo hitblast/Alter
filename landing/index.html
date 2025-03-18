@@ -135,10 +135,7 @@
     </head>
     <body>
         <div class="content">
-            <img
-                class="image"
-                src="../macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png"
-            />
+            <img class="image" src="hero.png" />
             <h1>Alter</h1>
             <p class="description">Customize your macOS app icons with ease.</p>
             <div class="download-options">
@@ -178,9 +175,7 @@
             (function () {
                 var imageElement = document.querySelector(".image");
                 // Array of image sources to cycle through
-                var images = [
-                    "../macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png",
-                ];
+                var images = ["hero.png", "ble.png"];
                 var currentIndex = 0;
 
                 imageElement.addEventListener("click", function () {
