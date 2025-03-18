@@ -61,8 +61,8 @@ Future<CommandResult?> setCustomIconForApp(
 
   // Copy the (possibly converted) icon to the app's Resources folder and set permissions.
   await shell.run('''
-    cp "$iconPathToUse" "$customIconPath"
-    chmod 644 "$customIconPath"
+    /bin/cp "$iconPathToUse" "$customIconPath"
+    /bin/chmod 644 "$customIconPath"
     ''');
 
   // If a PNG was converted, delete the converted icon after copying.
@@ -78,7 +78,7 @@ Future<CommandResult?> setCustomIconForApp(
   try {
     currentIconName =
         (await shell.run(
-          'defaults read "$appBundleInfoPath" CFBundleIconName',
+          '/usr/bin/defaults read "$appBundleInfoPath" CFBundleIconName',
         )).single.outText;
   } catch (e) {
     currentIconName = null;
@@ -87,7 +87,7 @@ Future<CommandResult?> setCustomIconForApp(
   if (currentIconName != null) {
     previousCFBundleIconName = currentIconName;
     await shell.run(
-      'defaults write "$appBundleInfoPath" CFBundleIconName "$customIconFileName"',
+      '/usr/bin/defaults write "$appBundleInfoPath" CFBundleIconName "$customIconFileName"',
     );
   } else {
     previousCFBundleIconName = '';
@@ -98,13 +98,13 @@ Future<CommandResult?> setCustomIconForApp(
   try {
     previousCFBundleIconFile =
         (await shell.run(
-          'defaults read "$appBundleInfoPath" CFBundleIconFile',
+          '/usr/bin/defaults read "$appBundleInfoPath" CFBundleIconFile',
         )).single.outText;
 
     await shell.run('''
-        defaults write "$appBundleInfoPath" CFBundleIconFile "$customIconFileName"
-        touch "$appPath"
-        codesign --force --deep --sign - "$appPath"
+        /usr/bin/defaults write "$appBundleInfoPath" CFBundleIconFile "$customIconFileName"
+        /usr/bin/touch "$appPath"
+        /usr/bin/codesign --force --deep --sign - "$appPath"
         ''');
   } catch (e) {
     return null;
@@ -143,7 +143,7 @@ Future<void> unsetCustomIconForApp(App app) async {
   // Restore CFBundleIconName if it was modified.
   if (app.previousCFBundleIconName.isNotEmpty) {
     await shell.run(
-      'defaults write "$appBundleInfoPath" CFBundleIconName "${app.previousCFBundleIconName}"',
+      '/usr/bin/defaults write "$appBundleInfoPath" CFBundleIconName "${app.previousCFBundleIconName}"',
     );
   }
 
@@ -153,9 +153,9 @@ Future<void> unsetCustomIconForApp(App app) async {
   // Restore CFBundleIconFile, touch and codesign the app.
   try {
     await shell.run('''
-      defaults write "$appBundleInfoPath" CFBundleIconFile "${app.previousCFBundleIconFile}"
-      touch "${app.path}"
-      codesign --force --deep --sign - "${app.path}"
+      /usr/bin/defaults write "$appBundleInfoPath" CFBundleIconFile "${app.previousCFBundleIconFile}"
+      /usr/bin/touch "${app.path}"
+      /usr/bin/codesign --force --deep --sign - "${app.path}"
       ''');
   } catch (e) {
     debugPrint(e.toString());
@@ -179,7 +179,7 @@ Future<bool> shouldReapplyIcon(App app) async {
   if (app.previousCFBundleIconName != '') {
     readCFBundleIconName =
         (await shell.run(
-          'defaults read "$appBundleInfoPath" CFBundleIconName',
+          '/usr/bin/defaults read "$appBundleInfoPath" CFBundleIconName',
         )).single.outText;
 
     if (readCFBundleIconName != app.newCFBundleIconName) {
@@ -190,7 +190,7 @@ Future<bool> shouldReapplyIcon(App app) async {
   // Either way, CFBundleIconFile gets checked for sure.
   readCFBundleIconFile =
       (await shell.run(
-        'defaults read "$appBundleInfoPath" CFBundleIconFile',
+        '/usr/bin/defaults read "$appBundleInfoPath" CFBundleIconFile',
       )).single.outText;
 
   if (readCFBundleIconFile != app.newCFBundleIconFile) {

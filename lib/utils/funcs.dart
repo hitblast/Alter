@@ -16,7 +16,7 @@ Basic functions for using inside Alter.
 /// Open the custom icon of the application using Preview.
 Future<void> openFileInPreview(String path) async {
   final shell = Shell();
-  await shell.run('open -a Preview "$path"');
+  await shell.run('/usr/bin/open -a Preview "$path"');
 }
 
 /// Open a macOS-native file picker window for picking .icns and .png (coming) files for using as custom app icons.

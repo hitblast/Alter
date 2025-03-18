@@ -7,7 +7,7 @@ part of 'app_dependencies_provider.dart';
 // **************************************************************************
 
 String _$missingDependenciesHash() =>
-    r'9b5bbca2f3297276744f03d974eb845aa615260e';
+    r'ac0caeaf465cb9b6716591f2eb8b51d10d3011ca';
 
 /// Provider to check for missing dependencies.
 /// Returns the missing dependencies as a list of strings if any, otherwise null.

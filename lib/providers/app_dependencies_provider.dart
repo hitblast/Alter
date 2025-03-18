@@ -32,11 +32,13 @@ Future<List<String>?> missingDependencies(Ref ref) async {
   final missingDependencies = <String>[];
 
   for (final dependency in requiredDependencies) {
-    if (await which(dependency) == null) {
+    final result = await which(dependency);
+
+    if (result == null) {
       missingDependencies.add(dependency);
       debugPrint("Missing dependency: $dependency");
     } else {
-      debugPrint("Dependency found: $dependency");
+      debugPrint("Dependency found: $dependency at $result");
     }
   }
 

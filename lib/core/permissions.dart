@@ -13,11 +13,11 @@ Future<String> resetPermissions(String appPath) async {
   try {
     final appBundleId =
         (await shell.run("""
-            osascript -e 'id of app "$appPath"'
+            /usr/bin/osascript -e 'id of app "$appPath"'
         """)).single.outText;
 
     // Call tccutil to reset.
-    await shell.run('tccutil reset All $appBundleId');
+    await shell.run('/usr/bin/tccutil reset All $appBundleId');
     debugPrint('Reset permissions for bundle ID: $appBundleId');
 
     return appBundleId;

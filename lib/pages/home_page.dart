@@ -86,7 +86,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       // Based on whether the user has modified any apps' icons,
       // either the starter page or the apps page will be displayed.
       if (missingDependencies.value != null) {
-        page = Center(
+        return Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Column(
