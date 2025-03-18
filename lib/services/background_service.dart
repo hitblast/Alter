@@ -1,5 +1,6 @@
 // First-party imports.
 import 'dart:async';
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
 import 'package:flutter/foundation.dart';
@@ -177,25 +178,38 @@ class BackgroundService {
         await isolateAppBox.removeAsync(app.id);
         portMessage = 'updateAndWatcherRemoval';
       }
-      // If the custom icon needs to be reapplied.
-      // The database I/O has been derived from lib/core/core_database.dart
-      // TODO: Possibly unify the AppDatabase class for less duplication of I/O code
+      // If the application has been updated.
       else if (await shouldReapplyIcon(app)) {
-        debugPrint('Reapplying custom icon for app.');
-
         final storedIcon = await getStoredIconForAppPath(appPath);
-        final setResult = await setCustomIconForApp(
-          appPath,
-          storedIcon!,
-          iconToDelete: app.newCFBundleIconFile,
-        );
 
-        app.customIconPath = setResult!.customIconPath;
-        app.newCFBundleIconName = setResult.newCFBundleIconName;
-        app.newCFBundleIconFile = setResult.newCFBundleIconFile;
+        /*
+        If stored icon is found, reapply as usual.
+        This is the most basic type of background update.
+        */
+        if (storedIcon != null) {
+          final setResult = await setCustomIconForApp(
+            appPath,
+            storedIcon,
+            iconToDelete: app.newCFBundleIconFile,
+          );
 
-        await isolateAppBox.putAsync(app);
-        portMessage = 'updateOnly';
+          app.customIconPath = setResult!.customIconPath;
+          app.newCFBundleIconName = setResult.newCFBundleIconName;
+          app.newCFBundleIconFile = setResult.newCFBundleIconFile;
+
+          await isolateAppBox.putAsync(app);
+          portMessage = 'updateOnly';
+          debugPrint("Reapplied custom icon for app: ${app.path}");
+        }
+        /*
+        If not, remove app from database.
+        TODO: Possible option to check if the app is the same as previous - then perform additional checks.
+        */
+        else {
+          await isolateAppBox.removeAsync(app.id);
+          portMessage = 'updateAndWatcherRemoval';
+          debugPrint('Stored icon not found, removing app: ${app.path}');
+        }
       }
     }
 
