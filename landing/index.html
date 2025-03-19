@@ -1,3 +1,5 @@
+<!-- This landing page for Alter is a one-filer. I hope you'll like it :3 -->
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -29,6 +31,30 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
             }
+
+            /* Dark mode styles */
+            body.dark {
+                background: #111;
+                color: #fff;
+            }
+            body.dark h1 {
+                color: #ffffff80;
+            }
+            body.dark .description,
+            body.dark .download-separator,
+            body.dark .version {
+                color: #cccccc90;
+            }
+            body.dark .code-block {
+                background: rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                color: #fff;
+            }
+            body.dark .cloud {
+                filter: blur(7rem);
+                -webkit-filter: blur(7rem);
+            }
+
             /* Container for main content */
             .content {
                 flex: 1;
@@ -130,11 +156,11 @@
                 width: 120px;
                 height: 120px;
                 border-radius: 50%;
-                filter: blur(100rem);
-                -webkit-filter: blur(100rem);
+                filter: blur(3rem);
+                -webkit-filter: blur(3rem);
                 opacity: 0.8;
                 transform-origin: 100px center;
-                animation: orbit 10s ease-in-out infinite;
+                animation: orbit 8.5s ease-in-out infinite;
             }
             .cloud-orange {
                 background: orange;
@@ -183,9 +209,6 @@
                 background-color: inherit;
                 margin-bottom: 40px;
             }
-            footer a {
-                color: #000;
-            }
 
             /* Responsive adjustments */
             @media (max-width: 800px) {
@@ -231,10 +254,7 @@
                 🍺 v1.0.4 on Apple Silicon
             </p>
         </div>
-        <footer>
-            Copyright (c) 2025 <a href="https://hitblast.com">HitBlast</a>. All
-            Rights Reserved.<br />
-        </footer>
+        <footer>Copyright (c) 2025 HitBlast. All Rights Reserved.</footer>
         <script src="https://unpkg.com/scrollreveal"></script>
         <script>
             ScrollReveal().reveal(".content > *", {
@@ -295,6 +315,14 @@
                         });
                 });
             })();
+
+            // Apply dark mode based on the system preference
+            if (
+                window.matchMedia &&
+                window.matchMedia("(prefers-color-scheme: dark)").matches
+            ) {
+                document.body.classList.add("dark");
+            }
         </script>
     </body>
 </html>
