@@ -7,8 +7,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Alter - Customize macOS App Icons</title>
 
+        <script
+            src="https://kit.fontawesome.com/4f5ece0701.js"
+            crossorigin="anonymous"
+        ></script>
+
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 
             /* Reset styles */
             * {
@@ -22,6 +28,7 @@
             }
             body {
                 font-family: "Space Mono", sans-serif;
+                color: #111111;
                 text-align: center;
                 margin: 0;
                 display: flex;
@@ -35,10 +42,10 @@
             /* Dark mode styles */
             body.dark {
                 background: #111;
-                color: #fff;
+                color: #f0f0f0;
             }
             body.dark h1 {
-                color: #ffffff80;
+                color: #99999980;
             }
             body.dark .description,
             body.dark .download-separator,
@@ -71,32 +78,40 @@
             }
             /* Header styling */
             h1 {
-                font-family: "Space Mono", monospace;
-                font-size: 3em;
-                font-weight: 400;
-                color: #111;
-                letter-spacing: -5px;
+                font-family: "Abril Fatface", monospace;
+                font-size: 2.5em;
             }
             /* Description placeholder */
             .description {
                 margin-bottom: 35px;
                 font-size: 1em;
-                color: #333;
             }
 
             /* Button styling */
-            a.button {
+            .button {
                 display: inline-block;
-                background: #000;
+                background: #0a0a0a;
                 color: #fff;
                 text-decoration: none;
                 padding: 10px 20px;
                 border-radius: 20px;
                 font-size: 16px;
-                transition: 0.1s ease-in-out;
+                transition: 0.1s linear;
             }
-            a.button:hover {
+            .button:hover {
                 background: #333;
+            }
+            .button i.fa-star {
+                animation: glow 1.5s infinite alternate;
+            }
+
+            @keyframes glow {
+                from {
+                    filter: drop-shadow(0 0 10px gold);
+                }
+                to {
+                    filter: drop-shadow(0 0 20px gold);
+                }
             }
 
             /* Download options container */
@@ -109,13 +124,11 @@
             }
             .download-separator {
                 font-size: 16px;
-                color: #333;
             }
             .code-block {
                 background: rgba(255, 255, 255, 0.3);
                 backdrop-filter: blur(5px);
                 border: 1px solid rgba(255, 255, 255, 0.3);
-                color: #000;
                 padding: 10px 20px;
                 border-radius: 20px;
                 font-family: "Space Mono", monospace;
@@ -202,7 +215,6 @@
                 }
             }
 
-            /* Footer minimal styling */
             footer {
                 text-align: center;
                 padding: 10px;
@@ -229,7 +241,7 @@
     <body>
         <div class="content">
             <div class="image-container">
-                <img class="image" src="hero.png" />
+                <img class="image" src="assets/static/hero.png" />
                 <div class="cloud cloud-orange"></div>
                 <div class="cloud cloud-red"></div>
                 <div class="cloud cloud-white"></div>
@@ -239,11 +251,12 @@
             <p class="description">Customize your macOS app icons with ease.</p>
             <div class="download-options">
                 <code class="code-block"
-                    >$ brew install hitblast/tap/alter</code
+                    ><i class="fa-brands fa-apple"></i> brew install
+                    hitblast/tap/alter</code
                 >
                 <span class="download-separator">or</span>
                 <a class="button" href="https://github.com/hitblast/Alter"
-                    >⭐ Star on GitHub!</a
+                    ><i class="fa-solid fa-star"></i> Star on GitHub!</a
                 >
             </div>
             <p class="version">
@@ -272,7 +285,11 @@
 
             (function () {
                 var imageElement = document.querySelector(".image");
-                var images = ["hero.png", "hero_alt.png", "hero_ble.png"];
+                var images = [
+                    "assets/static/hero.png",
+                    "assets/static/hero_alt.png",
+                    "assets/static/hero_ble.png",
+                ];
                 var currentIndex = 0;
 
                 imageElement.addEventListener("click", function () {
@@ -287,29 +304,30 @@
 
             (function () {
                 var codeBlock = document.querySelector(".code-block");
-                var originalText = "brew install hitblast/tap/alter";
-                var hoverText = "Copy command to clipboard";
-                var copiedText = "Copied to clipboard!";
+                var iconHTML = '<i class="fa-brands fa-apple"></i>';
+                var originalText = " brew install hitblast/tap/alter";
+                var hoverText = " Copy command to clipboard";
+                var copiedText = " Copied to clipboard!";
                 var isCopied = false;
 
                 codeBlock.addEventListener("mouseover", function () {
                     if (!isCopied) {
-                        codeBlock.textContent = hoverText;
+                        codeBlock.innerHTML = iconHTML + hoverText;
                     }
                 });
 
                 codeBlock.addEventListener("mouseout", function () {
                     if (!isCopied) {
-                        codeBlock.textContent = originalText;
+                        codeBlock.innerHTML = iconHTML + originalText;
                     }
                 });
 
                 codeBlock.addEventListener("click", function () {
                     navigator.clipboard
-                        .writeText(originalText)
+                        .writeText(originalText.trim())
                         .then(function () {
                             isCopied = true;
-                            codeBlock.textContent = copiedText;
+                            codeBlock.innerHTML = iconHTML + copiedText;
                         })
                         .catch(function (err) {
                             console.error("Failed to copy text: ", err);
