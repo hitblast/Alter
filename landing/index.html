@@ -130,18 +130,18 @@
                 width: 120px;
                 height: 120px;
                 border-radius: 50%;
-                filter: blur(100px);
-                -webkit-filter: blur(80px);
+                filter: blur(100rem);
+                -webkit-filter: blur(100rem);
                 opacity: 0.8;
-                transform-origin: -100px center;
-                animation: orbit 10s linear infinite;
+                transform-origin: 100px center;
+                animation: orbit 10s ease-in-out infinite;
             }
             .cloud-orange {
                 background: orange;
                 animation-delay: 0s;
             }
-            .cloud-pink {
-                background: pink;
+            .cloud-red {
+                background: red;
                 animation-delay: -2.5s;
             }
             .cloud-white {
@@ -153,11 +153,25 @@
                 animation-delay: -7.5s;
             }
             @keyframes orbit {
-                from {
+                0% {
                     transform: rotate(0deg);
+                    transform-origin: -200px center;
                 }
-                to {
+                25% {
+                    transform: rotate(90deg);
+                    transform-origin: -100px center;
+                }
+                50% {
+                    transform: rotate(180deg);
+                    transform-origin: 100px center;
+                }
+                75% {
+                    transform: rotate(240deg);
+                    transform-origin: -100px center;
+                }
+                100% {
                     transform: rotate(360deg);
+                    transform-origin: -200px center;
                 }
             }
 
@@ -193,7 +207,7 @@
             <div class="image-container">
                 <img class="image" src="hero.png" />
                 <div class="cloud cloud-orange"></div>
-                <div class="cloud cloud-pink"></div>
+                <div class="cloud cloud-red"></div>
                 <div class="cloud cloud-white"></div>
                 <div class="cloud cloud-blue"></div>
             </div>
