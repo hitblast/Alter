@@ -39,8 +39,9 @@
             h1 {
                 font-family: "Space Mono", monospace;
                 font-size: 3em;
-                font-weight: 700;
-                letter-spacing: -2px;
+                font-weight: 400;
+                color: #111;
+                letter-spacing: -5px;
             }
             /* Description placeholder */
             .description {
@@ -58,6 +59,10 @@
                 padding: 10px 20px;
                 border-radius: 20px;
                 font-size: 16px;
+                transition: 0.1s ease-in-out;
+            }
+            a.button:hover {
+                background: #333;
             }
             /* Download options container */
             .download-options {
@@ -78,7 +83,7 @@
                 border-radius: 20px;
                 font-family: "Space Mono", monospace;
                 font-size: 16px;
-                transition: 0.3s ease;
+                transition: 0.1s ease-in-out;
             }
             .code-block:hover {
                 background: #ccc;
@@ -140,7 +145,7 @@
             <p class="description">Customize your macOS app icons with ease.</p>
             <div class="download-options">
                 <code class="code-block"
-                    >🍺 brew install hitblast/tap/alter</code
+                    >$ brew install hitblast/tap/alter</code
                 >
                 <span class="download-separator">or</span>
                 <a class="button" href="https://github.com/hitblast/Alter"
@@ -153,7 +158,7 @@
                     href="https://github.com/hitblast/Alter/releases/download/v1.0.4/alter-v1.0.4-darwin-arm64.zip"
                     >latest zip (not recommended)</a
                 ><br />
-                v1.0.4 on Apple Silicon
+                🍺 v1.0.4 on Apple Silicon
             </p>
         </div>
         <footer>Copyright (c) 2025 HitBlast. All Rights Reserved.<br /></footer>
@@ -171,22 +176,16 @@
                 origin: "bottom",
             });
 
-            // Image switching on click with scale transition
             (function () {
                 var imageElement = document.querySelector(".image");
-                // Array of image sources to cycle through
                 var images = ["hero.png", "ble.png"];
                 var currentIndex = 0;
 
                 imageElement.addEventListener("click", function () {
-                    // Add the clicked class to scale down the image
                     imageElement.classList.add("clicked");
-                    // Wait for the scale down transition, then switch the image and scale back up
                     setTimeout(function () {
-                        // Cycle to next image
                         currentIndex = (currentIndex + 1) % images.length;
                         imageElement.src = images[currentIndex];
-                        // Remove the class to bring the image back to original scale
                         imageElement.classList.remove("clicked");
                     }, 150);
                 });
