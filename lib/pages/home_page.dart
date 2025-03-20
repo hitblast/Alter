@@ -1,5 +1,6 @@
 // First-party imports.
 import 'dart:math';
+import 'package:alter/utils/links.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -100,6 +101,14 @@ class _HomePageState extends ConsumerState<HomePage> {
             menus: [
               PlatformProvidedMenuItem(
                 type: PlatformProvidedMenuItemType.about,
+              ),
+              PlatformMenuItemGroup(
+                members: [
+                  PlatformMenuItem(
+                    label: 'Visit Website',
+                    onSelected: () async => await launchOnWeb(context, 'https://hitblast.github.io/Alter'),
+                  ),
+                ],
               ),
               PlatformMenuItemGroup(
                 members: [
