@@ -108,6 +108,7 @@
                 border-radius: 20px;
                 font-size: 16px;
                 transition: 0.1s linear;
+                -webkit-transition: 0.1s linear;
             }
             .button:hover {
                 background: #333;
@@ -127,6 +128,7 @@
             .code-block {
                 background: rgba(255, 255, 255, 0.3);
                 backdrop-filter: blur(5px);
+                -webkit-backdrop-filter: blur(5px);
                 border: 1px solid rgba(255, 255, 255, 0.3);
                 padding: 10px 20px;
                 border-radius: 20px;
@@ -154,11 +156,13 @@
                 height: auto;
                 display: block;
                 transition: transform 0.3s ease;
+                -webkit-transition: transform 0.3s ease;
                 cursor: pointer;
                 user-select: none;
             }
             .image.clicked {
                 transform: scale(0.9);
+                -webkit-transform: scale(0.9);
             }
 
             /* Cloud styling for orbiting effect */
@@ -174,22 +178,27 @@
                 opacity: 0.8;
                 transform-origin: 100px center;
                 animation: orbit 8.5s ease-in-out infinite;
+                -webkit-animation: orbit 8.5s ease-in-out infinite;
             }
             .cloud-orange {
                 background: orange;
                 animation-delay: 0s;
+                -webkit-animation-delay: 0s;
             }
             .cloud-red {
                 background: red;
                 animation-delay: -2.5s;
+                -webkit-animation-delay: -2.5s;
             }
             .cloud-white {
                 background: white;
                 animation-delay: -5s;
+                -webkit-animation-delay: -5s;
             }
             .cloud-blue {
                 background: #007aff;
                 animation-delay: -7.5s;
+                -webkit-animation-delay: -7.5s;
             }
             @keyframes orbit {
                 0% {
@@ -210,6 +219,38 @@
                 }
                 100% {
                     transform: rotate(360deg);
+                    transform-origin: -200px center;
+                }
+            }
+            @-webkit-keyframes orbit {
+                0% {
+                    -webkit-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                    -webkit-transform-origin: -200px center;
+                    transform-origin: -200px center;
+                }
+                25% {
+                    -webkit-transform: rotate(90deg);
+                    transform: rotate(90deg);
+                    -webkit-transform-origin: -100px center;
+                    transform-origin: -100px center;
+                }
+                50% {
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                    -webkit-transform-origin: 100px center;
+                    transform-origin: 100px center;
+                }
+                75% {
+                    -webkit-transform: rotate(240deg);
+                    transform: rotate(240deg);
+                    -webkit-transform-origin: -100px center;
+                    transform-origin: -100px center;
+                }
+                100% {
+                    -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg);
+                    -webkit-transform-origin: -200px center;
                     transform-origin: -200px center;
                 }
             }
