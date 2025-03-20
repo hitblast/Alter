@@ -75,10 +75,7 @@ customized. To solve this, I've tried incorporating a blacklist of
 apps which should be prohibited from modifying unless the user really desires.
 
 - The [Flutter Engine](https://github.com/flutter/engine) is a part of the
-compiled binary (obviously since it's a Flutter project), so there will always be a tiny
-burden of a few megabytes worth of memory usage unless Flutter is optimized further.
-
-- Alter resets the granted permissions for each app whenever custom icons are applied or unapplied.
+compiled binary (obviously since it's a Flutter project), so there will always be a tiny difference in size when it comes to comparing with a Swift binary.
 
 - For now, Alter cannot modify the system apps on macOS due to SIP (System Integrity Protection) being a thing. I'm still working on possible workarounds.
 
