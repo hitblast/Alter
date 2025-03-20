@@ -34,7 +34,7 @@ jobs:
       - name: Check landing folder changes
         id: check_changes
         run: |
-          CHANGED=$(git diff --name-only HEAD HEAD~1 | grep '^landing/' || true)
+          CHANGED=$(git diff --name-only HEAD HEAD~1 -- | grep '^landing/' || true)
           if [ -z "$CHANGED" ]; then
             echo "No changes in landing folder, skipping deployment."
             echo "changes_detected=false" >> $GITHUB_OUTPUT
