@@ -67,7 +67,7 @@ with a fully open-sourced near-native development experience.
 
 ## Common Pitfalls
 
-Based on common analysis of the project, a few issues have been found for this type of project on Macs:
+Based on basic analysis of the project, a few, possibly resolvable issues have been found so far:
 
 - Self-validating binaries like [Discord](https://discord.com/) do not cooperate with the attribute
 modifications happening inside, and could very as well broken once they're
