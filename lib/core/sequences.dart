@@ -28,8 +28,11 @@ Future<void> initiateKillSequence(BuildContext context) async {
 }
 
 /// The function to initiate the app adding sequence.
-Future<void> initiateAppAddingSequence(BuildContext context) async {
-  var file = await openFile(initialDirectory: '/Applications');
+Future<void> initiateAppAddingSequence(
+  BuildContext context, {
+  XFile? file,
+}) async {
+  file ??= await openFile(initialDirectory: '/Applications');
 
   // Simply return if the user hasn't selected any file to modify.
   if (file == null) {
@@ -101,7 +104,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
     showMacosSheet(
       context: context,
       builder: (context) {
-        return IconChooserSheetPage(appFile: file);
+        return IconChooserSheetPage(appFile: file!);
       },
     );
   }
