@@ -146,8 +146,8 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                   const SizedBox(height: 25),
                   Text(
                     hasPickedIcon
-                        ? 'You can modify by left-clicking again!'
-                        : 'Left-click above to choose a new icon.',
+                        ? 'Modify again by dragging / left-clicking!'
+                        : ' Drag or left-click to choose a new icon.',
                   ),
                   const SizedBox(height: 20),
                   Row(
