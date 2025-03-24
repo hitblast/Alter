@@ -1,6 +1,7 @@
 // First-party imports.
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // Third-party imports.
 import 'package:path/path.dart' as path;
@@ -31,6 +32,7 @@ class IconChooserSheetPage extends ConsumerStatefulWidget {
 /// The state for the IconChooserSheetPage.
 class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
   XFile? currentPickedIcon;
+  Color? dominantColor;
 
   // Boolean value indicating if the user has picked an icon.
   bool get hasPickedIcon => currentPickedIcon != null;
@@ -80,6 +82,14 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                         setState(() {
                           currentPickedIcon = file;
                         });
+                        final ColorScheme scheme =
+                            await ColorScheme.fromImageProvider(
+                              provider: FileImage(File(file.path)),
+                              brightness: brightness,
+                            );
+                        setState(() {
+                          dominantColor = scheme.primary;
+                        });
                       }
                     },
                     child: MouseRegion(
@@ -96,16 +106,14 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                             ),
                           ),
                           AnimatedContainer(
-                            duration: Duration(seconds: 2),
-                            curve: Curves.fastOutSlowIn,
+                            duration: const Duration(seconds: 2),
+                            curve: Curves.easeInOut,
                             decoration: BoxDecoration(
                               boxShadow:
                                   hasPickedIcon
                                       ? [
                                         BoxShadow(
-                                          color: CupertinoColors.activeGreen
-                                              .withAlpha(77),
-                                          offset: Offset(0, 5),
+                                          color: dominantColor!.withAlpha(80),
                                           blurRadius: 50,
                                         ),
                                       ]
@@ -113,7 +121,6 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                                         BoxShadow(
                                           color: CupertinoColors.systemGrey
                                               .withAlpha(50),
-                                          offset: Offset(0, 5),
                                           blurRadius: 50,
                                         ),
                                       ],
@@ -146,7 +153,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                   const SizedBox(height: 25),
                   Text(
                     hasPickedIcon
-                        ? 'Modify again by dragging / left-clicking!'
+                        ? 'Modify again by left-clicking!'
                         : ' Drag or left-click to choose a new icon.',
                   ),
                   const SizedBox(height: 20),
