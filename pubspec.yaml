@@ -1,7 +1,7 @@
 name: alter
 description: "Alter is a minimal macOS app which can be used to customize your app icons with ease."
 publish_to: "none"
-version: 1.0.5
+version: 1.0.6
 
 environment:
   sdk: ^3.7.0
