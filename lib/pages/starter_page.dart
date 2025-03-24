@@ -46,56 +46,47 @@ class StarterPage extends StatelessWidget {
             return GestureDetector(
               onTap: () async => await initiateAppAddingSequence(context),
               child: Center(
-                child: ScrollConfiguration(
-                  behavior: ScrollConfiguration.of(
-                    context,
-                  ).copyWith(scrollbars: false),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    padding: const EdgeInsets.only(bottom: 20),
-                    child: MouseRegion(
-                      cursor: SystemMouseCursors.click,
-                      child: Opacity(
-                        opacity: 0.78,
-                        child: Column(
+                child: MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  child: Opacity(
+                    opacity: 0.78,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/alter_starter.png',
+                          width: 200,
+                          height: 200,
+                        ),
+                        const SizedBox(height: 25),
+                        const Text(
+                          'Left-click to start customizing.',
+                          style: TextStyle(
+                            overflow: TextOverflow.fade,
+                            fontSize: 21,
+                            letterSpacing: -1,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset(
-                              'assets/images/alter_starter.png',
-                              width: 200,
-                              height: 200,
+                            Icon(
+                              CupertinoIcons.command,
+                              size: 15,
+                              color: CupertinoColors.systemGrey,
                             ),
-                            const SizedBox(height: 25),
-                            const Text(
-                              'Left-click to start customizing.',
+                            Text(
+                              ' + Q to put Alter in background.',
+                              overflow: TextOverflow.fade,
                               style: TextStyle(
-                                overflow: TextOverflow.fade,
-                                fontSize: 21,
-                                letterSpacing: -1,
-                                fontWeight: FontWeight.bold,
+                                color: CupertinoColors.systemGrey,
                               ),
-                            ),
-                            const SizedBox(height: 5),
-                            const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  CupertinoIcons.command,
-                                  size: 15,
-                                  color: CupertinoColors.systemGrey,
-                                ),
-                                Text(
-                                  ' + Q to put Alter in background.',
-                                  overflow: TextOverflow.fade,
-                                  style: TextStyle(
-                                    color: CupertinoColors.systemGrey,
-                                  ),
-                                ),
-                              ],
                             ),
                           ],
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),
