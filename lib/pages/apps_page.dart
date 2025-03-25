@@ -1,5 +1,6 @@
 // First-party imports.
 import 'dart:io';
+import 'package:alter/utils/dialogs.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -10,7 +11,7 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/sequences.dart';
-import 'package:alter/utils/funcs.dart';
+import 'package:alter/utils/funcs.dart' as funcs;
 import 'package:alter/utils/links.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/providers/app_database_provider.dart';
@@ -59,9 +60,20 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               color: CupertinoColors.destructiveRed,
             ),
             label: 'Restart services',
-            tooltipMessage: 'Restart essential system services (Finder, Dock, SystemUIServer)',
+            tooltipMessage:
+                'Restart essential system services (Finder, Dock, SystemUIServer)',
             showLabel: false,
-            onPressed: () => killSystemServices(),
+            onPressed: () async {
+              final shouldKill = await showConfirmationDialog(
+                context,
+                'Restart services?',
+                'This action will restart Finder, Dock and SystemUIServer.',
+              );
+
+              if (shouldKill) {
+                await funcs.killSystemServices();
+              }
+            },
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
@@ -147,7 +159,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                       ),
                                       child: GestureDetector(
                                         onTap:
-                                            () => openFileInPreview(
+                                            () => funcs.openFileInPreview(
                                               app.customIconPath,
                                             ),
                                         child: MouseRegion(
@@ -164,7 +176,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                     Text(
                                       path.basename(app.path),
                                       style: TextStyle(
-                                        fontSize: 15,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),

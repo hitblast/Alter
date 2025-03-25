@@ -10,7 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
-import 'package:alter/utils/funcs.dart';
+import 'package:alter/utils/funcs.dart' as funcs;
 import 'package:alter/providers/app_database_provider.dart';
 
 /// The macOS sheet view for choosing the icon when the user prompts.
@@ -76,7 +76,7 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                   const SizedBox(height: 20),
                   GestureDetector(
                     onTap: () async {
-                      final XFile? file = await pickIcon();
+                      final XFile? file = await funcs.pickIcon();
 
                       if (file != null) {
                         setState(() {

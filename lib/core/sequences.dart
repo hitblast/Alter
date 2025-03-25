@@ -12,7 +12,7 @@ import 'package:alter/core/blacklist.dart';
 import 'package:alter/core/database.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';
 import 'package:alter/utils/dialogs.dart';
-import 'package:alter/utils/funcs.dart';
+import 'package:alter/utils/funcs.dart' as funcs;
 
 /// The function to initiate the sequence for killing the application.
 Future<void> initiateKillSequence(BuildContext context) async {
@@ -58,7 +58,7 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
     );
   }
   // If the app is a system app.
-  else if (await ifAppIsSystemApplication(file.path)) {
+  else if (await funcs.ifAppIsSystemApplication(file.path)) {
     if (!context.mounted) return;
     showAlertDialog(
       context,
