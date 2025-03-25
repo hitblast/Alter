@@ -13,6 +13,12 @@ Basic functions for using inside Alter.
 
 */
 
+/// Kill handy system services if needed.
+Future<void> killSystemServices() async {
+  final shell = Shell();
+  await shell.run('killall Dock Finder SystemUIServer');
+}
+
 /// Open the custom icon of the application using Preview.
 Future<void> openFileInPreview(String path) async {
   final shell = Shell();

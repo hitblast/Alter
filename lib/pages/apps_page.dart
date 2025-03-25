@@ -43,13 +43,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             onPressed: () async => await initiateAppAddingSequence(context),
           ),
           ToolBarIconButton(
-            icon: const MacosIcon(CupertinoIcons.refresh_bold),
-            label: 'Refresh',
-            tooltipMessage: 'Refreshes the state of the list view',
-            showLabel: false,
-            onPressed: () => ref.invalidate(appDatabaseNotifierProvider),
-          ),
-          ToolBarIconButton(
             icon: const MacosIcon(CupertinoIcons.trash),
             label: 'Reset All',
             tooltipMessage: 'Reset all changed icons',
@@ -59,6 +52,16 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                     ref
                         .read(appDatabaseNotifierProvider.notifier)
                         .deleteAllApps(),
+          ),
+          ToolBarIconButton(
+            icon: const MacosIcon(
+              CupertinoIcons.xmark_shield_fill,
+              color: CupertinoColors.destructiveRed,
+            ),
+            label: 'Restart services',
+            tooltipMessage: 'Restart essential system services (Finder, Dock, SystemUIServer)',
+            showLabel: false,
+            onPressed: () => killSystemServices(),
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
