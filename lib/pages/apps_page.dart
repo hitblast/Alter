@@ -119,74 +119,76 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                 }
                 var app = apps.value![i];
 
-                return Column(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                        color:
-                            isDarkMode
-                                ? secondaryColorDarkMode
-                                : secondaryColorLightMode,
+                return Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(
+                        color: CupertinoColors.systemGrey2.withOpacity(0.3),
+                        width: 1,
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
-                          left: 25,
-                          right: 25,
+                    ),
+                    color:
+                        isDarkMode
+                            ? secondaryColorDarkMode
+                            : secondaryColorLightMode,
+                  ),
+                  padding: const EdgeInsets.all(17),
+                  child: MacosListTile(
+                    leading: Row(
+                      children: [
+                        Text(
+                          '${i + 1}.',
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        child: Row(
-                          children: [
-                            Text(
-                              '${i + 1}.',
-                              style: const TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 20),
-                            Container(
-                              decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: CupertinoColors.black.withValues(
-                                      alpha: 0.2,
-                                    ),
-                                    blurRadius: 10,
-                                    spreadRadius: -3,
-                                    offset: const Offset(0, 5),
-                                  ),
-                                ],
-                              ),
-                              child: GestureDetector(
-                                onTap:
-                                    () => funcs.openFileInPreview(
-                                      app.customIconPath,
-                                    ),
-                                child: MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: Image.file(
-                                    File(app.customIconPath),
-                                    width: 70,
-                                    height: 70,
-                                  ),
+                        const SizedBox(width: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: CupertinoColors.black.withValues(
+                                  alpha: 0.2,
                                 ),
+                                blurRadius: 10,
+                                spreadRadius: -3,
+                                offset: const Offset(0, 5),
+                              ),
+                            ],
+                          ),
+                          child: GestureDetector(
+                            onTap:
+                                () =>
+                                    funcs.openFileInPreview(app.customIconPath),
+                            child: MouseRegion(
+                              cursor: SystemMouseCursors.click,
+                              child: Image.file(
+                                File(app.customIconPath),
+                                width: 50,
+                                height: 50,
                               ),
                             ),
-                            const SizedBox(width: 20),
-                            Text(
-                              path.basename(app.path),
-                              style: const TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const Spacer(),
-                            PushButton(
-                              onPressed: () {
+                          ),
+                        ),
+                      ],
+                    ),
+                    title: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5.0),
+                          child: Text(
+                            path.basenameWithoutExtension(app.path),
+                            style: const TextStyle(fontSize: 15.5),
+                          ),
+                        ),
+                        const Spacer(),
+                        MacosTooltip(
+                          message: 'Update icon for the app',
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap: () {
                                 showMacosSheet(
                                   context: context,
-                                  builder: (context) {
+                                  builder: (builder) {
                                     return IconChooserSheetPage(
                                       appFile: XFile(app.path),
                                       preexistingAppId: app.id,
@@ -194,31 +196,42 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                                   },
                                 );
                               },
-                              controlSize: ControlSize.regular,
-                              secondary: true,
-                              child: const Text('Update Icon'),
+                              child: const MacosIcon(
+                                CupertinoIcons.refresh_bold,
+                                color: CupertinoColors.systemGrey,
+                                size: 24,
+                              ),
                             ),
-                            const SizedBox(width: 10),
-                            PushButton(
-                              onPressed: () {
-                                ref
-                                    .read(appDatabaseNotifierProvider.notifier)
-                                    .deleteApp(app.id);
-                              },
-                              controlSize: ControlSize.regular,
-                              secondary: true,
-                              child: const Text('Remove'),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
+                        const SizedBox(width: 12),
+                        MacosTooltip(
+                          message: 'Remove app and unset icon',
+                          child: MouseRegion(
+                            cursor: SystemMouseCursors.click,
+                            child: GestureDetector(
+                              onTap:
+                                  () => ref
+                                      .read(
+                                        appDatabaseNotifierProvider.notifier,
+                                      )
+                                      .deleteApp(app.id),
+                              child: const MacosIcon(
+                                CupertinoIcons.minus_circle_fill,
+                                color: CupertinoColors.systemGrey,
+                                size: 24,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    Container(
-                      width: double.infinity,
-                      height: 1,
-                      color: CupertinoColors.inactiveGray.withAlpha(70),
+                    subtitle: Column(
+                      children: [
+                        Text(app.path, style: TextStyle(fontSize: 12)),
+                      ],
                     ),
-                  ],
+                  ),
                 );
               },
             );
