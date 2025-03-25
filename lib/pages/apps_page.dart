@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:alter/utils/dialogs.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 
 // Third-party imports.
 import 'package:path/path.dart' as path;
@@ -155,9 +156,18 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                             ],
                           ),
                           child: GestureDetector(
-                            onTap:
-                                () =>
-                                    funcs.openFileInPreview(app.customIconPath),
+                            onTap: () async {
+                              final fileHasOpened = await funcs
+                                  .openFileInPreview(app.customIconPath);
+
+                              if (!fileHasOpened && context.mounted) {
+                                showAlertDialog(
+                                  context,
+                                  'Could not preview icon.',
+                                  'There was an error opening the icon file.',
+                                );
+                              }
+                            },
                             child: MouseRegion(
                               cursor: SystemMouseCursors.click,
                               child: Image.file(
@@ -199,7 +209,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                               child: const MacosIcon(
                                 CupertinoIcons.refresh_bold,
                                 color: CupertinoColors.systemGrey,
-                                size: 24,
                               ),
                             ),
                           ),
@@ -210,16 +219,25 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                           child: MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: GestureDetector(
-                              onTap:
-                                  () => ref
+                              onTap: () async {
+                                final shouldDeleteApp =
+                                    await showConfirmationDialog(
+                                      context,
+                                      'Remove app?',
+                                      'This will reset all applied modifications and app permissions.',
+                                    );
+
+                                if (shouldDeleteApp) {
+                                  ref
                                       .read(
                                         appDatabaseNotifierProvider.notifier,
                                       )
-                                      .deleteApp(app.id),
+                                      .deleteApp(app.id);
+                                }
+                              },
                               child: const MacosIcon(
-                                CupertinoIcons.minus_circle_fill,
+                                CupertinoIcons.trash_fill,
                                 color: CupertinoColors.systemGrey,
-                                size: 24,
                               ),
                             ),
                           ),

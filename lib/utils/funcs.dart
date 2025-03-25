@@ -16,13 +16,20 @@ Basic functions for using inside Alter.
 /// Kill handy system services if needed.
 Future<void> killSystemServices() async {
   final shell = Shell(throwOnError: false);
-  await shell.run('killall Dock Finder SystemUIServer');
+  await shell.run('/usr/bin/killall Dock Finder SystemUIServer');
 }
 
-/// Open the custom icon of the application using Preview.
-Future<void> openFileInPreview(String path) async {
+/// Open a path using Preview.
+/// Returns a boolean indicating if the file has been opened.
+Future<bool> openFileInPreview(String path) async {
   final shell = Shell();
-  await shell.run('/usr/bin/open -a Preview "$path"');
+
+  try {
+    await shell.run('/usr/bin/open -a Preview "$path"');
+  } catch (_) {
+    return false;
+  }
+  return true;
 }
 
 /// Open a macOS-native file picker window for picking .icns and .png (coming) files for using as custom app icons.
