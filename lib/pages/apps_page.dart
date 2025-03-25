@@ -110,123 +110,117 @@ class _AppsPageState extends ConsumerState<AppsPage> {
               1.000,
             );
 
-            return SingleChildScrollView(
+            return ListView.builder(
               controller: scrollController,
-              child: Column(
-                children: [
-                  for (var i = 0; i < apps.value!.length; i++)
-                    Builder(
-                      builder: (context) {
-                        var app = apps.value![i];
+              itemCount: apps.value!.length + 1,
+              itemBuilder: (context, i) {
+                if (i == apps.value!.length) {
+                  return const SizedBox(height: 80);
+                }
+                var app = apps.value![i];
 
-                        return Column(
+                return Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color:
+                            isDarkMode
+                                ? secondaryColorDarkMode
+                                : secondaryColorLightMode,
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          top: 15,
+                          bottom: 15,
+                          left: 25,
+                          right: 25,
+                        ),
+                        child: Row(
                           children: [
+                            Text(
+                              '${i + 1}.',
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const SizedBox(width: 20),
                             Container(
                               decoration: BoxDecoration(
-                                color:
-                                    isDarkMode
-                                        ? secondaryColorDarkMode
-                                        : secondaryColorLightMode,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: CupertinoColors.black.withValues(
+                                      alpha: 0.2,
+                                    ),
+                                    blurRadius: 10,
+                                    spreadRadius: -3,
+                                    offset: const Offset(0, 5),
+                                  ),
+                                ],
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 15,
-                                  bottom: 15,
-                                  left: 25,
-                                  right: 25,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      '${i + 1}.',
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                              child: GestureDetector(
+                                onTap:
+                                    () => funcs.openFileInPreview(
+                                      app.customIconPath,
                                     ),
-                                    const SizedBox(width: 20),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: CupertinoColors.black
-                                                .withValues(alpha: 0.2),
-                                            blurRadius: 10,
-                                            spreadRadius: -3,
-                                            offset: const Offset(0, 5),
-                                          ),
-                                        ],
-                                      ),
-                                      child: GestureDetector(
-                                        onTap:
-                                            () => funcs.openFileInPreview(
-                                              app.customIconPath,
-                                            ),
-                                        child: MouseRegion(
-                                          cursor: SystemMouseCursors.click,
-                                          child: Image.file(
-                                            File(app.customIconPath),
-                                            width: 70,
-                                            height: 70,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 20),
-                                    Text(
-                                      path.basename(app.path),
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    const Spacer(),
-                                    PushButton(
-                                      onPressed: () {
-                                        showMacosSheet(
-                                          context: context,
-                                          builder: (context) {
-                                            return IconChooserSheetPage(
-                                              appFile: XFile(app.path),
-                                              preexistingAppId: app.id,
-                                            );
-                                          },
-                                        );
-                                      },
-                                      controlSize: ControlSize.regular,
-                                      secondary: true,
-                                      child: const Text('Update Icon'),
-                                    ),
-                                    const SizedBox(width: 10),
-                                    PushButton(
-                                      onPressed: () {
-                                        ref
-                                            .read(
-                                              appDatabaseNotifierProvider
-                                                  .notifier,
-                                            )
-                                            .deleteApp(app.id);
-                                      },
-                                      controlSize: ControlSize.regular,
-                                      secondary: true,
-                                      child: const Text('Remove'),
-                                    ),
-                                  ],
+                                child: MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: Image.file(
+                                    File(app.customIconPath),
+                                    width: 70,
+                                    height: 70,
+                                  ),
                                 ),
                               ),
                             ),
-                            Container(
-                              width: double.infinity,
-                              height: 1,
-                              color: CupertinoColors.inactiveGray.withAlpha(70),
+                            const SizedBox(width: 20),
+                            Text(
+                              path.basename(app.path),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            const Spacer(),
+                            PushButton(
+                              onPressed: () {
+                                showMacosSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return IconChooserSheetPage(
+                                      appFile: XFile(app.path),
+                                      preexistingAppId: app.id,
+                                    );
+                                  },
+                                );
+                              },
+                              controlSize: ControlSize.regular,
+                              secondary: true,
+                              child: const Text('Update Icon'),
+                            ),
+                            const SizedBox(width: 10),
+                            PushButton(
+                              onPressed: () {
+                                ref
+                                    .read(appDatabaseNotifierProvider.notifier)
+                                    .deleteApp(app.id);
+                              },
+                              controlSize: ControlSize.regular,
+                              secondary: true,
+                              child: const Text('Remove'),
                             ),
                           ],
-                        );
-                      },
+                        ),
+                      ),
                     ),
-                  SizedBox(height: 80),
-                ],
-              ),
+                    Container(
+                      width: double.infinity,
+                      height: 1,
+                      color: CupertinoColors.inactiveGray.withAlpha(70),
+                    ),
+                  ],
+                );
+              },
             );
           },
         ),
