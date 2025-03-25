@@ -15,7 +15,7 @@ Basic functions for using inside Alter.
 
 /// Kill handy system services if needed.
 Future<void> killSystemServices() async {
-  final shell = Shell();
+  final shell = Shell(throwOnError: false);
   await shell.run('killall Dock Finder SystemUIServer');
 }
 
