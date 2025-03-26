@@ -2,7 +2,6 @@
 import 'dart:io';
 import 'package:alter/utils/dialogs.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
 
 // Third-party imports.
 import 'package:path/path.dart' as path;
@@ -190,56 +189,43 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                           ),
                         ),
                         const Spacer(),
-                        MacosTooltip(
-                          message: 'Update icon for the app',
-                          child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () {
-                                showMacosSheet(
-                                  context: context,
-                                  builder: (builder) {
-                                    return IconChooserSheetPage(
-                                      appFile: XFile(app.path),
-                                      preexistingAppId: app.id,
-                                    );
-                                  },
+                        MacosIconButton(
+                          onPressed: () {
+                            showMacosSheet(
+                              context: context,
+                              builder: (builder) {
+                                return IconChooserSheetPage(
+                                  appFile: XFile(app.path),
+                                  preexistingAppId: app.id,
                                 );
                               },
-                              child: const MacosIcon(
-                                CupertinoIcons.refresh_bold,
-                                color: CupertinoColors.systemGrey,
-                              ),
-                            ),
+                            );
+                          },
+                          icon: const MacosIcon(
+                            CupertinoIcons.pencil,
+                            size: 20,
+                            color: CupertinoColors.systemGrey,
                           ),
                         ),
                         const SizedBox(width: 12),
-                        MacosTooltip(
-                          message: 'Remove app and unset icon',
-                          child: MouseRegion(
-                            cursor: SystemMouseCursors.click,
-                            child: GestureDetector(
-                              onTap: () async {
-                                final shouldDeleteApp =
-                                    await showConfirmationDialog(
-                                      context,
-                                      'Remove app?',
-                                      'This will reset all applied modifications and app permissions.',
-                                    );
+                        MacosIconButton(
+                          onPressed: () async {
+                            final shouldDeleteApp = await showConfirmationDialog(
+                              context,
+                              'Remove app?',
+                              'This will reset all applied modifications and app permissions.',
+                            );
 
-                                if (shouldDeleteApp) {
-                                  ref
-                                      .read(
-                                        appDatabaseNotifierProvider.notifier,
-                                      )
-                                      .deleteApp(app.id);
-                                }
-                              },
-                              child: const MacosIcon(
-                                CupertinoIcons.trash_fill,
-                                color: CupertinoColors.systemGrey,
-                              ),
-                            ),
+                            if (shouldDeleteApp) {
+                              ref
+                                  .read(appDatabaseNotifierProvider.notifier)
+                                  .deleteApp(app.id);
+                            }
+                          },
+                          icon: const MacosIcon(
+                            CupertinoIcons.trash_fill,
+                            color: CupertinoColors.systemGrey,
+                            size: 20,
                           ),
                         ),
                       ],
