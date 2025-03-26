@@ -48,11 +48,16 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             label: 'Reset All',
             tooltipMessage: 'Reset all changed icons',
             showLabel: false,
-            onPressed:
-                () =>
-                    ref
-                        .read(appDatabaseNotifierProvider.notifier)
-                        .deleteAllApps(),
+            onPressed: () async {
+              final shouldResetAll = await showConfirmationDialog(
+                context,
+                'Reset all apps?',
+                'This will reset all changed icons and remove all customizations.',
+              );
+              if (shouldResetAll) {
+                ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();
+              }
+            },
           ),
           ToolBarIconButton(
             icon: const MacosIcon(
