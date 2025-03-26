@@ -10,7 +10,7 @@
     "shell": "system"
   },
   {
-    "label": "Generate build files",
+    "label": "Run build file generation",
     "command": "dart run build_runner build --delete-conflicting-outputs",
     "use_new_terminal": true,
     "allow_concurrent_runs": false,
