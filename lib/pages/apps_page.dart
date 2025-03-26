@@ -1,6 +1,5 @@
 // First-party imports.
 import 'dart:io';
-import 'package:alter/utils/dialogs.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -11,6 +10,7 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/sequences.dart';
+import 'package:alter/utils/dialogs.dart';
 import 'package:alter/utils/funcs.dart' as funcs;
 import 'package:alter/utils/links.dart';
 import 'package:alter/pages/iconchooser_sheet_page.dart';

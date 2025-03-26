@@ -10,20 +10,13 @@ Works on **macOS Ventura 13 or newer.**
 
 ## Table of Contents
 
-- [Key Features](#key-features)
 - [Installation](#installation)
+- [Key Features](#key-features)
 - [Backstory](#backstory)
 - [Common Pitfalls](#common-pitfalls)
+- [Troubleshooting](#troubleshooting)
 - [Contributing](#contributing)
 - [License](#license)
-
-## Key Features
-
-- Simple workflow for changing regular app icons
-- Doesn't require disabling [SIP (System Integrity Protection)]()
-- Continuous and managed app synchronization in the background
-- Small binary size (19 MiB when compressed)
-- Based on the [Flutter](https://flutter.dev/) framework
 
 ## Installation
 
@@ -33,14 +26,25 @@ Works on **macOS Ventura 13 or newer.**
 brew install --cask hitblast/tap/alter
 ```
 
+> [!IMPORTANT]
+> Make sure the app has access to **Privacy & Security > App Management** permission so that it can operate as usual.
+
 Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases) to download the latest builds.
 
-> [!IMPORTANT]
+> [!NOTE]
 > By using Alter, you acknowledge that Alter is not [notarized.](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
 >
 > It's a security feature of Apple, based on which binaries are validated before running on consumer hardware. Since I do not plan to notarize Alter, the [Homebrew installation script]() will automatically remove the `com.apple.quarantine` attribute upon installation.
 >
 > A better reference could be found for this concept and why invalidating the attribute is important in [this section](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution) of the documentation nikitabobko wrote for AeroSpace.
+
+## Key Features
+
+- Simple workflow for changing regular app icons
+- Doesn't require disabling [SIP (System Integrity Protection)]()
+- Continuous and managed app synchronization in the background
+- Small binary size (19 MiB when compressed)
+- Based on the [Flutter](https://flutter.dev/) framework
 
 ## Backstory
 I come from a Linux and Windows background, and customizability was at the forefront of what
