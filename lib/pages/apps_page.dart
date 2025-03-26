@@ -186,12 +186,9 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                     ),
                     title: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 5.0),
-                          child: Text(
-                            path.basenameWithoutExtension(app.path),
-                            style: const TextStyle(fontSize: 15.5),
-                          ),
+                        Text(
+                          path.basenameWithoutExtension(app.path),
+                          style: const TextStyle(fontSize: 15.5),
                         ),
                         const Spacer(),
                         MacosTooltip(
@@ -215,7 +212,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 12),
                         MacosTooltip(
                           message: 'Remove app and unapply icon',
                           child: MacosIconButton(
