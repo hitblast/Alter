@@ -189,43 +189,49 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                           ),
                         ),
                         const Spacer(),
-                        MacosIconButton(
-                          onPressed: () {
-                            showMacosSheet(
-                              context: context,
-                              builder: (builder) {
-                                return IconChooserSheetPage(
-                                  appFile: XFile(app.path),
-                                  preexistingAppId: app.id,
-                                );
-                              },
-                            );
-                          },
-                          icon: const MacosIcon(
-                            CupertinoIcons.pencil,
-                            size: 20,
-                            color: CupertinoColors.systemGrey,
+                        MacosTooltip(
+                          message: 'Edit custom icon',
+                          child: MacosIconButton(
+                            onPressed: () {
+                              showMacosSheet(
+                                context: context,
+                                builder: (builder) {
+                                  return IconChooserSheetPage(
+                                    appFile: XFile(app.path),
+                                    preexistingAppId: app.id,
+                                  );
+                                },
+                              );
+                            },
+                            icon: const MacosIcon(
+                              CupertinoIcons.pencil,
+                              size: 20,
+                              color: CupertinoColors.systemGrey,
+                            ),
                           ),
                         ),
                         const SizedBox(width: 12),
-                        MacosIconButton(
-                          onPressed: () async {
-                            final shouldDeleteApp = await showConfirmationDialog(
-                              context,
-                              'Remove app?',
-                              'This will reset all applied modifications and app permissions.',
-                            );
+                        MacosTooltip(
+                          message: 'Remove app and unapply icon',
+                          child: MacosIconButton(
+                            onPressed: () async {
+                              final shouldDeleteApp = await showConfirmationDialog(
+                                context,
+                                'Remove app?',
+                                'This will reset all applied modifications and app permissions.',
+                              );
 
-                            if (shouldDeleteApp) {
-                              ref
-                                  .read(appDatabaseNotifierProvider.notifier)
-                                  .deleteApp(app.id);
-                            }
-                          },
-                          icon: const MacosIcon(
-                            CupertinoIcons.trash_fill,
-                            color: CupertinoColors.systemGrey,
-                            size: 20,
+                              if (shouldDeleteApp) {
+                                ref
+                                    .read(appDatabaseNotifierProvider.notifier)
+                                    .deleteApp(app.id);
+                              }
+                            },
+                            icon: const MacosIcon(
+                              CupertinoIcons.trash_fill,
+                              color: CupertinoColors.systemGrey,
+                              size: 20,
+                            ),
                           ),
                         ),
                       ],
