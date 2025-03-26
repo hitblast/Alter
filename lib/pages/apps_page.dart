@@ -146,38 +146,41 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(width: 10),
-                        Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: CupertinoColors.black.withValues(
-                                  alpha: 0.2,
+                        MacosTooltip(
+                          message: app.appBundleId,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: CupertinoColors.black.withValues(
+                                    alpha: 0.2,
+                                  ),
+                                  blurRadius: 10,
+                                  spreadRadius: -3,
+                                  offset: const Offset(0, 5),
                                 ),
-                                blurRadius: 10,
-                                spreadRadius: -3,
-                                offset: const Offset(0, 5),
-                              ),
-                            ],
-                          ),
-                          child: GestureDetector(
-                            onTap: () async {
-                              final fileHasOpened = await funcs
-                                  .openFileInPreview(app.customIconPath);
+                              ],
+                            ),
+                            child: GestureDetector(
+                              onTap: () async {
+                                final fileHasOpened = await funcs
+                                    .openFileInPreview(app.customIconPath);
 
-                              if (!fileHasOpened && context.mounted) {
-                                showAlertDialog(
-                                  context,
-                                  'Could not preview icon.',
-                                  'There was an error opening the icon file.',
-                                );
-                              }
-                            },
-                            child: MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: Image.file(
-                                File(app.customIconPath),
-                                width: 50,
-                                height: 50,
+                                if (!fileHasOpened && context.mounted) {
+                                  showAlertDialog(
+                                    context,
+                                    'Could not preview icon.',
+                                    'There was an error opening the icon file.',
+                                  );
+                                }
+                              },
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: Image.file(
+                                  File(app.customIconPath),
+                                  width: 50,
+                                  height: 50,
+                                ),
                               ),
                             ),
                           ),
