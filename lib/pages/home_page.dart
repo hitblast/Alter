@@ -1,6 +1,5 @@
 // First-party imports.
 import 'dart:math';
-import 'package:alter/utils/links.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -14,6 +13,7 @@ import 'package:alter/providers/app_dependencies_provider.dart';
 import 'package:alter/pages/apps_page.dart';
 import 'package:alter/pages/starter_page.dart';
 import 'package:alter/pages/missing_deps_view.dart';
+import 'package:alter/utils/links.dart';
 
 /// The home page of the application.
 class HomePage extends ConsumerStatefulWidget {
@@ -106,7 +106,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                 members: [
                   PlatformMenuItem(
                     label: 'Visit Website',
-                    onSelected: () async => await launchOnWeb(context, 'https://hitblast.github.io/Alter'),
+                    onSelected:
+                        () async => await launchOnWeb(
+                          context,
+                          'https://hitblast.github.io/Alter',
+                        ),
                   ),
                 ],
               ),
