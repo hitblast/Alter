@@ -104,6 +104,7 @@ Future<CommandResult?> setCustomIconForAppPath(
     await shell.run('''
         /usr/bin/defaults write "$appBundleInfoPath" CFBundleIconFile "$customIconFileName"
         /usr/bin/touch "$appPath"
+        /usr/bin/xattr -rc "$appPath"
         /usr/bin/codesign --force --deep --sign - "$appPath"
         ''');
   } catch (e) {
@@ -155,6 +156,7 @@ Future<void> unsetCustomIconForApp(App app) async {
     await shell.run('''
       /usr/bin/defaults write "$appBundleInfoPath" CFBundleIconFile "${app.previousCFBundleIconFile}"
       /usr/bin/touch "${app.path}"
+      /usr/bin/xattr -rc "${app.path}"
       /usr/bin/codesign --force --deep --sign - "${app.path}"
       ''');
   } catch (e) {
