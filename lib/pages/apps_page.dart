@@ -29,7 +29,7 @@ class AppsPage extends ConsumerStatefulWidget {
 class _AppsPageState extends ConsumerState<AppsPage> {
   @override
   Widget build(BuildContext context) {
-    var apps = ref.watch(appDatabaseNotifierProvider);
+    final apps = ref.watch(appDatabaseNotifierProvider);
 
     return MacosScaffold(
       toolBar: ToolBar(
@@ -122,7 +122,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                 if (i == apps.value!.length) {
                   return const SizedBox(height: 80);
                 }
-                var app = apps.value![i];
+                final app = apps.value![i];
 
                 return Container(
                   decoration: BoxDecoration(
