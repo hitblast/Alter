@@ -2,10 +2,10 @@
 
 # Alter
 
+[![Deploy static content to Pages](https://github.com/hitblast/Alter/actions/workflows/static.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/static.yml)
+
 A minimal app to customize your macOS app icons with ease. <br>
 Works on **macOS Ventura 13 or newer.**
-
-[![Deploy static content to Pages](https://github.com/hitblast/Alter/actions/workflows/static.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/static.yml)
 
 ## Table of Contents
 
