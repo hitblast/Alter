@@ -149,6 +149,8 @@ h1 {
     transition: transform 0.3s ease;
     -webkit-transition: transform 0.3s ease;
     cursor: pointer;
+    position: relative;
+    z-index: 10;
 }
 .image.clicked {
     transform: scale(0.9);
