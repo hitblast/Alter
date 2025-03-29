@@ -5,8 +5,7 @@
 A minimal app to customize your macOS app icons with ease. <br>
 Works on **macOS Ventura 13 or newer.**
 
-> [!NOTE]
-> If you like using this project, consider starring it! :D It motivates me a lot to develop and deploy these projects.
+[![Deploy static content to Pages](https://github.com/hitblast/Alter/actions/workflows/static.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/static.yml)
 
 ## Table of Contents
 
