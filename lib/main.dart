@@ -91,4 +91,5 @@ Future<void> _configureMacosWindowUtils() async {
   await DesktopWindow.setWindowSize(const Size(640, 430));
 
   await config.apply();
+  debugPrint('Configured macOS window utilities and window size.');
 }
