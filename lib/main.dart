@@ -71,12 +71,16 @@ The main functions of the application.
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await _configureMacosWindowUtils();
 
-  objectBox = await ObjectBox.create();
-  debugPrint('Database initialized at path: ${objectBox.store.directoryPath}');
+  await _configureMacosWindowUtils();
+  await _configureDatabase();
 
   runApp(ProviderScope(child: const MainApp()));
+}
+
+Future<void> _configureDatabase() async {
+  objectBox = await ObjectBox.create();
+  debugPrint('Database initialized at path: ${objectBox.store.directoryPath}');
 }
 
 Future<void> _configureMacosWindowUtils() async {
