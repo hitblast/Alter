@@ -1,5 +1,4 @@
 // First-party imports.
-import 'package:alter/utils/links.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -8,6 +7,7 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/services/loginitems_service.dart';
+import 'package:alter/utils/links.dart';
 
 /// The macOS sheet view for choosing the icon when the user prompts.
 class SettingsSheetPage extends ConsumerStatefulWidget {
