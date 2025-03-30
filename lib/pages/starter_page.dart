@@ -6,6 +6,7 @@ import 'package:macos_ui/macos_ui.dart';
 
 // Local imports.
 import 'package:alter/core/sequences.dart';
+import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:alter/utils/links.dart';
 
 /// The starter page widget.
@@ -37,6 +38,17 @@ class StarterPage extends StatelessWidget {
             onPressed:
                 () async =>
                     await launchOnWeb(context, 'https://macosicons.com/'),
+          ),
+          ToolBarIconButton(
+            icon: const MacosIcon(CupertinoIcons.settings_solid),
+            label: 'Settings',
+            showLabel: false,
+            tooltipMessage: 'Open app settings',
+            onPressed:
+                () => showMacosSheet(
+                  context: context,
+                  builder: (context) => SettingsSheetPage(),
+                ),
           ),
         ],
       ),
