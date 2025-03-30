@@ -8,14 +8,14 @@ class MainFlutterWindow: NSWindow {
         // Basic window configurations.
         let flutterViewController = FlutterViewController.init()
         let windowFrame = self.frame
-        let bundleIdentifier = String(describing: Bundle.main.bundleIdentifier)
-        
+
         self.contentViewController = flutterViewController
         self.setFrame(windowFrame, display: true)
 
         // Method channel for handling login item registry.
         FlutterMethodChannel(
-            name: "\(bundleIdentifier)/login", binaryMessenger: flutterViewController.engine.binaryMessenger
+            name: "com.hitblast.alter/login",
+            binaryMessenger: flutterViewController.engine.binaryMessenger
         )
         .setMethodCallHandler { (_ call: FlutterMethodCall, result: @escaping FlutterResult) in
             switch call.method {
