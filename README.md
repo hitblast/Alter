@@ -51,7 +51,7 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 <div align="center">
     <img src="assets/app_screenshot.png" width="700">
     <br>
-    <i>The icons show in the image are available on <a href="https://macosicons.com/">macosicons.com</a></i>
+    <i>The icons show in the image are available on <a href="https://macosicons.com/">macosicons.com</a>.</i>
     <br>
 </div>
 
