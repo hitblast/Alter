@@ -4,4 +4,5 @@
 const List<String> blacklistedApps = [
   'Discord.app',
   'Android Studio.app',
+  'WhatsApp.app',
 ];
