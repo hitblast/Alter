@@ -85,6 +85,7 @@ class _SettingsSheetPageState extends ConsumerState<SettingsSheetPage> {
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 12,
                                     ),
                                   ),
                                   SizedBox(height: 4),
@@ -100,7 +101,14 @@ class _SettingsSheetPageState extends ConsumerState<SettingsSheetPage> {
                               ),
                             ),
                             const SizedBox(width: 16),
+                            Container(
+                              width: 1,
+                              height: 40,
+                              color: CupertinoColors.separator,
+                            ),
+                            const SizedBox(width: 16),
                             MacosSwitch(
+                              size: ControlSize.small,
                               value: _isLaunchAtLoginEnabled,
                               onChanged: (value) {
                                 _toggleLaunchAtLogin(value);
