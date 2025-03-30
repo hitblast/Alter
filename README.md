@@ -45,6 +45,13 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 - Small binary size (19 MiB when compressed)
 - Based on the [Flutter](https://flutter.dev/) framework
 
+## Screenshots
+
+<div align="center">
+    <img src="assets/app_screenshot.png" width="600" alt="Alter App Screenshot">
+    _The icons show in the image are available in [macosicons.com](https://macosicons.com/)_
+</div>
+
 ## Backstory
 I come from a Linux and Windows background, and customizability was at the forefront of what
 I was doing with my laptop back when I started learning. However, when I
