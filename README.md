@@ -11,6 +11,7 @@ Works on **macOS Ventura 13 or newer.**
 
 - [Installation](#installation)
 - [Key Features](#key-features)
+- [Screenshots](#screenshots)
 - [Backstory](#backstory)
 - [Common Pitfalls](#common-pitfalls)
 - [Troubleshooting](#troubleshooting)
@@ -48,7 +49,8 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 ## Screenshots
 
 <div align="center">
-    <img src="assets/app_screenshot.png" width="600" alt="Alter App Screenshot">
+    <img src="assets/app_screenshot.png" width="700">
+    <br>
     <i>The icons show in the image are available on [macosicons.com](https://macosicons.com/)</i>
 </div>
 
