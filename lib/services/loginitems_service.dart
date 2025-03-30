@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 /// The LoginItemsService class provides a MethodChannel-based wrapper
 /// for managing login item entry for the project on a Mac.
 class LoginItemsService {
-  static const MethodChannel _channel = MethodChannel('alter_methods');
+  static const MethodChannel _channel = MethodChannel(
+    'com.hitblast.alter/login',
+  );
 
   /// Registers the login item entry.
   static Future<bool> enableLaunchAtLogin() async {

@@ -1,5 +1,6 @@
 // First-party imports.
 import 'dart:io';
+import 'package:alter/pages/settings_sheet_page.dart';
 import 'package:flutter/cupertino.dart';
 
 // Third-party imports.
@@ -98,6 +99,17 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             onPressed:
                 () async =>
                     await launchOnWeb(context, 'https://macosicons.com/'),
+          ),
+          ToolBarIconButton(
+            icon: const MacosIcon(CupertinoIcons.settings_solid),
+            label: 'Settings',
+            showLabel: false,
+            tooltipMessage: 'Open app settings',
+            onPressed:
+                () => showMacosSheet(
+                  context: context,
+                  builder: (context) => SettingsSheetPage(),
+                ),
           ),
         ],
       ),

@@ -5,13 +5,17 @@ import macos_window_utils
 
 class MainFlutterWindow: NSWindow {
     override func awakeFromNib() {
+        // Basic window configurations.
         let flutterViewController = FlutterViewController.init()
         let windowFrame = self.frame
+        let bundleIdentifier = String(describing: Bundle.main.bundleIdentifier)
+        
         self.contentViewController = flutterViewController
         self.setFrame(windowFrame, display: true)
 
+        // Method channel for handling login item registry.
         FlutterMethodChannel(
-            name: "alter_methods", binaryMessenger: flutterViewController.engine.binaryMessenger
+            name: "\(bundleIdentifier)/login", binaryMessenger: flutterViewController.engine.binaryMessenger
         )
         .setMethodCallHandler { (_ call: FlutterMethodCall, result: @escaping FlutterResult) in
             switch call.method {
