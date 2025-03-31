@@ -39,6 +39,9 @@ class StarterPage extends StatelessWidget {
                 () async =>
                     await launchOnWeb(context, 'https://macosicons.com/'),
           ),
+          const ToolBarSpacer(),
+          const ToolBarDivider(),
+          const ToolBarSpacer(),
           ToolBarIconButton(
             icon: const MacosIcon(CupertinoIcons.settings_solid),
             label: 'Settings',
@@ -67,8 +70,8 @@ class StarterPage extends StatelessWidget {
                       children: [
                         Image.asset(
                           'assets/images/alter_starter.png',
-                          width: 200,
-                          height: 200,
+                          width: 120,
+                          height: 120,
                         ),
                         const SizedBox(height: 25),
                         const Text(
