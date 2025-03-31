@@ -60,6 +60,16 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             },
           ),
           ToolBarIconButton(
+            icon: const MacosIcon(CupertinoIcons.paintbrush_fill),
+            label: 'Get Icons',
+            tooltipMessage: 'Browse for new app icons',
+            showLabel: false,
+            onPressed:
+                () async =>
+                    await launchOnWeb(context, 'https://macosicons.com/'),
+          ),
+          const ToolBarSpacer(),
+          ToolBarIconButton(
             icon: const MacosIcon(
               CupertinoIcons.xmark_shield_fill,
               color: CupertinoColors.destructiveRed,
@@ -90,15 +100,9 @@ class _AppsPageState extends ConsumerState<AppsPage> {
             showLabel: false,
             onPressed: () => initiateKillSequence(context),
           ),
-          ToolBarIconButton(
-            icon: const MacosIcon(CupertinoIcons.paintbrush_fill),
-            label: 'Get Icons',
-            tooltipMessage: 'Browse for new app icons',
-            showLabel: false,
-            onPressed:
-                () async =>
-                    await launchOnWeb(context, 'https://macosicons.com/'),
-          ),
+          const ToolBarSpacer(),
+          const ToolBarDivider(),
+          const ToolBarSpacer(),
           ToolBarIconButton(
             icon: const MacosIcon(CupertinoIcons.settings_solid),
             label: 'Settings',
