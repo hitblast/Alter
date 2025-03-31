@@ -3,7 +3,7 @@
 
 # Alter
 
-_"A minimal app to customize your macOS app icons with ease."_
+_"A minimal app to customize your macOS app icons with ease."_<br>
 Works on **macOS Ventura 13 or newer.**
 
 </div>
