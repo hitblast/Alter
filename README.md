@@ -1,22 +1,12 @@
-<img src="macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" width="30%" height="30%" align="right" alt="Alter Icon">
+<div align="center">
+<img src="macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png" width="30%" height="30%" alt="Alter Icon">
 
 # Alter
 
-[![Deploy static content to Pages](https://github.com/hitblast/Alter/actions/workflows/static.yml/badge.svg)](https://github.com/hitblast/Alter/actions/workflows/static.yml)
-
-A minimal app to customize your macOS app icons with ease. <br>
+_"A minimal app to customize your macOS app icons with ease."_
 Works on **macOS Ventura 13 or newer.**
 
-## Table of Contents
-
-- [Installation](#installation)
-- [Key Features](#key-features)
-- [Screenshots](#screenshots)
-- [Backstory](#backstory)
-- [Common Pitfalls](#common-pitfalls)
-- [Troubleshooting](#troubleshooting)
-- [Contributing](#contributing)
-- [License](#license)
+</div>
 
 ## Installation
 
@@ -31,12 +21,27 @@ brew install --cask hitblast/tap/alter
 
 Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases) to download the latest builds.
 
+<div align="center">
+    <img src="assets/app_screenshot.png" width="700">
+    <br>
+    <i>The icons shown in the image are available on <a href="https://macosicons.com/">macosicons.com</a>.</i>
+    <br>
+</div>
+
 > [!NOTE]
 > By using Alter, you acknowledge that Alter is not [notarized.](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
 >
 > It's a security feature of Apple, based on which binaries are validated before running on consumer hardware. Since I do not plan to notarize Alter, the [Homebrew installation script]() will automatically remove the `com.apple.quarantine` attribute upon installation.
 >
 > A better reference could be found for this concept and why invalidating the attribute is important in [this section](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution) of the documentation nikitabobko wrote for AeroSpace.
+
+## Table of Contents
+
+- [Key Features](#key-features)
+- [Backstory](#backstory)
+- [Common Pitfalls](#common-pitfalls)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Key Features
 
@@ -45,15 +50,6 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 - Continuous and managed app synchronization in the background
 - Small binary size (19 MiB when compressed)
 - Based on the [Flutter](https://flutter.dev/) framework
-
-## Screenshots
-
-<div align="center">
-    <img src="assets/app_screenshot.png" width="700">
-    <br>
-    <i>The icons shown in the image are available on <a href="https://macosicons.com/">macosicons.com</a>.</i>
-    <br>
-</div>
 
 ## Backstory
 I come from a Linux and Windows background, and customizability was at the forefront of what
