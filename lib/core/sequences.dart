@@ -80,13 +80,13 @@ Future<void> initiateAppAddingSequence(BuildContext context) async {
   // If all of the checks above pass.
   else {
     // Check if the selected app is blacklisted.
-    final appName = path.basename(file.path);
+    final appBundleId = await funcs.getBundleIdByAppPath(file.path);
 
-    if (blacklistedApps.contains(appName) && context.mounted) {
+    if (blacklistedApps.contains(appBundleId) && context.mounted) {
       final proceed = await showConfirmationDialog(
         context,
         'Blacklist warning!',
-        "$appName may not work well with modifications.",
+        "${path.basenameWithoutExtension(file.path)} may not work well with modifications.",
         yesLabel: 'Modify anyway',
         noLabel: 'Cancel',
       );

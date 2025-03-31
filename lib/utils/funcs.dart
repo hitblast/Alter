@@ -19,6 +19,15 @@ Future<void> killSystemServices() async {
   await shell.run('/usr/bin/killall Dock Finder SystemUIServer');
 }
 
+/// Get the bundle ID of an application given its path.
+Future<String> getBundleIdByAppPath(String appPath) async {
+  final shell = Shell(throwOnError: false);
+
+  return (await shell.run("""
+              /usr/bin/osascript -e 'id of app "$appPath"'
+          """)).single.outText;
+}
+
 /// Open a path using Preview.
 /// Returns a boolean indicating if the file has been opened.
 Future<bool> openFileInPreview(String path) async {

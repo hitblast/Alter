@@ -9,9 +9,9 @@ import 'package:path/path.dart' as path;
 // Local imports.
 import 'package:alter/models/app_model.dart';
 import 'package:alter/models/commandresult_model.dart';
-import 'package:alter/core/image_converter.dart';
+import 'package:alter/core/image_converter.dart' as img_convert;
 import 'package:alter/core/icons_storage.dart' as icon_storage;
-import 'package:alter/core/permissions.dart';
+import 'package:alter/core/permissions.dart' as perms;
 
 /// Set a custom icon for an app given its path.
 /// Returns an optional CommandResult containing important, reusable data for the application.
@@ -36,7 +36,7 @@ Future<CommandResult?> setCustomIconForAppPath(
   String iconPathToUse = userCustomIconPath;
   File? convertedIconFile;
   if (isPng) {
-    convertedIconFile = await convertToIcns(userCustomIconPath);
+    convertedIconFile = await img_convert.convertToIcns(userCustomIconPath);
     iconPathToUse = convertedIconFile.path;
   }
 
@@ -112,7 +112,7 @@ Future<CommandResult?> setCustomIconForAppPath(
   }
 
   // Reset permissions for the app here.
-  final appBundleId = await resetPermissions(appPath);
+  final appBundleId = await perms.resetPermissionsByAppPath(appPath);
 
   // Store the custom icon for backup and reapplying.
   await icon_storage.storeIconForAppPath(customIconPath, appPath);
@@ -164,9 +164,7 @@ Future<void> unsetCustomIconForApp(App app) async {
   }
 
   // Reset permissions if needed.
-  if (app.appBundleId != '') {
-    await resetPermissions(app.path);
-  }
+  await perms.resetPermissionsByAppPath(app.path);
 }
 
 /// Returns a boolean value for an App object if its custom icon needs to be reapplied.

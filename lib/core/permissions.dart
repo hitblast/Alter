@@ -4,20 +4,21 @@ import 'package:flutter/foundation.dart';
 // Third-party imports.
 import 'package:process_run/shell.dart';
 
-/// Resets system-granted permissions for the app - given its absolute path.
+// Local imports.
+import 'package:alter/utils/funcs.dart' as funcs;
+
+/// Resets system-granted permissions for the app given its path.
 /// This is essential for execution when the code signature for a particular app has been changed.
 /// Returns the bundle ID of the app which the permissions have been reset for.
-Future<String> resetPermissions(String appPath) async {
+Future<String> resetPermissionsByAppPath(String appPath) async {
   final shell = Shell();
+  final appBundleId = await funcs.getBundleIdByAppPath(appPath);
 
-  final appBundleId =
-      (await shell.run("""
-            /usr/bin/osascript -e 'id of app "$appPath"'
-        """)).single.outText;
-
-  // Call tccutil to reset.
-  await shell.run('/usr/bin/tccutil reset All $appBundleId');
-  debugPrint('Reset permissions for bundle ID: $appBundleId');
+  try {
+    await shell.run('/usr/bin/tccutil reset All $appBundleId');
+  } catch (e) {
+    debugPrint('Failed to reset permissions for bundle ID: $appBundleId');
+  }
 
   return appBundleId;
 }
