@@ -34,7 +34,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
 
     return MacosScaffold(
       toolBar: ToolBar(
-        title: const Text('Manage Apps'),
         enableBlur: true,
         actions: [
           ToolBarIconButton(
