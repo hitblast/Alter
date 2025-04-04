@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 
 /* Reset styles */
 * {
@@ -24,12 +23,6 @@ body {
     -moz-user-select: none;
     -ms-user-select: none;
     position: relative;
-}
-
-h1 {
-    font-family: "Abril Fatface", monospace;
-    font-size: 2.5em;
-    color: #99999980;
 }
 
 /* Dark mode text colors for auxiliary elements */
@@ -73,7 +66,7 @@ h1 {
 
 /* Description placeholder */
 .description {
-    margin-bottom: 35px;
+    margin-bottom: 2rem;
     font-size: 1em;
 }
 
