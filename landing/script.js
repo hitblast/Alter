@@ -55,6 +55,10 @@ ScrollReveal().reveal("footer", {
       .then(function () {
         isCopied = true;
         codeBlock.innerHTML = iconHTML + copiedText;
+        setTimeout(function () {
+          isCopied = false;
+          codeBlock.innerHTML = iconHTML + originalText;
+        }, 3000);
       })
       .catch(function (err) {
         console.error("Failed to copy text: ", err);
