@@ -135,9 +135,9 @@ body {
     border-radius: 50%;
     filter: blur(110px);
     -webkit-filter: blur(110px);
-    transform-origin: 80px center;
-    animation: orbit 8s ease-in-out infinite;
-    -webkit-animation: orbit 8s ease-in-out infinite;
+    transform-origin: 100px center;
+    animation: orbit 7.5s ease-in-out infinite;
+    -webkit-animation: orbit 7.5s ease-in-out infinite;
 }
 .cloud-orange {
     background: coral;
