@@ -13,40 +13,44 @@ body {
 }
 body {
     font-family: "Space Mono", sans-serif;
-    color: #111111;
+    color: #f0f0f0;
     text-align: center;
     margin: 0;
     display: flex;
     flex-direction: column;
-    background: #f0f0f0;
+    background: #111;
     user-select: none;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
-}
-
-/* Dark mode styles */
-body.dark {
-    background: #111;
-    color: #f0f0f0;
     position: relative;
 }
-body.dark h1 {
+
+h1 {
+    font-family: "Abril Fatface", monospace;
+    font-size: 2.5em;
     color: #99999980;
 }
-body.dark .description,
-body.dark .download-separator,
-body.dark .version {
+
+/* Dark mode text colors for auxiliary elements */
+.description,
+.download-separator,
+.version {
     color: #cccccc90;
 }
-body.dark .code-block {
+.code-block {
     background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: "Space Mono", monospace;
+    font-size: 16px;
     color: #fff;
 }
-body.dark .cloud {
-    filter: blur(7rem);
-    -webkit-filter: blur(7rem);
+.code-block:hover {
+    cursor: pointer;
 }
 
 /* Container for main content */
@@ -61,28 +65,12 @@ body.dark .cloud {
     z-index: 1;
 }
 
-/* Dark/Light mode toggle button styling */
-.theme-toggle {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: transparent;
-    border: none;
-    font-size: 1.3rem;
-    cursor: pointer;
-    z-index: 2;
-}
-
 /* Image container for orbiting clouds */
 .image-container {
     position: relative;
     display: inline-block;
 }
-/* Header styling */
-h1 {
-    font-family: "Abril Fatface", monospace;
-    font-size: 2.5em;
-}
+
 /* Description placeholder */
 .description {
     margin-bottom: 35px;
@@ -116,19 +104,6 @@ h1 {
 .download-separator {
     font-size: 16px;
 }
-.code-block {
-    background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-family: "Space Mono", monospace;
-    font-size: 16px;
-}
-.code-block:hover {
-    cursor: pointer;
-}
 
 /* Version text styling */
 .version {
@@ -157,7 +132,7 @@ h1 {
     -webkit-transform: scale(0.9);
 }
 
-/* Cloud styling for orbiting effect */
+/* Cloud styling for orbiting effect updated for dark mode */
 .cloud {
     position: absolute;
     top: 50%;
@@ -165,8 +140,8 @@ h1 {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    filter: blur(3rem);
-    -webkit-filter: blur(3rem);
+    filter: blur(7rem);
+    -webkit-filter: blur(7rem);
     opacity: 0.8;
     transform-origin: 100px center;
     animation: orbit 8.5s ease-in-out infinite;

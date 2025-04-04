@@ -61,29 +61,3 @@ ScrollReveal().reveal("footer", {
       });
   });
 })();
-
-// Apply dark mode based on the system preference
-if (
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches
-) {
-  document.body.classList.add("dark");
-}
-
-(function () {
-  var themeBtn = document.querySelector(".theme-toggle");
-  function updateIcon() {
-    if (document.body.classList.contains("dark")) {
-      themeBtn.innerHTML =
-        '<i class="fa-solid fa-sun" style="color: grey;"></i>';
-    } else {
-      themeBtn.innerHTML =
-        '<i class="fa-solid fa-moon" style="color: black;"></i>';
-    }
-  }
-  updateIcon();
-  themeBtn.addEventListener("click", function () {
-    document.body.classList.toggle("dark");
-    updateIcon();
-  });
-})();
