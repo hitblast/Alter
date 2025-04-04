@@ -133,30 +133,29 @@ body {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    filter: blur(7rem);
-    -webkit-filter: blur(7rem);
-    opacity: 0.8;
-    transform-origin: 100px center;
-    animation: orbit 8.5s ease-in-out infinite;
-    -webkit-animation: orbit 8.5s ease-in-out infinite;
+    filter: blur(110px);
+    -webkit-filter: blur(110px);
+    transform-origin: 80px center;
+    animation: orbit 8s ease-in-out infinite;
+    -webkit-animation: orbit 8s ease-in-out infinite;
 }
 .cloud-orange {
-    background: orange;
+    background: coral;
     animation-delay: 0s;
     -webkit-animation-delay: 0s;
 }
 .cloud-red {
-    background: red;
+    background: crimson;
     animation-delay: -2.5s;
     -webkit-animation-delay: -2.5s;
 }
 .cloud-white {
-    background: white;
+    background: pink;
     animation-delay: -5s;
     -webkit-animation-delay: -5s;
 }
 .cloud-blue {
-    background: #007aff;
+    background: skyblue;
     animation-delay: -7.5s;
     -webkit-animation-delay: -7.5s;
 }
