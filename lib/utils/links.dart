@@ -20,7 +20,10 @@ Future<void> launchOnWeb(BuildContext context, String url) async {
   }
 
   if (!hasLaunchedURL && context.mounted) {
-    showAlertDialog(context, 'Could not show page.',
-        'Please make sure your browser and internet connection are properly set up.');
+    showAlertDialog(
+      context,
+      'Could not show page.',
+      'Please make sure your browser and internet connection are properly set up.',
+    );
   }
 }

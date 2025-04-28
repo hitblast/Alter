@@ -16,14 +16,15 @@ String _$appDatabaseNotifierHash() =>
 @ProviderFor(AppDatabaseNotifier)
 final appDatabaseNotifierProvider =
     AsyncNotifierProvider<AppDatabaseNotifier, List<App>>.internal(
-  AppDatabaseNotifier.new,
-  name: r'appDatabaseNotifierProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$appDatabaseNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      AppDatabaseNotifier.new,
+      name: r'appDatabaseNotifierProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$appDatabaseNotifierHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 typedef _$AppDatabaseNotifier = AsyncNotifier<List<App>>;
 // ignore_for_file: type=lint

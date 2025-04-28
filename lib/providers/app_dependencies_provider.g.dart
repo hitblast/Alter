@@ -16,14 +16,15 @@ String _$missingDependenciesHash() =>
 @ProviderFor(missingDependencies)
 final missingDependenciesProvider =
     AutoDisposeFutureProvider<List<String>?>.internal(
-  missingDependencies,
-  name: r'missingDependenciesProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$missingDependenciesHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+      missingDependencies,
+      name: r'missingDependenciesProvider',
+      debugGetCreateSourceHash:
+          const bool.fromEnvironment('dart.vm.product')
+              ? null
+              : _$missingDependenciesHash,
+      dependencies: null,
+      allTransitiveDependencies: null,
+    );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element

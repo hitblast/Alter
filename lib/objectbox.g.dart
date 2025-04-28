@@ -20,54 +20,63 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 2217227808595652313),
-      name: 'App',
-      lastPropertyId: const obx_int.IdUid(8, 492610898139750734),
-      flags: 0,
-      properties: <obx_int.ModelProperty>[
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 6947441468983763618),
-            name: 'id',
-            type: 6,
-            flags: 1),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 2666984501433794392),
-            name: 'path',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 5259896408108011649),
-            name: 'customIconPath',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 449054170453085726),
-            name: 'newCFBundleIconName',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 5722564215400248639),
-            name: 'newCFBundleIconFile',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 8237558187240201330),
-            name: 'previousCFBundleIconName',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 3408047609102543168),
-            name: 'previousCFBundleIconFile',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(8, 492610898139750734),
-            name: 'appBundleId',
-            type: 9,
-            flags: 0)
-      ],
-      relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[])
+    id: const obx_int.IdUid(1, 2217227808595652313),
+    name: 'App',
+    lastPropertyId: const obx_int.IdUid(8, 492610898139750734),
+    flags: 0,
+    properties: <obx_int.ModelProperty>[
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(1, 6947441468983763618),
+        name: 'id',
+        type: 6,
+        flags: 1,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(2, 2666984501433794392),
+        name: 'path',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(3, 5259896408108011649),
+        name: 'customIconPath',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(4, 449054170453085726),
+        name: 'newCFBundleIconName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(5, 5722564215400248639),
+        name: 'newCFBundleIconFile',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(6, 8237558187240201330),
+        name: 'previousCFBundleIconName',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(7, 3408047609102543168),
+        name: 'previousCFBundleIconFile',
+        type: 9,
+        flags: 0,
+      ),
+      obx_int.ModelProperty(
+        id: const obx_int.IdUid(8, 492610898139750734),
+        name: 'appBundleId',
+        type: 9,
+        flags: 0,
+      ),
+    ],
+    relations: <obx_int.ModelRelation>[],
+    backlinks: <obx_int.ModelBacklink>[],
+  ),
 ];
 
 /// Shortcut for [obx.Store.new] that passes [getObjectBoxModel] and for Flutter
@@ -81,112 +90,127 @@ final _entities = <obx_int.ModelEntity>[
 /// For Flutter apps, also calls `loadObjectBoxLibraryAndroidCompat()` from
 /// the ObjectBox Flutter library to fix loading the native ObjectBox library
 /// on Android 6 and older.
-Future<obx.Store> openStore(
-    {String? directory,
-    int? maxDBSizeInKB,
-    int? maxDataSizeInKB,
-    int? fileMode,
-    int? maxReaders,
-    bool queriesCaseSensitiveDefault = true,
-    String? macosApplicationGroup}) async {
+Future<obx.Store> openStore({
+  String? directory,
+  int? maxDBSizeInKB,
+  int? maxDataSizeInKB,
+  int? fileMode,
+  int? maxReaders,
+  bool queriesCaseSensitiveDefault = true,
+  String? macosApplicationGroup,
+}) async {
   await loadObjectBoxLibraryAndroidCompat();
-  return obx.Store(getObjectBoxModel(),
-      directory: directory ?? (await defaultStoreDirectory()).path,
-      maxDBSizeInKB: maxDBSizeInKB,
-      maxDataSizeInKB: maxDataSizeInKB,
-      fileMode: fileMode,
-      maxReaders: maxReaders,
-      queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
-      macosApplicationGroup: macosApplicationGroup);
+  return obx.Store(
+    getObjectBoxModel(),
+    directory: directory ?? (await defaultStoreDirectory()).path,
+    maxDBSizeInKB: maxDBSizeInKB,
+    maxDataSizeInKB: maxDataSizeInKB,
+    fileMode: fileMode,
+    maxReaders: maxReaders,
+    queriesCaseSensitiveDefault: queriesCaseSensitiveDefault,
+    macosApplicationGroup: macosApplicationGroup,
+  );
 }
 
 /// Returns the ObjectBox model definition for this project for use with
 /// [obx.Store.new].
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
-      entities: _entities,
-      lastEntityId: const obx_int.IdUid(1, 2217227808595652313),
-      lastIndexId: const obx_int.IdUid(0, 0),
-      lastRelationId: const obx_int.IdUid(0, 0),
-      lastSequenceId: const obx_int.IdUid(0, 0),
-      retiredEntityUids: const [],
-      retiredIndexUids: const [],
-      retiredPropertyUids: const [],
-      retiredRelationUids: const [],
-      modelVersion: 5,
-      modelVersionParserMinimum: 5,
-      version: 1);
+    entities: _entities,
+    lastEntityId: const obx_int.IdUid(1, 2217227808595652313),
+    lastIndexId: const obx_int.IdUid(0, 0),
+    lastRelationId: const obx_int.IdUid(0, 0),
+    lastSequenceId: const obx_int.IdUid(0, 0),
+    retiredEntityUids: const [],
+    retiredIndexUids: const [],
+    retiredPropertyUids: const [],
+    retiredRelationUids: const [],
+    modelVersion: 5,
+    modelVersionParserMinimum: 5,
+    version: 1,
+  );
 
   final bindings = <Type, obx_int.EntityDefinition>{
     App: obx_int.EntityDefinition<App>(
-        model: _entities[0],
-        toOneRelations: (App object) => [],
-        toManyRelations: (App object) => {},
-        getId: (App object) => object.id,
-        setId: (App object, int id) {
-          object.id = id;
-        },
-        objectToFB: (App object, fb.Builder fbb) {
-          final pathOffset = fbb.writeString(object.path);
-          final customIconPathOffset = fbb.writeString(object.customIconPath);
-          final newCFBundleIconNameOffset =
-              fbb.writeString(object.newCFBundleIconName);
-          final newCFBundleIconFileOffset =
-              fbb.writeString(object.newCFBundleIconFile);
-          final previousCFBundleIconNameOffset =
-              fbb.writeString(object.previousCFBundleIconName);
-          final previousCFBundleIconFileOffset =
-              fbb.writeString(object.previousCFBundleIconFile);
-          final appBundleIdOffset = fbb.writeString(object.appBundleId);
-          fbb.startTable(9);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, pathOffset);
-          fbb.addOffset(2, customIconPathOffset);
-          fbb.addOffset(3, newCFBundleIconNameOffset);
-          fbb.addOffset(4, newCFBundleIconFileOffset);
-          fbb.addOffset(5, previousCFBundleIconNameOffset);
-          fbb.addOffset(6, previousCFBundleIconFileOffset);
-          fbb.addOffset(7, appBundleIdOffset);
-          fbb.finish(fbb.endTable());
-          return object.id;
-        },
-        objectFromFB: (obx.Store store, ByteData fbData) {
-          final buffer = fb.BufferContext(fbData);
-          final rootOffset = buffer.derefObject(0);
-          final idParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
-          final pathParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 6, '');
-          final appBundleIdParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 18, '');
-          final customIconPathParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 8, '');
-          final newCFBundleIconNameParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 10, '');
-          final newCFBundleIconFileParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 12, '');
-          final previousCFBundleIconNameParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 14, '');
-          final previousCFBundleIconFileParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGet(buffer, rootOffset, 16, '');
-          final object = App(
-              id: idParam,
-              path: pathParam,
-              appBundleId: appBundleIdParam,
-              customIconPath: customIconPathParam,
-              newCFBundleIconName: newCFBundleIconNameParam,
-              newCFBundleIconFile: newCFBundleIconFileParam,
-              previousCFBundleIconName: previousCFBundleIconNameParam,
-              previousCFBundleIconFile: previousCFBundleIconFileParam);
+      model: _entities[0],
+      toOneRelations: (App object) => [],
+      toManyRelations: (App object) => {},
+      getId: (App object) => object.id,
+      setId: (App object, int id) {
+        object.id = id;
+      },
+      objectToFB: (App object, fb.Builder fbb) {
+        final pathOffset = fbb.writeString(object.path);
+        final customIconPathOffset = fbb.writeString(object.customIconPath);
+        final newCFBundleIconNameOffset = fbb.writeString(
+          object.newCFBundleIconName,
+        );
+        final newCFBundleIconFileOffset = fbb.writeString(
+          object.newCFBundleIconFile,
+        );
+        final previousCFBundleIconNameOffset = fbb.writeString(
+          object.previousCFBundleIconName,
+        );
+        final previousCFBundleIconFileOffset = fbb.writeString(
+          object.previousCFBundleIconFile,
+        );
+        final appBundleIdOffset = fbb.writeString(object.appBundleId);
+        fbb.startTable(9);
+        fbb.addInt64(0, object.id);
+        fbb.addOffset(1, pathOffset);
+        fbb.addOffset(2, customIconPathOffset);
+        fbb.addOffset(3, newCFBundleIconNameOffset);
+        fbb.addOffset(4, newCFBundleIconFileOffset);
+        fbb.addOffset(5, previousCFBundleIconNameOffset);
+        fbb.addOffset(6, previousCFBundleIconFileOffset);
+        fbb.addOffset(7, appBundleIdOffset);
+        fbb.finish(fbb.endTable());
+        return object.id;
+      },
+      objectFromFB: (obx.Store store, ByteData fbData) {
+        final buffer = fb.BufferContext(fbData);
+        final rootOffset = buffer.derefObject(0);
+        final idParam = const fb.Int64Reader().vTableGet(
+          buffer,
+          rootOffset,
+          4,
+          0,
+        );
+        final pathParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 6, '');
+        final appBundleIdParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 18, '');
+        final customIconPathParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 8, '');
+        final newCFBundleIconNameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 10, '');
+        final newCFBundleIconFileParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 12, '');
+        final previousCFBundleIconNameParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 14, '');
+        final previousCFBundleIconFileParam = const fb.StringReader(
+          asciiOptimization: true,
+        ).vTableGet(buffer, rootOffset, 16, '');
+        final object = App(
+          id: idParam,
+          path: pathParam,
+          appBundleId: appBundleIdParam,
+          customIconPath: customIconPathParam,
+          newCFBundleIconName: newCFBundleIconNameParam,
+          newCFBundleIconFile: newCFBundleIconFileParam,
+          previousCFBundleIconName: previousCFBundleIconNameParam,
+          previousCFBundleIconFile: previousCFBundleIconFileParam,
+        );
 
-          return object;
-        })
+        return object;
+      },
+    ),
   };
 
   return obx_int.ModelDefinition(model, bindings);
@@ -201,26 +225,32 @@ class App_ {
   static final path = obx.QueryStringProperty<App>(_entities[0].properties[1]);
 
   /// See [App.customIconPath].
-  static final customIconPath =
-      obx.QueryStringProperty<App>(_entities[0].properties[2]);
+  static final customIconPath = obx.QueryStringProperty<App>(
+    _entities[0].properties[2],
+  );
 
   /// See [App.newCFBundleIconName].
-  static final newCFBundleIconName =
-      obx.QueryStringProperty<App>(_entities[0].properties[3]);
+  static final newCFBundleIconName = obx.QueryStringProperty<App>(
+    _entities[0].properties[3],
+  );
 
   /// See [App.newCFBundleIconFile].
-  static final newCFBundleIconFile =
-      obx.QueryStringProperty<App>(_entities[0].properties[4]);
+  static final newCFBundleIconFile = obx.QueryStringProperty<App>(
+    _entities[0].properties[4],
+  );
 
   /// See [App.previousCFBundleIconName].
-  static final previousCFBundleIconName =
-      obx.QueryStringProperty<App>(_entities[0].properties[5]);
+  static final previousCFBundleIconName = obx.QueryStringProperty<App>(
+    _entities[0].properties[5],
+  );
 
   /// See [App.previousCFBundleIconFile].
-  static final previousCFBundleIconFile =
-      obx.QueryStringProperty<App>(_entities[0].properties[6]);
+  static final previousCFBundleIconFile = obx.QueryStringProperty<App>(
+    _entities[0].properties[6],
+  );
 
   /// See [App.appBundleId].
-  static final appBundleId =
-      obx.QueryStringProperty<App>(_entities[0].properties[7]);
+  static final appBundleId = obx.QueryStringProperty<App>(
+    _entities[0].properties[7],
+  );
 }

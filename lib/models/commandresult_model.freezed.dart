@@ -12,7 +12,8 @@ part of 'commandresult_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$CommandResult {
@@ -33,16 +34,18 @@ mixin _$CommandResult {
 /// @nodoc
 abstract class $CommandResultCopyWith<$Res> {
   factory $CommandResultCopyWith(
-          CommandResult value, $Res Function(CommandResult) then) =
-      _$CommandResultCopyWithImpl<$Res, CommandResult>;
+    CommandResult value,
+    $Res Function(CommandResult) then,
+  ) = _$CommandResultCopyWithImpl<$Res, CommandResult>;
   @useResult
-  $Res call(
-      {String appBundleId,
-      String customIconPath,
-      String newCFBundleIconName,
-      String newCFBundleIconFile,
-      String previousCFBundleIconName,
-      String previousCFBundleIconFile});
+  $Res call({
+    String appBundleId,
+    String customIconPath,
+    String newCFBundleIconName,
+    String newCFBundleIconFile,
+    String previousCFBundleIconName,
+    String previousCFBundleIconFile,
+  });
 }
 
 /// @nodoc
@@ -67,32 +70,41 @@ class _$CommandResultCopyWithImpl<$Res, $Val extends CommandResult>
     Object? previousCFBundleIconName = null,
     Object? previousCFBundleIconFile = null,
   }) {
-    return _then(_value.copyWith(
-      appBundleId: null == appBundleId
-          ? _value.appBundleId
-          : appBundleId // ignore: cast_nullable_to_non_nullable
-              as String,
-      customIconPath: null == customIconPath
-          ? _value.customIconPath
-          : customIconPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      newCFBundleIconName: null == newCFBundleIconName
-          ? _value.newCFBundleIconName
-          : newCFBundleIconName // ignore: cast_nullable_to_non_nullable
-              as String,
-      newCFBundleIconFile: null == newCFBundleIconFile
-          ? _value.newCFBundleIconFile
-          : newCFBundleIconFile // ignore: cast_nullable_to_non_nullable
-              as String,
-      previousCFBundleIconName: null == previousCFBundleIconName
-          ? _value.previousCFBundleIconName
-          : previousCFBundleIconName // ignore: cast_nullable_to_non_nullable
-              as String,
-      previousCFBundleIconFile: null == previousCFBundleIconFile
-          ? _value.previousCFBundleIconFile
-          : previousCFBundleIconFile // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            appBundleId:
+                null == appBundleId
+                    ? _value.appBundleId
+                    : appBundleId // ignore: cast_nullable_to_non_nullable
+                        as String,
+            customIconPath:
+                null == customIconPath
+                    ? _value.customIconPath
+                    : customIconPath // ignore: cast_nullable_to_non_nullable
+                        as String,
+            newCFBundleIconName:
+                null == newCFBundleIconName
+                    ? _value.newCFBundleIconName
+                    : newCFBundleIconName // ignore: cast_nullable_to_non_nullable
+                        as String,
+            newCFBundleIconFile:
+                null == newCFBundleIconFile
+                    ? _value.newCFBundleIconFile
+                    : newCFBundleIconFile // ignore: cast_nullable_to_non_nullable
+                        as String,
+            previousCFBundleIconName:
+                null == previousCFBundleIconName
+                    ? _value.previousCFBundleIconName
+                    : previousCFBundleIconName // ignore: cast_nullable_to_non_nullable
+                        as String,
+            previousCFBundleIconFile:
+                null == previousCFBundleIconFile
+                    ? _value.previousCFBundleIconFile
+                    : previousCFBundleIconFile // ignore: cast_nullable_to_non_nullable
+                        as String,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -100,17 +112,19 @@ class _$CommandResultCopyWithImpl<$Res, $Val extends CommandResult>
 abstract class _$$CommandResultImplCopyWith<$Res>
     implements $CommandResultCopyWith<$Res> {
   factory _$$CommandResultImplCopyWith(
-          _$CommandResultImpl value, $Res Function(_$CommandResultImpl) then) =
-      __$$CommandResultImplCopyWithImpl<$Res>;
+    _$CommandResultImpl value,
+    $Res Function(_$CommandResultImpl) then,
+  ) = __$$CommandResultImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String appBundleId,
-      String customIconPath,
-      String newCFBundleIconName,
-      String newCFBundleIconFile,
-      String previousCFBundleIconName,
-      String previousCFBundleIconFile});
+  $Res call({
+    String appBundleId,
+    String customIconPath,
+    String newCFBundleIconName,
+    String newCFBundleIconFile,
+    String previousCFBundleIconName,
+    String previousCFBundleIconFile,
+  });
 }
 
 /// @nodoc
@@ -118,8 +132,9 @@ class __$$CommandResultImplCopyWithImpl<$Res>
     extends _$CommandResultCopyWithImpl<$Res, _$CommandResultImpl>
     implements _$$CommandResultImplCopyWith<$Res> {
   __$$CommandResultImplCopyWithImpl(
-      _$CommandResultImpl _value, $Res Function(_$CommandResultImpl) _then)
-      : super(_value, _then);
+    _$CommandResultImpl _value,
+    $Res Function(_$CommandResultImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of CommandResult
   /// with the given fields replaced by the non-null parameter values.
@@ -133,45 +148,54 @@ class __$$CommandResultImplCopyWithImpl<$Res>
     Object? previousCFBundleIconName = null,
     Object? previousCFBundleIconFile = null,
   }) {
-    return _then(_$CommandResultImpl(
-      appBundleId: null == appBundleId
-          ? _value.appBundleId
-          : appBundleId // ignore: cast_nullable_to_non_nullable
-              as String,
-      customIconPath: null == customIconPath
-          ? _value.customIconPath
-          : customIconPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      newCFBundleIconName: null == newCFBundleIconName
-          ? _value.newCFBundleIconName
-          : newCFBundleIconName // ignore: cast_nullable_to_non_nullable
-              as String,
-      newCFBundleIconFile: null == newCFBundleIconFile
-          ? _value.newCFBundleIconFile
-          : newCFBundleIconFile // ignore: cast_nullable_to_non_nullable
-              as String,
-      previousCFBundleIconName: null == previousCFBundleIconName
-          ? _value.previousCFBundleIconName
-          : previousCFBundleIconName // ignore: cast_nullable_to_non_nullable
-              as String,
-      previousCFBundleIconFile: null == previousCFBundleIconFile
-          ? _value.previousCFBundleIconFile
-          : previousCFBundleIconFile // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$CommandResultImpl(
+        appBundleId:
+            null == appBundleId
+                ? _value.appBundleId
+                : appBundleId // ignore: cast_nullable_to_non_nullable
+                    as String,
+        customIconPath:
+            null == customIconPath
+                ? _value.customIconPath
+                : customIconPath // ignore: cast_nullable_to_non_nullable
+                    as String,
+        newCFBundleIconName:
+            null == newCFBundleIconName
+                ? _value.newCFBundleIconName
+                : newCFBundleIconName // ignore: cast_nullable_to_non_nullable
+                    as String,
+        newCFBundleIconFile:
+            null == newCFBundleIconFile
+                ? _value.newCFBundleIconFile
+                : newCFBundleIconFile // ignore: cast_nullable_to_non_nullable
+                    as String,
+        previousCFBundleIconName:
+            null == previousCFBundleIconName
+                ? _value.previousCFBundleIconName
+                : previousCFBundleIconName // ignore: cast_nullable_to_non_nullable
+                    as String,
+        previousCFBundleIconFile:
+            null == previousCFBundleIconFile
+                ? _value.previousCFBundleIconFile
+                : previousCFBundleIconFile // ignore: cast_nullable_to_non_nullable
+                    as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$CommandResultImpl implements _CommandResult {
-  const _$CommandResultImpl(
-      {required this.appBundleId,
-      required this.customIconPath,
-      required this.newCFBundleIconName,
-      required this.newCFBundleIconFile,
-      required this.previousCFBundleIconName,
-      required this.previousCFBundleIconFile});
+  const _$CommandResultImpl({
+    required this.appBundleId,
+    required this.customIconPath,
+    required this.newCFBundleIconName,
+    required this.newCFBundleIconFile,
+    required this.previousCFBundleIconName,
+    required this.previousCFBundleIconFile,
+  });
 
   @override
   final String appBundleId;
@@ -205,22 +229,27 @@ class _$CommandResultImpl implements _CommandResult {
             (identical(other.newCFBundleIconFile, newCFBundleIconFile) ||
                 other.newCFBundleIconFile == newCFBundleIconFile) &&
             (identical(
-                    other.previousCFBundleIconName, previousCFBundleIconName) ||
+                  other.previousCFBundleIconName,
+                  previousCFBundleIconName,
+                ) ||
                 other.previousCFBundleIconName == previousCFBundleIconName) &&
             (identical(
-                    other.previousCFBundleIconFile, previousCFBundleIconFile) ||
+                  other.previousCFBundleIconFile,
+                  previousCFBundleIconFile,
+                ) ||
                 other.previousCFBundleIconFile == previousCFBundleIconFile));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      appBundleId,
-      customIconPath,
-      newCFBundleIconName,
-      newCFBundleIconFile,
-      previousCFBundleIconName,
-      previousCFBundleIconFile);
+    runtimeType,
+    appBundleId,
+    customIconPath,
+    newCFBundleIconName,
+    newCFBundleIconFile,
+    previousCFBundleIconName,
+    previousCFBundleIconFile,
+  );
 
   /// Create a copy of CommandResult
   /// with the given fields replaced by the non-null parameter values.
@@ -232,13 +261,14 @@ class _$CommandResultImpl implements _CommandResult {
 }
 
 abstract class _CommandResult implements CommandResult {
-  const factory _CommandResult(
-      {required final String appBundleId,
-      required final String customIconPath,
-      required final String newCFBundleIconName,
-      required final String newCFBundleIconFile,
-      required final String previousCFBundleIconName,
-      required final String previousCFBundleIconFile}) = _$CommandResultImpl;
+  const factory _CommandResult({
+    required final String appBundleId,
+    required final String customIconPath,
+    required final String newCFBundleIconName,
+    required final String newCFBundleIconFile,
+    required final String previousCFBundleIconName,
+    required final String previousCFBundleIconFile,
+  }) = _$CommandResultImpl;
 
   @override
   String get appBundleId;
