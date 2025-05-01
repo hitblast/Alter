@@ -31,7 +31,7 @@ ScrollReveal().reveal("footer", {
 
 (function () {
   var codeBlock = document.querySelector(".code-block");
-  var iconHTML = '<i class="fa-brands fa-apple"></i>';
+  var iconHTML = '<i class="fa-solid fa-dollar-sign"></i>';
   var originalText = " brew install hitblast/tap/alter";
   var hoverText = " Copy command to clipboard";
   var copiedText = " Copied to clipboard!";
