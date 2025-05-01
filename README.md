@@ -31,10 +31,11 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 > [!NOTE]
 > By using Alter, you acknowledge that Alter is not [notarized.](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution)
 >
-> It's a security feature of Apple, based on which binaries are validated before running on consumer hardware. Since I do not plan to notarize Alter, the [Homebrew installation script]() will automatically remove the `com.apple.quarantine` attribute upon installation. Or, you can manually remove the attribute by running the following command in Terminal:
+> It's a security feature of Apple, based on which binaries are validated before running on consumer hardware. Since I do not plan to notarize Alter, the [Homebrew installation script]() will automatically remove the `com.apple.quarantine` attribute upon installation.
 >
+> Or, you can use the following command to manually remove the attribute after installation:
 > ```bash
-> xattr -d com.apple.quarantine /path/to/alter.app
+> xattr -d com.apple.quarantine /Applications/Alter.app
 > ```
 >
 > A better reference could be found for this concept can be found in [this section](https://developer.apple.com/documentation/security/notarizing_macos_software_before_distribution) of Apple's official documentation.
