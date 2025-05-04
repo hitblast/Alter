@@ -46,7 +46,6 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
 
   @override
   Widget build(BuildContext context) {
-    final appName = path.basenameWithoutExtension(widget.appFile.path);
     final brightness = MediaQuery.of(context).platformBrightness;
 
     return MacosSheet(
@@ -67,8 +66,8 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
                       children: [
                         Text(
                           (widget.preexistingAppId != null)
-                              ? 'Modify icon for $appName'
-                              : 'Select icon for $appName',
+                              ? 'Modify icon for app'
+                              : 'Select icon for app',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 21,

@@ -69,6 +69,8 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                     await launchOnWeb(context, 'https://macosicons.com/'),
           ),
           const ToolBarSpacer(),
+          const ToolBarDivider(),
+          const ToolBarSpacer(),
           ToolBarIconButton(
             icon: const MacosIcon(
               CupertinoIcons.xmark_shield_fill,
@@ -152,15 +154,18 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                             ? secondaryColorDarkMode
                             : secondaryColorLightMode,
                   ),
-                  padding: const EdgeInsets.all(17),
+                  padding: const EdgeInsets.all(12),
                   child: MacosListTile(
                     leading: Row(
                       children: [
                         Text(
                           '${i + 1}.',
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: CupertinoColors.systemGrey,
+                          ),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 8),
                         MacosTooltip(
                           message: app.appBundleId,
                           child: Container(
@@ -206,7 +211,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                       children: [
                         Text(
                           path.basenameWithoutExtension(app.path),
-                          style: const TextStyle(fontSize: 15.5),
+                          style: const TextStyle(fontSize: 14),
                         ),
                         const Spacer(),
                         MacosTooltip(
@@ -225,7 +230,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                             },
                             icon: const MacosIcon(
                               CupertinoIcons.pencil,
-                              size: 20,
                               color: CupertinoColors.systemGrey,
                             ),
                           ),
@@ -249,7 +253,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                             icon: const MacosIcon(
                               CupertinoIcons.trash_fill,
                               color: CupertinoColors.systemGrey,
-                              size: 20,
                             ),
                           ),
                         ),
