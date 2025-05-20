@@ -111,7 +111,7 @@ body {
 
 /* Image placeholder styling */
 .image {
-    width: 300px;
+    width: 230px;
     height: auto;
     display: block;
     transition: transform 0.3s ease;
@@ -119,6 +119,7 @@ body {
     cursor: pointer;
     position: relative;
     z-index: 10;
+    margin-bottom: 1.3rem;
 }
 .image.clicked {
     transform: scale(0.9);
@@ -220,6 +221,11 @@ footer {
     font-size: 0.8em;
     background-color: inherit;
     margin-bottom: 40px;
+}
+
+footer a {
+    text-decoration: underline;
+    color: #fff;
 }
 
 /* Responsive adjustments */
