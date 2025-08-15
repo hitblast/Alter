@@ -25,7 +25,7 @@ dependencies:
   watcher: ^1.1.1
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
   build_runner: ^2.4.15
   custom_lint: ^0.7.0
   riverpod_lint: ^2.1.1
