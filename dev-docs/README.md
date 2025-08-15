@@ -57,7 +57,15 @@ cd Alter
 
   You'll also have to ensure that the dependencies from the `Podfile` (located inside `macos/`) are installed. To do that, simply run `pod install` inside the mentioned directory.
 
-- Step 3: Build a production release.
+- Step 3: Setup Xcode development certificates (you must attach an Apple account with your Xcode instance and choose a certificate for buildign the app).
+
+- Step 4 **(Optional)**: If you have `sccache` installed, you must note that the current configuration for this project doesn't allow for the builds to succeed with cache-optimized clang configuration. You must disable it beforehand:
+
+```bash
+export CC="clang" && export CXX="clang++"
+```
+
+- Step 5: Finally, build a production release for Alter.
 
 ```bash
 mise run build
