@@ -55,6 +55,8 @@ cd Alter
   flutter pub get
   ```
 
+  You'll also have to ensure that the dependencies from the `Podfile` (located inside `macos/`) are installed. To do that, simply run `pod install` inside the mentioned directory.
+
 - Step 3: Build a production release.
 
 ```bash
