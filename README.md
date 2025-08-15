@@ -96,9 +96,7 @@ compiled binary (obviously since it's a Flutter project), so there will always b
 ## Contributing
 
 Contributions are always welcome. If you are a developer who is willing to improve *any* aspect of the application,
-consider reading [dev-docs/DEVELOPMENT.md](/dev-docs/DEVELOPMENT.md) for everything related to
-reproducing the development environment and more. If you have already attached the development environment, however,
-consider following through the ethical guidelines of contributing written in [CONTRIBUTING.md](/CONTRIBUTING.md).
+consider following through the contribution guidelines written in [CONTRIBUTING.md](/CONTRIBUTING.md).
 
 ## License
 
