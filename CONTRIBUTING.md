@@ -13,5 +13,5 @@ guidelines for this:
 
 ## Feature development
 
-If you're up for creating the feature/bug-fix that you're submitting yourself, please follow [dev-docs/DEVELOPMENT.md](./dev-docs/DEVELOPMENT.md)
+If you're up for creating the feature/bug-fix that you're submitting yourself, please follow the [Developer's Guide](https://github.com/hitblast/Alter/blob/main/dev-docs/README.md)
 as this contains all the necessary guidelines to calibrate your development environment for Alter.
