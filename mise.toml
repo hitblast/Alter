@@ -1,6 +1,3 @@
 
 [tasks.build]
 run = "flutter build macos --verbose --release --tree-shake-icons"
-
-[tools]
-flutter = "latest"
