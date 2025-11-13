@@ -134,14 +134,16 @@ body {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    filter: blur(110px);
-    -webkit-filter: blur(110px);
-    transform-origin: 100px center;
-    animation: orbit 7.5s ease-in-out infinite;
-    -webkit-animation: orbit 7.5s ease-in-out infinite;
+    filter: blur(200px);
+    opacity: 0.3;
+    -webkit-filter: blur(200px);
+    transform-origin: 200px center;
+    animation: orbit 20s ease-in-out infinite;
+    -webkit-animation: orbit 20s ease-in-out infinite;
+    box-shadow: 0px 0px 30px gainsboro;
 }
 .cloud-orange {
-    background: coral;
+    background: gainsboro;
     animation-delay: 0s;
     -webkit-animation-delay: 0s;
 }
