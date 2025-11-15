@@ -82,7 +82,7 @@ with a fully open-sourced near-native development experience.
 Based on basic analysis of the project, a few, possibly resolvable issues have been found so far:
 
 - Self-validating binaries like [Discord](https://discord.com/) do not cooperate with the attribute
-modifications happening inside, and could very as well broken once they're
+modifications happening inside, and could be broken once they're
 customized. To solve this, I've tried incorporating a blacklist of
 apps which should be prohibited from modifying unless the user really desires.
 
