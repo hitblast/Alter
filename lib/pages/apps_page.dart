@@ -121,17 +121,6 @@ class _AppsPageState extends ConsumerState<AppsPage> {
       children: [
         ContentArea(
           builder: (context, scrollController) {
-            bool isDarkMode =
-                MediaQuery.of(context).platformBrightness == Brightness.dark;
-
-            Color secondaryColorDarkMode = Color.fromRGBO(28, 28, 28, 0.5);
-            Color secondaryColorLightMode = Color.fromRGBO(
-              228,
-              228,
-              228,
-              1.000,
-            );
-
             return ListView.builder(
               controller: scrollController,
               itemCount: apps.value!.length + 1,
@@ -145,14 +134,12 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(
-                        color: CupertinoColors.systemGrey2.withOpacity(0.3),
+                        color: CupertinoColors.systemGrey2.withValues(
+                          alpha: 0.3,
+                        ),
                         width: 1,
                       ),
                     ),
-                    color:
-                        isDarkMode
-                            ? secondaryColorDarkMode
-                            : secondaryColorLightMode,
                   ),
                   padding: const EdgeInsets.all(12),
                   child: MacosListTile(
