@@ -1,5 +1,5 @@
 name: alter
-description: "Alter is a minimal macOS app which can be used to customize your app icons with ease."
+description: "Customize your macOS app icons with ease."
 publish_to: "none"
 version: 1.1.4
 
@@ -12,24 +12,24 @@ dependencies:
   file_selector: ^1.0.3
   flutter:
     sdk: flutter
-  flutter_riverpod: ^2.6.1
+  flutter_riverpod: ^3.0.3
   freezed_annotation: ^3.0.0
   macos_ui: ^2.0.9
-  objectbox: ^4.1.0
+  objectbox: ^5.0.4
   objectbox_flutter_libs: any
   path: ^1.9.1
   path_provider: ^2.1.5
   process_run: ^1.2.2
-  riverpod_annotation: ^2.6.1
+  riverpod_annotation: ^3.0.3
   url_launcher: ^6.3.1
   watcher: ^1.1.1
 
 dev_dependencies:
   flutter_lints: ^6.0.0
   build_runner: ^2.4.15
-  custom_lint: ^0.7.0
-  riverpod_lint: ^2.1.1
-  riverpod_generator: ^2.3.3
+  custom_lint: ^0.8.1
+  riverpod_lint: ^3.0.3
+  riverpod_generator: ^3.0.3
   freezed: ^3.0.6
   objectbox_generator: any
 
@@ -39,6 +39,4 @@ flutter:
     - assets/images/alter_empty_dark.png
     - assets/images/alter_empty_light.png
     - assets/images/alter_icon_frame.png
-    - assets/images/alter_starter.png
-    - assets/images/alter_warning.png
     - macos/Runner/Assets.xcassets/AppIcon.appiconset/icon_512x512@2x.png

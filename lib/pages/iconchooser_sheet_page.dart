@@ -188,14 +188,14 @@ class _IconChooserSheetPageState extends ConsumerState<IconChooserSheetPage> {
 
                             if (widget.preexistingAppId == null) {
                               ref
-                                  .read(appDatabaseNotifierProvider.notifier)
+                                  .read(appDatabaseProvider.notifier)
                                   .addApp(
                                     widget.appFile.path,
                                     currentPickedIcon!.path,
                                   );
                             } else {
                               ref
-                                  .read(appDatabaseNotifierProvider.notifier)
+                                  .read(appDatabaseProvider.notifier)
                                   .updateAppIcon(
                                     widget.preexistingAppId!,
                                     currentPickedIcon!.path,

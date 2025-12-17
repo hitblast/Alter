@@ -10,10 +10,10 @@ PODS:
     - FlutterMacOS
   - macos_window_utils (1.0.0):
     - FlutterMacOS
-  - ObjectBox (4.3.0)
+  - ObjectBox (5.1.1)
   - objectbox_flutter_libs (0.0.1):
     - FlutterMacOS
-    - ObjectBox (= 4.3.0)
+    - ObjectBox (= 5.1.1)
   - path_provider_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -58,15 +58,15 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   appkit_ui_element_colors: c8e13c23cbd781e0f5d9b75cad686e6a4bb958da
   desktop_window: de6acd6053564bdccd9f4b9473d25bf4f2ad9bdf
-  file_selector_macos: 6280b52b459ae6c590af5d78fc35c7267a3c4b31
-  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
+  file_selector_macos: 9e9e068e90ebee155097d00e89ae91edb2374db7
+  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
   macos_ui: ff29104a215c2e1b76f37aacdcbba648abb25faa
   macos_window_utils: 23f54331a0fd51eea9e0ed347253bf48fd379d1d
-  ObjectBox: 7760fa9072adcffe102a6adf4646ca84ba70ab6b
-  objectbox_flutter_libs: b5902372b56d11b523de3c6c508f3d9244b8943f
-  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
-  url_launcher_macos: 0fba8ddabfc33ce0a9afe7c5fef5aab3d8d2d673
+  ObjectBox: 26871f7cce80a8bd2e610bf944aeaded730f6925
+  objectbox_flutter_libs: 5aac4de1c44d8b95362cb46f2d2acfe4da7c5d63
+  path_provider_foundation: bb55f6dbba17d0dccd6737fe6f7f34fbd0376880
+  url_launcher_macos: f87a979182d112f911de6820aefddaf56ee9fbfd
 
-PODFILE CHECKSUM: c2e95c8c0fe03c5c57e438583cae4cc732296009
+PODFILE CHECKSUM: a16cc5262cfb59fd6dd9e4aff3cad4dda4d288e7
 
 COCOAPODS: 1.16.2

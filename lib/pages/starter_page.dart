@@ -1,5 +1,6 @@
 // First-party imports.
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 // Third-party imports.
 import 'package:macos_ui/macos_ui.dart';
@@ -68,10 +69,10 @@ class StarterPage extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset(
-                          'assets/images/alter_starter.png',
-                          width: 120,
-                          height: 120,
+                        MacosIcon(
+                          CupertinoIcons.pen,
+                          size: 100,
+                          color: CupertinoColors.inactiveGray,
                         ),
                         const SizedBox(height: 25),
                         const Text(

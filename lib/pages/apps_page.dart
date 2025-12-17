@@ -30,7 +30,7 @@ class AppsPage extends ConsumerStatefulWidget {
 class _AppsPageState extends ConsumerState<AppsPage> {
   @override
   Widget build(BuildContext context) {
-    final apps = ref.watch(appDatabaseNotifierProvider);
+    final apps = ref.watch(appDatabaseProvider);
 
     return MacosScaffold(
       toolBar: ToolBar(
@@ -55,7 +55,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
                 'This will reset all changed icons and remove all customizations.',
               );
               if (shouldResetAll) {
-                ref.read(appDatabaseNotifierProvider.notifier).deleteAllApps();
+                ref.read(appDatabaseProvider.notifier).deleteAllApps();
               }
             },
           ),
@@ -246,7 +246,7 @@ class _AppsPageState extends ConsumerState<AppsPage> {
 
                               if (shouldDeleteApp) {
                                 ref
-                                    .read(appDatabaseNotifierProvider.notifier)
+                                    .read(appDatabaseProvider.notifier)
                                     .deleteApp(app.id);
                               }
                             },

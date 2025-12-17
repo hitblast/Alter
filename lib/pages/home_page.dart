@@ -56,7 +56,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var apps = ref.watch(appDatabaseNotifierProvider);
+    var apps = ref.watch(appDatabaseProvider);
     var missingDependencies = ref.watch(missingDependenciesProvider);
 
     // Based on the asynchronous state, the page to display is decided.

@@ -10,7 +10,10 @@ void showAlertDialog(BuildContext context, String title, String message) {
     context: context,
     builder:
         (_) => MacosAlertDialog(
-          appIcon: Image.asset('assets/images/alter_warning.png'),
+          appIcon: MacosIcon(
+            CupertinoIcons.exclamationmark_octagon,
+            color: CupertinoColors.inactiveGray,
+          ),
           title: Text(title),
           message: Text(message),
           primaryButton: PushButton(
@@ -34,7 +37,10 @@ Future<bool> showConfirmationDialog(
     context: context,
     builder:
         (_) => MacosAlertDialog(
-          appIcon: Image.asset('assets/images/alter_warning.png'),
+          appIcon: MacosIcon(
+            CupertinoIcons.exclamationmark_octagon,
+            color: CupertinoColors.inactiveGray,
+          ),
           title: Text(title),
           message: Text(message),
           horizontalActions: false,
