@@ -4,7 +4,7 @@
 # Alter
 
 _"A minimal app to customize your macOS app icons with ease."_<br>
-Works on **macOS Ventura 13 or newer.**
+Optimized for **macOS Tahoe 26**. v1.1.4 supports **macOS Ventura 13 or later.**
 
 </div>
 
@@ -42,7 +42,8 @@ Alternatively, use [GitHub Releases](https://github.com/hitblast/alter/releases)
 
 - [Key Features](#key-features)
 - [Backstory](#backstory)
-- [Common Pitfalls](#common-pitfalls)
+- [Caveats](#caveats)
+- [Goals](#goals)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -77,9 +78,9 @@ with a fully open-sourced near-native development experience.
 
 ---
 
-## Common Pitfalls
+## Caveats
 
-Based on basic analysis of the project, a few, possibly resolvable issues have been found so far:
+Based on basic analysis of the project, a few, resolvable (possibly) issues have been found so far.
 
 - Self-validating binaries like [Discord](https://discord.com/) do not cooperate with the attribute
 modifications happening inside, and could be broken once they're
@@ -89,7 +90,13 @@ apps which should be prohibited from modifying unless the user really desires.
 - The [Flutter Engine](https://github.com/flutter/engine) is a part of the
 compiled binary (obviously since it's a Flutter project), so there will always be a tiny difference in size when it comes to comparing with a Swift binary.
 
-- For now, Alter cannot modify the system apps on macOS due to SIP (System Integrity Protection) being a thing. I'm still working on possible workarounds.
+- Alter cannot modify the system apps on macOS due to SIP (System Integrity Protection) being a thing. I'm still working on possible workarounds.
+
+## Goals
+
+Even though some of the issues might not be resolvable, I'm personally looking forward to fixing the following:
+
+- The RAM issue. Older MacBook models like the M1 MacBook Air have a hard time managing RAM anyway; so eating up that space with isolates for updating app icons is a sub-optimal solution. My target is to **migrate app icon updates to a low-level language.**
 
 ## Contributing
 
