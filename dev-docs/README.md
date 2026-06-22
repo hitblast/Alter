@@ -13,7 +13,6 @@ This guide walks you through the setup and development process for contributing 
 ## Prerequisites
 
 - [Flutter SDK](https://flutter.dev/docs/get-started/install) (latest)
-- [mise](https://mise.jdx.dev) (**optional**, latest)
 - [CocoaPods](https://cocoapods.org) (optional, latest) [as a part of the Flutter dependency chain]
 
 ## Code Editor
@@ -23,7 +22,7 @@ particular setup. If you're using Zed, this gives you a few benefits since the c
 bundled with this repository:
 
   - Low memory overhead while debugging Alter (excluding Flutter).
-  - [Spawning tasks](https://zed.dev/docs/tasks) for building a production release instead of depending on `mise`/`flutter` directly.
+  - [Spawning tasks](https://zed.dev/docs/tasks) for building production/debug releases.
 
 ## Setup
 
@@ -42,16 +41,7 @@ cd Alter
 
 - Step 2: Install the dependencies.
 
-  i. With `mise` (recommended):
-
-  ```bash
-  mise install && flutter pub get
-  ```
-
-  ii. Without `mise`:
-
-  ```bash
-  # Install Flutter SDK for your platform separately.
+   ```bash
   flutter pub get
   ```
 
@@ -63,13 +53,37 @@ cd Alter
 
 ```bash
 export CC="clang" && export CXX="clang++"
+
+# or, you can just unset
+
+unset CC && unset CXX
 ```
+
+- **Step 6: Setup Xcode Team**
+
+> [!WARNING]
+> This step is important as without it, even the most correct codebases fail to build.
+
+1. Open Xcode → Accounts
+  - Xcode → **Settings / Preferences**
+  - **Accounts**
+  - Select your Apple ID
+  - Select your team → click **Manage Certificates**
+  - Click + → create:
+    - **Mac Development**
+
+2. Enable automatic signing
+In your project:
+  - Open `Runner` target
+  - **Signing & Capabilities**
+  - Enable:
+    **Automatically manage signing**
+  - Select correct **Team** (example: Q4TRVT57R5)
 
 - Step 5: Finally, build a production release for Alter.
 
 ```bash
-mise run build
-# this is the same as running: flutter build macos --verbose --release --tree-shake-icons
+flutter build macos --verbose --release --tree-shake-icons
 ```
 
 ## Project Anatomy
