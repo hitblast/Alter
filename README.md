@@ -4,7 +4,7 @@
 # Alter
 
 _"A minimal app to customize your macOS app icons with ease."_<br>
-Optimized for **macOS Tahoe 26**. v1.1.4 supports **macOS Ventura 13 or later.**
+Optimized for **macOS Sequoia 15 and later**.
 
 </div>
 
